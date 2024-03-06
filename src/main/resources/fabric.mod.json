@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "tough_environment",
+  "version": "${version}",
+  "name": "tough_environment",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Weedmix/tough_environment"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/tough_environment/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "org.tough_environment.client.ToughEnvironmentClient"
+    ],
+    "main": [
+      "org.tough_environment.ToughEnvironmentMod"
+    ],
+    "fabric-datagen": [
+      "org.tough_environment.ToughEnvironmentDataGenerator"
+    ]
+  },
+  "mixins": [
+    "tough_environment.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
