@@ -75,9 +75,12 @@ public class LooseSlabBlock extends FallingBlock implements LandingBlock, Waterl
         else
         {
             FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-            BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+            BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM)
+                    .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             Direction direction = ctx.getSide();
-            return direction != Direction.DOWN && (direction == Direction.UP || !(ctx.getHitPos().y - (double)blockPos.getY() > 0.5)) ? blockState2 : blockState2.with(TYPE, SlabType.TOP);
+            return direction != Direction.DOWN && (direction == Direction.UP
+                    || !(ctx.getHitPos().y - (double)blockPos.getY() > 0.5)) ?
+                    blockState2 : blockState2.with(TYPE, SlabType.TOP);
         }
     }
 
@@ -113,7 +116,8 @@ public class LooseSlabBlock extends FallingBlock implements LandingBlock, Waterl
         }
     }
 
-    public FluidState getFluidState(BlockState state) {
+    public FluidState getFluidState(BlockState state)
+    {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 

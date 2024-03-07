@@ -58,7 +58,9 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
     private void breakBlock(World world, BlockPos pos, BlockState state, ItemStack stack)
     {
 
-        boolean isModernPickaxe = stack.isOf(Items.IRON_PICKAXE) || stack.isOf(Items.DIAMOND_PICKAXE) || stack.isOf(Items.NETHERITE_PICKAXE);
+        boolean isModernPickaxe = stack.isOf(Items.IRON_PICKAXE)
+                || stack.isOf(Items.DIAMOND_PICKAXE)
+                || stack.isOf(Items.NETHERITE_PICKAXE);
         boolean isStonePickaxe = stack.isOf(Items.STONE_PICKAXE);
         boolean isModernChisel = stack.isIn(ModTags.Items.MODERN_CHISELS);
 

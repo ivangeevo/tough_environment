@@ -54,7 +54,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
 
         if (!world.isClient)
         {
-            setConverableStates(world, pos, state, tool);
+            this.setConverableStates(world, pos, state, tool);
         }
 
         player.incrementStat(Stats.MINED.getOrCreateStat((Block) (Object) this));
@@ -99,10 +99,10 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     // Method to handle what happens to converting blocks after broken.
     public void setConverableStates(World world, BlockPos pos, BlockState state, ItemStack tool) {
         if (state.isOf(Blocks.STONE)) {
-            setStateForStone(world, pos, tool);
+            this.setStateForStone(world, pos, tool);
         }
         else if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(ModBlocks.DIRT_LOOSE)) {
-            setStateForDirt(world, pos, state, tool);
+            this.setStateForDirt(world, pos, state, tool);
         }
 
         world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
