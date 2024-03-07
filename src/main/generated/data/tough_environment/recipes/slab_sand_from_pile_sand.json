@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:pile_sand"
+    },
+    {
+      "item": "tough_environment:pile_sand"
+    },
+    {
+      "item": "tough_environment:pile_sand"
+    },
+    {
+      "item": "tough_environment:pile_sand"
+    }
+  ],
+  "result": {
+    "item": "tough_environment:slab_sand"
+  }
+}

@@ -19,6 +19,17 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
+        getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONES)
+                .add(ModBlocks.STONE_BROKEN)
+                .add(ModBlocks.GRANITE_BROKEN)
+                .add(ModBlocks.DIORITE_BROKEN)
+                .add(ModBlocks.ANDESITE_BROKEN)
+                .add(ModBlocks.CALCITE_BROKEN)
+                .add(ModBlocks.TUFF_BROKEN)
+                .add(ModBlocks.BLACKSTONE_BROKEN)
+                .add(ModBlocks.DEEPSLATE_BROKEN)
+                .add(ModBlocks.BASALT_BROKEN)
+                .add(ModBlocks.ENDSTONE_BROKEN);
 
 
 

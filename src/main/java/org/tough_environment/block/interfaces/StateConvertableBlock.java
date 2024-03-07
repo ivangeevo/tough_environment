@@ -27,7 +27,7 @@ public interface StateConvertableBlock {
         }
     }
 
-    default void setConverableStates(World world, BlockPos pos, BlockState state, ItemStack tool) {}
+    default void setConvertableStates(World world, BlockPos pos, BlockState state, ItemStack tool) {}
 
 
 

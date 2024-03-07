@@ -38,13 +38,15 @@ public class ModBlocks {
     public static final Block DIORITE_CONVERTING = registerBlock("diorite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block ANDESITE_CONVERTING = registerBlock("andesite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block CALCITE_CONVERTING = registerBlock("calcite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block TUFF_CONVERTING= registerBlock("tuff_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block TUFF_CONVERTING = registerBlock("tuff_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block BLACKSTONE_CONVERTING = registerBlock("blackstone_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new ConvertingBlock(FabricBlockSettings.create().strength(3.0f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block ENDSTONE_CONVERTING = registerBlock("endstone_converting", new ConvertingBlock(FabricBlockSettings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
-    // Broken* blocks have exactly 10f more strength than their normal counterparts.
+
+    /** Broken* blocks have exactly 10f more strength than their normal counterparts. **/
+
     public static final Block STONE_BROKEN = registerBlock("stone_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_BROKEN = registerBlock("granite_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block DIORITE_BROKEN = registerBlock("diorite_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));

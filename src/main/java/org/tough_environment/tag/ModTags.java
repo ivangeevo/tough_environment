@@ -42,7 +42,7 @@ public class ModTags
 
     }
 
-    public static class Mineables
+    public static class Mineable
     {
         public static final TagKey<Block> CHISEL_MINEABLE = register("mineable/chisel");
 

@@ -23,7 +23,7 @@ public class ChiselItem extends MiningToolItem
 
     public ChiselItem(float attackDamage, float attackSpeed, ToolMaterials material, ChiselType chiselType, Settings settings)
     {
-        super(attackDamage,attackSpeed,material, ModTags.Mineables.CHISEL_MINEABLE,settings);
+        super(attackDamage,attackSpeed,material, ModTags.Mineable.CHISEL_MINEABLE,settings);
         this.chiselType = chiselType;
 
     }
