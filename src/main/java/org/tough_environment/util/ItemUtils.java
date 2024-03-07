@@ -3,7 +3,9 @@
 package org.tough_environment.util;
 
 
+import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

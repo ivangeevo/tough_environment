@@ -9,7 +9,17 @@
     "tough_environment:tuff_converting",
     "tough_environment:blackstone_converting",
     "tough_environment:deepslate_converting",
-    "tough_environment:endstone_converting"
+    "tough_environment:endstone_converting",
+
+    "minecraft:stone",
+    "minecraft:granite",
+    "minecraft:diorite",
+    "minecraft:andesite",
+    "minecraft:calcite",
+    "minecraft:tuff",
+    "minecraft:blackstone",
+    "minecraft:deepslate",
+    "minecraft:end_stone"
 
   ]
 }

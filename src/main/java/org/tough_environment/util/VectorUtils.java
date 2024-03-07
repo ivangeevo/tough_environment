@@ -4,6 +4,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class VectorUtils {
 
+
     public static Vec3d tiltVector(Vec3d originalVector, int facing) {
         double x = originalVector.x;
         double y = originalVector.y;

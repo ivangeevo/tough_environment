@@ -66,20 +66,15 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
 
     @Override
     public boolean shouldDirectionalDrop(BlockState state, ItemStack tool) {
-        boolean isModernPickaxe = tool.isOf(Items.IRON_PICKAXE) || tool.isOf(Items.GOLDEN_PICKAXE) || tool.isOf(Items.DIAMOND_PICKAXE) || tool.isOf(Items.NETHERITE_PICKAXE);
-        boolean isStonePickaxe = tool.isOf(Items.STONE_PICKAXE);
+        boolean isModernPickaxe = tool.isIn(ModTags.Items.MODERN_PICKAXES);
+        boolean isPrimitivePickaxe = tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES);
         int breakLevel = state.get(ModProperties.BREAK_LEVEL);
 
         if (!isModernPickaxe) {
             return false;
         }
 
-        if (isStonePickaxe && (breakLevel == 0  || breakLevel == 1 || breakLevel == 5)) {
-            return false;
-        }
-
-
-        return true;
+        return !isPrimitivePickaxe || (breakLevel != 0 && breakLevel != 1 && breakLevel != 5);
     }
 
     @Unique
@@ -97,6 +92,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     }
 
     // Method to handle what happens to converting blocks after broken.
+    @Override
     public void setConvertableStates(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
 
