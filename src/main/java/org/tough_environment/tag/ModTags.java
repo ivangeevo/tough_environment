@@ -28,6 +28,8 @@ public class ModTags
 
         public static final TagKey<Item> MODERN_CHISELS = createTag("modern_chisels");
         public static final TagKey<Item> MODERN_PICKAXES = createTag("modern_pickaxes");
+        public static final TagKey<Item> PRIMITIVE_PICKAXES = createTag("primitive_pickaxes");
+
         public static final TagKey<Item> MODERN_AXES = createTag("modern_axes");
         public static final TagKey<Item> MODERN_SHOVELS = createTag("modern_shovels");
         public static final TagKey<Item> MODERN_HOES = createTag("modern_hoes");

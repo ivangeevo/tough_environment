@@ -29,6 +29,10 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.DIAMOND_PICKAXE)
                 .add(Items.NETHERITE_PICKAXE);
 
+        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_PICKAXES)
+                .add(Items.WOODEN_PICKAXE)
+                .add(Items.STONE_PICKAXE);
+
         getOrCreateTagBuilder(ModTags.Items.MODERN_AXES)
                 .add(Items.IRON_AXE)
                 .add(Items.GOLDEN_AXE)
