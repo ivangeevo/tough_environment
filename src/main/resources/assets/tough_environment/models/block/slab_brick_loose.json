@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "tough_environment:block/oven_brick_side",
+    "side": "tough_environment:block/oven_brick_side",
+    "top": "tough_environment:block/oven_brick_side"
+  }
+}
+

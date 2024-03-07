@@ -33,12 +33,26 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_RED_SAND,ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_GRAVEL,ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL , "group_te", 1 );
 
+
+        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_COBBLESTONE_LOOSE,ModItems.SMALL_STONE, ModItems.SMALL_STONE, ModItems.SMALL_STONE, ModItems.SMALL_STONE , "group_te", 1 );
+        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE,ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2 , "group_te", 1 );
+
+        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_GRANITE_LOOSE,ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE , "group_te", 1 );
+        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_ANDESITE_LOOSE,ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE , "group_te", 1 );
+
+
+        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_BRICK_LOOSE,Items.BRICK, Items.BRICK, Items.BRICK, Items.BRICK , "group_te", 1 );
+
+
         // Shaped Recipes
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CLAY_BALL).input('#', ModItems.PILE_CLAY).pattern("#").pattern("#").criterion("has_pile_clay", RecipeProvider.conditionsFromItem(ModItems.PILE_CLAY)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE).input('#', ModBlocks.SLAB_DIRT).pattern("#").pattern("#").criterion("has_slab_dirt", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIRT)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.SAND).input('#', ModBlocks.SLAB_SAND).pattern("#").pattern("#").criterion("has_slab_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_SAND)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.RED_SAND).input('#', ModBlocks.SLAB_RED_SAND).pattern("#").pattern("#").criterion("has_slab_red_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_RED_SAND)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.GRAVEL).input('#', ModBlocks.SLAB_GRAVEL).pattern("#").pattern("#").criterion("has_slab_gravel", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRAVEL)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GRANITE_LOOSE).input('#', ModBlocks.SLAB_GRANITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_granite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANDESITE_LOOSE).input('#', ModBlocks.SLAB_ANDESITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_andesite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
 
     }
 

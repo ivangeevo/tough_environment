@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "tough_environment:block/cobblestone_loose_2",
+    "side": "tough_environment:block/cobblestone_loose_2",
+    "top": "tough_environment:block/cobblestone_loose_2"
+  }
+}
