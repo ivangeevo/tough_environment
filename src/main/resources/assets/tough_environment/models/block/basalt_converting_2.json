@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "tough_environment:block/stone_converting"
+    "all": "tough_environment:block/basalt_converting_2"
   }
 }
