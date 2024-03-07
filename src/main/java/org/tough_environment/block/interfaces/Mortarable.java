@@ -7,9 +7,6 @@ import net.minecraft.world.World;
 
 public interface Mortarable {
 
-    boolean hasMortarNow(BlockState state);
-
-    boolean isMortarable(BlockState state, World world, BlockPos pos, PlayerEntity player);
 
     void mortarBlock(BlockState state, World world, BlockPos pos, PlayerEntity player);
 

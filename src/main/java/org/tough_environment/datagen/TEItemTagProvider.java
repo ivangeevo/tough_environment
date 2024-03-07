@@ -51,5 +51,8 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.DIAMOND_HOE)
                 .add(Items.NETHERITE_HOE);
 
+        getOrCreateTagBuilder(ModTags.Items.MORTARING_ITEMS)
+                .add(Items.CLAY_BALL)
+                .add(Items.SLIME_BALL);
     }
 }

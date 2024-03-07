@@ -36,6 +36,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.ToughEnvironmentMod;
+import org.tough_environment.block.ModBlocks;
 import org.tough_environment.block.interfaces.Mortarable;
 import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
@@ -70,36 +71,66 @@ public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingB
         builder.add(TYPE, WATERLOGGED, HAS_MORTAR);
     }
 
-    @Override
-    public boolean hasMortarNow(BlockState state)
-    {
-        return state.get(HAS_MORTAR);
-    }
-
-    @Override
-    public boolean isMortarable(BlockState state, World world, BlockPos pos, PlayerEntity player) {
-        return state.getBlock() instanceof LooseSlabBlock;
-    }
 
     @Override
     public void mortarBlock(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+        SlabType slabType = state.get(TYPE);
 
-
+        Block newBlock = getReplacementBlock(state.getBlock(), slabType);
+        if (newBlock != null) {
+            BlockState newState = newBlock.getDefaultState();
+            if (newState.getProperties().contains(TYPE)) {  // Check if TYPE property exists
+                newState = newState.with(TYPE, slabType);
+            }
+            world.setBlockState(pos, newState);
+        }
     }
 
+    private Block getReplacementBlock(Block originalBlock, SlabType slabType) {
+        if (originalBlock == ModBlocks.SLAB_COBBLESTONE_LOOSE) {
+            return slabType == SlabType.DOUBLE ? Blocks.COBBLESTONE : Blocks.COBBLESTONE_SLAB;
+        } else if (originalBlock == ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE) {
+            return slabType == SlabType.DOUBLE ? Blocks.COBBLED_DEEPSLATE : Blocks.COBBLED_DEEPSLATE_SLAB;
+        } else if (originalBlock == ModBlocks.SLAB_ANDESITE_LOOSE) {
+            return slabType == SlabType.DOUBLE ? Blocks.ANDESITE : Blocks.ANDESITE_SLAB;
+        } else if (originalBlock == ModBlocks.SLAB_GRANITE_LOOSE) {
+            return slabType == SlabType.DOUBLE ? Blocks.GRANITE : Blocks.GRANITE_SLAB;
+        }
+        return null;
+    }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient && player.getStackInHand(hand).getItem().getDefaultStack().isIn(ModTags.Items.MORTARING_ITEMS)  && isMortarable(state, world, pos, player)) {
+    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        if (!world.isClient && entity instanceof PlayerEntity) {
+            BlockPos downPos = pos.down();
+            BlockState downState = world.getBlockState(downPos);
+            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM) {
+                world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
+            }
+        }
+        super.onLandedUpon(world, state, pos, entity, fallDistance);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
+    {
+        if (!world.isClient
+                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS)
+                && !state.get(HAS_MORTAR))
+        {
+
             // Mortar the block
-            mortarBlock(state, world, pos, player);
+            this.mortarBlock(state, world, pos, player);
 
             // Optionally, reduce item stack size or perform other actions
+            ItemStack handStack = player.getStackInHand(hand);
+            handStack.decrement(1);
 
             return ActionResult.SUCCESS;
         }
 
-        return ActionResult.PASS;    }
+        return ActionResult.PASS;
+    }
 
     public boolean hasSidedTransparency(BlockState state) {
         return state.get(TYPE) != SlabType.DOUBLE;
@@ -114,10 +145,13 @@ public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingB
         {
             return VoxelShapes.fullCube();
         }
-        else
+        else if (slabType == SlabType.TOP)
         {
-            return BOTTOM_SHAPE;
+            return TOP_SHAPE;
+
         }
+
+        return BOTTOM_SHAPE;
 
     }
 
