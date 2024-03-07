@@ -39,6 +39,9 @@ public class ModTags
         public static final TagKey<Item> MODERN_SHOVELS = createTag("modern_shovels");
         public static final TagKey<Item> MODERN_HOES = createTag("modern_hoes");
 
+        public static final TagKey<Item> MORTARING_ITEMS = createTag("mortaring_items");
+
+
 
         private static TagKey<Item> createTag (String name)
         {

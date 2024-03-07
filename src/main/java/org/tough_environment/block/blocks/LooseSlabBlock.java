@@ -10,14 +10,22 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -27,30 +35,76 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import org.tough_environment.ToughEnvironmentMod;
+import org.tough_environment.block.interfaces.Mortarable;
+import org.tough_environment.state.property.ModProperties;
+import org.tough_environment.tag.ModTags;
 
 import java.util.function.Predicate;
 
-public class LooseSlabBlock extends FallingBlock implements LandingBlock, Waterloggable
+public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingBlock, Waterloggable
 {
 
     // Block parameters and constants & Super settings //
     public static final EnumProperty<SlabType> TYPE;
     public static final BooleanProperty WATERLOGGED;
+    public static final BooleanProperty HAS_MORTAR = ModProperties.HAS_MORTAR;
 
     protected static final VoxelShape BOTTOM_SHAPE;
     protected static final VoxelShape TOP_SHAPE;
 
-    public LooseSlabBlock(Settings settings) {
+
+
+
+
+
+    public LooseSlabBlock(Settings settings)
+    {
         super(settings);
+        this.setDefaultState((this.stateManager.getDefaultState()).with(TYPE, SlabType.BOTTOM)
+                .with(WATERLOGGED, false).with(HAS_MORTAR, false));
     }
+
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
+    {
+        builder.add(TYPE, WATERLOGGED, HAS_MORTAR);
+    }
+
+    @Override
+    public boolean hasMortarNow(BlockState state)
+    {
+        return state.get(HAS_MORTAR);
+    }
+
+    @Override
+    public boolean isMortarable(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+        return state.getBlock() instanceof LooseSlabBlock;
+    }
+
+    @Override
+    public void mortarBlock(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+
+
+    }
+
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!world.isClient && player.getStackInHand(hand).getItem().getDefaultStack().isIn(ModTags.Items.MORTARING_ITEMS)  && isMortarable(state, world, pos, player)) {
+            // Mortar the block
+            mortarBlock(state, world, pos, player);
+
+            // Optionally, reduce item stack size or perform other actions
+
+            return ActionResult.SUCCESS;
+        }
+
+        return ActionResult.PASS;    }
 
     public boolean hasSidedTransparency(BlockState state) {
         return state.get(TYPE) != SlabType.DOUBLE;
     }
 
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(TYPE, WATERLOGGED);
-    }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
     {
@@ -166,6 +220,8 @@ public class LooseSlabBlock extends FallingBlock implements LandingBlock, Waterl
         BOTTOM_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
         TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
     }
+
+
 
 
     // ---------------------------------- //
