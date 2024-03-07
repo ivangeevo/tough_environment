@@ -37,6 +37,13 @@ public class ModBlocks {
     public static final Block COBBLED_DEEPSLATE_LOOSE = registerBlock("cobbled_deepslate_loose", new LooseBlock(FabricBlockSettings.create().strength(1.1F).sounds(BlockSoundGroup.STONE)));
 
     public static final Block STONE_CONVERTING = registerBlock("stone_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DIORITE_CONVERTING = registerBlock("diorite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ANDESITE_CONVERTING = registerBlock("andesite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ENDSTONE_CONVERTING = registerBlock("endstone_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+
     public static final Block STONE_BROKEN = registerBlock("stone_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_BROKEN = registerBlock("granite_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block DIORITE_BROKEN = registerBlock("diorite_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));

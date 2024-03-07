@@ -32,6 +32,9 @@ import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.ItemUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Mixin(Block.class)
 public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock, StateConvertableBlock {
 
@@ -98,43 +101,49 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
 
     // Method to handle what happens to converting blocks after broken.
     public void setConverableStates(World world, BlockPos pos, BlockState state, ItemStack tool) {
-        if (state.isOf(Blocks.STONE)) {
-            this.setStateForStone(world, pos, tool);
-        }
-        else if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(ModBlocks.DIRT_LOOSE)) {
-            this.setStateForDirt(world, pos, state, tool);
+        Map<Block, Block> convertingBlocks = new HashMap<>();
+        convertingBlocks.put(Blocks.STONE, ModBlocks.STONE_CONVERTING);
+        convertingBlocks.put(Blocks.GRANITE, ModBlocks.GRANITE_CONVERTING);
+        convertingBlocks.put(Blocks.DIORITE, ModBlocks.DIORITE_CONVERTING);
+        convertingBlocks.put(Blocks.ANDESITE, ModBlocks.ANDESITE_CONVERTING);
+        convertingBlocks.put(Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_CONVERTING);
+        convertingBlocks.put(Blocks.BASALT, ModBlocks.BASALT_CONVERTING);
+        convertingBlocks.put(Blocks.END_STONE, ModBlocks.ENDSTONE_CONVERTING);
+
+        Block convertingBlock = convertingBlocks.get(state.getBlock());
+        if (convertingBlock != null) {
+            setStateForStone(world, pos, tool, convertingBlock);
+        } else if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(ModBlocks.DIRT_LOOSE)) {
+            setStateForDirt(world, pos, state, tool);
         }
 
         world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
         world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
-
     }
 
 
 
    @Unique
-    private void setStateForStone(World world, BlockPos pos, ItemStack tool) {
-       boolean isModernPickaxe = tool.isOf(Items.IRON_PICKAXE) || tool.isOf(Items.GOLDEN_PICKAXE)
-               || tool.isOf(Items.DIAMOND_PICKAXE) || tool.isOf(Items.NETHERITE_PICKAXE);
+    private void setStateForStone(World world, BlockPos pos, ItemStack tool, Block block) {
 
-        if (isModernPickaxe) {
+        if (tool.isIn(ModTags.Items.MODERN_PICKAXES)) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
         }
 
         if (tool.isOf(Items.STONE_PICKAXE)) {
-            world.setBlockState(pos, ModBlocks.STONE_CONVERTING.getDefaultState().with(ModProperties.BREAK_LEVEL, 5));
+            world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 5));
             return;
 
         }
 
         if (tool.isOf(ModItems.CHISEL_IRON)) {
-            world.setBlockState(pos, ModBlocks.STONE_CONVERTING.getDefaultState().with(ModProperties.BREAK_LEVEL, 3));
+            world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 3));
             return;
 
         }
 
-            world.setBlockState(pos, ModBlocks.STONE_CONVERTING.getDefaultState());
+            world.setBlockState(pos, block.getDefaultState());
 
    }
 

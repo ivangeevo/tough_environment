@@ -89,19 +89,19 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
 
         if (breakLevel == 8 && !(state.getBlock() instanceof BrokenBlock))
         {
-            if (state.isOf(Blocks.STONE)) {
+            if (state.isOf(ModBlocks.STONE_CONVERTING)) {
                 world.setBlockState(pos, ModBlocks.STONE_BROKEN.getDefaultState());
-            } else if (state.isOf(Blocks.GRANITE)) {
+            } else if (state.isOf(ModBlocks.GRANITE_CONVERTING)) {
                 world.setBlockState(pos, ModBlocks.GRANITE_BROKEN.getDefaultState());
-            } else if (state.isOf(Blocks.DIORITE)) {
+            } else if (state.isOf(ModBlocks.DIORITE_CONVERTING)) {
                 world.setBlockState(pos, ModBlocks.DIORITE_BROKEN.getDefaultState());
-            } else if (state.isOf(Blocks.ANDESITE)) {
+            } else if (state.isOf(ModBlocks.ANDESITE_CONVERTING)) {
                 world.setBlockState(pos, ModBlocks.ANDESITE_BROKEN.getDefaultState());
-            } else if (state.isOf(Blocks.ANDESITE)) {
+            } else if (state.isOf(ModBlocks.ANDESITE_CONVERTING)) {
                 world.setBlockState(pos, ModBlocks.DEEPSLATE_BROKEN.getDefaultState());
-            } else if (state.isOf(Blocks.BASALT)) {
+            } else if (state.isOf(ModBlocks.BASALT_CONVERTING)) {
                 world.setBlockState(pos, ModBlocks.BASALT_BROKEN.getDefaultState());
-            } else if (state.isOf(Blocks.END_STONE)) {
+            } else if (state.isOf(ModBlocks.ENDSTONE_CONVERTING)) {
                 world.setBlockState(pos, ModBlocks.ENDSTONE_BROKEN.getDefaultState());
             }
             emitBlockEvents(world, pos, state);
