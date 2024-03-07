@@ -46,10 +46,16 @@ public class TERecipeProvider extends FabricRecipeProvider
 
         // Shaped Recipes
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CLAY_BALL).input('#', ModItems.PILE_CLAY).pattern("#").pattern("#").criterion("has_pile_clay", RecipeProvider.conditionsFromItem(ModItems.PILE_CLAY)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE).input('#', ModBlocks.SLAB_DIRT).pattern("#").pattern("#").criterion("has_slab_dirt", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIRT)).offerTo(exporter);
+
+
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.SAND).input('#', ModBlocks.SLAB_SAND).pattern("#").pattern("#").criterion("has_slab_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_SAND)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.RED_SAND).input('#', ModBlocks.SLAB_RED_SAND).pattern("#").pattern("#").criterion("has_slab_red_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_RED_SAND)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.GRAVEL).input('#', ModBlocks.SLAB_GRAVEL).pattern("#").pattern("#").criterion("has_slab_gravel", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRAVEL)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE).input('#', ModBlocks.SLAB_DIRT).pattern("#").pattern("#").criterion("has_slab_dirt", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIRT)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COBBLESTONE_LOOSE).input('#', ModBlocks.SLAB_COBBLESTONE_LOOSE).pattern("#").pattern("#").criterion("has_slab_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COBBLED_DEEPSLATE_LOOSE).input('#', ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE).pattern("#").pattern("#").criterion("has_slab_cobbled_deepslate_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)).offerTo(exporter);
+
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GRANITE_LOOSE).input('#', ModBlocks.SLAB_GRANITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_granite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANDESITE_LOOSE).input('#', ModBlocks.SLAB_ANDESITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_andesite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);

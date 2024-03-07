@@ -55,12 +55,16 @@ public class LooseSlabBlock extends FallingBlock implements LandingBlock, Waterl
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
     {
         SlabType slabType = state.get(TYPE);
-        return switch (slabType)
+
+        if (slabType == SlabType.DOUBLE)
         {
-            case DOUBLE -> VoxelShapes.fullCube();
-            case TOP -> TOP_SHAPE;
-            default -> BOTTOM_SHAPE;
-        };
+            return VoxelShapes.fullCube();
+        }
+        else
+        {
+            return BOTTOM_SHAPE;
+        }
+
     }
 
     @Nullable
