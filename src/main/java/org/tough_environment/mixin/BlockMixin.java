@@ -32,6 +32,8 @@ import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.ItemUtils;
 
+import java.util.HashMap;
+
 @Mixin(Block.class)
 public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock, StateConvertableBlock {
 
@@ -65,12 +67,14 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     }
 
     @Override
-    public boolean shouldDirectionalDrop(BlockState state, ItemStack tool) {
+    public boolean shouldDirectionalDrop(BlockState state, ItemStack tool)
+    {
         boolean isModernPickaxe = tool.isIn(ModTags.Items.MODERN_PICKAXES);
         boolean isPrimitivePickaxe = tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES);
         int breakLevel = state.get(ModProperties.BREAK_LEVEL);
 
-        if (!isModernPickaxe) {
+        if (!isModernPickaxe)
+        {
             return false;
         }
 
@@ -78,15 +82,19 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     }
 
     @Unique
-    private void dropStacksForVanillaOrBTWR(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
+    private void dropStacksForVanillaOrBTWR(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool)
+    {
         boolean isModernPickaxe = tool.isOf(Items.IRON_PICKAXE) || tool.isOf(Items.GOLDEN_PICKAXE)
                 || tool.isOf(Items.DIAMOND_PICKAXE) || tool.isOf(Items.NETHERITE_PICKAXE);
 
         Direction direction = getBlockHitSide();
 
-        if ((state.isIn(ModTags.Blocks.VANILLA_CONVERTING_BLOCKS) || state.getBlock() instanceof ConvertingBlock) && !isModernPickaxe ) {
+        if ((state.isIn(ModTags.Blocks.VANILLA_CONVERTING_BLOCKS) || state.getBlock() instanceof ConvertingBlock) && !isModernPickaxe )
+        {
             ItemUtils.ejectStackFromBlockTowardsFacing(world, pos, state, tool, direction);
-        } else {
+        }
+        else
+        {
             Block.dropStacks(state, world, pos, blockEntity, player, tool);
         }
     }
@@ -95,6 +103,22 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     @Override
     public void setConvertableStates(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
+
+        /**
+        HashMap<Block, BlockState> blockMap = new HashMap<>();
+
+        blockMap.put(Blocks.STONE, ModBlocks.STONE_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.GRANITE, ModBlocks.GRANITE_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.DIORITE, ModBlocks.DIORITE_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.ANDESITE, ModBlocks.ANDESITE_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.CALCITE, ModBlocks.CALCITE_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.TUFF, ModBlocks.TUFF_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.BLACKSTONE, ModBlocks.BASALT_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.BASALT, ModBlocks.BASALT_CONVERTING.getDefaultState());
+        blockMap.put(Blocks.END_STONE, ModBlocks.ENDSTONE_CONVERTING.getDefaultState());
+         **/
+
 
         if (state.isOf(Blocks.STONE)) {
             this.setStateForStone(world, pos, tool, ModBlocks.STONE_CONVERTING);
@@ -117,10 +141,18 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         } else if (state.isOf(Blocks.END_STONE)) {
             this.setStateForStone(world, pos, tool, ModBlocks.ENDSTONE_CONVERTING);
 
+            /**
+            Block convertingBlock = blockMap.get(state.getBlock()).getBlock();
 
-        } else if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(ModBlocks.DIRT_LOOSE)) {
-            this.setStateForDirt(world, pos, state, tool);
-        }
+            if (convertingBlock != null)
+            {
+                this.setStateForStone(world, pos, tool, convertingBlock);
+                **/
+            }
+            else if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(ModBlocks.DIRT_LOOSE))
+            {
+                this.setStateForDirt(world, pos, state, tool);
+            }
 
         world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
         world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
