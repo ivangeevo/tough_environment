@@ -2,15 +2,15 @@
   "variants":
   {
     "break_level=0": [{"model": "tough_environment:block/calcite_converting"}],
-    "break_level=1": [{"model": "tough_environment:block/calcite_converting2"}],
-    "break_level=2": [{"model": "tough_environment:block/calcite_converting3"}],
-    "break_level=3": [{"model": "tough_environment:block/calcite_converting4"}],
-    "break_level=4": [{"model": "tough_environment:block/calcite_converting5"}],
-    "break_level=5": [{"model": "tough_environment:block/calcite_converting6"}],
-    "break_level=6": [{"model": "tough_environment:block/calcite_converting7"}],
-    "break_level=7": [{"model": "tough_environment:block/calcite_converting8"}],
-    "break_level=8": [{"model": "tough_environment:block/calcite_converting9"}],
-    "break_level=9": [{"model": "tough_environment:block/calcite_converting10"}]
+    "break_level=1": [{"model": "tough_environment:block/calcite_converting_1"}],
+    "break_level=2": [{"model": "tough_environment:block/calcite_converting_2"}],
+    "break_level=3": [{"model": "tough_environment:block/calcite_converting_3"}],
+    "break_level=4": [{"model": "tough_environment:block/calcite_converting_4"}],
+    "break_level=5": [{"model": "tough_environment:block/calcite_converting_5"}],
+    "break_level=6": [{"model": "tough_environment:block/calcite_converting_6"}],
+    "break_level=7": [{"model": "tough_environment:block/calcite_converting_7"}],
+    "break_level=8": [{"model": "tough_environment:block/calcite_converting_8"}],
+    "break_level=9": [{"model": "tough_environment:block/calcite_converting_9"}]
 
   }
 }
