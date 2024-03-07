@@ -32,9 +32,6 @@ import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.ItemUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Mixin(Block.class)
 public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock, StateConvertableBlock {
 
@@ -100,25 +97,32 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     }
 
     // Method to handle what happens to converting blocks after broken.
-    public void setConverableStates(World world, BlockPos pos, BlockState state, ItemStack tool) {
-        Map<Block, Block> convertingBlocks = new HashMap<>();
-        convertingBlocks.put(Blocks.STONE, ModBlocks.STONE_CONVERTING);
-        convertingBlocks.put(Blocks.GRANITE, ModBlocks.GRANITE_CONVERTING);
-        convertingBlocks.put(Blocks.DIORITE, ModBlocks.DIORITE_CONVERTING);
-        convertingBlocks.put(Blocks.ANDESITE, ModBlocks.ANDESITE_CONVERTING);
-        convertingBlocks.put(Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_CONVERTING);
-        convertingBlocks.put(Blocks.BASALT, ModBlocks.BASALT_CONVERTING);
-        convertingBlocks.put(Blocks.END_STONE, ModBlocks.ENDSTONE_CONVERTING);
+    public void setConverableStates(World world, BlockPos pos, BlockState state, ItemStack tool)
+    {
 
-        Block convertingBlock = convertingBlocks.get(state.getBlock());
-        if (convertingBlock != null) {
-            setStateForStone(world, pos, tool, convertingBlock);
+        if (state.isOf(Blocks.STONE)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.STONE_CONVERTING);
+        } else if (state.isOf(Blocks.GRANITE)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.GRANITE_CONVERTING);
+        } else if (state.isOf(Blocks.DIORITE)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.DIORITE_CONVERTING);
+        } else if (state.isOf(Blocks.ANDESITE)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.ANDESITE_CONVERTING);
+        } else if (state.isOf(Blocks.DEEPSLATE)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.DEEPSLATE_CONVERTING);
+        } else if (state.isOf(Blocks.BASALT)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.BASALT_CONVERTING);
+        } else if (state.isOf(Blocks.END_STONE)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.ENDSTONE_CONVERTING);
+
+
         } else if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(ModBlocks.DIRT_LOOSE)) {
-            setStateForDirt(world, pos, state, tool);
+            this.setStateForDirt(world, pos, state, tool);
         }
 
         world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
         world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
+
     }
 
 

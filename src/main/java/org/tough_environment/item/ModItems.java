@@ -19,6 +19,15 @@ public class ModItems
     public static final Item GROUP_TE = registerItem( "group_te", new Item(new FabricItemSettings()));
 
 
+    public static final Item PILE_DIRT = registerItem( "pile_dirt", new Item(new FabricItemSettings()));
+    public static final Item PILE_GRAVEL = registerItem( "pile_gravel", new Item(new FabricItemSettings()));
+    public static final Item PILE_SAND = registerItem( "pile_sand", new Item(new FabricItemSettings()));
+
+    public static final Item PILE_RED_SAND = registerItem( "pile_red_sand", new Item(new FabricItemSettings()));
+
+    public static final Item PILE_CLAY = registerItem( "pile_clay", new Item(new FabricItemSettings()));
+
+
     // ToolItems //
 
     public static final Item CHISEL_WOOD = registerItem( "chisel_wood",

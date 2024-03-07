@@ -11,10 +11,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import org.tough_environment.ToughEnvironmentMod;
-import org.tough_environment.block.blocks.ConvertingBlock;
-import org.tough_environment.block.blocks.LooseStairsBlock;
-import org.tough_environment.block.blocks.LooseBlock;
-import org.tough_environment.block.blocks.LooseSlabBlock;
+import org.tough_environment.block.blocks.*;
 
 public class ModBlocks {
 
@@ -28,7 +25,7 @@ public class ModBlocks {
     public static final Block SLAB_COBBLESTONE_LOOSE = registerBlock("slab_cobblestone_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(4f).sounds(BlockSoundGroup.STONE).nonOpaque()));
 
     public static final Block SLAB_COBBLED_DEEPSLATE_LOOSE = registerBlock("slab_cobbled_deepslate_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(4.1f).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block COBBLESTONE_LOOSE_STAIRS = registerBlock("cobblestone_loose_stairs", new LooseStairsBlock(ModBlocks.COBBLESTONE_LOOSE.getDefaultState(),FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    //public static final Block COBBLESTONE_LOOSE_STAIRS = registerBlock("cobblestone_loose_stairs", new LooseStairsBlock(ModBlocks.COBBLESTONE_LOOSE.getDefaultState(),FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_BRICK_LOOSE = registerBlock("slab_brick_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(4.1f).sounds(BlockSoundGroup.STONE).nonOpaque()));
 
     public static final Block DEEPSLATE_VAR1 = registerBlock("deepslate_var1", new LooseBlock(FabricBlockSettings.create().requiresTool().strength(11.0F,6.0F).sounds(BlockSoundGroup.STONE)));
@@ -40,17 +37,24 @@ public class ModBlocks {
     public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block DIORITE_CONVERTING = registerBlock("diorite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block ANDESITE_CONVERTING = registerBlock("andesite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block ENDSTONE_CONVERTING = registerBlock("endstone_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block CALCITE_CONVERTING = registerBlock("calcite_converting", new ConvertingBlock(FabricBlockSettings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block TUFF_CONVERTING= registerBlock("tuff_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BLACKSTONE_CONVERTING = registerBlock("blackstone_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new ConvertingBlock(FabricBlockSettings.create().strength(3.0f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new ConvertingBlock(FabricBlockSettings.create().strength(1.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ENDSTONE_CONVERTING = registerBlock("endstone_converting", new ConvertingBlock(FabricBlockSettings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
-    public static final Block STONE_BROKEN = registerBlock("stone_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block GRANITE_BROKEN = registerBlock("granite_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block DIORITE_BROKEN = registerBlock("diorite_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block ANDESITE_BROKEN = registerBlock("andesite_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block DEEPSLATE_BROKEN = registerBlock("deepslate_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block BASALT_BROKEN = registerBlock("basalt_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block ENDSTONE_BROKEN = registerBlock("endstone_broken", new ConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    // Broken* blocks have exactly 10f more strength than their normal counterparts.
+    public static final Block STONE_BROKEN = registerBlock("stone_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block GRANITE_BROKEN = registerBlock("granite_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DIORITE_BROKEN = registerBlock("diorite_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ANDESITE_BROKEN = registerBlock("andesite_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block CALCITE_BROKEN = registerBlock("calcite_broken", new BrokenBlock(FabricBlockSettings.create().strength(10.75f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block TUFF_BROKEN = registerBlock("tuff_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BLACKSTONE_BROKEN = registerBlock("blackstone_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DEEPSLATE_BROKEN = registerBlock("deepslate_broken", new BrokenBlock(FabricBlockSettings.create().strength(13.0f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BASALT_BROKEN = registerBlock("basalt_broken", new BrokenBlock(FabricBlockSettings.create().strength(11.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ENDSTONE_BROKEN = registerBlock("endstone_broken", new BrokenBlock(FabricBlockSettings.create().strength(13f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
 
     private static Block registerBlock(String name, Block block) {

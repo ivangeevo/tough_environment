@@ -12,7 +12,7 @@ import org.tough_environment.ToughEnvironmentMod;
 public class ModItemGroup
 {
 
-    public static final ItemGroup GROUP_BTWR = Registry.register(Registries.ITEM_GROUP,
+    public static final ItemGroup GROUP_TE = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ToughEnvironmentMod.MOD_ID, "group_te"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.group_te"))
                     .icon(() -> new ItemStack(ModItems.GROUP_TE)).entries((displayContext, entries) -> {
@@ -26,6 +26,7 @@ public class ModItemGroup
 
     public static void registerItemGroups()
     {
+        ToughEnvironmentMod.LOGGER.info("Registering Item Groups for " + ToughEnvironmentMod.MOD_ID);
         /**
         // Example of adding to existing Item Group
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {

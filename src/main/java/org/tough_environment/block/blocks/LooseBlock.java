@@ -16,7 +16,6 @@ import org.tough_environment.block.ModBlocks;
 public class LooseBlock extends FallingBlock implements LandingBlock
 {
 
-
     // Block parameters and constants & Super settings //
     public LooseBlock(Settings settings) {
         super(settings);
@@ -27,8 +26,8 @@ public class LooseBlock extends FallingBlock implements LandingBlock
                            @Nullable BlockEntity blockEntity, ItemStack tool)
     {
 
-        super.afterBreak(world, player, pos, state, blockEntity, tool);
 
+        // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
         if ((tool.isOf(Items.IRON_HOE)) || (tool.isOf(Items.DIAMOND_HOE)))
         {
 
@@ -39,6 +38,7 @@ public class LooseBlock extends FallingBlock implements LandingBlock
 
         }
 
+        super.afterBreak(world, player, pos, state, blockEntity, tool);
 
 
     }

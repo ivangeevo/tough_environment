@@ -28,6 +28,7 @@ public class ChiselItem extends MiningToolItem
 
     }
 
+
     @Override
     public void onCraft(ItemStack stack, World world, PlayerEntity player)
     {
@@ -35,7 +36,6 @@ public class ChiselItem extends MiningToolItem
         // Register a Fabric event for ticking
         BlockPos thisPos = player.getBlockPos();
         SoundEvent craftingSound;
-
 
         if (chiselType == ChiselType.WOOD)
         {
