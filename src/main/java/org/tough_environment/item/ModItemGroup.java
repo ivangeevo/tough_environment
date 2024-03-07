@@ -22,22 +22,28 @@ public class ModItemGroup
                         entries.add(ModItems.CHISEL_IRON);
                         entries.add(ModItems.CHISEL_DIAMOND);
 
+                        entries.add(ModItems.PILE_CLAY);
+                        entries.add(ModItems.PILE_DIRT);
+                        entries.add(ModItems.PILE_GRAVEL);
+                        entries.add(ModItems.PILE_SAND);
+                        entries.add(ModItems.PILE_RED_SAND);
+
+                        entries.add(ModItems.SMALL_STONE);
+                        entries.add(ModItems.SMALL_STONE_1);
+                        entries.add(ModItems.SMALL_STONE_2);
+
+                        entries.add(ModItems.SHARD_GRANITE);
+                        entries.add(ModItems.SHARD_ANDESITE);
+
+
+
+
+
                     }).build());
 
     public static void registerItemGroups()
     {
         ToughEnvironmentMod.LOGGER.info("Registering Item Groups for " + ToughEnvironmentMod.MOD_ID);
-        /**
-        // Example of adding to existing Item Group
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-            entries.add(BTWR_Items.CREEPER_OYSTERS);
-            entries.add(BTWR_Items.CLUB_BONE);
-            entries.add(BTWR_Items.CLUB_WOOD);
-            entries.add(BTWR_Items.DIAMOND_INGOT);
-            entries.add(BTWR_Items.DIAMOND_SHEARS);
 
-
-        });
-         **/
     }
 }

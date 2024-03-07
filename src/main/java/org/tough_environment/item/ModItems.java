@@ -16,16 +16,23 @@ public class ModItems
 {
 
     // GROUPS
+    // Main TE Group (Tough environment) for testing. Might split items later on...
     public static final Item GROUP_TE = registerItem( "group_te", new Item(new FabricItemSettings()));
 
 
     public static final Item PILE_DIRT = registerItem( "pile_dirt", new Item(new FabricItemSettings()));
     public static final Item PILE_GRAVEL = registerItem( "pile_gravel", new Item(new FabricItemSettings()));
     public static final Item PILE_SAND = registerItem( "pile_sand", new Item(new FabricItemSettings()));
-
     public static final Item PILE_RED_SAND = registerItem( "pile_red_sand", new Item(new FabricItemSettings()));
-
     public static final Item PILE_CLAY = registerItem( "pile_clay", new Item(new FabricItemSettings()));
+
+
+    public static final Item SMALL_STONE = registerItem( "small_stone", new Item(new FabricItemSettings()));
+    public static final Item SMALL_STONE_1 = registerItem( "small_stone_1", new Item(new FabricItemSettings()));
+    public static final Item SMALL_STONE_2 = registerItem( "small_stone_2", new Item(new FabricItemSettings()));
+
+    public static final Item SHARD_GRANITE = registerItem( "shard_granite", new Item(new FabricItemSettings()));
+    public static final Item SHARD_ANDESITE = registerItem( "shard_andesite", new Item(new FabricItemSettings()));
 
 
     // ToolItems //
