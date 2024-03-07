@@ -1,0 +1,16 @@
+{
+  "variants":
+  {
+    "break_level=0": [{"model": "tough_environment:block/granite_converting"}],
+    "break_level=1": [{"model": "tough_environment:block/granite_converting2"}],
+    "break_level=2": [{"model": "tough_environment:block/granite_converting3"}],
+    "break_level=3": [{"model": "tough_environment:block/granite_converting4"}],
+    "break_level=4": [{"model": "tough_environment:block/granite_converting5"}],
+    "break_level=5": [{"model": "tough_environment:block/granite_converting6"}],
+    "break_level=6": [{"model": "tough_environment:block/granite_converting7"}],
+    "break_level=7": [{"model": "tough_environment:block/granite_converting8"}],
+    "break_level=8": [{"model": "tough_environment:block/granite_converting9"}],
+    "break_level=9": [{"model": "tough_environment:block/granite_converting10"}]
+
+  }
+}

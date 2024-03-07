@@ -108,6 +108,12 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
             this.setStateForStone(world, pos, tool, ModBlocks.DIORITE_CONVERTING);
         } else if (state.isOf(Blocks.ANDESITE)) {
             this.setStateForStone(world, pos, tool, ModBlocks.ANDESITE_CONVERTING);
+        } else if (state.isOf(Blocks.CALCITE)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.CALCITE_CONVERTING);
+        } else if (state.isOf(Blocks.TUFF)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.TUFF_CONVERTING);
+        } else if (state.isOf(Blocks.BLACKSTONE)) {
+            this.setStateForStone(world, pos, tool, ModBlocks.BLACKSTONE_CONVERTING);
         } else if (state.isOf(Blocks.DEEPSLATE)) {
             this.setStateForStone(world, pos, tool, ModBlocks.DEEPSLATE_CONVERTING);
         } else if (state.isOf(Blocks.BASALT)) {
