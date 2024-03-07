@@ -31,6 +31,18 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BASALT_BROKEN)
                 .add(ModBlocks.ENDSTONE_BROKEN);
 
+        getOrCreateTagBuilder(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
+                .add(ModBlocks.STONE_CONVERTING)
+                .add(ModBlocks.GRANITE_CONVERTING)
+                .add(ModBlocks.DIORITE_CONVERTING)
+                .add(ModBlocks.ANDESITE_CONVERTING)
+                .add(ModBlocks.CALCITE_CONVERTING)
+                .add(ModBlocks.TUFF_CONVERTING)
+                .add(ModBlocks.BLACKSTONE_CONVERTING)
+                .add(ModBlocks.DEEPSLATE_CONVERTING)
+                .add(ModBlocks.BASALT_CONVERTING)
+                .add(ModBlocks.ENDSTONE_CONVERTING);
+
 
 
     }

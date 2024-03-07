@@ -14,7 +14,12 @@ public class ModTags
     {
 
         public static final TagKey<Block> VANILLA_CONVERTING_BLOCKS = createTag("vanilla_converting_blocks");
+        public static final TagKey<Block> CONVERTED_STONE_BLOCKS = createTag("converted_stone_blocks");
+
+
         public static final TagKey<Block> BROKEN_STONES = createTag("broken_stones");
+
+
 
 
         private static TagKey<Block> createTag (String name)

@@ -59,19 +59,19 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
     {
 
         boolean isModernPickaxe = stack.isIn(ModTags.Items.MODERN_PICKAXES);
-        boolean isStonePickaxe = stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES);
+        boolean isPrimitivePickaxe = stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES);
         boolean isModernChisel = stack.isIn(ModTags.Items.MODERN_CHISELS);
 
         int breakLevel = state.get(BREAK_LEVEL);
 
-        if (isModernPickaxe || isStonePickaxe && breakLevel >= 2)
+        if ((isModernPickaxe || isPrimitivePickaxe) && breakLevel >= 2)
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             emitBlockEvents(world, pos, state);
             return;
         }
 
-        if (isStonePickaxe && breakLevel < 1)
+        if (isPrimitivePickaxe && breakLevel < 1)
         {
             world.setBlockState(pos, state.with(BREAK_LEVEL, 3));
             emitBlockEvents(world, pos, state);
@@ -87,39 +87,19 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
 
         }
 
-        if (breakLevel == 8 && !(state.getBlock() instanceof BrokenBlock))
+        if (breakLevel >= 8 && !(state.getBlock() instanceof BrokenBlock))
         {
-
-
-
-            if (state.isOf(ModBlocks.STONE_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.STONE_BROKEN.getDefaultState());
-            } else if (state.isOf(ModBlocks.GRANITE_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.GRANITE_BROKEN.getDefaultState());
-            } else if (state.isOf(ModBlocks.DIORITE_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.DIORITE_BROKEN.getDefaultState());
-            } else if (state.isOf(ModBlocks.ANDESITE_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.ANDESITE_BROKEN.getDefaultState());
-            } else if (state.isOf(ModBlocks.CALCITE_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.CALCITE_BROKEN.getDefaultState());
-            } else if (state.isOf(ModBlocks.TUFF_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.TUFF_BROKEN.getDefaultState());
+            if (state.isIn(ModTags.Blocks.CONVERTED_STONE_BLOCKS))
+            {
+                world.setBlockState(pos,state);
             }
-            else if (state.isOf(ModBlocks.BLACKSTONE_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.BLACKSTONE_BROKEN.getDefaultState());
-            }else if (state.isOf(ModBlocks.DEEPSLATE_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.DEEPSLATE_BROKEN.getDefaultState());
-            } else if (state.isOf(ModBlocks.BASALT_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.BASALT_BROKEN.getDefaultState());
-            } else if (state.isOf(ModBlocks.ENDSTONE_CONVERTING)) {
-                world.setBlockState(pos, ModBlocks.ENDSTONE_BROKEN.getDefaultState());
-            }
+
             emitBlockEvents(world, pos, state);
             return;
 
         }
 
-        world.setBlockState(pos, state.with(BREAK_LEVEL, breakLevel + 1));
+        world.setBlockState(pos, this.getDefaultState());
         emitBlockEvents(world, pos, state);
 
     }
