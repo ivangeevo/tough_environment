@@ -87,11 +87,12 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
 
         }
 
-        if (breakLevel >= 8 && !(state.getBlock() instanceof BrokenBlock))
+        if (breakLevel >= 9 && !(state.getBlock() instanceof BrokenBlock))
         {
-            if (state.isIn(ModTags.Blocks.CONVERTED_STONE_BLOCKS))
+
+                if (state.isIn(ModTags.Blocks.CONVERTED_STONE_BLOCKS))
             {
-                world.setBlockState(pos, state);
+                world.setBlockState(pos, ModBlocks.STONE_BROKEN.getDefaultState());
             }
 
             emitBlockEvents(world, pos, state);
@@ -101,23 +102,26 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
         world.setBlockState(pos, state.with(BREAK_LEVEL, breakLevel + 1));
         emitBlockEvents(world, pos, state);
     }
-
     private void handleModernChiselBreak(World world, BlockPos pos, BlockState state)
     {
-
         int breakLevel = state.get(BREAK_LEVEL);
 
-        if (breakLevel < 3) {
-            world.setBlockState(pos, state.with(BREAK_LEVEL, 3));
-        } else if (breakLevel < 5) {
-            world.setBlockState(pos, state.with(BREAK_LEVEL, 5));
-        } else if (breakLevel < 7) {
-            world.setBlockState(pos, state.with(BREAK_LEVEL, 7));
-        } else if (breakLevel > 7) {
+        // Calculate the new break level
+        int newBreakLevel = Math.min(breakLevel + 2, 9);
+
+        // If break level is greater or equal to 7, set to broken state; otherwise, update the block state
+        if (breakLevel >= 7)
+        {
             world.setBlockState(pos, ModBlocks.STONE_BROKEN.getDefaultState());
         }
-
+        else
+        {
+            world.setBlockState(pos, state.with(BREAK_LEVEL, newBreakLevel));
+        }
     }
+
+
+
     private void playSpecialBreakFX(ServerWorld world, BlockPos pos)
     {}
 

@@ -19,6 +19,6 @@ public class BrokenBlock extends ConvertingBlock
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-        super.afterBreak(world, player, pos, state, blockEntity, stack);
+
     }
 }
