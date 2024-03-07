@@ -137,19 +137,19 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
             return;
         }
 
-        if (tool.isOf(Items.STONE_PICKAXE)) {
+        if (tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES)) {
             world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 5));
             return;
 
         }
 
-        if (tool.isOf(ModItems.CHISEL_IRON)) {
+        if (tool.isIn(ModTags.Items.MODERN_CHISELS)) {
             world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 3));
             return;
 
         }
 
-            world.setBlockState(pos, block.getDefaultState().with(ConvertingBlock.BREAK_LEVEL, +1));
+            world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 0));
 
    }
 

@@ -91,17 +91,15 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
         {
             if (state.isIn(ModTags.Blocks.CONVERTED_STONE_BLOCKS))
             {
-                world.setBlockState(pos,state);
+                world.setBlockState(pos, state);
             }
 
             emitBlockEvents(world, pos, state);
             return;
-
         }
 
-        world.setBlockState(pos, this.getDefaultState());
+        world.setBlockState(pos, state.with(BREAK_LEVEL, breakLevel + 1));
         emitBlockEvents(world, pos, state);
-
     }
 
     private void handleModernChiselBreak(World world, BlockPos pos, BlockState state)
