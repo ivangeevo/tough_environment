@@ -12,7 +12,6 @@
     "tough_environment:basalt_converting",
     "tough_environment:endstone_converting",
 
-
     "tough_environment:stone_broken",
     "tough_environment:granite_broken",
     "tough_environment:diorite_broken",
@@ -22,7 +21,16 @@
     "tough_environment:blackstone_broken",
     "tough_environment:deepslate_broken",
     "tough_environment:basalt_broken",
-    "tough_environment:endstone_broken"
+    "tough_environment:endstone_broken",
 
+    "tough_environment:slab_cobblestone_loose",
+    "tough_environment:slab_cobbled_deepslate_loose",
+    "tough_environment:slab_granite_loose",
+    "tough_environment:slab_andesite_loose",
+    "tough_environment:slab_brick_loose",
+    "tough_environment:cobblestone_loose",
+    "tough_environment:cobbled_deepslate_loose",
+    "tough_environment:granite_loose",
+    "tough_environment:andesite_loose"
   ]
 }

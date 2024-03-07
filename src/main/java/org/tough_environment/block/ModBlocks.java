@@ -15,7 +15,8 @@ import net.minecraft.util.Identifier;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.blocks.*;
 
-public class ModBlocks {
+public class ModBlocks
+{
 
     public static final Block SLAB_SAND = registerBlock("slab_sand", new LooseSlabBlock(FabricBlockSettings.create().strength(3.1f).sounds(BlockSoundGroup.SAND).nonOpaque()));
     public static final Block SLAB_RED_SAND = registerBlock("slab_red_sand", new LooseSlabBlock(FabricBlockSettings.create().strength(3.2f).sounds(BlockSoundGroup.SAND).nonOpaque()));
@@ -67,18 +68,21 @@ public class ModBlocks {
     public static final Block ENDSTONE_BROKEN = registerBlock("endstone_broken", new BrokenBlock(FabricBlockSettings.create().strength(13f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
 
-    private static Block registerBlock(String name, Block block) {
+    private static Block registerBlock(String name, Block block)
+    {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, new Identifier(ToughEnvironmentMod.MOD_ID, name), block);
     }
 
-    private static Item registerBlockItem(String name, Block block) {
+    private static Item registerBlockItem(String name, Block block)
+    {
         Item item = Registry.register(Registries.ITEM, new Identifier(ToughEnvironmentMod.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings()));
         return item;
     }
 
-    public static void registerModBlocks() {
+    public static void registerModBlocks()
+    {
         ToughEnvironmentMod.LOGGER.debug("Registering ModBlocks for " + ToughEnvironmentMod.MOD_ID);
     }
 

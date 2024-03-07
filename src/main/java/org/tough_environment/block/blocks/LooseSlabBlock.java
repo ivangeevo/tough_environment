@@ -18,6 +18,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -84,7 +86,11 @@ public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingB
             }
             world.setBlockState(pos, newState);
         }
+
+        world.playSound(null,pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
+
     }
+
 
     private Block getReplacementBlock(Block originalBlock, SlabType slabType) {
         if (originalBlock == ModBlocks.SLAB_COBBLESTONE_LOOSE) {
@@ -98,6 +104,8 @@ public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingB
         }
         return null;
     }
+
+
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
