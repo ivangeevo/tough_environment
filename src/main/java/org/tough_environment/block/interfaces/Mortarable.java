@@ -8,6 +8,6 @@ import net.minecraft.world.World;
 public interface Mortarable {
 
 
-    void mortarBlock(BlockState state, World world, BlockPos pos, PlayerEntity player);
+    void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player);
 
 }

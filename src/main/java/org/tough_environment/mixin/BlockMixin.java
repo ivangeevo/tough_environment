@@ -28,6 +28,7 @@ import org.tough_environment.block.blocks.ConvertingBlock;
 import org.tough_environment.block.interfaces.DirectionalDroppingBlock;
 import org.tough_environment.block.interfaces.StateConvertableBlock;
 import org.tough_environment.item.ModItems;
+import org.tough_environment.mixin.interfaces.BlockAdded;
 import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.ItemUtils;
@@ -35,7 +36,7 @@ import org.tough_environment.util.ItemUtils;
 import java.util.HashMap;
 
 @Mixin(Block.class)
-public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock, StateConvertableBlock {
+public abstract class BlockMixin extends AbstractBlock implements BlockAdded,DirectionalDroppingBlock, StateConvertableBlock {
 
     @Shadow public abstract BlockState getDefaultState();
 
@@ -217,8 +218,18 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
 
     }
 
+    @Override
+    public boolean hasNeighborWithMortarInContact(World world, BlockPos pos) {
 
+        for ( int iTempFacing = 0; iTempFacing < 6; iTempFacing++ )
+        {
+            if ( WorldUtils.hasNeighborWithMortarInFullFaceContactToFacing(world, i, j, k, iTempFacing) )
+            {
+                return true;
+            }
+        }
 
+        return false;    }
 
     @Shadow
     public abstract Item asItem();

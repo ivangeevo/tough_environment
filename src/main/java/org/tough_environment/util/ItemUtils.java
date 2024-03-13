@@ -23,6 +23,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
@@ -76,7 +77,8 @@ public class ItemUtils {
     }
 
     static public void dropStackAsIfBlockHarvested(World world, BlockPos pos, ItemStack stack) {
-        if (!world.isClient && !stack.isEmpty() && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS)) {
+        if (!world.isClient && !stack.isEmpty() && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS))
+        {
             double d = 0.5D;
             double d1 = world.random.nextFloat() * 0.8F + 0.1F;
             double d2 = world.random.nextFloat() * 0.8F + 0.1F;
@@ -93,7 +95,8 @@ public class ItemUtils {
         }
     }
 
-    static public void dropSingleItemAsIfBlockHarvested(World world, BlockPos pos, int iShiftedItemIndex, int iDamage) {
+    static public void dropSingleItemAsIfBlockHarvested(World world, BlockPos pos, int iShiftedItemIndex, int iDamage)
+    {
         Item item = Registries.ITEM.get(iShiftedItemIndex);
 
         ItemConvertible itemConvertible = item.asItem();
@@ -104,33 +107,78 @@ public class ItemUtils {
     }
 
 
-    static public void ejectStackFromBlockTowardsFacing(World world, BlockPos pos, BlockState blockState, ItemStack stack, Direction direction) {
+    static public void ejectStackFromBlockTowardsFacing(World world, BlockPos pos, BlockState state, ItemStack stack, Direction direction)
+    {
         Vec3d ejectPos = new Vec3d(
-                world.getRandom().nextDouble() * 0.7D + 0.15D,
-                1.2D + world.getRandom().nextDouble() * 0.1D,
-                world.getRandom().nextDouble() * 0.7D + 0.15D);
+                world.random.nextDouble() * 0.7D + 0.15D,
+                1.2D + world.random.nextDouble() * 0.1D,
+                world.random.nextDouble() * 0.7D + 0.15D);
 
-        double x = ejectPos.x;
-
-
-        // Tilting of the ejectPos should happen here
         ejectPos = VectorUtils.tiltVector(ejectPos, direction.getId());
 
         LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
-                    .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                    .add(LootContextParameters.TOOL, stack)
-                    .addOptional(LootContextParameters.BLOCK_ENTITY, world.getBlockEntity(pos));
+                .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+                .add(LootContextParameters.TOOL, stack)
+                .addOptional(LootContextParameters.BLOCK_ENTITY, world.getBlockEntity(pos));
 
-        List<ItemStack> drops = blockState.getDroppedStacks(builder);
+        List<ItemStack> drops = state.getDroppedStacks(builder);
 
-        for (ItemStack droppedItems : drops) {
-            ItemEntity entity = new ItemEntity(world, pos.getX() + ejectPos.getX(), pos.getY() + ejectPos.getY(), pos.getZ() + ejectPos.getZ(), droppedItems);
+        for (ItemStack droppedItems : drops)
+        {
+            ItemEntity entity = new ItemEntity(world, ejectPos.x, ejectPos.y, ejectPos.z, droppedItems);
+            double offset = direction.getAxis().isHorizontal() ? 0.1D : 0.0D;
+            Vec3d ejectVel = new Vec3d(
+                    world.random.nextDouble() * 0.1D - 0.05D,
+                    0.2D,
+                    world.random.nextDouble() * -0.05D - 0.05D
+            );
 
-            spawnItemEntity(world, () -> entity , direction);
+            rotateAsVectorAroundJToFacing(ejectVel, direction.getId());
+
+            entity.setVelocity(ejectVel.x, ejectVel.y, ejectVel.z);
+            entity.setPickupDelay(10);
+            world.spawnEntity(entity);
         }
+    }
 
 
-        blockState.onStacksDropped((ServerWorld) world, pos, stack, false);    }
+
+
+    private static void tiltAsBlockPosToFacingAlongJ(Vec3d vector, Direction facing) {
+        double x = vector.x;
+        double y = vector.y;
+        double z = vector.z;
+
+        switch (facing) {
+            case DOWN:
+                // Adjust for DOWN direction
+                vector = vector.multiply(1.0D, 0.1D, 1.0D);
+                break;
+            case UP:
+                // Adjust for UP direction
+                vector = vector.multiply(1.0D, 0.9D, 1.0D);
+                break;
+            case NORTH:
+                // j - 1
+                vector = new Vec3d(1.0D - x, 1.0D - y, z);
+                break;
+            case SOUTH:
+                // j + 1
+                vector = new Vec3d(x, 1.0D - y, 1.0D - z);
+                break;
+            case WEST:
+                // i - 1
+                vector = new Vec3d(1.0D - y, 1.0D - x, z);
+                break;
+            case EAST:
+                // i + 1
+                vector = new Vec3d(y, x, 1.0D - z);
+                break;
+            // Handle other cases as needed
+        }
+    }
+
+
 
     private static void spawnItemEntity(World world, Supplier<ItemEntity> itemEntitySupplier, Direction direction) {
         ItemEntity entity = itemEntitySupplier.get();
@@ -171,7 +219,7 @@ public class ItemUtils {
     /**
      * Yaws the vector around the origin of the J axis. Assumes that the initial facing is along the negative K axis (facing 2).
      */
-    public void rotateAsVectorAroundJToFacing(Vec3d vector, int iFacing) {
+    public static void rotateAsVectorAroundJToFacing(Vec3d vector, int iFacing) {
         if (iFacing > 2) {
             if (iFacing == 5) // i + 1
             {

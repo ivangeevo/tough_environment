@@ -3,7 +3,6 @@ package org.tough_environment.block.blocks;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -11,7 +10,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -22,7 +20,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.block.interfaces.Mortarable;
-import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
 
 import java.util.HashMap;
@@ -30,8 +27,6 @@ import java.util.Map;
 
 public class LooseBlock extends FallingBlock implements Mortarable, LandingBlock
 {
-    public static final BooleanProperty HAS_MORTAR = ModProperties.HAS_MORTAR;
-
     private static final Map<BlockPos, Integer> delayedFalls = new HashMap<>();
 
 
@@ -39,7 +34,7 @@ public class LooseBlock extends FallingBlock implements Mortarable, LandingBlock
     public LooseBlock(Settings settings)
     {
         super(settings);
-        this.setDefaultState((this.stateManager.getDefaultState()).with(HAS_MORTAR, false));
+        this.setDefaultState((this.stateManager.getDefaultState()));
     }
 
     @Override
@@ -49,7 +44,7 @@ public class LooseBlock extends FallingBlock implements Mortarable, LandingBlock
     }
 
     @Override
-    public void mortarBlock(BlockState state, World world, BlockPos pos, PlayerEntity player)
+    public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player)
     {
 
         Block newBlock = getReplacementBlock(state.getBlock());
@@ -67,14 +62,13 @@ public class LooseBlock extends FallingBlock implements Mortarable, LandingBlock
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
     {
         if (!world.isClient
-                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS)
-                && !state.get(HAS_MORTAR))
+                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
         {
 
             // Mortar the block
-            this.mortarBlock(state, world, pos, player);
+            this.applyMortar(state, world, pos, player);
 
-            // Optionally, reduce item stack size or perform other actions
+            // Reduce item stack size
             ItemStack handStack = player.getStackInHand(hand);
             handStack.decrement(1);
 
@@ -123,7 +117,7 @@ public class LooseBlock extends FallingBlock implements Mortarable, LandingBlock
 
         for (Direction direction : Direction.Type.HORIZONTAL) {
             BlockPos offsetPos = pos.offset(direction);
-            if (!world.getBlockState(offsetPos).isIn(ModTags.Blocks.MORTARED_BLOCKS)) {
+            if (world.getBlockState(offsetPos).isIn(ModTags.Blocks.MORTARED_BLOCKS)) {
                 return true;
             }
         }

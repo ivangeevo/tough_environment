@@ -1,22 +1,15 @@
 package org.tough_environment.block.blocks;
 
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -26,24 +19,19 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
-import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.block.interfaces.Mortarable;
 import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
-
-import java.util.function.Predicate;
 
 public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingBlock, Waterloggable
 {
@@ -75,7 +63,7 @@ public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingB
 
 
     @Override
-    public void mortarBlock(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+    public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         SlabType slabType = state.get(TYPE);
 
         Block newBlock = getReplacementBlock(state.getBlock(), slabType);
@@ -128,7 +116,7 @@ public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingB
         {
 
             // Mortar the block
-            this.mortarBlock(state, world, pos, player);
+            this.applyMortar(state, world, pos, player);
 
             // Optionally, reduce item stack size or perform other actions
             ItemStack handStack = player.getStackInHand(hand);
