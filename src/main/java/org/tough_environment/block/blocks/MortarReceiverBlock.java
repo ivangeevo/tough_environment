@@ -94,7 +94,7 @@ public class MortarReceiverBlock extends FallingBlock
                 BlockState neighborState = world.getBlockState(neighborPos);
 
                 // Check if the adjacent block is part of the specified tag
-                if (neighborState.isIn(ModTags.Blocks.MORTARABLE_BLOCKS)) {
+                if (neighborState.isIn(ModTags.Blocks.MORTARED_BLOCKS)) {
                     mortarable = true;
                     break;
                 }
