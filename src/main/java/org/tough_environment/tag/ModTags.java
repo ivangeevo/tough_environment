@@ -15,12 +15,10 @@ public class ModTags
 
         public static final TagKey<Block> VANILLA_CONVERTING_BLOCKS = createTag("vanilla_converting_blocks");
         public static final TagKey<Block> CONVERTED_STONE_BLOCKS = createTag("converted_stone_blocks");
-
-        public static final TagKey<Block> MORTARED_BLOCKS = createTag("mortared_blocks");
-
         public static final TagKey<Block> BROKEN_STONES = createTag("broken_stones");
 
 
+        public static final TagKey<Block> MORTARABLE_BLOCKS = createTag("mortarable_blocks");
 
 
         private static TagKey<Block> createTag (String name)
@@ -32,6 +30,8 @@ public class ModTags
     public static class Items
     {
 
+        // Manually add the chisels to the modern chisels Tagkey. Can't be added with Datagen, because they are from
+        // BTWR-Core
         public static final TagKey<Item> MODERN_CHISELS = createTag("modern_chisels");
         public static final TagKey<Item> MODERN_PICKAXES = createTag("modern_pickaxes");
         public static final TagKey<Item> PRIMITIVE_PICKAXES = createTag("primitive_pickaxes");
@@ -42,6 +42,7 @@ public class ModTags
 
         public static final TagKey<Item> MORTARING_ITEMS = createTag("mortaring_items");
 
+        public static final TagKey<Item> SMALL_STONES = createTag("small_stones");
 
 
         private static TagKey<Item> createTag (String name)
@@ -51,14 +52,5 @@ public class ModTags
 
     }
 
-    public static class Mineable
-    {
-        public static final TagKey<Block> CHISEL_MINEABLE = register("mineable/chisel");
 
-        private static TagKey<Block> register(String id)
-        {
-            return TagKey.of(RegistryKeys.BLOCK, new Identifier(ToughEnvironmentMod.MOD_ID, id));
-        }
-
-    }
 }

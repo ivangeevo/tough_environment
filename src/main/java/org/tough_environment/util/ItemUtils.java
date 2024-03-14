@@ -23,6 +23,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
@@ -139,78 +140,6 @@ public class ItemUtils {
             entity.setPickupDelay(10);
             world.spawnEntity(entity);
         }
-    }
-
-
-
-
-    private static void tiltAsBlockPosToFacingAlongJ(Vec3d vector, Direction facing) {
-        double x = vector.x;
-        double y = vector.y;
-        double z = vector.z;
-
-        switch (facing) {
-            case DOWN:
-                // Adjust for DOWN direction
-                vector = vector.multiply(1.0D, 0.1D, 1.0D);
-                break;
-            case UP:
-                // Adjust for UP direction
-                vector = vector.multiply(1.0D, 0.9D, 1.0D);
-                break;
-            case NORTH:
-                // j - 1
-                vector = new Vec3d(1.0D - x, 1.0D - y, z);
-                break;
-            case SOUTH:
-                // j + 1
-                vector = new Vec3d(x, 1.0D - y, 1.0D - z);
-                break;
-            case WEST:
-                // i - 1
-                vector = new Vec3d(1.0D - y, 1.0D - x, z);
-                break;
-            case EAST:
-                // i + 1
-                vector = new Vec3d(y, x, 1.0D - z);
-                break;
-            // Handle other cases as needed
-        }
-    }
-
-
-
-    private static void spawnItemEntity(World world, Supplier<ItemEntity> itemEntitySupplier, Direction direction) {
-        ItemEntity entity = itemEntitySupplier.get();
-
-        int iFacing = direction.getId();
-
-        if (iFacing < 2) {
-            entity.lastRenderX = world.getRandom().nextDouble() * 0.1D - 0.05D;
-            entity.lastRenderZ = world.getRandom().nextDouble() * 0.1D - 0.05D;
-
-            if (iFacing == 0) {
-                entity.lastRenderY = 0D;
-            } else {
-                entity.lastRenderY = 0.2D;
-            }
-
-        } else {
-            Vec3d ejectVel = new Vec3d(world.getRandom().nextDouble() * 0.1D - 0.05D,
-                    0.2D, world.getRandom().nextDouble() * -0.05D - 0.05D);
-
-            ejectVel.rotateY(direction.getId());
-
-            entity.lastRenderX = ejectVel.x;
-            entity.lastRenderY = ejectVel.y;
-            entity.lastRenderZ = ejectVel.z;
-        }
-
-
-        entity.setToDefaultPickupDelay();
-
-
-        world.spawnEntity(entity);
     }
 
 

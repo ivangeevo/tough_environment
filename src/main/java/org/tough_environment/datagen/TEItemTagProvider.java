@@ -21,9 +21,11 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
-        getOrCreateTagBuilder(ModTags.Items.MODERN_CHISELS)
-                .add(ModItems.CHISEL_IRON)
-                .add(ModItems.CHISEL_DIAMOND);
+
+        getOrCreateTagBuilder(ModTags.Items.SMALL_STONES)
+                .add(ModItems.SMALL_STONE)
+                .add(ModItems.SMALL_STONE_1)
+                .add(ModItems.SMALL_STONE_2);
 
         getOrCreateTagBuilder(ModTags.Items.MODERN_PICKAXES)
                 .add(Items.IRON_PICKAXE)
@@ -56,6 +58,9 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(ModTags.Items.MORTARING_ITEMS)
                 .add(Items.CLAY_BALL)
                 .add(Items.SLIME_BALL);
+
+
+
 
     }
 }

@@ -36,22 +36,23 @@ import org.tough_environment.util.ItemUtils;
 import java.util.HashMap;
 
 @Mixin(Block.class)
-public abstract class BlockMixin extends AbstractBlock implements BlockAdded,DirectionalDroppingBlock, StateConvertableBlock {
+public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock, StateConvertableBlock {
 
-    @Shadow public abstract BlockState getDefaultState();
 
     public BlockMixin(Settings settings) {
         super(settings);
     }
 
+    // 0.005f hunger whenever a block is placed
     @Inject(method = "onPlaced", at = @At("HEAD"))
     private void injectedOnPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, CallbackInfo ci) {
         if (placer instanceof PlayerEntity) {
             HungerManager hungerManager = ((PlayerEntity) placer).getHungerManager();
-            hungerManager.addExhaustion(0.05f);
+            hungerManager.addExhaustion(0.005f);
         }
     }
 
+    // Injecting our own logic the whole afterBreak method with
     @Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci) {
 
@@ -85,12 +86,11 @@ public abstract class BlockMixin extends AbstractBlock implements BlockAdded,Dir
     @Unique
     private void dropStacksForVanillaOrBTWR(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool)
     {
-        boolean isModernPickaxe = tool.isOf(Items.IRON_PICKAXE) || tool.isOf(Items.GOLDEN_PICKAXE)
-                || tool.isOf(Items.DIAMOND_PICKAXE) || tool.isOf(Items.NETHERITE_PICKAXE);
 
         Direction direction = getBlockHitSide();
 
-        if ((state.isIn(ModTags.Blocks.VANILLA_CONVERTING_BLOCKS) || state.getBlock() instanceof ConvertingBlock) && !isModernPickaxe )
+        if ((state.isIn(ModTags.Blocks.VANILLA_CONVERTING_BLOCKS) || state.getBlock() instanceof ConvertingBlock)
+                && !tool.isIn(ModTags.Items.MODERN_PICKAXES) )
         {
             ItemUtils.ejectStackFromBlockTowardsFacing(world, pos, state, tool, direction);
         }
@@ -120,8 +120,9 @@ public abstract class BlockMixin extends AbstractBlock implements BlockAdded,Dir
         blockMap.put(Blocks.END_STONE, ModBlocks.ENDSTONE_CONVERTING.getDefaultState());
          **/
 
-
-        if (state.isOf(Blocks.STONE)) {
+        // Set the state for stone variant blocks
+        if (state.isOf(Blocks.STONE))
+        {
             this.setStateForStone(world, pos, tool, ModBlocks.STONE_CONVERTING);
         } else if (state.isOf(Blocks.GRANITE)) {
             this.setStateForStone(world, pos, tool, ModBlocks.GRANITE_CONVERTING);
@@ -142,13 +143,8 @@ public abstract class BlockMixin extends AbstractBlock implements BlockAdded,Dir
         } else if (state.isOf(Blocks.END_STONE)) {
             this.setStateForStone(world, pos, tool, ModBlocks.ENDSTONE_CONVERTING);
 
-            /**
-            Block convertingBlock = blockMap.get(state.getBlock()).getBlock();
 
-            if (convertingBlock != null)
-            {
-                this.setStateForStone(world, pos, tool, convertingBlock);
-                **/
+            // Set the state if the block is a dirt
             }
             else if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(ModBlocks.DIRT_LOOSE))
             {
@@ -218,18 +214,6 @@ public abstract class BlockMixin extends AbstractBlock implements BlockAdded,Dir
 
     }
 
-    @Override
-    public boolean hasNeighborWithMortarInContact(World world, BlockPos pos) {
-
-        for ( int iTempFacing = 0; iTempFacing < 6; iTempFacing++ )
-        {
-            if ( WorldUtils.hasNeighborWithMortarInFullFaceContactToFacing(world, i, j, k, iTempFacing) )
-            {
-                return true;
-            }
-        }
-
-        return false;    }
 
     @Shadow
     public abstract Item asItem();

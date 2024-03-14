@@ -19,11 +19,6 @@ public class ModItemGroup
                     .icon(() -> new ItemStack(ModItems.GROUP_TE)).entries((displayContext, entries) -> {
 
                         /** Items **/
-                        // Tools
-                        entries.add(ModItems.CHISEL_WOOD);
-                        entries.add(ModItems.CHISEL_STONE);
-                        entries.add(ModItems.CHISEL_IRON);
-                        entries.add(ModItems.CHISEL_DIAMOND);
 
                         // Piles
                         entries.add(ModItems.PILE_CLAY);

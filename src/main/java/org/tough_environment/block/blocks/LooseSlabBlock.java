@@ -29,23 +29,18 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
-import org.tough_environment.block.interfaces.Mortarable;
 import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
 
-public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingBlock, Waterloggable
+public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 {
 
     // Block parameters and constants & Super settings //
     public static final EnumProperty<SlabType> TYPE;
     public static final BooleanProperty WATERLOGGED;
-    public static final BooleanProperty HAS_MORTAR = ModProperties.HAS_MORTAR;
 
     protected static final VoxelShape BOTTOM_SHAPE;
     protected static final VoxelShape TOP_SHAPE;
-
-
-
 
 
 
@@ -53,15 +48,16 @@ public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingB
     {
         super(settings);
         this.setDefaultState((this.stateManager.getDefaultState()).with(TYPE, SlabType.BOTTOM)
-                .with(WATERLOGGED, false).with(HAS_MORTAR, false));
+                .with(WATERLOGGED, false));
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
     {
-        builder.add(TYPE, WATERLOGGED, HAS_MORTAR);
+        builder.add(TYPE, WATERLOGGED);
     }
 
 
+    // Overriding the original method, because slabs need some extra logic, depending on the slab type placed.
     @Override
     public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         SlabType slabType = state.get(TYPE);
@@ -111,8 +107,7 @@ public class LooseSlabBlock extends FallingBlock implements Mortarable, LandingB
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
     {
         if (!world.isClient
-                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS)
-                && !state.get(HAS_MORTAR))
+                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
         {
 
             // Mortar the block

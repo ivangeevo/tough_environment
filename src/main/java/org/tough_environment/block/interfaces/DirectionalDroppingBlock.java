@@ -1,5 +1,6 @@
 package org.tough_environment.block.interfaces;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -24,8 +25,6 @@ public interface DirectionalDroppingBlock extends StateConvertableBlock {
             // Check if the crosshair is pointing at a block
             assert hitResult != null;
             if (hitResult.getType() == HitResult.Type.BLOCK) {
-                BlockPos blockPos = hitResult.getBlockPos();
-                BlockState blockState = minecraftClient.world.getBlockState(blockPos);
 
                 // Get the side from the block state
                 return hitResult.getSide();

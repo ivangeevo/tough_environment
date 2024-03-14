@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItemGroup;
 import org.tough_environment.item.ModItems;
+import org.tough_environment.util.BlockReplacementMapInitializer;
+
+import java.util.Map;
 
 public class ToughEnvironmentMod implements ModInitializer
 {
@@ -18,6 +21,14 @@ public class ToughEnvironmentMod implements ModInitializer
         ModBlocks.registerModBlocks();
         ModItems.registerModItems();
         ModItemGroup.registerItemGroups();
+
+
+        // Initialize or load the block replacement map
+        Map<String, String> blockReplacementMap = BlockReplacementMapInitializer.loadBlockReplacementMap();
+        if (blockReplacementMap == null) {
+            BlockReplacementMapInitializer.initializeBlockReplacementMap();
+            BlockReplacementMapInitializer.loadBlockReplacementMap();
+        }
     }
 
 }

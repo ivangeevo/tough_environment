@@ -75,8 +75,8 @@
           "condition": "minecraft:match_tool",
           "predicate": {
             "items": [
-              "tough_environment:chisel_wood",
-              "tough_environment:chisel_stone"
+              "btwr:chisel_wood",
+              "btwr:chisel_stone"
             ]
           }
         }
@@ -87,7 +87,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tough_environment:stone_brick",
+          "name": "btwr:stone_brick",
           "conditions": [
             {
               "condition": "minecraft:block_state_property",
@@ -104,7 +104,9 @@
           "condition": "minecraft:match_tool",
           "predicate": {
             "items": [
-              "tough_environment:chisel_iron"
+              "btwr:chisel_iron",
+              "btwr:chisel_diamond"
+
             ]
           }
         }
