@@ -45,7 +45,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BASALT_CONVERTING)
                 .add(ModBlocks.ENDSTONE_CONVERTING);
 
-        getOrCreateTagBuilder(ModTags.Blocks.MORTARABLE_BLOCKS)
+        getOrCreateTagBuilder(ModTags.Blocks.MORTARED_BLOCKS)
                 .add(Blocks.COBBLESTONE)
                 .add(Blocks.COBBLED_DEEPSLATE)
                 .add(Blocks.GRANITE)

@@ -17,8 +17,7 @@ public class ModTags
         public static final TagKey<Block> CONVERTED_STONE_BLOCKS = createTag("converted_stone_blocks");
         public static final TagKey<Block> BROKEN_STONES = createTag("broken_stones");
 
-
-        public static final TagKey<Block> MORTARABLE_BLOCKS = createTag("mortarable_blocks");
+        public static final TagKey<Block> MORTARED_BLOCKS = createTag("mortared_blocks");
 
 
         private static TagKey<Block> createTag (String name)
