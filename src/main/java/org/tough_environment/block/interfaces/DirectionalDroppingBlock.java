@@ -4,13 +4,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
-public interface DirectionalDroppingBlock extends StateConvertableBlock {
+public interface DirectionalDroppingBlock  {
 
     default Direction getBlockHitSide() {
 
@@ -33,6 +36,25 @@ public interface DirectionalDroppingBlock extends StateConvertableBlock {
 
         return null; // Return null if the player or world is null, or if the crosshair is not pointing at a block
     }
+
+    default void ejectStackTowardsPlayer(World world, BlockPos pos, ItemStack stack) {
+
+        Direction facing = getBlockHitSide();
+        if (facing != null) {
+            Vec3d playerPos = world.getPlayerByUuid(world.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(),
+                    -1.0, false).getUuid()).getPos();
+            double xSpeed = playerPos.x - (pos.getX() + 0.5);
+            double ySpeed = playerPos.y - (pos.getY() + 0.5);
+            double zSpeed = playerPos.z - (pos.getZ() + 0.5);
+            double speed = 0.05;
+            ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5,
+                    pos.getY() + 0.5, pos.getZ() + 0.5, stack);
+            itemEntity.setVelocity(xSpeed * speed, ySpeed * speed, zSpeed * speed);
+            world.spawnEntity(itemEntity);
+        }
+    }
+
+
 
     default boolean shouldDirectionalDrop(BlockState state, ItemStack tool) {
         return false;

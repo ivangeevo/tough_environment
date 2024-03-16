@@ -36,8 +36,7 @@ public class LooseBlock extends MortarReceiverBlock
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
     {
-        if (!world.isClient
-                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
+        if (!world.isClient && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
         {
 
             // Mortar the block
@@ -61,7 +60,7 @@ public class LooseBlock extends MortarReceiverBlock
 
 
         // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
-        if ((tool.isOf(Items.IRON_HOE)) || (tool.isOf(Items.DIAMOND_HOE)))
+        if (tool.isIn(ModTags.Items.MODERN_HOES))
         {
 
             if (state.isOf(ModBlocks.DIRT_LOOSE))

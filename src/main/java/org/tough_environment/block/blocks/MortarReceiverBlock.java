@@ -43,27 +43,6 @@ public class MortarReceiverBlock extends FallingBlock
     }
 
 
-    /**
-    private Block getReplacementBlock(Block looseBlock)
-    {
-
-        if (looseBlock == ModBlocks.COBBLESTONE_LOOSE)
-        { return Blocks.COBBLESTONE; }
-
-        if (looseBlock == ModBlocks.COBBLED_DEEPSLATE_LOOSE)
-        { return Blocks.COBBLED_DEEPSLATE; }
-
-        if (looseBlock == ModBlocks.GRANITE_LOOSE)
-        { return Blocks.GRANITE; }
-
-        if (looseBlock == ModBlocks.ANDESITE_LOOSE)
-        { return Blocks.ANDESITE; }
-
-        return null;
-    }
-     **/
-
-
     private Block getReplacementBlock(Block looseBlock)
     {
 
@@ -86,15 +65,19 @@ public class MortarReceiverBlock extends FallingBlock
 
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (!world.isClient()) {
+
+        if (!world.isClient())
+        {
             boolean mortarable = false;
             // Iterate over all neighboring positions
-            for (Direction direction : Direction.values()) {
+            for (Direction direction : Direction.values())
+            {
                 BlockPos neighborPos = pos.offset(direction);
                 BlockState neighborState = world.getBlockState(neighborPos);
 
                 // Check if the adjacent block is part of the specified tag
-                if (neighborState.isIn(ModTags.Blocks.MORTARED_BLOCKS)) {
+                if (neighborState.isIn(ModTags.Blocks.MORTARED_BLOCKS))
+                {
                     mortarable = true;
                     break;
                 }
@@ -104,9 +87,12 @@ public class MortarReceiverBlock extends FallingBlock
             OrderedTick<Block> orderedTick = new OrderedTick<>(state.getBlock(), pos, 0, TickPriority.NORMAL, 0);
 
             // If the block is not part of the mortarable blocks tag, schedule an immediate tick
-            if (!mortarable) {
+            if (!mortarable)
+            {
                 world.getBlockTickScheduler().scheduleTick(orderedTick);
-            } else {
+            }
+            else
+            {
                 // If the block is part of the mortarable blocks tag, schedule the tick for 40 ticks later
                 orderedTick = new OrderedTick<>(state.getBlock(), pos, world.getTime() + FALL_DELAY_TICKS,
                         TickPriority.NORMAL, 0);

@@ -11,23 +11,27 @@ import org.tough_environment.block.ModBlocks;
 
 public interface StateConvertableBlock {
 
+    /** Helper methods for different converting(transforming) blocks. Aka blocks that change block state on break. **/
     @Unique
-    default void setAdjacentDirtBlocksOnBreak(World world, BlockPos pos) {
+    default void setAdjacentDirtBlocksOnBreak(World world, BlockPos pos)
+    {
         BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
         // Check the four cardinal directions
-        for (Direction direction : Direction.Type.HORIZONTAL) {
+        for (Direction direction : Direction.Type.HORIZONTAL)
+        {
             mutablePos.set(pos).move(direction);
             BlockState neighborState = world.getBlockState(mutablePos);
 
             // Check if the neighbor is dirt and not already loose dirt
-            if (neighborState.getBlock() == Blocks.DIRT && neighborState.getBlock() != ModBlocks.DIRT_LOOSE) {
+            if (neighborState.getBlock() == Blocks.DIRT && neighborState.getBlock() != ModBlocks.DIRT_LOOSE)
+            {
                 world.setBlockState(mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState());
             }
         }
     }
 
-    default void setConvertableStates(World world, BlockPos pos, BlockState state, ItemStack tool) {}
+    default void setConvertableState(World world, BlockPos pos, BlockState state, ItemStack tool) {}
 
 
 

@@ -56,7 +56,6 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.GRANITE_SLAB);
 
 
-
         // Vanilla mineable tags added
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
