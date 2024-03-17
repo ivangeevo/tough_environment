@@ -11,16 +11,20 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.tough_environment.tag.ModTags;
 
 @Mixin(PickaxeItem.class)
-public abstract class PickaxeItemMixin extends MiningToolItem {
+public abstract class PickaxeItemMixin extends MiningToolItem
+{
 
 
-    public PickaxeItemMixin(float attackDamage, float attackSpeed, ToolMaterial material, TagKey<Block> effectiveBlocks, Settings settings) {
+    public PickaxeItemMixin(float attackDamage, float attackSpeed, ToolMaterial material,
+                            TagKey<Block> effectiveBlocks, Settings settings)
+    {
         super(attackDamage, attackSpeed, material, effectiveBlocks, settings);
     }
 
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
-       if (state.isIn(ModTags.Blocks.BROKEN_STONES)) {
+       if (state.isIn(ModTags.Blocks.BROKEN_STONES))
+       {
            return this.miningSpeed * 5f;
        }
 

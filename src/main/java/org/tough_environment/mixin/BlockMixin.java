@@ -136,8 +136,8 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
                 this.setStateForDirt(world, pos, state, tool);
             }
 
-        world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
-        world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
+        //world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
+        //world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
 
     }
 

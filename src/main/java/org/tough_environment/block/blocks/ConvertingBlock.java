@@ -58,9 +58,7 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
 
     public void convertOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack)
     {
-        int breakLevel = state.get(BREAK_LEVEL);
-
-        world.setBlockState(pos, state.with(BREAK_LEVEL, breakLevel + 1));
+        world.setBlockState(pos, state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1));
         this.emitBlockEvents(world, pos, state);
     }
 
