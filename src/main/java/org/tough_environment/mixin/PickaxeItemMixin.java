@@ -23,7 +23,7 @@ public abstract class PickaxeItemMixin extends MiningToolItem
 
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
-       if (state.isIn(ModTags.Blocks.BROKEN_STONES))
+       if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
        {
            return this.miningSpeed * 5f;
        }

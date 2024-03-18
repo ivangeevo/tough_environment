@@ -30,6 +30,9 @@ import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.ItemUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Mixin(Block.class)
 public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock, StateConvertableBlock
 {
@@ -105,6 +108,23 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     @Override
     public void setConvertableState(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
+        /**
+
+        Map<BlockState, Block> blockMap = new HashMap<>();
+
+        blockMap.put(Blocks.STONE.getDefaultState(), ModBlocks.STONE_CONVERTING);
+        blockMap.put(Blocks.GRANITE.getDefaultState(), ModBlocks.GRANITE_CONVERTING);
+        blockMap.put(Blocks.ANDESITE.getDefaultState(), ModBlocks.ANDESITE_CONVERTING);
+        blockMap.put(Blocks.CALCITE.getDefaultState(), ModBlocks.CALCITE_CONVERTING);
+        blockMap.put(Blocks.TUFF.getDefaultState(), ModBlocks.TUFF_CONVERTING);
+        blockMap.put(Blocks.BLACKSTONE.getDefaultState(), ModBlocks.BLACKSTONE_CONVERTING);
+        blockMap.put(Blocks.DEEPSLATE.getDefaultState(), ModBlocks.DEEPSLATE_CONVERTING);
+        blockMap.put(Blocks.BASALT.getDefaultState(), ModBlocks.BASALT_CONVERTING);
+        blockMap.put(Blocks.END_STONE.getDefaultState(), ModBlocks.ENDSTONE_CONVERTING);
+
+         **/
+
+
 
         // Set the state for stone variant blocks
         if (state.isOf(Blocks.STONE))
@@ -127,7 +147,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         } else if (state.isOf(Blocks.BASALT)) {
             this.setStateForStone(world, pos, tool, ModBlocks.BASALT_CONVERTING);
         } else if (state.isOf(Blocks.END_STONE)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.ENDSTONE_CONVERTING);
+            this.setStateForStone(world, pos, tool, ModBlocks.END_STONE_CONVERTING);
 
             // Set the state if the block is a dirt
             }
@@ -144,20 +164,24 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
 
 
    @Unique
-    private void setStateForStone(World world, BlockPos pos, ItemStack tool, Block block) {
+    private void setStateForStone(World world, BlockPos pos, ItemStack tool, Block block)
+   {
 
-        if (tool.isIn(ModTags.Items.MODERN_PICKAXES)) {
+        if (tool.isIn(ModTags.Items.MODERN_PICKAXES))
+        {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
         }
 
-        if (tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES)) {
+        if (tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES))
+        {
             world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 5));
             return;
 
         }
 
-        if (tool.isIn(ModTags.Items.MODERN_CHISELS)) {
+        if (tool.isIn(ModTags.Items.MODERN_CHISELS))
+        {
             world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 3));
             return;
 
@@ -207,6 +231,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         world.setBlockState(pos, Blocks.AIR.getDefaultState());
 
     }
+
 
 
     @Shadow

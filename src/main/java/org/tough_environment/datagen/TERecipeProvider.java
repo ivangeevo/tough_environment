@@ -27,6 +27,16 @@ public class TERecipeProvider extends FabricRecipeProvider
     public void generate(Consumer<RecipeJsonProvider> exporter)
     {
 
+        offerShapelessRecipe(exporter, ModItems.CHISEL_WOOD, Items.STICK, "group_btwr", 1);
+        offerShapelessRecipe(exporter, ModItems.CHISEL_STONE, ModItems.SMALL_STONE, "group_btwr", 1);
+
+        offerFourInputShapelessRecipe(exporter, ModItems.CHISEL_IRON, Items.IRON_NUGGET, Items.IRON_NUGGET, Items.IRON_NUGGET, Items.IRON_NUGGET, "group_btwr",1);
+
+        // We add the diamond chisel manually with a data pack.
+        //offerTwoInputShapelessRecipe(exporter, ModItems.CHISEL_DIAMOND, ModItems.DIAMOND_INGOT,  ModItems.DIAMOND_INGOT, "group_btwr",1);
+
+
+
         // Shapeless Recipes
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_DIRT,ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_SAND,ModItems.PILE_SAND, ModItems.PILE_SAND, ModItems.PILE_SAND, ModItems.PILE_SAND , "group_te", 1 );

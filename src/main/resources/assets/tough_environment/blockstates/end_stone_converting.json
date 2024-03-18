@@ -1,0 +1,16 @@
+{
+  "variants":
+  {
+    "break_level=0": [{"model": "tough_environment:block/end_stone_converting"}],
+    "break_level=1": [{"model": "tough_environment:block/end_stone_converting_1"}],
+    "break_level=2": [{"model": "tough_environment:block/end_stone_converting_2"}],
+    "break_level=3": [{"model": "tough_environment:block/end_stone_converting_3"}],
+    "break_level=4": [{"model": "tough_environment:block/end_stone_converting_4"}],
+    "break_level=5": [{"model": "tough_environment:block/end_stone_converting_5"}],
+    "break_level=6": [{"model": "tough_environment:block/end_stone_converting_6"}],
+    "break_level=7": [{"model": "tough_environment:block/end_stone_converting_7"}],
+    "break_level=8": [{"model": "tough_environment:block/end_stone_converting_8"}],
+    "break_level=9": [{"model": "tough_environment:block/end_stone_converting_9"}]
+
+  }
+}

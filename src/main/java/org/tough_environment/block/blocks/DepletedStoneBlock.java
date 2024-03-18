@@ -22,7 +22,7 @@ public class DepletedStoneBlock extends ConvertingBlock
         if (state.getBlock() instanceof DepletedStoneBlock && stack.isIn(ItemTags.PICKAXES))
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            this.emitBlockEvents(world, pos, state);
+            //this.emitBlockEvents(world, pos, state);
             return;
         }
 

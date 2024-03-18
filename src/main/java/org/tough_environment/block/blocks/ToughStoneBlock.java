@@ -30,14 +30,14 @@ public class ToughStoneBlock extends ConvertingBlock
         if ((isModernPickaxe || isPrimitivePickaxe) && breakLevel >= 2)
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            this.emitBlockEvents(world, pos, state);
+            //this.emitBlockEvents(world, pos, state);
             return;
         }
 
         if (isPrimitivePickaxe && breakLevel < 1)
         {
             world.setBlockState(pos, state.with(BREAK_LEVEL, 5));
-            this.emitBlockEvents(world, pos, state);
+            //this.emitBlockEvents(world, pos, state);
             return;
 
         }
@@ -45,7 +45,7 @@ public class ToughStoneBlock extends ConvertingBlock
         if (isModernChisel)
         {
             this.handleModernChiselBreak(world, pos, state);
-            this.emitBlockEvents(world, pos, state);
+            //this.emitBlockEvents(world, pos, state);
             return;
 
         }
@@ -58,7 +58,7 @@ public class ToughStoneBlock extends ConvertingBlock
                 world.setBlockState(pos, ModBlocks.STONE_BROKEN.getDefaultState());
             }
 
-            this.emitBlockEvents(world, pos, state);
+            //this.emitBlockEvents(world, pos, state);
             return;
         }
 

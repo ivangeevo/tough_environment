@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BlockReplacementMapInitializer {
+public  class BlockReplacementMapInitializer {
     private static final String JSON_FILE = "block_mortar_replacement_map.json";
 
     public static void initializeBlockReplacementMap() {

@@ -21,7 +21,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
-        getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONES)
+        getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONE_BLOCKS)
                 .add(ModBlocks.STONE_BROKEN)
                 .add(ModBlocks.GRANITE_BROKEN)
                 .add(ModBlocks.DIORITE_BROKEN)
@@ -43,7 +43,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BLACKSTONE_CONVERTING)
                 .add(ModBlocks.DEEPSLATE_CONVERTING)
                 .add(ModBlocks.BASALT_CONVERTING)
-                .add(ModBlocks.ENDSTONE_CONVERTING);
+                .add(ModBlocks.END_STONE_CONVERTING);
 
         getOrCreateTagBuilder(ModTags.Blocks.MORTARED_BLOCKS)
                 .add(Blocks.COBBLESTONE)
@@ -68,7 +68,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BLACKSTONE_CONVERTING)
                 .add(ModBlocks.DEEPSLATE_CONVERTING)
                 .add(ModBlocks.BASALT_CONVERTING)
-                .add(ModBlocks.ENDSTONE_CONVERTING)
+                .add(ModBlocks.END_STONE_CONVERTING)
 
                 .add(ModBlocks.STONE_BROKEN)
                 .add(ModBlocks.GRANITE_BROKEN)

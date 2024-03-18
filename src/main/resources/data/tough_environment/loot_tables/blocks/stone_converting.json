@@ -13,7 +13,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "btwr:primitive_chisels"
+                    "tag": "tough_environment:primitive_chisels"
                   }
                 }
               ]

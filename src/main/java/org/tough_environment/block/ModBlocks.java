@@ -48,10 +48,10 @@ public class ModBlocks
     public static final Block BLACKSTONE_CONVERTING = registerBlock("blackstone_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).sounds(BlockSoundGroup.STONE)));
     public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(3.0f, 6.0f).sounds(BlockSoundGroup.STONE)));
     public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.25f, 4.2f).sounds(BlockSoundGroup.STONE)));
-    public static final Block ENDSTONE_CONVERTING = registerBlock("endstone_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(3f, 9f).sounds(BlockSoundGroup.STONE)));
+    public static final Block END_STONE_CONVERTING = registerBlock("end_stone_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(3f, 9f).sounds(BlockSoundGroup.STONE)));
 
 
-    /** Broken* blocks have exactly 10f more strength than their normal counterparts. **/
+    /** Depleted(broken) blocks have exactly 10f more strength than their normal counterparts. **/
 
     public static final Block STONE_BROKEN = registerBlock("stone_broken", new DepletedStoneBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_BROKEN = registerBlock("granite_broken", new DepletedStoneBlock(FabricBlockSettings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
@@ -73,9 +73,8 @@ public class ModBlocks
 
     private static Item registerBlockItem(String name, Block block)
     {
-        Item item = Registry.register(Registries.ITEM, new Identifier(ToughEnvironmentMod.MOD_ID, name),
+        return Registry.register(Registries.ITEM, new Identifier(ToughEnvironmentMod.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings()));
-        return item;
     }
 
     public static void registerModBlocks()

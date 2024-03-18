@@ -18,8 +18,9 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
-                  "btwr:chisel_iron",
-                  "btwr:chisel_diamond"
+
+                  "tough_environment:chisel_iron",
+                  "tough_environment:chisel_diamond"
 
                 ]
               }
@@ -87,8 +88,8 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
-                  "btwr:chisel_wood",
-                  "btwr:chisel_stone"
+                  "tough_environment:chisel_wood",
+                  "tough_environment:chisel_stone"
                 ]
               }
             }
@@ -113,8 +114,8 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
-                  "btwr:chisel_iron",
-                  "btwr:chisel_diamond"
+                  "tough_environment:chisel_iron",
+                  "tough_environment:chisel_diamond"
 
                 ]
               }

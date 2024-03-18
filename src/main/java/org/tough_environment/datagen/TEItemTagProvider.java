@@ -27,6 +27,15 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.SMALL_STONE_1)
                 .add(ModItems.SMALL_STONE_2);
 
+
+        getOrCreateTagBuilder(ModTags.Items.MODERN_CHISELS)
+                .add(ModItems.CHISEL_IRON)
+                .add(ModItems.CHISEL_DIAMOND);
+
+        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_CHISELS)
+                .add(ModItems.CHISEL_WOOD)
+                .add(ModItems.CHISEL_STONE);
+
         getOrCreateTagBuilder(ModTags.Items.MODERN_PICKAXES)
                 .add(Items.IRON_PICKAXE)
                 .add(Items.GOLDEN_PICKAXE)

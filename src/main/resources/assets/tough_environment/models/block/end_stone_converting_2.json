@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "tough_environment:block/endstone_converting_8"
+    "all": "tough_environment:block/end_stone_converting_2"
   }
 }

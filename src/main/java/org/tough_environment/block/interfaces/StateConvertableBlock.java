@@ -9,9 +9,10 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Unique;
 import org.tough_environment.block.ModBlocks;
 
+
+/** Helper methods for different converting(transforming) blocks. Aka blocks that change block state on break. **/
 public interface StateConvertableBlock {
 
-    /** Helper methods for different converting(transforming) blocks. Aka blocks that change block state on break. **/
     @Unique
     default void setAdjacentDirtBlocksOnBreak(World world, BlockPos pos)
     {

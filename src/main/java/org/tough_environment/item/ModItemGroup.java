@@ -34,6 +34,12 @@ public class ModItemGroup
                         entries.add(ModItems.SHARD_GRANITE);
                         entries.add(ModItems.SHARD_ANDESITE);
 
+                        entries.add(ModItems.CHISEL_WOOD);
+                        entries.add(ModItems.CHISEL_STONE);
+                        entries.add(ModItems.CHISEL_IRON);
+                        entries.add(ModItems.CHISEL_DIAMOND);
+
+
 
 
 
