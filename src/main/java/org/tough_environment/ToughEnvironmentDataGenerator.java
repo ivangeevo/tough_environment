@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import org.tough_environment.datagen.TEBlockTagProvider;
 import org.tough_environment.datagen.TEItemTagProvider;
+import org.tough_environment.datagen.TELootTableProvider;
 import org.tough_environment.datagen.TERecipeProvider;
 
 public class ToughEnvironmentDataGenerator implements DataGeneratorEntrypoint
@@ -17,6 +18,7 @@ public class ToughEnvironmentDataGenerator implements DataGeneratorEntrypoint
         pack.addProvider(TEItemTagProvider::new);
         pack.addProvider(TEBlockTagProvider::new);
         pack.addProvider(TERecipeProvider::new);
+        pack.addProvider(TELootTableProvider::new);
 
     }
 }

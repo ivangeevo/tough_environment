@@ -20,6 +20,9 @@
     ],
     "fabric-datagen": [
       "org.tough_environment.ToughEnvironmentDataGenerator"
+    ],
+    "modmenu": [
+      "org.tough_environment.config.TEModMenu"
     ]
   },
   "mixins": [

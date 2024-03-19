@@ -21,17 +21,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
-        getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONE_BLOCKS)
-                .add(ModBlocks.STONE_BROKEN)
-                .add(ModBlocks.GRANITE_BROKEN)
-                .add(ModBlocks.DIORITE_BROKEN)
-                .add(ModBlocks.ANDESITE_BROKEN)
-                .add(ModBlocks.CALCITE_BROKEN)
-                .add(ModBlocks.TUFF_BROKEN)
-                .add(ModBlocks.BLACKSTONE_BROKEN)
-                .add(ModBlocks.DEEPSLATE_BROKEN)
-                .add(ModBlocks.BASALT_BROKEN)
-                .add(ModBlocks.ENDSTONE_BROKEN);
+
 
         getOrCreateTagBuilder(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
                 .add(ModBlocks.STONE_CONVERTING)
@@ -55,21 +45,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.ANDESITE_SLAB)
                 .add(Blocks.GRANITE_SLAB);
 
-
-        // Vanilla mineable tags added
-
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                .add(ModBlocks.STONE_CONVERTING)
-                .add(ModBlocks.GRANITE_CONVERTING)
-                .add(ModBlocks.DIORITE_CONVERTING)
-                .add(ModBlocks.ANDESITE_CONVERTING)
-                .add(ModBlocks.CALCITE_CONVERTING)
-                .add(ModBlocks.TUFF_CONVERTING)
-                .add(ModBlocks.BLACKSTONE_CONVERTING)
-                .add(ModBlocks.DEEPSLATE_CONVERTING)
-                .add(ModBlocks.BASALT_CONVERTING)
-                .add(ModBlocks.END_STONE_CONVERTING)
-
+        getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONE_BLOCKS)
                 .add(ModBlocks.STONE_BROKEN)
                 .add(ModBlocks.GRANITE_BROKEN)
                 .add(ModBlocks.DIORITE_BROKEN)
@@ -79,18 +55,16 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BLACKSTONE_BROKEN)
                 .add(ModBlocks.DEEPSLATE_BROKEN)
                 .add(ModBlocks.BASALT_BROKEN)
-                .add(ModBlocks.ENDSTONE_BROKEN)
+                .add(ModBlocks.ENDSTONE_BROKEN);
 
-                .add(ModBlocks.SLAB_COBBLESTONE_LOOSE)
-                .add(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)
-                .add(ModBlocks.SLAB_GRANITE_LOOSE)
-                .add(ModBlocks.SLAB_ANDESITE_LOOSE)
-                .add(ModBlocks.SLAB_BRICK_LOOSE)
 
-                .add(ModBlocks.COBBLESTONE_LOOSE)
-                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
-                .add(ModBlocks.GRANITE_LOOSE)
-                .add(ModBlocks.ANDESITE_LOOSE);
+        // Vanilla mineable tags added
+
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+
+                .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
+                .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS);
+
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(ModBlocks.SLAB_DIRT)

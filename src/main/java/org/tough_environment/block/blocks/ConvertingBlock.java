@@ -7,6 +7,9 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
@@ -45,36 +48,24 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
 
     }
 
-
-    // combiner method for emitting block based events
-    public void emitBlockEvents(World world, BlockPos pos, BlockState state)
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player)
     {
-        world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
-        world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
+
+        int breakLevel = state.get(BREAK_LEVEL);
+
+        if (breakLevel == 0 || breakLevel == 2 || breakLevel == 4 || breakLevel == 6 || breakLevel == 8) {
+            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_ANVIL_LAND,
+                    SoundCategory.BLOCKS,0.5F,world.random.nextFloat() * 0.25F + 1.75F);
+        }
+
+        super.onBreak(world, pos, state, player);
     }
-
-
-
 
     public void convertOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack)
     {
         world.setBlockState(pos, state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1));
-        //this.emitBlockEvents(world, pos, state);
     }
-
-
-
-
-
-
-
-    private void playSpecialBreakFX(ServerWorld world, BlockPos pos)
-    {}
-
-
-
-
-
 
 
 }

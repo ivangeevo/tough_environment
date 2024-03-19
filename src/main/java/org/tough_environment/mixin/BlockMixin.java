@@ -108,7 +108,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     @Override
     public void setConvertableState(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
-        /**
+
 
         Map<BlockState, Block> blockMap = new HashMap<>();
 
@@ -120,12 +120,28 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         blockMap.put(Blocks.BLACKSTONE.getDefaultState(), ModBlocks.BLACKSTONE_CONVERTING);
         blockMap.put(Blocks.DEEPSLATE.getDefaultState(), ModBlocks.DEEPSLATE_CONVERTING);
         blockMap.put(Blocks.BASALT.getDefaultState(), ModBlocks.BASALT_CONVERTING);
-        blockMap.put(Blocks.END_STONE.getDefaultState(), ModBlocks.ENDSTONE_CONVERTING);
-
-         **/
+        blockMap.put(Blocks.END_STONE.getDefaultState(), ModBlocks.END_STONE_CONVERTING);
 
 
+        for (Map.Entry<BlockState, Block> entry : blockMap.entrySet())
+         {
+             BlockState originalState = entry.getKey();
+             Block convertingBlock = entry.getValue();
 
+             if (state.isOf(originalState.getBlock()))
+             {
+                 setStateForStone(world, pos, tool, convertingBlock);
+                 break;
+             }
+
+         }
+
+        if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT))
+        {
+            this.setStateForDirt(world, pos, state, tool);
+        }
+
+        /**
         // Set the state for stone variant blocks
         if (state.isOf(Blocks.STONE))
         {
@@ -155,6 +171,8 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
             {
                 this.setStateForDirt(world, pos, state, tool);
             }
+
+         **/
 
         //world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
         //world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
