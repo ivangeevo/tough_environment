@@ -32,11 +32,13 @@ public class ToughEnvironmentMod implements ModInitializer
     public void onInitialize()
     {
         LOGGER.info("Initializing Tough Environment.");
+        loadSettings();
         instance = this;
 
         ModBlocks.registerModBlocks();
         ModItems.registerModItems();
         ModItemGroup.registerItemGroups();
+
 
 
         // Initialize or load the block replacement map

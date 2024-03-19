@@ -1,5 +1,6 @@
 package org.tough_environment.item.items;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
@@ -28,7 +29,22 @@ public class ChiselItem extends MiningToolItem
 
     }
 
+    @Override
+    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
+    {
+        if (stack.isSuitableFor(state))
+        {
 
+            if (chiselType == ChiselType.WOOD || chiselType == ChiselType.STONE || chiselType == ChiselType.IRON)
+            {
+                return this.miningSpeed / 3.5f;
+
+        }
+
+    }
+
+        return super.getMiningSpeedMultiplier(stack, state);
+    }
 
     @Override
     public void onCraft(ItemStack stack, World world, PlayerEntity player)

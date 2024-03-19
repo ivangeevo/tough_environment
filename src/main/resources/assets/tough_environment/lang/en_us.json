@@ -1,9 +1,17 @@
 {
 
-  "item.btwr.chisel_wood": "Pointy Stick",
-  "item.btwr.chisel_stone": "Sharp Stone",
-  "item.btwr.chisel_iron": "Iron Chisel",
-  "item.btwr.chisel_diamond": "Diamond Chisel",
+  "item.tough_environment.chisel_wood": "Pointy Stick",
+  "item.tough_environment.chisel_stone": "Sharp Stone",
+  "item.tough_environment.chisel_iron": "Iron Chisel",
+  "item.tough_environment.chisel_diamond": "Diamond Chisel",
+
+  "title.tough_environment.config": "Tough Environment Configuration Menu",
+
+
+  "config.tough_environment.category.general": "General config settings category.",
+
+  "config.tough_environment.hcMaterialSpeed": "Lower mining speeds",
+  "config.tough_environment.hcMaterialDurability": "Tools have lower durability",
 
 
   "itemgroup.group_te": "Tough Environment!"

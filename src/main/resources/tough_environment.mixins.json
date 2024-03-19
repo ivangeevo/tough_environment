@@ -6,7 +6,8 @@
   "mixins": [
     "BlockMixin",
     "MiningToolItemMixin",
-    "PickaxeItemMixin"
+    "ToolItemMixin",
+    "ToolMaterialsMixin"
   ],
   "client": [
   ],
