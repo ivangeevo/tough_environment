@@ -54,7 +54,8 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
 
         int breakLevel = state.get(BREAK_LEVEL);
 
-        if (breakLevel == 0 || breakLevel == 2 || breakLevel == 4 || breakLevel == 6 || breakLevel == 8) {
+        if (breakLevel == 0 || breakLevel == 2 || breakLevel == 4 || breakLevel == 6 || breakLevel == 8)
+        {
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_ANVIL_LAND,
                     SoundCategory.BLOCKS,0.5F,world.random.nextFloat() * 0.25F + 1.75F);
         }
