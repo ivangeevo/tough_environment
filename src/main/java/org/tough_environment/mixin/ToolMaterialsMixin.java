@@ -46,7 +46,7 @@ public abstract class ToolMaterialsMixin
                 break;
             case MiningLevels.DIAMOND:
                 cir.setReturnValue(1800);
-
+                break;
             case MiningLevels.NETHERITE:
                 cir.setReturnValue(2560);
                 break;

@@ -17,7 +17,7 @@ public class DepletedStoneBlock extends ConvertingBlock
     }
 
     @Override
-    public void convertOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack) {
+    public void convert(World world, BlockPos pos, BlockState state, ItemStack stack) {
 
         if (state.getBlock() instanceof DepletedStoneBlock && stack.isIn(ItemTags.PICKAXES))
         {
@@ -26,6 +26,6 @@ public class DepletedStoneBlock extends ConvertingBlock
             return;
         }
 
-        super.convertOnBreak(world, pos, state, stack);
+        super.convert(world, pos, state, stack);
     }
 }

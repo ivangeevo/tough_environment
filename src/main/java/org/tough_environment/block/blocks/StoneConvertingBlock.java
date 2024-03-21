@@ -8,26 +8,25 @@ import net.minecraft.world.World;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.ModTags;
 
-public class ToughStoneBlock extends ConvertingBlock
+public class StoneConvertingBlock extends ConvertingBlock
 {
 
-    public ToughStoneBlock(Settings settings)
+    public StoneConvertingBlock(Settings settings)
     {
         super(settings);
     }
 
     @Override
-    public void convertOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack)
+    public void convert(World world, BlockPos pos, BlockState state, ItemStack stack)
     {
 
+        int breakLevel = state.get(BREAK_LEVEL);
         boolean isModernChisel = stack.isIn(ModTags.Items.MODERN_CHISELS);
         boolean isModernPickaxe = stack.isIn(ModTags.Items.MODERN_PICKAXES);
         boolean isPrimitivePickaxe = stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES);
 
-        int breakLevel = state.get(BREAK_LEVEL);
 
-
-        if ((isModernPickaxe || isPrimitivePickaxe) && breakLevel >= 2)
+        if ( (isModernPickaxe || isPrimitivePickaxe) && breakLevel >= 2 )
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
@@ -37,14 +36,12 @@ public class ToughStoneBlock extends ConvertingBlock
         {
             world.setBlockState(pos, state.with(BREAK_LEVEL, 5));
             return;
-
         }
 
         if (isModernChisel)
         {
             this.handleModernChiselBreak(world, pos, state);
             return;
-
         }
 
         if (breakLevel >= 9 && !(state.getBlock() instanceof DepletedStoneBlock))
@@ -58,7 +55,7 @@ public class ToughStoneBlock extends ConvertingBlock
             return;
         }
 
-        super.convertOnBreak(world, pos, state, stack);
+        super.convert(world, pos, state, stack);
 
     }
 

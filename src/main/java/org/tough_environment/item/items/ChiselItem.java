@@ -32,16 +32,15 @@ public class ChiselItem extends MiningToolItem
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
     {
-        if (stack.isSuitableFor(state))
-        {
+        //if (stack.isSuitableFor(state))
+        //{
 
-            if (chiselType == ChiselType.WOOD || chiselType == ChiselType.STONE || chiselType == ChiselType.IRON)
-            {
+            if (chiselType == ChiselType.WOOD || chiselType == ChiselType.STONE || chiselType == ChiselType.IRON) {
                 return this.miningSpeed / 3.5f;
 
-        }
+            }
 
-    }
+        //}
 
         return super.getMiningSpeedMultiplier(stack, state);
     }

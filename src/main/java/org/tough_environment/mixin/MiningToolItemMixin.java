@@ -29,6 +29,7 @@ public abstract class MiningToolItemMixin
                 {
                     ToolItem tool = (ToolItem) stack.getItem();
                     ToolMaterial toolMaterial = tool.getMaterial();
+
                     float returnValue = 1.0f;
 
                     if (toolMaterial.equals(ToolMaterials.WOOD))
@@ -50,21 +51,19 @@ public abstract class MiningToolItemMixin
                     else if (toolMaterial.equals(ToolMaterials.DIAMOND))
                     {
                         returnValue = 8f;
-
                     }
                     else if (toolMaterial.equals(ToolMaterials.NETHERITE))
                     {
                         returnValue = 9f;
-
                     }
 
                     cir.setReturnValue(returnValue);
 
                 }
 
-        if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
+        if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && stack.getItem() instanceof PickaxeItem)
         {
-            cir.setReturnValue(this.miningSpeed + 5f);
+            cir.setReturnValue(this.miningSpeed + 4f);
         }
 
     }

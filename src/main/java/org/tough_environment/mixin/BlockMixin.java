@@ -11,11 +11,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;
+import net.minecraft.state.StateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
 import net.minecraft.world.event.GameEvent;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -37,6 +39,8 @@ import java.util.Map;
 public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock, StateConvertableBlock
 {
 
+
+    @Shadow @Final protected StateManager<Block, BlockState> stateManager;
 
     public BlockMixin(Settings settings) {
         super(settings);
@@ -70,32 +74,18 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
 
     }
 
-    @Override
-    public boolean shouldDirectionalDrop(BlockState state, ItemStack tool)
-    {
-        int breakLevel = state.get(ModProperties.BREAK_LEVEL);
 
-        if (!tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES))
-        {
-            return false;
-        }
-
-        return !tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES) ||
-                (breakLevel != 0 && breakLevel != 1 && breakLevel != 5);
-    }
 
     @Unique
     private void dropStacksForVanillaOrBTWR(World world, PlayerEntity player, BlockPos pos, BlockState state,
                                             BlockEntity blockEntity, ItemStack tool)
     {
 
-        Direction direction = getBlockHitSide();
 
         if ( (state.isIn(ModTags.Blocks.VANILLA_CONVERTING_BLOCKS) || state.getBlock() instanceof ConvertingBlock)
                 && !tool.isIn(ModTags.Items.MODERN_PICKAXES) )
         {
-            ItemUtils.ejectStackFromBlockTowardsFacing(world, pos, state, tool, direction);
-            //ejectStackTowardsPlayer(world, pos, tool);
+            ItemUtils.ejectStackFromBlockTowardsFacing(world, player, pos, state, blockEntity, tool, this.getBlockHitSide());
         }
         else
         {
@@ -108,7 +98,6 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     @Override
     public void setConvertableState(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
-
 
         Map<BlockState, Block> blockMap = new HashMap<>();
 
@@ -136,46 +125,11 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
 
          }
 
-        if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT))
+        if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(Blocks.DIRT_PATH))
         {
-            this.setStateForDirt(world, pos, state, tool);
+            setStateForDirt(world, pos, state, tool);
         }
 
-        /**
-        // Set the state for stone variant blocks
-        if (state.isOf(Blocks.STONE))
-        {
-            this.setStateForStone(world, pos, tool, ModBlocks.STONE_CONVERTING);
-        } else if (state.isOf(Blocks.GRANITE)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.GRANITE_CONVERTING);
-        } else if (state.isOf(Blocks.DIORITE)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.DIORITE_CONVERTING);
-        } else if (state.isOf(Blocks.ANDESITE)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.ANDESITE_CONVERTING);
-        } else if (state.isOf(Blocks.CALCITE)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.CALCITE_CONVERTING);
-        } else if (state.isOf(Blocks.TUFF)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.TUFF_CONVERTING);
-        } else if (state.isOf(Blocks.BLACKSTONE)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.BLACKSTONE_CONVERTING);
-        } else if (state.isOf(Blocks.DEEPSLATE)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.DEEPSLATE_CONVERTING);
-        } else if (state.isOf(Blocks.BASALT)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.BASALT_CONVERTING);
-        } else if (state.isOf(Blocks.END_STONE)) {
-            this.setStateForStone(world, pos, tool, ModBlocks.END_STONE_CONVERTING);
-
-            // Set the state if the block is a dirt
-            }
-            else if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(ModBlocks.DIRT_LOOSE))
-            {
-                this.setStateForDirt(world, pos, state, tool);
-            }
-
-         **/
-
-        //world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
-        //world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
 
     }
 
@@ -195,14 +149,12 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         {
             world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 5));
             return;
-
         }
 
         if (tool.isIn(ModTags.Items.MODERN_CHISELS))
         {
             world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 3));
             return;
-
         }
 
             world.setBlockState(pos, block.getDefaultState().with(ModProperties.BREAK_LEVEL, 0));

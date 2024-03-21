@@ -5,6 +5,7 @@ package org.tough_environment.util;
 
 import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,6 +28,7 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -107,42 +109,72 @@ public class ItemUtils {
         ItemUtils.dropStackAsIfBlockHarvested(world, pos, itemStack);
     }
 
-
-    static public void ejectStackFromBlockTowardsFacing(World world, BlockPos pos, BlockState state, ItemStack stack, Direction direction)
-    {
+// TODO: Fix stacks dropping when broken from below.
+    static public void ejectStackFromBlockTowardsFacing(World world, PlayerEntity player,BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, Direction direction) {
         Vec3d ejectPos = new Vec3d(
-                world.random.nextDouble() * 0.7D + 0.15D,
-                1.2D + world.random.nextDouble() * 0.1D,
-                world.random.nextDouble() * 0.7D + 0.15D);
+                world.getRandom().nextDouble() * 0.7D + 0.15D,
+                1.2D + world.getRandom().nextDouble() * 0.1D,
+                world.getRandom().nextDouble() * 0.7D + 0.15D);
 
+        double x = ejectPos.x;
+
+
+        // Tilting of the ejectPos should happen here
         ejectPos = VectorUtils.tiltVector(ejectPos, direction.getId());
+
+
 
         LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
                 .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
                 .add(LootContextParameters.TOOL, stack)
-                .addOptional(LootContextParameters.BLOCK_ENTITY, world.getBlockEntity(pos));
+                .addOptional(LootContextParameters.THIS_ENTITY, player)
+                .addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity);
+
 
         List<ItemStack> drops = state.getDroppedStacks(builder);
 
-        for (ItemStack droppedItems : drops)
-        {
-            ItemEntity entity = new ItemEntity(world, ejectPos.x, ejectPos.y, ejectPos.z, droppedItems);
-            double offset = direction.getAxis().isHorizontal() ? 0.1D : 0.0D;
-            Vec3d ejectVel = new Vec3d(
-                    world.random.nextDouble() * 0.1D - 0.05D,
-                    0.2D,
-                    world.random.nextDouble() * -0.05D - 0.05D
-            );
+        for (ItemStack droppedItems : drops) {
+            ItemEntity entity = new ItemEntity(world, pos.getX() + ejectPos.getX(), pos.getY() + ejectPos.getY(), pos.getZ() + ejectPos.getZ(), droppedItems);
 
-            rotateAsVectorAroundJToFacing(ejectVel, direction.getId());
-
-            entity.setVelocity(ejectVel.x, ejectVel.y, ejectVel.z);
-            entity.setPickupDelay(10);
-            world.spawnEntity(entity);
+            spawnItemEntity(world, () -> entity , direction);
         }
+
+
+        state.onStacksDropped((ServerWorld) world, pos, stack, false);
     }
 
+    private static void spawnItemEntity(World world, Supplier<ItemEntity> itemEntitySupplier, Direction direction) {
+        ItemEntity entity = itemEntitySupplier.get();
 
+        int iFacing = direction.getId();
+
+        if (iFacing < 2) {
+            entity.lastRenderX = world.getRandom().nextDouble() * 0.1D - 0.05D;
+            entity.lastRenderZ = world.getRandom().nextDouble() * 0.1D - 0.05D;
+
+            if (iFacing == 0) {
+                entity.lastRenderY = 0D;
+            } else {
+                entity.lastRenderY = 0.2D;
+            }
+
+        } else {
+            Vec3d ejectVel = new Vec3d(world.getRandom().nextDouble() * 0.1D - 0.05D,
+                    0.2D, world.getRandom().nextDouble() * -0.05D - 0.05D);
+
+            ejectVel.rotateY(direction.getId());
+
+            entity.lastRenderX = ejectVel.x;
+            entity.lastRenderY = ejectVel.y;
+            entity.lastRenderZ = ejectVel.z;
+        }
+
+
+        entity.setToDefaultPickupDelay();
+
+
+        world.spawnEntity(entity);
+    }
 
 
     /**

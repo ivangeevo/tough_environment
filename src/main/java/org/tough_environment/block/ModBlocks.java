@@ -39,16 +39,16 @@ public class ModBlocks
     public static final Block ANDESITE_LOOSE = registerBlock("andesite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
 
-    public static final Block STONE_CONVERTING = registerBlock("stone_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).sounds(BlockSoundGroup.STONE)));
-    public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).sounds(BlockSoundGroup.STONE)));
-    public static final Block DIORITE_CONVERTING = registerBlock("diorite_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).sounds(BlockSoundGroup.STONE)));
-    public static final Block ANDESITE_CONVERTING = registerBlock("andesite_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).sounds(BlockSoundGroup.STONE)));
-    public static final Block CALCITE_CONVERTING = registerBlock("calcite_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(0.75f).sounds(BlockSoundGroup.STONE)));
-    public static final Block TUFF_CONVERTING = registerBlock("tuff_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).sounds(BlockSoundGroup.STONE)));
-    public static final Block BLACKSTONE_CONVERTING = registerBlock("blackstone_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).sounds(BlockSoundGroup.STONE)));
-    public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(3.0f, 6.0f).sounds(BlockSoundGroup.STONE)));
-    public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(1.25f, 4.2f).sounds(BlockSoundGroup.STONE)));
-    public static final Block END_STONE_CONVERTING = registerBlock("end_stone_converting", new ToughStoneBlock(FabricBlockSettings.create().strength(3f, 9f).sounds(BlockSoundGroup.STONE)));
+    public static final Block STONE_CONVERTING = registerBlock("stone_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DIORITE_CONVERTING = registerBlock("diorite_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ANDESITE_CONVERTING = registerBlock("andesite_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block CALCITE_CONVERTING = registerBlock("calcite_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block TUFF_CONVERTING = registerBlock("tuff_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BLACKSTONE_CONVERTING = registerBlock("blackstone_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(3.0f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block END_STONE_CONVERTING = registerBlock("end_stone_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
 
     /** Depleted(broken) blocks have exactly 10f more strength than their normal counterparts. **/

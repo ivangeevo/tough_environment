@@ -2,25 +2,19 @@ package org.tough_environment.block.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
-import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
-import org.tough_environment.block.ModBlocks;
 import org.tough_environment.block.interfaces.StateConvertableBlock;
 import org.tough_environment.state.property.ModProperties;
-import org.tough_environment.tag.ModTags;
 
 public class ConvertingBlock extends Block implements StateConvertableBlock
 {
@@ -43,9 +37,15 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state,
                            @Nullable BlockEntity blockEntity, ItemStack stack)
     {
-        this.convertOnBreak(world, pos, state, stack);
+        this.convert(world, pos, state, stack);
         super.afterBreak(world, player, pos, state, blockEntity, stack);
 
+    }
+
+
+    public void convert(World world, BlockPos pos, BlockState state, ItemStack stack)
+    {
+        world.setBlockState(pos, state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1));
     }
 
     @Override
@@ -63,10 +63,7 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
         super.onBreak(world, pos, state, player);
     }
 
-    public void convertOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack)
-    {
-        world.setBlockState(pos, state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1));
-    }
+
 
 
 }
