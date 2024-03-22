@@ -1,5 +1,33 @@
 {
 
+  "block.btwr.dirt_loose": "Loose Dirt",
+  "block.btwr.cobblestone_loose": "Loose Cobblestone",
+  "block.btwr.cobbled_deepslate_loose": "Loose Cobbled Deepslate",
+
+
+  "item.btwr.pile_gravel": "Pile of Gravel",
+  "item.btwr.pile_dirt": "Pile of Dirt",
+  "item.btwr.pile_sand": "Pile of Sand",
+  "item.btwr.pile_red_sand": "Pile of Red Sand",
+  "item.btwr.pile_clay": "Pile of Clay",
+
+  "block.btwr.slab_dirt": "Dirt Slab",
+  "block.btwr.slab_gravel": "Gravel Slab",
+  "block.btwr.slab_sand": "Sand Slab",
+  "block.btwr.slab_red_sand": "Red Sand Slab",
+  "block.btwr.slab_cobblestone_loose": "Loose Cobblestone Slab",
+  "block.btwr.slab_cobbled_deepslate_loose": "Loose Cobbled Deepslate Slab",
+  "block.btwr.slab_brick_loose": "Loose Brick Slab",
+
+
+  "item.btwr.dust_coal": "Pile of Coal Dust",
+  "item.btwr.dust_iron": "Pile of Iron Dust",
+
+  "item.btwr.ore_iron_chunk": "Chunk of Iron Ore",
+  "item.btwr.ore_gold_chunk": "Chunk of Gold Ore",
+  "item.btwr.ore_copper_clump": "Clump of Copper",
+
+
   "item.tough_environment.chisel_wood": "Pointy Stick",
   "item.tough_environment.chisel_stone": "Sharp Stone",
   "item.tough_environment.chisel_iron": "Iron Chisel",
@@ -10,10 +38,9 @@
 
   "config.tough_environment.category.general": "General config settings category.",
 
-  "config.tough_environment.hcMaterialSpeed": "Lower mining speeds",
-  "config.tough_environment.hcMaterialDurability": "Tools have lower durability",
+  "config.tough_environment.hcMaterialDurability": "Hardcore tool material durability",
 
-  "config.tough_environment.hcHandBreakingSpeed": "The player has lower block breaking speed",
+  "config.tough_environment.hcPlayerMiningSpeed": "Hardcore mining speed",
 
 
 

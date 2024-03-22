@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#tough_environment:ores_lvl1",
+    "#tough_environment:ores_lvl2",
+    "#tough_environment:ores_lvl3",
+    "#tough_environment:ores_lvl4"
+  ]
+}

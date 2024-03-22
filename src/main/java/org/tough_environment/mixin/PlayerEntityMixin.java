@@ -3,7 +3,6 @@ package org.tough_environment.mixin;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
@@ -11,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.util.Arm;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,14 +25,19 @@ public abstract class PlayerEntityMixin extends LivingEntity
 {
     @Shadow @Final private PlayerInventory inventory;
 
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world)
+    {
         super(entityType, world);
     }
 
     @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
-    private void customBlockBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir) {
+    private void customBlockBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir)
+    {
 
-        if (ToughEnvironmentMod.getInstance().settings.isHardcoreHandBreakingSpeedEnabled()) {
+        if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
+        {
+            return;
+        }
 
             float f;
 
@@ -73,9 +76,11 @@ public abstract class PlayerEntityMixin extends LivingEntity
                     f += (float) (i * i + 1);
                 }
             }
+
             if (StatusEffectUtil.hasHaste(this)) {
                 f *= 1.0f + (float) (StatusEffectUtil.getHasteAmplifier(this) + 1) * 0.2f;
             }
+
             if (this.hasStatusEffect(StatusEffects.MINING_FATIGUE)) {
                 f *= (switch (this.getStatusEffect(StatusEffects.MINING_FATIGUE).getAmplifier()) {
                     case 0 -> 0.3f;
@@ -84,17 +89,16 @@ public abstract class PlayerEntityMixin extends LivingEntity
                     default -> 8.1E-4f;
                 });
             }
+
             if (this.isSubmergedIn(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(this)) {
                 f /= 5.0f;
             }
+
             if (!this.isOnGround()) {
                 f /= 5.0f;
             }
 
             cir.setReturnValue(f);
         }
-
-    }
-
 
 }

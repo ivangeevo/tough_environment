@@ -22,11 +22,12 @@ public class StoneConvertingBlock extends ConvertingBlock
 
         int breakLevel = state.get(BREAK_LEVEL);
         boolean isModernChisel = stack.isIn(ModTags.Items.MODERN_CHISELS);
-        boolean isModernPickaxe = stack.isIn(ModTags.Items.MODERN_PICKAXES);
         boolean isPrimitivePickaxe = stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES);
+        boolean isAdvancedPickaxe = stack.isIn(ModTags.Items.ADVANCED_PICKAXES);
 
 
-        if ( (isModernPickaxe || isPrimitivePickaxe) && breakLevel >= 2 )
+
+        if ( (isAdvancedPickaxe || isPrimitivePickaxe) && breakLevel >= 2 )
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;

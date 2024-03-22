@@ -19,7 +19,8 @@
               "predicate": {
                 "items": [
                   "tough_environment:chisel_iron"
-                ]
+                ],
+                "tag": "tough_environment:modern_chisels"
               }
             }
           ]
@@ -29,7 +30,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:small_stone",
+              "name": "tough_environment:diorite_shard",
               "functions": [
                 {
                   "function": "minecraft:set_count",
@@ -42,9 +43,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:stone_pickaxe"
-                ]
+                "tag": "tough_environment:primitive_pickaxes"
               }
             }
           ]
@@ -54,7 +53,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:cobblestone_loose",
+              "name": "tough_environment:diorite_loose",
               "functions": [
                 {
                   "function": "minecraft:set_count",
@@ -67,12 +66,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:golden_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "tag": "tough_environment:modern_pickaxes"
               }
             }
           ]
@@ -84,10 +78,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "tough_environment:chisel_wood",
-                  "tough_environment:chisel_stone"
-                ]
+                "tag": "tough_environment:primitive_chisels"
               }
             }
           ]
@@ -103,25 +94,6 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "btwr:stone_brick"
-            }
-          ],
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": [
-                  "tough_environment:chisel_iron"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
               "name": "tough_environment:pile_gravel"
             }
           ],
@@ -129,9 +101,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:stone_pickaxe"
-                ]
+                "tag": "tough_environment:primitive_pickaxes"
               }
             }
           ]
@@ -141,7 +111,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:small_stone",
+              "name": "tough_environment:diorite_shard",
               "functions": [
                 {
                   "function": "minecraft:set_count",
@@ -154,12 +124,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:golden_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "tag": "tough_environment:modern_pickaxes"
               }
             }
           ]
@@ -176,12 +141,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:golden_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "tag": "tough_environment:modern_pickaxes"
               }
             }
           ]

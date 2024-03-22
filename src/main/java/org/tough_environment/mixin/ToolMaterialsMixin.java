@@ -32,7 +32,8 @@ public abstract class ToolMaterialsMixin
     }
 
     @Unique
-    private void applyCustomDurability(CallbackInfoReturnable<Integer> cir) {
+    private void applyCustomDurability(CallbackInfoReturnable<Integer> cir)
+    {
         switch (this.miningLevel)
         {
             case MiningLevels.WOOD:

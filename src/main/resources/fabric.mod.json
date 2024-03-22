@@ -19,7 +19,7 @@
       "org.tough_environment.ToughEnvironmentMod"
     ],
     "fabric-datagen": [
-      "org.tough_environment.ToughEnvironmentDataGenerator"
+      "org.tough_environment.TEDataGenerator"
     ],
     "modmenu": [
       "org.tough_environment.config.TEModMenu"

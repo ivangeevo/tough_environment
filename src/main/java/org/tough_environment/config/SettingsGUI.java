@@ -10,13 +10,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import org.tough_environment.ToughEnvironmentMod;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SettingsGUI
 {
@@ -36,27 +30,12 @@ public class SettingsGUI
 
         /** General Category**/
 
-        /**
-        general.addEntry(entryBuilder
-                .startBooleanToggle(
-                        Text.translatable("config.tough_environment.hcMaterialSpeed"), settingsCommon.hcMaterialSpeed)
-                .setDefaultValue(true)
-                .setSaveConsumer(newValue -> settingsCommon.hcMaterialSpeed=newValue)
-                .build());
-         **/
 
         general.addEntry(entryBuilder
                 .startBooleanToggle(
-                        Text.translatable("config.tough_environment.hcMaterialDurability"), settingsCommon.hcMaterialDurability)
+                        Text.translatable("config.tough_environment.hcPlayerMiningSpeed"), settingsCommon.hcPlayerMiningSpeed)
                 .setDefaultValue(true)
-                .setSaveConsumer(newValue -> settingsCommon.hcMaterialDurability=newValue)
-                .build());
-
-        general.addEntry(entryBuilder
-                .startBooleanToggle(
-                        Text.translatable("config.tough_environment.hcHandBreakingSpeed"), settingsCommon.hcHandBreakingSpeed)
-                .setDefaultValue(true)
-                .setSaveConsumer(newValue -> settingsCommon.hcHandBreakingSpeed=newValue)
+                .setSaveConsumer(newValue -> settingsCommon.hcPlayerMiningSpeed =newValue)
                 .build());
 
 

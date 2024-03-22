@@ -7,7 +7,7 @@ import org.tough_environment.datagen.TEItemTagProvider;
 import org.tough_environment.datagen.TELootTableProvider;
 import org.tough_environment.datagen.TERecipeProvider;
 
-public class ToughEnvironmentDataGenerator implements DataGeneratorEntrypoint
+public class TEDataGenerator implements DataGeneratorEntrypoint
 {
 
 

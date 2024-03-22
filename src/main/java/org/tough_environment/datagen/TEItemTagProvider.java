@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import org.tough_environment.item.ModItems;
 import org.tough_environment.tag.ModTags;
@@ -21,7 +20,18 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
+        addToModTags(arg);
 
+        getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
+                .add(ModItems.SMALL_STONE)
+                .add(ModItems.SMALL_STONE_1)
+                .add(ModItems.SMALL_STONE_2);
+
+
+    }
+
+    private void addToModTags(RegistryWrapper.WrapperLookup arg)
+    {
         getOrCreateTagBuilder(ModTags.Items.SMALL_STONES)
                 .add(ModItems.SMALL_STONE)
                 .add(ModItems.SMALL_STONE_1)
@@ -36,10 +46,12 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.CHISEL_WOOD)
                 .add(ModItems.CHISEL_STONE);
 
-        getOrCreateTagBuilder(ModTags.Items.MODERN_PICKAXES)
+        getOrCreateTagBuilder(ModTags.Items.ADVANCED_PICKAXES)
                 .add(Items.IRON_PICKAXE)
                 .add(Items.GOLDEN_PICKAXE)
-                .add(Items.DIAMOND_PICKAXE)
+                .add(Items.DIAMOND_PICKAXE);
+
+        getOrCreateTagBuilder(ModTags.Items.MODERN_PICKAXES)
                 .add(Items.NETHERITE_PICKAXE);
 
         getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_PICKAXES)
@@ -67,9 +79,6 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(ModTags.Items.MORTARING_ITEMS)
                 .add(Items.CLAY_BALL)
                 .add(Items.SLIME_BALL);
-
-
-
-
     }
+
 }

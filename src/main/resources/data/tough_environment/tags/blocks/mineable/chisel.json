@@ -13,6 +13,13 @@
     "minecraft:basalt",
     "minecraft:end_stone",
 
+    "minecraft:coal_ore",
+    "minecraft:iron_ore",
+    "minecraft:copper_ore",
+    "minecraft:redstone_ore",
+    "minecraft:lapis_ore",
+    "minecraft:gold_ore",
+
 
 
     "tough_environment:stone_converting",
@@ -25,5 +32,7 @@
     "tough_environment:deepslate_converting",
     "tough_environment:basalt_converting",
     "tough_environment:end_stone_converting"
+
+
   ]
 }
