@@ -13,6 +13,9 @@
   "config.tough_environment.hcMaterialSpeed": "Lower mining speeds",
   "config.tough_environment.hcMaterialDurability": "Tools have lower durability",
 
+  "config.tough_environment.hcHandBreakingSpeed": "The player has lower block breaking speed",
+
+
 
   "itemgroup.group_te": "Tough Environment!"
 

@@ -22,7 +22,7 @@ public abstract class MiningToolItemMixin
 
     @Shadow @Final protected float miningSpeed;
 
-    @Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
+    //@Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
     private void injectedCustomSpeed(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir)
     {
                 if (ToughEnvironmentMod.getInstance().settings.isHardcoreMaterialSpeedEnabled())

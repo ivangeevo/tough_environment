@@ -74,6 +74,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
                 .add(ModBlocks.DIRT_LOOSE);
 
+        getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA3)
+                .add(Blocks.DEEPSLATE);
+
 
 
     }

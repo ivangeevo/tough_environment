@@ -18,6 +18,11 @@ public class ModTags
         public static final TagKey<Block> BROKEN_STONE_BLOCKS = createTag("broken_stone_blocks");
         public static final TagKey<Block> MORTARED_BLOCKS = createTag("mortared_blocks");
 
+        public static final TagKey<Block> STONE_STRATA1 = createTag("stone_strata1");
+        public static final TagKey<Block> STONE_STRATA2 = createTag("stone_strata2");
+        public static final TagKey<Block> STONE_STRATA3 = createTag("stone_strata3");
+
+
 
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, new Identifier(ToughEnvironmentMod.MOD_ID, name));

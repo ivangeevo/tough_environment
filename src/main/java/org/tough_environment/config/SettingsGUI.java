@@ -36,18 +36,27 @@ public class SettingsGUI
 
         /** General Category**/
 
+        /**
         general.addEntry(entryBuilder
                 .startBooleanToggle(
                         Text.translatable("config.tough_environment.hcMaterialSpeed"), settingsCommon.hcMaterialSpeed)
                 .setDefaultValue(true)
                 .setSaveConsumer(newValue -> settingsCommon.hcMaterialSpeed=newValue)
                 .build());
+         **/
 
         general.addEntry(entryBuilder
                 .startBooleanToggle(
                         Text.translatable("config.tough_environment.hcMaterialDurability"), settingsCommon.hcMaterialDurability)
                 .setDefaultValue(true)
                 .setSaveConsumer(newValue -> settingsCommon.hcMaterialDurability=newValue)
+                .build());
+
+        general.addEntry(entryBuilder
+                .startBooleanToggle(
+                        Text.translatable("config.tough_environment.hcHandBreakingSpeed"), settingsCommon.hcHandBreakingSpeed)
+                .setDefaultValue(true)
+                .setSaveConsumer(newValue -> settingsCommon.hcHandBreakingSpeed=newValue)
                 .build());
 
 

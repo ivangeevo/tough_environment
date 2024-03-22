@@ -74,10 +74,7 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "items": [
-              "tough_environment:chisel_wood",
-              "tough_environment:chisel_stone"
-            ]
+            "tag": "tough_environment:primitive_chisels"
           }
         }
       ]
@@ -103,9 +100,7 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "items": [
-              "tough_environment:chisel_iron"
-            ]
+            "tag": "tough_environment:modern_chisels"
           }
         }
       ]
@@ -435,9 +430,7 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "items": [
-              "minecraft:stone_pickaxe"
-            ]
+            "tag": "tough_environment:primitive_pickaxes"
           }
         }
       ]
@@ -628,12 +621,7 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "items": [
-              "minecraft:iron_pickaxe",
-              "minecraft:golden_pickaxe",
-              "minecraft:diamond_pickaxe",
-              "minecraft:netherite_pickaxe"
-            ]
+            "tag": "tough_environment:modern_pickaxes"
           }
         }
       ]
