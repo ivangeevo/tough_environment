@@ -138,20 +138,15 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     private void setStateForStone(World world, BlockPos pos, ItemStack tool, BlockState state)
    {
 
-        if (tool.isIn(ModTags.Items.MODERN_PICKAXES))
+        if (tool.isIn(ModTags.Items.ADVANCED_PICKAXES)
+                || (tool.isIn(ModTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.STONE_STRATA3)) )
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
         }
 
 
-       if (tool.isIn(ModTags.Items.ADVANCED_PICKAXES))
-       {
-           world.setBlockState(pos, Blocks.AIR.getDefaultState());
-           return;
-       }
-
-        if (tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES))
+        if (tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES) && state.get(BREAK_LEVEL) < 5)
         {
             world.setBlockState(pos, state.with(BREAK_LEVEL, 5));
             return;
@@ -205,12 +200,12 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     private boolean shouldConvertOre(BlockState state, ItemStack stack)
     {
 
-        if ( stack.isIn(ModTags.Items.MODERN_PICKAXES) )
+        if ( stack.isIn(ModTags.Items.ADVANCED_PICKAXES) )
         {
             return false;
         }
 
-        if ( stack.isIn(ModTags.Items.ADVANCED_PICKAXES) && !state.isIn(ModTags.Blocks.STONE_STRATA3) )
+        if ( stack.isIn(ModTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.STONE_STRATA3) )
         {
             return false;
         }
