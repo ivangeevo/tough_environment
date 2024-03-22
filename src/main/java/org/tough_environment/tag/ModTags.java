@@ -54,10 +54,22 @@ public class ModTags
 
         public static final TagKey<Item> PRIMITIVE_CHISELS = register("primitive_chisels");
         public static final TagKey<Item> MODERN_CHISELS = register("modern_chisels");
+
+
+
+
+        /**
+         * Pickaxe levels;
+         *
+         * 1.Primitive
+         * 2.Modern
+         * 3.Advanced
+         *
+         */
         public static final TagKey<Item> PRIMITIVE_PICKAXES = register("primitive_pickaxes");
+        public static final TagKey<Item> MODERN_PICKAXES = register("modern_pickaxes");
         public static final TagKey<Item> ADVANCED_PICKAXES = register("advanced_pickaxes");
 
-        public static final TagKey<Item> MODERN_PICKAXES = register("modern_pickaxes");
 
 
         public static final TagKey<Item> MODERN_AXES = register("modern_axes");

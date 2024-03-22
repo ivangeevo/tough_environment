@@ -51,20 +51,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
     {
         getOrCreateTagBuilder(ModTags.Blocks.ORES_ALL)
-                .addTag(ModTags.Blocks.ORES_LVL1)
-                .addTag(ModTags.Blocks.ORES_LVL2)
-                .addTag(ModTags.Blocks.ORES_LVL3)
-                .addTag(ModTags.Blocks.ORES_LVL4);
-
-        getOrCreateTagBuilder(ModTags.Blocks.DEEPSLATE_ORES)
-                .add(Blocks.DEEPSLATE_COAL_ORE)
-                .add(Blocks.DEEPSLATE_IRON_ORE)
-                .add(Blocks.DEEPSLATE_COPPER_ORE)
-                .add(Blocks.DEEPSLATE_REDSTONE_ORE)
-                .add(Blocks.DEEPSLATE_LAPIS_ORE)
-                .add(Blocks.DEEPSLATE_GOLD_ORE)
-                .add(Blocks.DEEPSLATE_DIAMOND_ORE)
-                .add(Blocks.DEEPSLATE_EMERALD_ORE);
+                .addTag(ModTags.Blocks.STONE_ORES)
+                .addTag(ModTags.Blocks.DEEPSLATE_ORES);
 
         getOrCreateTagBuilder(ModTags.Blocks.STONE_ORES)
                 .add(Blocks.COAL_ORE)
@@ -75,6 +63,16 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.GOLD_ORE)
                 .add(Blocks.DIAMOND_ORE)
                 .add(Blocks.EMERALD_ORE);
+
+        getOrCreateTagBuilder(ModTags.Blocks.DEEPSLATE_ORES)
+                .add(Blocks.DEEPSLATE_COAL_ORE)
+                .add(Blocks.DEEPSLATE_IRON_ORE)
+                .add(Blocks.DEEPSLATE_COPPER_ORE)
+                .add(Blocks.DEEPSLATE_REDSTONE_ORE)
+                .add(Blocks.DEEPSLATE_LAPIS_ORE)
+                .add(Blocks.DEEPSLATE_GOLD_ORE)
+                .add(Blocks.DEEPSLATE_DIAMOND_ORE)
+                .add(Blocks.DEEPSLATE_EMERALD_ORE);
 
 
 

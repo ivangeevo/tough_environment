@@ -138,11 +138,18 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     private void setStateForStone(World world, BlockPos pos, ItemStack tool, BlockState state)
    {
 
-        if (tool.isIn(ModTags.Items.ADVANCED_PICKAXES))
+        if (tool.isIn(ModTags.Items.MODERN_PICKAXES))
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
         }
+
+
+       if (tool.isIn(ModTags.Items.ADVANCED_PICKAXES))
+       {
+           world.setBlockState(pos, Blocks.AIR.getDefaultState());
+           return;
+       }
 
         if (tool.isIn(ModTags.Items.PRIMITIVE_PICKAXES))
         {
@@ -163,7 +170,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     @Unique
     private void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool) {
 
-        if (this.shouldConvert(state, tool))
+        if (!this.shouldConvertOre(state, tool))
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
@@ -195,22 +202,23 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     }
 
     @Unique
-    private boolean shouldConvert (BlockState state, ItemStack stack)
+    private boolean shouldConvertOre(BlockState state, ItemStack stack)
     {
 
-        if (stack.isIn(ModTags.Items.ADVANCED_PICKAXES))
+        if ( stack.isIn(ModTags.Items.MODERN_PICKAXES) )
         {
             return false;
         }
 
-        if (  (stack.isIn(ModTags.Items.ADVANCED_PICKAXES) || stack.isIn(ModTags.Items.MODERN_PICKAXES)
-                || stack.isOf(Items.STONE_PICKAXE)) && state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) )
+        if ( stack.isIn(ModTags.Items.ADVANCED_PICKAXES) && !state.isIn(ModTags.Blocks.STONE_STRATA3) )
         {
             return false;
         }
 
 
-        return !stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES) || state.get(BREAK_LEVEL) < 5;
+        return (!stack.isIn(ModTags.Items.ADVANCED_PICKAXES)
+                && !stack.isIn(ModTags.Items.MODERN_PICKAXES))
+                || !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)  && state.isIn(ModTags.Blocks.STONE_STRATA2);
     }
 
 
