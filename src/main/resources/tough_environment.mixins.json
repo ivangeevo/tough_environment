@@ -5,6 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BlockMixin",
+    "FarmlandBlockMixin",
+    "GrassBlockMixin",
+    "HoeItemMixin",
     "PlayerEntityMixin",
     "ToolMaterialsMixin"
   ],

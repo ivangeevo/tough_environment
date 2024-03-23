@@ -46,6 +46,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_SAND)
                 .add(ModBlocks.SLAB_RED_SAND)
                 .add(ModBlocks.DIRT_LOOSE);
+
     }
 
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
@@ -115,6 +116,14 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.COBBLED_DEEPSLATE_SLAB)
                 .add(Blocks.ANDESITE_SLAB)
                 .add(Blocks.GRANITE_SLAB);
+
+        getOrCreateTagBuilder(ModTags.Blocks.LOOSE_BLOCKS)
+                .add(ModBlocks.DIRT_LOOSE)
+                .add(ModBlocks.COBBLESTONE_LOOSE)
+                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.GRANITE_LOOSE)
+                .add(ModBlocks.ANDESITE_LOOSE);
+
 
         getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONE_BLOCKS)
                 .add(ModBlocks.STONE_BROKEN)
