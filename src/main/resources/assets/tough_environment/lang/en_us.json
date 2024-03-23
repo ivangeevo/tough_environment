@@ -1,31 +1,33 @@
 {
 
-  "block.btwr.dirt_loose": "Loose Dirt",
-  "block.btwr.cobblestone_loose": "Loose Cobblestone",
-  "block.btwr.cobbled_deepslate_loose": "Loose Cobbled Deepslate",
+  "block.tough_environment.dirt_loose": "Loose Dirt",
+  "block.tough_environment.cobblestone_loose": "Loose Cobblestone",
+  "block.tough_environment.cobbled_deepslate_loose": "Loose Cobbled Deepslate",
+
+  "block.tough_environment.slab_dirt": "Dirt Slab",
+  "block.tough_environment.slab_gravel": "Gravel Slab",
+  "block.tough_environment.slab_sand": "Sand Slab",
+  "block.tough_environment.slab_red_sand": "Red Sand Slab",
+  "block.tough_environment.slab_cobblestone_loose": "Loose Cobblestone Slab",
+  "block.tough_environment.slab_cobbled_deepslate_loose": "Loose Cobbled Deepslate Slab",
+  "block.tough_environment.slab_brick_loose": "Loose Brick Slab",
 
 
-  "item.btwr.pile_gravel": "Pile of Gravel",
-  "item.btwr.pile_dirt": "Pile of Dirt",
-  "item.btwr.pile_sand": "Pile of Sand",
-  "item.btwr.pile_red_sand": "Pile of Red Sand",
-  "item.btwr.pile_clay": "Pile of Clay",
-
-  "block.btwr.slab_dirt": "Dirt Slab",
-  "block.btwr.slab_gravel": "Gravel Slab",
-  "block.btwr.slab_sand": "Sand Slab",
-  "block.btwr.slab_red_sand": "Red Sand Slab",
-  "block.btwr.slab_cobblestone_loose": "Loose Cobblestone Slab",
-  "block.btwr.slab_cobbled_deepslate_loose": "Loose Cobbled Deepslate Slab",
-  "block.btwr.slab_brick_loose": "Loose Brick Slab",
 
 
-  "item.btwr.dust_coal": "Pile of Coal Dust",
-  "item.btwr.dust_iron": "Pile of Iron Dust",
 
-  "item.btwr.ore_iron_chunk": "Chunk of Iron Ore",
-  "item.btwr.ore_gold_chunk": "Chunk of Gold Ore",
-  "item.btwr.ore_copper_clump": "Clump of Copper",
+  "item.tough_environment.pile_gravel": "Pile of Gravel",
+  "item.tough_environment.pile_dirt": "Pile of Dirt",
+  "item.tough_environment.pile_sand": "Pile of Sand",
+  "item.tough_environment.pile_red_sand": "Pile of Red Sand",
+  "item.tough_environment.pile_clay": "Pile of Clay",
+
+  "item.tough_environment.dust_coal": "Pile of Coal Dust",
+  "item.tough_environment.dust_iron": "Pile of Iron Dust",
+
+  "item.tough_environment.ore_iron_chunk": "Chunk of Iron Ore",
+  "item.tough_environment.ore_gold_chunk": "Chunk of Gold Ore",
+  "item.tough_environment.ore_copper_clump": "Clump of Copper",
 
 
   "item.tough_environment.chisel_wood": "Pointy Stick",
@@ -33,13 +35,11 @@
   "item.tough_environment.chisel_iron": "Iron Chisel",
   "item.tough_environment.chisel_diamond": "Diamond Chisel",
 
+
   "title.tough_environment.config": "Tough Environment Configuration Menu",
 
-
   "config.tough_environment.category.general": "General config settings category.",
-
   "config.tough_environment.hcMaterialDurability": "Hardcore tool material durability",
-
   "config.tough_environment.hcPlayerMiningSpeed": "Hardcore mining speed",
 
 

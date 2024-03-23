@@ -15,32 +15,40 @@ public class ModItemGroup
 
     public static final ItemGroup GROUP_TE = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ToughEnvironmentMod.MOD_ID, "group_te"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.group_te"))
-                    .icon(() -> new ItemStack(ModItems.GROUP_TE)).entries((displayContext, entries) -> {
+
+            FabricItemGroup.builder()
+                    .displayName(Text.translatable("itemgroup.group_te"))
+                    .icon(() -> new ItemStack(ModItems.GROUP_TE))
+                    .entries((displayContext, entries) ->
+                    {
 
                         /** Items **/
 
-                        // Piles
+                        // Piles & Dust
                         entries.add(ModItems.PILE_CLAY);
                         entries.add(ModItems.PILE_DIRT);
                         entries.add(ModItems.PILE_GRAVEL);
                         entries.add(ModItems.PILE_SAND);
                         entries.add(ModItems.PILE_RED_SAND);
 
-                        // Shards & Crystals
+                        entries.add(ModItems.DUST_COAL);
+                        entries.add(ModItems.DUST_IRON);
+
+                        // Stones, Shards, Crystals & Ore Chunks
                         entries.add(ModItems.SMALL_STONE);
                         entries.add(ModItems.SMALL_STONE_1);
                         entries.add(ModItems.SMALL_STONE_2);
                         entries.add(ModItems.SHARD_GRANITE);
                         entries.add(ModItems.SHARD_ANDESITE);
+                        entries.add(ModItems.ORE_IRON_CHUNK);
+                        entries.add(ModItems.ORE_COPPER_CLUMP);
+                        entries.add(ModItems.ORE_GOLD_CHUNK);
 
+                        // Tools
                         entries.add(ModItems.CHISEL_WOOD);
                         entries.add(ModItems.CHISEL_STONE);
                         entries.add(ModItems.CHISEL_IRON);
                         entries.add(ModItems.CHISEL_DIAMOND);
-
-
-
 
 
                         /** Blocks **/
@@ -61,18 +69,6 @@ public class ModItemGroup
                         entries.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE);
                         entries.add(ModBlocks.GRANITE_LOOSE);
                         entries.add(ModBlocks.ANDESITE_LOOSE);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                     }).build());

@@ -31,6 +31,16 @@ public class ModItems
     public static final Item SHARD_GRANITE = registerItem( "shard_granite", new Item(new FabricItemSettings()));
     public static final Item SHARD_ANDESITE = registerItem( "shard_andesite", new Item(new FabricItemSettings()));
 
+    public static final Item DUST_COAL = registerItem( "dust_coal", new Item (new FabricItemSettings()));
+
+    public static final Item DUST_IRON = registerItem( "dust_iron", new Item (new FabricItemSettings()));
+
+    public static final Item ORE_IRON_CHUNK = registerItem( "ore_iron_chunk", new Item (new FabricItemSettings()));
+
+    public static final Item ORE_COPPER_CLUMP = registerItem( "ore_copper_clump", new Item (new FabricItemSettings()));
+
+    public static final Item ORE_GOLD_CHUNK = registerItem( "ore_gold_chunk", new Item (new FabricItemSettings()));
+
 
     // Tool Items
     public static final Item CHISEL_WOOD = registerItem( "chisel_wood",
