@@ -6,7 +6,4 @@ Additions so far:
 + Makes the player unable to break things that are significantly tougher,
  like stone blocks & such (ofc you can still break trees, but much slower).
 + Decreases the durability of "primitive" (wooden & stone) tools.
-
-
-
-+
++ Removed the ability to repair items by combining them together.

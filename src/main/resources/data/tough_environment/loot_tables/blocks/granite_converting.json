@@ -1,0 +1,635 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "0"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "6"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "8"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "tough_environment:primitive_chisels"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "btwr:stone_brick",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "3"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "tough_environment:modern_chisels"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "0"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "1"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 4
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "1"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "5"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "5"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "6"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "6"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "7"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "7"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "8"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "8"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "9"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "tough_environment:primitive_pickaxes"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "0"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:granite_loose",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "0"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 8
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "1"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 8
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 7
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 7
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "4"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 6
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "5"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 6
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "6"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 5
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "7"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:shard_granite",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 5
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:granite_converting",
+              "properties": {
+                "break_level": "8"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "tough_environment:modern_pickaxes"
+          }
+        }
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ]
+}

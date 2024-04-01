@@ -38,6 +38,7 @@ public class ModBlocks
     public static final Block GRANITE_LOOSE = registerBlock("granite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block ANDESITE_LOOSE = registerBlock("andesite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
+    public static final Block DIORITE_LOOSE = registerBlock("diorite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
     public static final Block STONE_CONVERTING = registerBlock("stone_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));

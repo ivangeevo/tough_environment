@@ -29,7 +29,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
-import org.tough_environment.state.property.ModProperties;
 import org.tough_environment.tag.ModTags;
 
 public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
@@ -62,7 +61,7 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         SlabType slabType = state.get(TYPE);
 
-        Block newBlock = getReplacementBlock(state.getBlock(), slabType);
+        Block newBlock = getStateReplacementBlock(state.getBlock(), slabType);
         if (newBlock != null) {
             BlockState newState = newBlock.getDefaultState();
             if (newState.getProperties().contains(TYPE)) {  // Check if TYPE property exists
@@ -76,7 +75,7 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     }
 
 
-    private Block getReplacementBlock(Block originalBlock, SlabType slabType) {
+    private Block getStateReplacementBlock(Block originalBlock, SlabType slabType) {
         if (originalBlock == ModBlocks.SLAB_COBBLESTONE_LOOSE) {
             return slabType == SlabType.DOUBLE ? Blocks.COBBLESTONE : Blocks.COBBLESTONE_SLAB;
         } else if (originalBlock == ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE) {
@@ -147,25 +146,29 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     }
 
     @Nullable
-    public BlockState getPlacementState(ItemPlacementContext ctx)
-    {
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockPos blockPos = ctx.getBlockPos();
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
-        if (blockState.isOf(this))
-        {
+        FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
+        Direction direction = ctx.getSide();
+
+        if (blockState.isOf(this)) {
+            // If the block is the same as the LooseSlabBlock, set it to double slab
             return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
-        }
-        else
-        {
-            FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-            BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM)
-                    .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-            Direction direction = ctx.getSide();
-            return direction != Direction.DOWN && (direction == Direction.UP
-                    || !(ctx.getHitPos().y - (double)blockPos.getY() > 0.5)) ?
-                    blockState2 : blockState2.with(TYPE, SlabType.TOP);
+        } else {
+            // Otherwise, handle placement based on the direction and hit position
+            boolean isTopHalf = ctx.getHitPos().y - blockPos.getY() > 0.5;
+
+            if (direction == Direction.DOWN || isTopHalf) {
+                // If placing on the bottom part or top half, place as a bottom slab
+                return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+            } else {
+                // If placing on the top part, place as a bottom slab instead
+                return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+            }
         }
     }
+
 
 
 
