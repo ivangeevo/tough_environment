@@ -139,6 +139,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
         getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA3)
                 .add(Blocks.DEEPSLATE);
+
+
     }
 
 

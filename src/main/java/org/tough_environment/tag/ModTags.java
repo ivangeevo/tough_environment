@@ -18,6 +18,8 @@ public class ModTags
         public static final TagKey<Block> BROKEN_STONE_BLOCKS = register("broken_stone_blocks");
         public static final TagKey<Block> MORTARED_BLOCKS = register("mortared_blocks");
 
+        public static final TagKey<Block> STUMP_BLOCKS = register("stump_blocks");
+
         public static final TagKey<Block> LOOSE_BLOCKS = register("loose_blocks");
 
         public static final TagKey<Block> STONE_STRATA1 = register("stone_strata1");
@@ -31,14 +33,11 @@ public class ModTags
 
 
 
-
         public static final TagKey<Block> STONE_ORES = register("stone_ores");
 
         public static final TagKey<Block> MANTLE_ORES =  register("mantle_ores");
 
         public static final TagKey<Block> DEEPSLATE_ORES = register("deepslate_ores");
-
-
 
 
         public static final TagKey<Block> ORES_ALL = register("ores_all");

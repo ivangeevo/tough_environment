@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.ModTags;
 
 @Mixin(GrassBlock.class)
@@ -30,7 +31,7 @@ public abstract class GrassBlockMixin extends SpreadableBlock
 
         if (stack.isIn(ModTags.Items.MODERN_HOES))
         {
-            world.setBlockState(pos, Blocks.DIRT.getDefaultState());
+            world.setBlockState(pos, ModBlocks.DIRT_LOOSE.getDefaultState());
         }
 
         super.afterBreak(world, player, pos, state, blockEntity, stack);

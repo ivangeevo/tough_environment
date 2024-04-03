@@ -31,7 +31,26 @@
     "tough_environment:blackstone_converting",
     "tough_environment:deepslate_converting",
     "tough_environment:basalt_converting",
-    "tough_environment:end_stone_converting"
+    "tough_environment:end_stone_converting",
+
+    "sturdy_trees:stump_oak",
+    "sturdy_trees:stump_birch",
+    "sturdy_trees:stump_spruce",
+    "sturdy_trees:stump_jungle",
+    "sturdy_trees:stump_acacia",
+    "sturdy_trees:stump_dark_oak",
+    "sturdy_trees:stump_mangrove",
+
+    "sturdy_trees:stump_oak_var1",
+    "sturdy_trees:stump_birch_var1",
+    "sturdy_trees:stump_spruce_var1",
+    "sturdy_trees:stump_jungle_var1",
+    "sturdy_trees:stump_acacia_var1",
+    "sturdy_trees:stump_dark_oak_var1",
+    "sturdy_trees:stump_mangrove_var1"
+
+
+
 
 
   ]

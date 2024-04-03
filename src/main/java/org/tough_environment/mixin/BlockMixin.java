@@ -222,8 +222,8 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     {
 
         boolean isAboveDirtAndTwoAboveGrass = state.isOf(Blocks.DIRT)
-                && (world.getBlockState(pos.up(2)).isOf(Blocks.DIRT)
-                || world.getBlockState(pos.up(2)).isOf(Blocks.GRASS_BLOCK));
+                && (world.getBlockState(pos.up()).isOf(Blocks.DIRT)
+                || world.getBlockState(pos.up(1)).isOf(Blocks.GRASS_BLOCK));
 
         boolean isDirtAbove = world.getBlockState(pos.up()).isOf(Blocks.DIRT);
         boolean isGrassAbove = world.getBlockState(pos.up()).isOf(Blocks.GRASS_BLOCK);
@@ -234,7 +234,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
 
             if (isAboveDirtAndTwoAboveGrass)
             {
-                world.setBlockState(pos.up(2), ModBlocks.DIRT_LOOSE.getDefaultState());
+                world.setBlockState(pos.up(1), ModBlocks.DIRT_LOOSE.getDefaultState());
                 return;
             }
 

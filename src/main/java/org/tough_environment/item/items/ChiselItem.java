@@ -1,5 +1,6 @@
 package org.tough_environment.item.items;
 
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -32,17 +33,11 @@ public class ChiselItem extends MiningToolItem
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
     {
-        //if (stack.isSuitableFor(state))
-        //{
+        if (stack.isSuitableFor(state) && (chiselType == ChiselType.IRON || chiselType == ChiselType.DIAMOND) && state.isIn(ModTags.Blocks.STUMP_BLOCKS)) {
+            return 50f;
+        }
 
-            if (chiselType == ChiselType.WOOD || chiselType == ChiselType.STONE || chiselType == ChiselType.IRON) {
-                return this.miningSpeed / 3.5f;
-
-            }
-
-        //}
-
-        return super.getMiningSpeedMultiplier(stack, state);
+        return 1f;
     }
 
     @Override
