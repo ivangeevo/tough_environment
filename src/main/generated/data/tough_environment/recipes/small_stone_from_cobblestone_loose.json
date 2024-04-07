@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:cobblestone_loose"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "tough_environment:small_stone"
+  }
+}

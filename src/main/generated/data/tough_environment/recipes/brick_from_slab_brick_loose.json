@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:slab_brick_loose"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "minecraft:brick"
+  }
+}
