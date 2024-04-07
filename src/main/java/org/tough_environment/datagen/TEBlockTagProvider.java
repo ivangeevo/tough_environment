@@ -23,8 +23,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
 
-        addToVanillaTags(arg);
-        addToModTags(arg);
+        this.addToVanillaTags(arg);
+        this.addToModTags(arg);
 
     }
 
@@ -51,6 +51,32 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
     {
+        getOrCreateTagBuilder(ModTags.Mineable.CHISEL_MINEABLE)
+                .forceAddTag(BlockTags.LOGS)
+                .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
+                .forceAddTag(BlockTags.BASE_STONE_NETHER)
+                .add(Blocks.END_STONE)
+
+                .add(Blocks.COAL_ORE)
+                .add(Blocks.IRON_ORE)
+                .add(Blocks.COPPER_ORE)
+                .add(Blocks.REDSTONE_ORE)
+                .add(Blocks.LAPIS_ORE)
+                .add(Blocks.GOLD_ORE);
+
+
+        getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD)
+                .add(ModBlocks.STONE_CONVERTING)
+                .add(ModBlocks.GRANITE_CONVERTING)
+                .add(ModBlocks.DIORITE_CONVERTING)
+                .add(ModBlocks.ANDESITE_CONVERTING)
+                .add(ModBlocks.CALCITE_CONVERTING)
+                .add(ModBlocks.TUFF_CONVERTING);
+
+
+
+
+
         getOrCreateTagBuilder(ModTags.Blocks.ORES_ALL)
                 .addTag(ModTags.Blocks.STONE_ORES)
                 .addTag(ModTags.Blocks.DEEPSLATE_ORES);
