@@ -8,7 +8,7 @@ import org.tough_environment.block.ModBlocks;
 import org.tough_environment.config.TESettings;
 import org.tough_environment.item.ModItemGroup;
 import org.tough_environment.item.ModItems;
-import org.tough_environment.util.BlockReplacementMapInitializer;
+import org.tough_environment.util.BlockMortarMapInitializer;
 
 import java.io.File;
 import java.io.FileReader;
@@ -42,10 +42,10 @@ public class ToughEnvironmentMod implements ModInitializer
 
 
         // Initialize or load the block replacement map
-        Map<String, String> blockReplacementMap = BlockReplacementMapInitializer.loadBlockReplacementMap();
+        Map<String, String> blockReplacementMap = BlockMortarMapInitializer.loadMap();
         if (blockReplacementMap == null) {
-            BlockReplacementMapInitializer.initializeBlockReplacementMap();
-            BlockReplacementMapInitializer.loadBlockReplacementMap();
+            BlockMortarMapInitializer.initMap();
+            BlockMortarMapInitializer.loadMap();
         }
     }
 

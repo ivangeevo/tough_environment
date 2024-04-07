@@ -1,6 +1,5 @@
 package org.tough_environment.item.items;
 
-import com.terraformersmc.modmenu.util.mod.Mod;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -30,14 +29,20 @@ public class ChiselItem extends MiningToolItem
 
     }
 
+
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
     {
-        if (stack.isSuitableFor(state) && (chiselType == ChiselType.IRON || chiselType == ChiselType.DIAMOND) && state.isIn(ModTags.Blocks.STUMP_BLOCKS)) {
-            return 50f;
+        if
+        ( (chiselType == ChiselType.WOOD)
+                || (chiselType == ChiselType.STONE)
+                || (chiselType == ChiselType.IRON)
+        )
+        {
+            return super.getMiningSpeedMultiplier(stack, state) / 2.8f;
         }
 
-        return 1f;
+        return super.getMiningSpeedMultiplier(stack, state);
     }
 
     @Override
@@ -49,24 +54,18 @@ public class ChiselItem extends MiningToolItem
 
         if (chiselType == ChiselType.WOOD)
         {
-
             craftingSound = SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR;
             world.playSound(player, thisPos, craftingSound, SoundCategory.BLOCKS, 0.2f, 1.2f);
-
-
         }
-        else  if (chiselType == ChiselType.STONE)
+        else if (chiselType == ChiselType.STONE)
         {
-
-            craftingSound = SoundEvents.BLOCK_ANVIL_USE;
+            craftingSound = SoundEvents.BLOCK_ANVIL_HIT;
             world.playSound(player,thisPos, craftingSound, SoundCategory.BLOCKS,0.2f,0.6f);
-
         }
         else if (chiselType == ChiselType.IRON || chiselType == ChiselType.DIAMOND)
         {
             craftingSound = SoundEvents.BLOCK_ANVIL_USE;
             world.playSound(player,thisPos, craftingSound, SoundCategory.BLOCKS,0.2f,1.2f);
-
         }
 
         player.tick();

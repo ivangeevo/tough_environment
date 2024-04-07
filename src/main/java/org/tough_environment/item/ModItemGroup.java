@@ -65,10 +65,12 @@ public class ModItemGroup
                         entries.add(ModBlocks.SLAB_BRICK_LOOSE);
 
                         // Full blocks
+                        entries.add(ModBlocks.DIRT_LOOSE);
                         entries.add(ModBlocks.COBBLESTONE_LOOSE);
                         entries.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE);
                         entries.add(ModBlocks.GRANITE_LOOSE);
                         entries.add(ModBlocks.ANDESITE_LOOSE);
+                        entries.add(ModBlocks.BRICKS_LOOSE);
 
 
                     }).build());

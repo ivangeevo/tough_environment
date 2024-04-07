@@ -81,6 +81,19 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(ModTags.Items.MORTARING_ITEMS)
                 .add(Items.CLAY_BALL)
                 .add(Items.SLIME_BALL);
+
+        getOrCreateTagBuilder(ModTags.Items.SHOULD_NOT_MERGE)
+                .add(ModItems.PILE_DIRT)
+                .add(ModItems.PILE_SAND)
+                .add(ModItems.PILE_RED_SAND)
+                .add(ModItems.PILE_GRAVEL)
+                .add(ModItems.PILE_CLAY)
+                .add(ModItems.SMALL_STONE)
+                .add(ModItems.SMALL_STONE_1)
+                .add(ModItems.SMALL_STONE_2)
+                .add(ModItems.SHARD_ANDESITE)
+                .add(ModItems.SHARD_GRANITE)
+                .add(ModItems.SHARD_DIORITE);
     }
 
 }

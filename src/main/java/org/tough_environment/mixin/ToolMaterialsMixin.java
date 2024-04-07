@@ -16,6 +16,33 @@ public abstract class ToolMaterialsMixin
 {
     @Shadow @Final private int miningLevel;
 
+    @Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
+    private void customMiningSpeedMultiplier(CallbackInfoReturnable<Float> cir) {
+
+        if (this.miningLevel == MiningLevels.WOOD)
+        {
+            cir.setReturnValue(1.5f);
+        }
+        else if (this.miningLevel == MiningLevels.STONE)
+        {
+            cir.setReturnValue(4f);
+        }
+        else if (this.miningLevel == MiningLevels.IRON)
+        {
+            cir.setReturnValue(6f);
+        }
+        else if (this.miningLevel == MiningLevels.DIAMOND)
+        {
+            cir.setReturnValue(6.5f);
+        }
+        else if (this.miningLevel == MiningLevels.NETHERITE)
+        {
+            cir.setReturnValue(7.5f);
+        }
+
+    }
+
+
     // Modify the durability values for all tool materials.
     @Inject(method = "getDurability", at = @At("HEAD"), cancellable = true)
     private void customMaterialDurability(CallbackInfoReturnable<Integer> cir)

@@ -42,21 +42,50 @@ public class TERecipeProvider extends FabricRecipeProvider
 
 
 
-        // Shapeless Recipes
+        /** Lesser Drops crafts **/
+
+        // Piles, Stones & Shards to Slabs
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_DIRT,ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_SAND,ModItems.PILE_SAND, ModItems.PILE_SAND, ModItems.PILE_SAND, ModItems.PILE_SAND , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_RED_SAND,ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_GRAVEL,ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL , "group_te", 1 );
-
-
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_COBBLESTONE_LOOSE,ModItems.SMALL_STONE, ModItems.SMALL_STONE, ModItems.SMALL_STONE, ModItems.SMALL_STONE , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE,ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2 , "group_te", 1 );
-
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_GRANITE_LOOSE,ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_ANDESITE_LOOSE,ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE , "group_te", 1 );
-
-
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_BRICK_LOOSE,Items.BRICK, Items.BRICK, Items.BRICK, Items.BRICK , "group_te", 1 );
+
+        /** Reversed Slab crafts **/
+        // Piles, Stones & Shards from Slabs
+        offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.SLAB_DIRT, "group_te", 3);
+        offerShapelessRecipe(exporter, ModItems.PILE_SAND, ModBlocks.SLAB_SAND, "group_te", 3);
+        offerShapelessRecipe(exporter, ModItems.PILE_RED_SAND, ModBlocks.SLAB_RED_SAND, "group_te", 3);
+        offerShapelessRecipe(exporter, ModItems.PILE_GRAVEL, ModBlocks.SLAB_GRAVEL, "group_te", 3);
+
+        offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.SLAB_COBBLESTONE_LOOSE, "group_te", 4);
+        // TODO: insert level 1 (mantle) here when added!
+        offerShapelessRecipe(exporter, ModItems.SMALL_STONE_2, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, "group_te", 4);
+        offerShapelessRecipe(exporter, ModItems.SHARD_ANDESITE, ModBlocks.SLAB_ANDESITE_LOOSE, "group_te", 4);
+        offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.SLAB_GRANITE_LOOSE, "group_te", 4);
+        offerShapelessRecipe(exporter, Items.BRICK, ModBlocks.SLAB_BRICK_LOOSE, "group_te", 4);
+
+        // Piles, Stones & Shards from Full Blocks
+        offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.DIRT_LOOSE, "group_te", 6);
+        offerShapelessRecipe(exporter, ModItems.PILE_SAND, Blocks.SAND, "group_te", 6);
+        offerShapelessRecipe(exporter, ModItems.PILE_RED_SAND, Blocks.RED_SAND, "group_te", 6);
+        offerShapelessRecipe(exporter, ModItems.PILE_GRAVEL, Blocks.GRAVEL, "group_te", 6);
+
+        offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.COBBLESTONE_LOOSE, "group_te", 8);
+        // TODO: insert level 1 (mantle) here when added!
+        offerShapelessRecipe(exporter, ModItems.SMALL_STONE_2, ModBlocks.COBBLED_DEEPSLATE_LOOSE, "group_te", 8);
+        offerShapelessRecipe(exporter, ModItems.SHARD_ANDESITE, ModBlocks.ANDESITE_LOOSE, "group_te", 8);
+        offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.GRANITE_LOOSE, "group_te", 8);
+
+        offerShapelessRecipe(exporter, Items.BRICK, ModBlocks.BRICKS_LOOSE, "group_te", 4);
+
+        offerShapelessRecipe(exporter, Items.CLAY_BALL, ModBlocks.SLAB_BRICK_LOOSE, "group_te", 4);
+
+
 
 
         // Shaped Recipes
@@ -64,6 +93,7 @@ public class TERecipeProvider extends FabricRecipeProvider
 
 
 
+        // Full block from LOOSE SLABS
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.SAND).input('#', ModBlocks.SLAB_SAND).pattern("#").pattern("#").criterion("has_slab_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_SAND)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.RED_SAND).input('#', ModBlocks.SLAB_RED_SAND).pattern("#").pattern("#").criterion("has_slab_red_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_RED_SAND)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.GRAVEL).input('#', ModBlocks.SLAB_GRAVEL).pattern("#").pattern("#").criterion("has_slab_gravel", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRAVEL)).offerTo(exporter);
@@ -74,6 +104,8 @@ public class TERecipeProvider extends FabricRecipeProvider
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GRANITE_LOOSE).input('#', ModBlocks.SLAB_GRANITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_granite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANDESITE_LOOSE).input('#', ModBlocks.SLAB_ANDESITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_andesite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
+
+
 
     }
 

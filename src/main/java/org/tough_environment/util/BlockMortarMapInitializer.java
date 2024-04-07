@@ -1,21 +1,26 @@
 package org.tough_environment.util;
 
 import com.google.gson.Gson;
+import net.minecraft.block.Blocks;
+import org.tough_environment.block.ModBlocks;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public  class BlockReplacementMapInitializer {
+public class BlockMortarMapInitializer
+{
     private static final String JSON_FILE = "block_mortar_replacement_map.json";
 
-    public static void initializeBlockReplacementMap() {
+    public static void initMap() {
         Map<String, String> blockReplacementMap = new HashMap<>();
         blockReplacementMap.put("tough_environment:cobblestone_loose", "minecraft:cobblestone");
         blockReplacementMap.put("tough_environment:cobbled_deepslate_loose", "minecraft:cobbled_deepslate");
         blockReplacementMap.put("tough_environment:granite_loose", "minecraft:granite");
         blockReplacementMap.put("tough_environment:andesite_loose", "minecraft:andesite");
+        blockReplacementMap.put("tough_environment:bricks_loose", "minecraft:bricks");
 
         saveToJson(blockReplacementMap);
     }
@@ -30,7 +35,7 @@ public  class BlockReplacementMapInitializer {
         }
     }
 
-    public static Map<String, String> loadBlockReplacementMap() {
+    public static Map<String, String> loadMap() {
         try (FileReader reader = new FileReader(JSON_FILE)) {
             Gson gson = new Gson();
             return gson.fromJson(reader, HashMap.class);

@@ -8,6 +8,7 @@
     "FarmlandBlockMixin",
     "GrassBlockMixin",
     "HoeItemMixin",
+    "ItemEntityMixin",
     "PlayerEntityMixin",
     "ToolMaterialsMixin"
   ],

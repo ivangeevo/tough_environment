@@ -15,10 +15,10 @@ import org.tough_environment.block.blocks.*;
 public class ModBlocks
 {
 
-    public static final Block SLAB_SAND = registerBlock("slab_sand", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
-    public static final Block SLAB_RED_SAND = registerBlock("slab_red_sand", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
-    public static final Block SLAB_DIRT = registerBlock("slab_dirt", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.GRASS).nonOpaque()));
-    public static final Block SLAB_GRAVEL = registerBlock("slab_gravel", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
+    public static final Block SLAB_SAND = registerBlock("slab_sand", new LooseAgregateSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
+    public static final Block SLAB_RED_SAND = registerBlock("slab_red_sand", new LooseAgregateSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
+    public static final Block SLAB_DIRT = registerBlock("slab_dirt", new LooseAgregateSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.GRASS).nonOpaque()));
+    public static final Block SLAB_GRAVEL = registerBlock("slab_gravel", new LooseAgregateSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
     public static final Block SLAB_COBBLESTONE_LOOSE = registerBlock("slab_cobblestone_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
     public static final Block SLAB_COBBLED_DEEPSLATE_LOOSE = registerBlock("slab_cobbled_deepslate_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(1.1F).sounds(BlockSoundGroup.STONE).nonOpaque()));
     public static final Block SLAB_BRICK_LOOSE = registerBlock("slab_brick_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.STONE).nonOpaque()));
@@ -39,6 +39,8 @@ public class ModBlocks
     public static final Block ANDESITE_LOOSE = registerBlock("andesite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
     public static final Block DIORITE_LOOSE = registerBlock("diorite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+
+    public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new LooseBlock(FabricBlockSettings.create().strength(0.7F).sounds(BlockSoundGroup.STONE).nonOpaque()));
 
     public static final Block STONE_CONVERTING = registerBlock("stone_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));

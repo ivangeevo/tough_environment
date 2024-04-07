@@ -51,6 +51,7 @@ public class ModTags
 
     public static class Items
     {
+        public static final TagKey<Item> SHOULD_NOT_MERGE = register("should_not_merge");
 
         public static final TagKey<Item> PRIMITIVE_CHISELS = register("primitive_chisels");
         public static final TagKey<Item> MODERN_CHISELS = register("modern_chisels");

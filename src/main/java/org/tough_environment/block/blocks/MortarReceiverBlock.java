@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.tick.OrderedTick;
 import net.minecraft.world.tick.TickPriority;
 import org.tough_environment.tag.ModTags;
-import org.tough_environment.util.BlockReplacementMapInitializer;
+import org.tough_environment.util.BlockMortarMapInitializer;
 
 import java.util.Map;
 
@@ -47,7 +47,7 @@ public class MortarReceiverBlock extends FallingBlock
     {
 
         // Load the block replacement map
-        Map<String, String> blockReplacementMap = BlockReplacementMapInitializer.loadBlockReplacementMap();
+        Map<String, String> blockReplacementMap = BlockMortarMapInitializer.loadMap();
 
         // Get the identifier of the loose block
         Identifier looseBlockId = Registries.BLOCK.getId(looseBlock);

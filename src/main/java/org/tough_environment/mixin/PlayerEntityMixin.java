@@ -9,6 +9,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
@@ -44,27 +45,31 @@ public abstract class PlayerEntityMixin extends LivingEntity
             float defaultSpeed = this.inventory.getBlockBreakingSpeed(state);
             ItemStack stack = this.getMainHandStack();
 
-            if (state.isIn(ModTags.Blocks.STONE_STRATA3) || state.isIn(ModTags.Blocks.STONE_STRATA2)) {
+            if (state.isIn(ModTags.Blocks.STONE_STRATA3) || state.isIn(ModTags.Blocks.STONE_STRATA2))
+            {
 
-                if (!stack.isSuitableFor(state)) {
+                if (!stack.isSuitableFor(state))
+                {
                     f = defaultSpeed / 8000;
                 } else {
-                    f = defaultSpeed / 4;
+                    f = defaultSpeed / 6;
                 }
 
 
-            } else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)) {
+            }
+            else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)) {
 
-                if (!stack.isSuitableFor(state)) {
+                if (!stack.isSuitableFor(state))
+                {
                     f = defaultSpeed / 80;
-
                 } else {
-                    f = defaultSpeed / 4;
+                    f = defaultSpeed / 6;
 
                 }
 
-            } else {
-                f = defaultSpeed / 4;
+            }
+            else {
+                f = defaultSpeed / 6;
 
             }
 
