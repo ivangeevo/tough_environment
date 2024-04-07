@@ -47,6 +47,14 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_RED_SAND)
                 .add(ModBlocks.DIRT_LOOSE);
 
+        getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD)
+                .add(ModBlocks.STONE_CONVERTING)
+                .add(ModBlocks.GRANITE_CONVERTING)
+                .add(ModBlocks.DIORITE_CONVERTING)
+                .add(ModBlocks.ANDESITE_CONVERTING)
+                .add(ModBlocks.CALCITE_CONVERTING)
+                .add(ModBlocks.TUFF_CONVERTING);
+
     }
 
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
@@ -57,24 +65,14 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .forceAddTag(BlockTags.BASE_STONE_NETHER)
                 .add(Blocks.END_STONE)
 
+                .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
+
                 .add(Blocks.COAL_ORE)
                 .add(Blocks.IRON_ORE)
                 .add(Blocks.COPPER_ORE)
                 .add(Blocks.REDSTONE_ORE)
                 .add(Blocks.LAPIS_ORE)
                 .add(Blocks.GOLD_ORE);
-
-
-        getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD)
-                .add(ModBlocks.STONE_CONVERTING)
-                .add(ModBlocks.GRANITE_CONVERTING)
-                .add(ModBlocks.DIORITE_CONVERTING)
-                .add(ModBlocks.ANDESITE_CONVERTING)
-                .add(ModBlocks.CALCITE_CONVERTING)
-                .add(ModBlocks.TUFF_CONVERTING);
-
-
-
 
 
         getOrCreateTagBuilder(ModTags.Blocks.ORES_ALL)
