@@ -105,6 +105,17 @@ public class TERecipeProvider extends FabricRecipeProvider
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GRANITE_LOOSE).input('#', ModBlocks.SLAB_GRANITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_granite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANDESITE_LOOSE).input('#', ModBlocks.SLAB_ANDESITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_andesite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
 
+        // Slabs from Full Loose Blocks
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_DIRT,4).input('#', ModBlocks.DIRT_LOOSE).pattern("##").criterion("has_slab_dirt", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIRT)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_SAND,4).input('#', Blocks.SAND).pattern("##").criterion("has_slab_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_SAND)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_RED_SAND,4).input('#', Blocks.RED_SAND).pattern("##").criterion("has_slab_red_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_RED_SAND)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_GRAVEL,4).input('#', Blocks.GRAVEL).pattern("##").criterion("has_slab_gravel", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRAVEL)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_COBBLESTONE_LOOSE,4).input('#', ModBlocks.COBBLESTONE_LOOSE).pattern("##").criterion("has_slab_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE,4).input('#', ModBlocks.COBBLED_DEEPSLATE_LOOSE).pattern("##").criterion("has_slab_cobbled_deepslate_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_GRANITE_LOOSE,4).input('#', ModBlocks.GRANITE_LOOSE).pattern("##").criterion("has_slab_granite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_ANDESITE_LOOSE,4).input('#', ModBlocks.ANDESITE_LOOSE).pattern("##").criterion("has_slab_andesite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_BRICK_LOOSE,4).input('#', ModBlocks.BRICKS_LOOSE).pattern("##").criterion("has_slab_brick_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_BRICK_LOOSE)).offerTo(exporter);
+
 
 
     }
@@ -117,7 +128,6 @@ public class TERecipeProvider extends FabricRecipeProvider
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter, convertBetween(output, input));
     }
-
     public static void offerThreeInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input,  ItemConvertible input2, ItemConvertible input3, @Nullable String group, int outputCount) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, outputCount)
                 .input(input).input(input2).input(input3)
@@ -125,7 +135,6 @@ public class TERecipeProvider extends FabricRecipeProvider
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter, convertBetween(output, input));
     }
-
     public static void offerFourInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input,  ItemConvertible input2, ItemConvertible input3,ItemConvertible input4, @Nullable String group, int outputCount) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, outputCount)
                 .input(input).input(input2).input(input3).input(input4)

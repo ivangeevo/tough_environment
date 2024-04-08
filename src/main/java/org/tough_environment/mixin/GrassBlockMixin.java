@@ -5,6 +5,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -29,7 +30,7 @@ public abstract class GrassBlockMixin extends SpreadableBlock
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 
-        if (stack.isIn(ModTags.Items.MODERN_HOES))
+        if (stack.isIn(ItemTags.HOES))
         {
             world.setBlockState(pos, ModBlocks.DIRT_LOOSE.getDefaultState());
         }

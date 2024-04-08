@@ -35,6 +35,17 @@
                       "function": "minecraft:set_count",
                       "count": 6
                     }
+                  ],
+                  "conditions": [
+                    {
+                      "condition": "minecraft:inverted",
+                      "term": {
+                        "condition": "minecraft:match_tool",
+                        "predicate": {
+                          "tag": "minecraft:hoes"
+                        }
+                      }
+                    }
                   ]
                 }
               ]
@@ -54,6 +65,24 @@
                 {
                   "condition": "minecraft:random_chance",
                   "chance": 0.03
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "btwr:hemp_seeds",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": [
+                      "minecraft:golden_hoe"
+                    ]
+                  }
+                },
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.04
                 }
               ]
             },

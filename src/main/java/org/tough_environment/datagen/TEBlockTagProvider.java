@@ -63,6 +63,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
                 .forceAddTag(BlockTags.BASE_STONE_NETHER)
+                .forceAddTag(BlockTags.BASE_STONE_NETHER)
+
                 .add(Blocks.END_STONE)
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)

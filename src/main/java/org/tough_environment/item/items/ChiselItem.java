@@ -64,7 +64,7 @@ public class ChiselItem extends MiningToolItem
         }
         else if (chiselType == ChiselType.IRON || chiselType == ChiselType.DIAMOND)
         {
-            craftingSound = SoundEvents.BLOCK_ANVIL_USE;
+            craftingSound = SoundEvents.BLOCK_ANVIL_HIT;
             world.playSound(player,thisPos, craftingSound, SoundCategory.BLOCKS,0.2f,1.2f);
         }
 

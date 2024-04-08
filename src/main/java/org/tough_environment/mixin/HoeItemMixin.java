@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.tag.ModTags;
 
 @Mixin(HoeItem.class)
 public abstract class HoeItemMixin extends MiningToolItem {
@@ -45,9 +46,13 @@ public abstract class HoeItemMixin extends MiningToolItem {
 
 
     @Override
-    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
-        if ((stack.isOf(Items.IRON_HOE)) || (stack.isOf(Items.DIAMOND_HOE))) {
-            if (miner instanceof PlayerEntity playerEntity) {
+    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner)
+
+    {
+        if (stack.isIn(ModTags.Items.MODERN_HOES))
+        {
+            if (miner instanceof PlayerEntity playerEntity)
+            {
                 // Create an ItemUsageContext
                 ItemUsageContext context = new ItemUsageContext(playerEntity, Hand.MAIN_HAND, new BlockHitResult(playerEntity.getPos(), Direction.UP, pos, false));
 
