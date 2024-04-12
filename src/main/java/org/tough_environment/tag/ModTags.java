@@ -16,6 +16,8 @@ public class ModTags
         public static final TagKey<Block> VANILLA_CONVERTING_BLOCKS = register("vanilla_converting_blocks");
         public static final TagKey<Block> CONVERTED_STONE_BLOCKS = register("converted_stone_blocks");
         public static final TagKey<Block> BROKEN_STONE_BLOCKS = register("broken_stone_blocks");
+        public static final TagKey<Block> COBBLESTONE_BLOCKS  = register("cobblestone_blocks");
+
         public static final TagKey<Block> MORTARED_BLOCKS = register("mortared_blocks");
 
         public static final TagKey<Block> STUMP_BLOCKS = register("stump_blocks");

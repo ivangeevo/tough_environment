@@ -110,39 +110,39 @@ public class ItemUtils {
     }
 
 // TODO: Fix stacks dropping when broken from below.
-    static public void ejectStackFromBlockTowardsFacing(World world, PlayerEntity player,BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, Direction direction) {
+static public void ejectStackFromBlockTowardsFacing(World world, PlayerEntity player,BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, Direction direction) {
 
-        Vec3d ejectPos = new Vec3d(
-                world.getRandom().nextDouble() * 0.7D + 0.15D,
-                1.2D + world.getRandom().nextDouble() * 0.1D,
-                world.getRandom().nextDouble() * 0.7D + 0.15D);
+    Vec3d ejectPos = new Vec3d(
+            world.getRandom().nextDouble() * 0.7D + 0.15D,
+            1.2D + world.getRandom().nextDouble() * 0.1D,
+            world.getRandom().nextDouble() * 0.7D + 0.15D);
 
-        double x = ejectPos.x;
-
-
-        // Tilting of the ejectPos should happen here
-        ejectPos = VectorUtils.tiltVector(ejectPos, direction.getId());
+    double x = ejectPos.x;
 
 
-
-        LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
-                .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
-                .add(LootContextParameters.TOOL, stack)
-                .addOptional(LootContextParameters.THIS_ENTITY, player)
-                .addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity);
+    // Tilting of the ejectPos should happen here
+    ejectPos = VectorUtils.tiltVector(ejectPos, direction.getId());
 
 
-        List<ItemStack> drops = state.getDroppedStacks(builder);
 
-        for (ItemStack droppedItems : drops) {
-            ItemEntity entity = new ItemEntity(world, pos.getX() + ejectPos.getX(), pos.getY() + ejectPos.getY(), pos.getZ() + ejectPos.getZ(), droppedItems);
+    LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
+            .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+            .add(LootContextParameters.TOOL, stack)
+            .addOptional(LootContextParameters.THIS_ENTITY, player)
+            .addOptional(LootContextParameters.BLOCK_ENTITY, blockEntity);
 
-            spawnItemEntity(world, () -> entity , direction.getOpposite());
-        }
 
+    List<ItemStack> drops = state.getDroppedStacks(builder);
 
-        state.onStacksDropped((ServerWorld) world, pos, stack, false);
+    for (ItemStack droppedItems : drops) {
+        ItemEntity entity = new ItemEntity(world, pos.getX() + ejectPos.getX(), pos.getY() + ejectPos.getY(), pos.getZ() + ejectPos.getZ(), droppedItems);
+
+        spawnItemEntity(world, () -> entity , direction.getOpposite());
     }
+
+
+    state.onStacksDropped((ServerWorld) world, pos, stack, false);
+}
 
     private static void spawnItemEntity(World world, Supplier<ItemEntity> itemEntitySupplier, Direction direction) {
         ItemEntity entity = itemEntitySupplier.get();

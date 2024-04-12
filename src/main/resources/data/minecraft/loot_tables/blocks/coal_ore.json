@@ -56,6 +56,11 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
+                    "items": [
+                      "tough_environment:chisel_wood",
+                      "tough_environment:chisel_stone",
+                      "minecraft:stone_pickaxe"
+                    ],
                     "tag": "tough_environment:primitive_chisels"
                   }
                 }

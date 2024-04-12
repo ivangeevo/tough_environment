@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.ModTags;
 
@@ -35,10 +36,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .forceAddTag(ModTags.Blocks.STONE_STRATA3);
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS);
-
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(ModBlocks.SLAB_DIRT)
@@ -54,6 +53,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.ANDESITE_CONVERTING)
                 .add(ModBlocks.CALCITE_CONVERTING)
                 .add(ModBlocks.TUFF_CONVERTING);
+
 
     }
 
@@ -162,6 +162,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.DEEPSLATE_BROKEN)
                 .add(ModBlocks.BASALT_BROKEN)
                 .add(ModBlocks.ENDSTONE_BROKEN);
+
 
         getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA3)
                 .add(Blocks.DEEPSLATE);

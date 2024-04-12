@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "tough_environment:ore_iron_chunk",
+              "name": "minecraft:raw_iron",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"

@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:ore_iron_chunk_from_dust_iron"
+        "recipe": "minecraft:raw_iron_from_dust_iron"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:ore_iron_chunk_from_dust_iron"
+      "minecraft:raw_iron_from_dust_iron"
     ]
   },
   "sends_telemetry_event": false

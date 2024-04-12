@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "tough_environment:ore_copper_clump",
+              "name": "minecraft:raw_copper",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"

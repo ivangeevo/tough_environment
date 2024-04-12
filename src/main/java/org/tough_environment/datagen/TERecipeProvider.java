@@ -31,7 +31,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerShapelessRecipe(exporter, ModItems.CHISEL_STONE, ModItems.SMALL_STONE, "group_btwr", 1);
 
         offerTwoInputShapelessRecipe(exporter, Items.COAL, ModItems.DUST_COAL, ModItems.DUST_COAL, "group_btwr", 1);
-        offerTwoInputShapelessRecipe(exporter, ModItems.ORE_IRON_CHUNK, ModItems.DUST_IRON, ModItems.DUST_IRON, "group_btwr", 1);
+        offerTwoInputShapelessRecipe(exporter, Items.RAW_IRON, ModItems.DUST_IRON, ModItems.DUST_IRON, "group_btwr", 1);
 
 
 
@@ -42,7 +42,7 @@ public class TERecipeProvider extends FabricRecipeProvider
 
 
 
-        /** Lesser Drops crafts **/
+        /** Lesser drops crafts **/
 
         // Piles, Stones & Shards to Slabs
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_DIRT,ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT , "group_te", 1 );
@@ -55,7 +55,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_ANDESITE_LOOSE,ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_BRICK_LOOSE,Items.BRICK, Items.BRICK, Items.BRICK, Items.BRICK , "group_te", 1 );
 
-        /** Reversed Slab crafts **/
+        /** Reversed Slab crafts  **/
         // Piles, Stones & Shards from Slabs
         offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.SLAB_DIRT, "group_te", 3);
         offerShapelessRecipe(exporter, ModItems.PILE_SAND, ModBlocks.SLAB_SAND, "group_te", 3);
@@ -115,8 +115,6 @@ public class TERecipeProvider extends FabricRecipeProvider
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_GRANITE_LOOSE,4).input('#', ModBlocks.GRANITE_LOOSE).pattern("##").criterion("has_slab_granite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_ANDESITE_LOOSE,4).input('#', ModBlocks.ANDESITE_LOOSE).pattern("##").criterion("has_slab_andesite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_BRICK_LOOSE,4).input('#', ModBlocks.BRICKS_LOOSE).pattern("##").criterion("has_slab_brick_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_BRICK_LOOSE)).offerTo(exporter);
-
-
 
     }
 

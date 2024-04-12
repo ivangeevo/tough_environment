@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 import org.tough_environment.tag.ModTags;
 
@@ -20,14 +21,8 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
-        addToModTags(arg);
-
-        getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
-                .add(ModItems.SMALL_STONE)
-                .add(ModItems.SMALL_STONE_1)
-                .add(ModItems.SMALL_STONE_2);
-
-
+        this.addToModTags(arg);
+        this.addToVanillaTags(arg);
     }
 
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
@@ -94,6 +89,18 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.SHARD_ANDESITE)
                 .add(ModItems.SHARD_GRANITE)
                 .add(ModItems.SHARD_DIORITE);
+    }
+
+    private void addToVanillaTags (RegistryWrapper.WrapperLookup arg)
+    {
+        getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
+                .add(ModItems.SMALL_STONE)
+                .add(ModItems.SMALL_STONE_1)
+                .add(ModItems.SMALL_STONE_2);
+
+        getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS)
+                .add(ModBlocks.COBBLESTONE_LOOSE.asItem());
+
     }
 
 }
