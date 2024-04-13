@@ -55,6 +55,11 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_ANDESITE_LOOSE,ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_BRICK_LOOSE,Items.BRICK, Items.BRICK, Items.BRICK, Items.BRICK , "group_te", 1 );
 
+        // Piles, Stones & Shards to Full Blocks
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE).input(ModItems.PILE_DIRT, 8).criterion("has_pile_dirt", RecipeProvider.conditionsFromItem(ModItems.PILE_DIRT)).offerTo(exporter);
+
+
+
         /** Reversed Slab crafts  **/
         // Piles, Stones & Shards from Slabs
         offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.SLAB_DIRT, "group_te", 3);
