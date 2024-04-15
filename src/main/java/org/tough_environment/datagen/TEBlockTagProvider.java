@@ -36,6 +36,11 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .forceAddTag(ModTags.Blocks.STONE_STRATA3);
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .addTag(ModTags.Blocks.ORES_ALL)
+                .addTag(ModTags.Blocks.STONE_STRATA1)
+                .addTag(ModTags.Blocks.STONE_STRATA2)
+                .addTag(ModTags.Blocks.STONE_STRATA3)
+
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS);
 
@@ -59,6 +64,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
     {
+
+
         getOrCreateTagBuilder(ModTags.Mineable.CHISEL_MINEABLE)
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
@@ -162,6 +169,12 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.DEEPSLATE_BROKEN)
                 .add(ModBlocks.BASALT_BROKEN)
                 .add(ModBlocks.ENDSTONE_BROKEN);
+
+        getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA1)
+                .add(Blocks.STONE)
+                .add(Blocks.GRANITE)
+                .add(Blocks.ANDESITE)
+                .add(Blocks.DIORITE);
 
 
         getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA3)

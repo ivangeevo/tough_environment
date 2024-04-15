@@ -214,8 +214,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         }
 
 
-        return (!stack.isIn(ModTags.Items.ADVANCED_PICKAXES)
-                && !stack.isIn(ModTags.Items.MODERN_PICKAXES))
+        return ( !stack.isIn(ModTags.Items.ADVANCED_PICKAXES) && !stack.isIn(ModTags.Items.MODERN_PICKAXES) )
                 || !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)  && state.isIn(ModTags.Blocks.STONE_STRATA2);
     }
 
