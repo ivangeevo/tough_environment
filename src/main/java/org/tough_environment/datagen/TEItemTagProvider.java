@@ -25,6 +25,7 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         this.addToVanillaTags(arg);
     }
 
+
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
     {
         getOrCreateTagBuilder(ModTags.Items.SMALL_STONES)
@@ -53,19 +54,31 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(ModTags.Items.ADVANCED_PICKAXES)
                 .add(Items.NETHERITE_PICKAXE);
 
-
+        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_AXES)
+                .add(Items.WOODEN_AXE)
+                .add(Items.STONE_AXE);
 
         getOrCreateTagBuilder(ModTags.Items.MODERN_AXES)
                 .add(Items.IRON_AXE)
                 .add(Items.GOLDEN_AXE)
-                .add(Items.DIAMOND_AXE)
+                .add(Items.DIAMOND_AXE);
+
+        getOrCreateTagBuilder(ModTags.Items.ADVANCED_AXES)
                 .add(Items.NETHERITE_AXE);
+
+        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_SHOVELS)
+                .add(Items.WOODEN_SHOVEL)
+                .add(Items.STONE_SHOVEL);
 
         getOrCreateTagBuilder(ModTags.Items.MODERN_SHOVELS)
                 .add(Items.IRON_SHOVEL)
                 .add(Items.GOLDEN_SHOVEL)
                 .add(Items.DIAMOND_SHOVEL)
                 .add(Items.NETHERITE_SHOVEL);
+
+        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_HOES)
+                .add(Items.WOODEN_HOE)
+                .add(Items.STONE_HOE);
 
         getOrCreateTagBuilder(ModTags.Items.MODERN_HOES)
                 .add(Items.IRON_HOE)

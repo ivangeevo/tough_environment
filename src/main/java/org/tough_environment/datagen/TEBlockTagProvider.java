@@ -38,7 +38,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .addTag(ModTags.Blocks.ORES_ALL)
                 .addTag(ModTags.Blocks.STONE_STRATA1)
-                .addTag(ModTags.Blocks.STONE_STRATA2)
+                //.addTag(ModTags.Blocks.STONE_STRATA2)
                 .addTag(ModTags.Blocks.STONE_STRATA3)
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)

@@ -4,12 +4,12 @@
   "package": "org.tough_environment.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AxeItemMixin",
     "BlockMixin",
     "FarmlandBlockMixin",
     "GrassBlockMixin",
     "HoeItemMixin",
     "ItemEntityMixin",
+    "MiningToolItemMixin",
     "PlayerEntityMixin",
     "SpreadableBlockMixin",
     "ToolMaterialsMixin"

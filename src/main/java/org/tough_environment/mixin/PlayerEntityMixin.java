@@ -9,12 +9,15 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.MiningToolItem;
+import net.minecraft.item.ToolItem;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -32,82 +35,54 @@ public abstract class PlayerEntityMixin extends LivingEntity
     }
 
     @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
-    private void customBlockBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir)
-    {
+    private void customBlockBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir) {
 
         if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
         {
             return;
         }
 
-            float f;
-            float defaultSpeed = this.inventory.getBlockBreakingSpeed(state);
-            ItemStack stack = this.getMainHandStack();
+        float f;
+        float defaultSpeed = this.inventory.getBlockBreakingSpeed(state);
+        ItemStack stack = this.getMainHandStack();
 
-            if (state.isIn(ModTags.Blocks.STONE_STRATA3) || state.isIn(ModTags.Blocks.STONE_STRATA2))
+        if (state.isIn(ModTags.Blocks.STONE_STRATA3) || state.isIn(ModTags.Blocks.STONE_STRATA2))
+        {
+            if (!stack.isSuitableFor(state))
             {
-
-                if (!stack.isSuitableFor(state))
-                {
-                    f = defaultSpeed / 8000;
-                }
-                else
-                {
-                    f = defaultSpeed / 6;
-                }
-
-
+                f = defaultSpeed / 8000;
+                cir.setReturnValue(f);
             }
-            else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
+        }
+        else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
+        {
+            if (!stack.isSuitableFor(state))
             {
-
-                if (!stack.isSuitableFor(state))
-                {
-                    f = defaultSpeed / 80;
-                }
-                else
-                {
-                    f = defaultSpeed / 6;
-
-                }
-
+                f = defaultSpeed / 80;
+                cir.setReturnValue(f);
             }
-            else
-            {
-                f = defaultSpeed / 6;
-            }
+        }
 
-
-            if (f > 1.0f) {
-                int i = EnchantmentHelper.getEfficiency(this);
-                ItemStack itemStack = this.getMainHandStack();
-                if (i > 0 && !itemStack.isEmpty()) {
-                    f += (float) (i * i + 1);
-                }
-            }
-
-            if (StatusEffectUtil.hasHaste(this)) {
-                f *= 1.0f + (float) (StatusEffectUtil.getHasteAmplifier(this) + 1) * 0.2f;
-            }
-
-            if (this.hasStatusEffect(StatusEffects.MINING_FATIGUE)) {
-                f *= (switch (this.getStatusEffect(StatusEffects.MINING_FATIGUE).getAmplifier()) {
-                    case 0 -> 0.3f;
-                    case 1 -> 0.09f;
-                    case 2 -> 0.0027f;
-                    default -> 8.1E-4f;
-                });
-            }
-
-            if (this.isSubmergedIn(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(this)) {
-                f /= 5.0f;
-            }
-
-            if (!this.isOnGround()) {
-                f /= 5.0f;
-            }
-
+        if (isPrimitiveTool(stack) || !(stack.getItem() instanceof MiningToolItem))
+        {
+            f = defaultSpeed / 6;
             cir.setReturnValue(f);
         }
+        else
+        {
+            cir.setReturnValue(defaultSpeed);
+        }
+
+    }
+
+    @Unique
+    private boolean isPrimitiveTool(ItemStack stack)
+    {
+        return stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES)
+                || stack.isIn(ModTags.Items.PRIMITIVE_AXES)
+                || stack.isIn(ModTags.Items.PRIMITIVE_SHOVELS)
+                || stack.isIn(ModTags.Items.PRIMITIVE_HOES)
+                || stack.isIn(ModTags.Items.PRIMITIVE_CHISELS);
+    }
 
 }
