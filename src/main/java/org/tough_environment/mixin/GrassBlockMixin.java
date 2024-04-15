@@ -19,8 +19,8 @@ import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.ModTags;
 
 @Mixin(GrassBlock.class)
-public abstract class GrassBlockMixin extends SpreadableBlock
-        implements Fertilizable {
+public abstract class GrassBlockMixin extends SpreadableBlock implements Fertilizable
+{
     protected GrassBlockMixin(Settings settings) {
         super(settings);
     }

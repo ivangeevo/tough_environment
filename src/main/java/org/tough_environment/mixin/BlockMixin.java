@@ -62,9 +62,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         }
 
         player.incrementStat(Stats.MINED.getOrCreateStat((Block) (Object) this));
-        if ( !(tool.getItem() instanceof AxeItem) && state.getHardness(world, pos) <= 0 ) {
-            player.addExhaustion(0.2f);
-        }
+        if ( !(tool.getItem() instanceof AxeItem) && state.getHardness(world, pos) <= 0 ) { player.addExhaustion(0.2f); }
         dropStacksForVanillaOrBTWR(world, player, pos, state, blockEntity, tool);
         ci.cancel();
 

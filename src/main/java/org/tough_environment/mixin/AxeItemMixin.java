@@ -8,7 +8,7 @@ import net.minecraft.registry.tag.TagKey;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(AxeItem.class)
-public class AxeItemMixin extends MiningToolItem
+public abstract class AxeItemMixin extends MiningToolItem
 {
 
     public AxeItemMixin(float attackDamage, float attackSpeed, ToolMaterial material, TagKey<Block> effectiveBlocks, Settings settings) {
