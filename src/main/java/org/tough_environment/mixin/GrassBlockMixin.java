@@ -32,7 +32,7 @@ public abstract class GrassBlockMixin extends SpreadableBlock implements Fertili
 
         if (stack.isIn(ItemTags.HOES))
         {
-            world.setBlockState(pos, ModBlocks.DIRT_LOOSE.getDefaultState());
+            world.setBlockState(pos, Blocks.DIRT.getDefaultState());
         }
 
         super.afterBreak(world, player, pos, state, blockEntity, stack);

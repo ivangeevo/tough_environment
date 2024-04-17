@@ -1,4 +1,4 @@
-package org.tough_environment.datagen;
+package org.tough_environment.datagen.tag;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -24,6 +24,8 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         this.addToModTags(arg);
         this.addToVanillaTags(arg);
     }
+
+
 
 
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
@@ -76,6 +78,9 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.DIAMOND_SHOVEL)
                 .add(Items.NETHERITE_SHOVEL);
 
+        getOrCreateTagBuilder(ModTags.Items.ADVANCED_SHOVELS)
+                .add(Items.NETHERITE_SHOVEL);
+
         getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_HOES)
                 .add(Items.WOODEN_HOE)
                 .add(Items.STONE_HOE);
@@ -83,7 +88,9 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(ModTags.Items.MODERN_HOES)
                 .add(Items.IRON_HOE)
                 .add(Items.GOLDEN_HOE)
-                .add(Items.DIAMOND_HOE)
+                .add(Items.DIAMOND_HOE);
+
+        getOrCreateTagBuilder(ModTags.Items.ADVANCED_HOES)
                 .add(Items.NETHERITE_HOE);
 
         getOrCreateTagBuilder(ModTags.Items.MORTARING_ITEMS)

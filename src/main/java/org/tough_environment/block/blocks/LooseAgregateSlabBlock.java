@@ -1,6 +1,7 @@
 package org.tough_environment.block.blocks;
 
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -67,6 +68,28 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
             }
         }
         super.onLandedUpon(world, state, pos, entity, fallDistance);
+    }
+
+    // Block specific logic //
+    @Override
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state,
+                           @Nullable BlockEntity blockEntity, ItemStack tool)
+    {
+
+
+        // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
+        if (tool.isIn(ModTags.Items.MODERN_HOES) || tool.isIn(ModTags.Items.ADVANCED_HOES))
+        {
+
+            if (state.isOf(ModBlocks.SLAB_DIRT) && state.get(TYPE) == SlabType.DOUBLE)
+            {
+                world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
+            }
+
+        }
+
+        super.afterBreak(world, player, pos, state, blockEntity, tool);
+
     }
 
 

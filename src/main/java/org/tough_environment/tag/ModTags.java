@@ -21,8 +21,9 @@ public class ModTags
         public static final TagKey<Block> MORTARED_BLOCKS = register("mortared_blocks");
 
         public static final TagKey<Block> STUMP_BLOCKS = register("stump_blocks");
+        public static final TagKey<Block> ALL_LOOSE_BLOCKS = register("all_loose_blocks");
 
-        public static final TagKey<Block> LOOSE_BLOCKS = register("loose_blocks");
+        public static final TagKey<Block> LOOSE_STONE_BLOCKS = register("loose_stone_blocks");
 
         public static final TagKey<Block> STONE_STRATA1 = register("stone_strata1");
         public static final TagKey<Block> STONE_STRATA2 = register("stone_strata2");

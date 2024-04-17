@@ -34,8 +34,7 @@ public class MortarReceiverBlock extends FallingBlock
 
         if (newBlock != null)
         {
-            BlockState newState = newBlock.getDefaultState();
-            world.setBlockState(pos, newState);
+            world.setBlockState(pos, newBlock.getDefaultState());
         }
 
         world.playSound(null,pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);

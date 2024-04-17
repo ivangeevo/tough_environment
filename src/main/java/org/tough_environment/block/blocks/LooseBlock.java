@@ -1,5 +1,6 @@
 package org.tough_environment.block.blocks;
 
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -29,7 +30,6 @@ public class LooseBlock extends MortarReceiverBlock
     public LooseBlock(Settings settings)
     {
         super(settings);
-        this.setDefaultState((this.stateManager.getDefaultState()));
     }
 
     @Override
@@ -58,13 +58,14 @@ public class LooseBlock extends MortarReceiverBlock
 
 
     // Block specific logic //
+    @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state,
                            @Nullable BlockEntity blockEntity, ItemStack tool)
     {
 
 
         // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
-        if (tool.isIn(ModTags.Items.MODERN_HOES))
+        if (tool.isIn(ModTags.Items.MODERN_HOES) || tool.isIn(ModTags.Items.ADVANCED_HOES))
         {
 
             if (state.isOf(ModBlocks.DIRT_LOOSE))

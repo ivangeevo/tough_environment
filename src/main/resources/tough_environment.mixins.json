@@ -9,6 +9,7 @@
     "GrassBlockMixin",
     "HoeItemMixin",
     "ItemEntityMixin",
+    "ItemMixin",
     "MiningToolItemMixin",
     "PlayerEntityMixin",
     "SpreadableBlockMixin",

@@ -1,4 +1,4 @@
-package org.tough_environment.datagen;
+package org.tough_environment.datagen.tag;
 
 import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -35,13 +35,17 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .forceAddTag(ModTags.Blocks.STONE_STRATA3);
 
+        getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+                .forceAddTag(ModTags.Blocks.STONE_STRATA2);
+
+
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .addTag(ModTags.Blocks.ORES_ALL)
                 .addTag(ModTags.Blocks.STONE_STRATA1)
                 //.addTag(ModTags.Blocks.STONE_STRATA2)
                 .addTag(ModTags.Blocks.STONE_STRATA3)
-
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
+                .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS);
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
@@ -140,6 +144,23 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BASALT_CONVERTING)
                 .add(ModBlocks.END_STONE_CONVERTING);
 
+        getOrCreateTagBuilder(ModTags.Blocks.LOOSE_STONE_BLOCKS)
+                .add(ModBlocks.SLAB_COBBLESTONE_LOOSE)
+                .add(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.SLAB_ANDESITE_LOOSE)
+                .add(ModBlocks.SLAB_GRANITE_LOOSE)
+
+                .add(ModBlocks.COBBLESTONE_LOOSE)
+                .add(ModBlocks.GRANITE_LOOSE)
+                .add(ModBlocks.DIORITE_LOOSE)
+                .add(ModBlocks.ANDESITE_LOOSE);
+                //.add(ModBlocks.CALCITE_LOOSE)
+                //.add(ModBlocks.TUFF_LOOSE)
+                //.add(ModBlocks.BLACKSTONE_LOOSE)
+                //.add(ModBlocks.DEEPSLATE_LOOSE)
+                //.add(ModBlocks.BASALT_LOOSE)
+                //.add(ModBlocks.END_STONE_LOOSE)
+
         getOrCreateTagBuilder(ModTags.Blocks.MORTARED_BLOCKS)
                 .add(Blocks.COBBLESTONE)
                 .add(Blocks.COBBLED_DEEPSLATE)
@@ -150,7 +171,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.ANDESITE_SLAB)
                 .add(Blocks.GRANITE_SLAB);
 
-        getOrCreateTagBuilder(ModTags.Blocks.LOOSE_BLOCKS)
+        getOrCreateTagBuilder(ModTags.Blocks.ALL_LOOSE_BLOCKS)
                 .add(ModBlocks.DIRT_LOOSE)
                 .add(ModBlocks.COBBLESTONE_LOOSE)
                 .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)

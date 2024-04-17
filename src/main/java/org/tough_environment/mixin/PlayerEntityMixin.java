@@ -46,7 +46,7 @@ public abstract class PlayerEntityMixin extends LivingEntity
         float defaultSpeed = this.inventory.getBlockBreakingSpeed(state);
         ItemStack stack = this.getMainHandStack();
 
-        if (state.isIn(ModTags.Blocks.STONE_STRATA3) || state.isIn(ModTags.Blocks.STONE_STRATA2))
+        if (state.isIn(BlockTags.NEEDS_DIAMOND_TOOL) || state.isIn(BlockTags.NEEDS_IRON_TOOL) || state.isIn(BlockTags.NEEDS_STONE_TOOL))
         {
             if (!stack.isSuitableFor(state))
             {
@@ -70,7 +70,7 @@ public abstract class PlayerEntityMixin extends LivingEntity
         }
         else
         {
-            cir.setReturnValue(defaultSpeed);
+            cir.setReturnValue(defaultSpeed / 2);
         }
 
     }
