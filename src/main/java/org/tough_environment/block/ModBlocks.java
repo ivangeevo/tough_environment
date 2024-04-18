@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -30,7 +31,6 @@ public class ModBlocks
 
 
 
-    //public static final Block COBBLESTONE_LOOSE_STAIRS = Blocks.register("cobblestone_loose_stairs", new LooseStairsBlock(ModBlocks.COBBLESTONE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
 
     public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAgregateBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
@@ -54,6 +54,7 @@ public class ModBlocks
     public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(1.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block END_STONE_CONVERTING = registerBlock("end_stone_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
+    public static final Block COBBLESTONE_LOOSE_STAIRS = registerBlock("cobblestone_loose_stairs", new LooseStairsBlock(ModBlocks.COBBLESTONE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
     /** Depleted(broken) blocks have exactly 10f more strength than their normal counterparts. **/
 

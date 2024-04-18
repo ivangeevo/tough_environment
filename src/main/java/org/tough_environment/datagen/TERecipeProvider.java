@@ -9,7 +9,6 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
@@ -28,14 +27,14 @@ public class TERecipeProvider extends FabricRecipeProvider
     public void generate(Consumer<RecipeJsonProvider> exporter)
     {
 
-    this.offerFullBlockRecipes(exporter);
-    this.offerLesserDropItemRecipes(exporter);
-    this.offerSlabRecipes(exporter);
-    this.offerMiscRecipes(exporter);
+    this.addFullBlockRecipes(exporter);
+    this.addLesserDropRecipes(exporter);
+    this.addSlabRecipes(exporter);
+    this.addMiscRecipes(exporter);
 
     }
 
-    private void offerMiscRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addMiscRecipes(Consumer<RecipeJsonProvider> exporter)
     {
         /** Shapeless **/
 
@@ -56,8 +55,11 @@ public class TERecipeProvider extends FabricRecipeProvider
         /** Shaped **/
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CLAY_BALL).input('#', ModItems.PILE_CLAY).pattern("#").pattern("#").criterion("has_pile_clay", RecipeProvider.conditionsFromItem(ModItems.PILE_CLAY)).offerTo(exporter);
 
+        // Stairs
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COBBLESTONE_LOOSE_STAIRS,4).input('#', ModBlocks.COBBLESTONE_LOOSE).pattern("# ").pattern("##").criterion("has_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE)).offerTo(exporter);
+        //ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COBBLESTONE_LOOSE_STAIRS, 4).input('#', ModBlocks.COBBLESTONE_LOOSE).pattern("##").pattern(" #").criterion("has_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE)).offerTo(exporter);
     }
-    private void offerLesserDropItemRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addLesserDropRecipes(Consumer<RecipeJsonProvider> exporter)
     {
         /** Reversed Slab crafts  **/
         // Piles, Stones & Shards from Slabs
@@ -86,7 +88,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.GRANITE_LOOSE, "group_te", 8);
 
     }
-    private void offerFullBlockRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addFullBlockRecipes(Consumer<RecipeJsonProvider> exporter)
     {
 
 
@@ -101,7 +103,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANDESITE_LOOSE).input('#', ModBlocks.SLAB_ANDESITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_andesite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
 
     }
-    private void offerSlabRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addSlabRecipes(Consumer<RecipeJsonProvider> exporter)
     {
         // From lesser drops/items (stones/piles/dust)
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT , "group_te", 1 );

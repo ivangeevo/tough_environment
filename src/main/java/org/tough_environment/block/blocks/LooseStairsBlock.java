@@ -38,9 +38,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.IntStream;
 
-public class LooseStairsBlock
-        extends FallingBlock
-        implements Waterloggable {
+public class LooseStairsBlock extends LooseBlock implements Waterloggable
+{
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final EnumProperty<BlockHalf> HALF = Properties.BLOCK_HALF;
     public static final EnumProperty<StairShape> SHAPE = Properties.STAIR_SHAPE;
@@ -268,7 +267,7 @@ public class LooseStairsBlock
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation)
     {
-        return  state.with(FACING, rotation.rotate(state.get(FACING)));
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
     @Override

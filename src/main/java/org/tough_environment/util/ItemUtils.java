@@ -110,7 +110,7 @@ public class ItemUtils {
     }
 
 // TODO: Fix stacks dropping when broken from below.
-static public void ejectStackFromBlockTowardsFacing(World world, PlayerEntity player,BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, Direction direction) {
+static public void ejectStackFromBlockTowardsFacing(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, Direction direction) {
 
     Vec3d ejectPos = new Vec3d(
             world.getRandom().nextDouble() * 0.7D + 0.15D,

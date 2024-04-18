@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "tough_environment:cobblestone_loose"
+    }
+  },
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "tough_environment:cobblestone_loose_stairs"
+  },
+  "show_notification": true
+}

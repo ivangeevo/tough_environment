@@ -18,6 +18,7 @@ public class ModTags
         public static final TagKey<Block> BROKEN_STONE_BLOCKS = register("broken_stone_blocks");
         public static final TagKey<Block> COBBLESTONE_BLOCKS  = register("cobblestone_blocks");
 
+        // Blocks that are mortared, mostly used to identify which blocks loose blocks can hold on to if placed against.
         public static final TagKey<Block> MORTARED_BLOCKS = register("mortared_blocks");
 
         public static final TagKey<Block> STUMP_BLOCKS = register("stump_blocks");
@@ -34,15 +35,9 @@ public class ModTags
         public static final TagKey<Block> ORES_LVL3 = register("ores_lvl3");
         public static final TagKey<Block> ORES_LVL4 = register("ores_lvl4");
 
-
-
         public static final TagKey<Block> STONE_ORES = register("stone_ores");
-
         public static final TagKey<Block> MANTLE_ORES =  register("mantle_ores");
-
         public static final TagKey<Block> DEEPSLATE_ORES = register("deepslate_ores");
-
-
         public static final TagKey<Block> ORES_ALL = register("ores_all");
 
 

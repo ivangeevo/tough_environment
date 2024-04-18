@@ -71,7 +71,7 @@ public class ModItemGroup
                         entries.add(ModBlocks.GRANITE_LOOSE);
                         entries.add(ModBlocks.ANDESITE_LOOSE);
                         entries.add(ModBlocks.BRICKS_LOOSE);
-
+                        entries.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
 
                     }).build());
 

@@ -11,9 +11,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.Nullable;
-import org.tough_environment.block.interfaces.StateConvertableBlock;
 import org.tough_environment.state.property.ModProperties;
 
 public class ConvertingBlock extends Block implements StateConvertableBlock
