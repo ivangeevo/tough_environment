@@ -4,6 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -56,14 +57,26 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
         builder.add(TYPE, WATERLOGGED);
     }
 
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack)
+    {
+        BlockPos downPos = pos.down();
+        BlockState downState = world.getBlockState(downPos);
 
+        if (world.getBlockState(downPos) == this.getDefaultState().with(TYPE, SlabType.BOTTOM))
+        {
+            world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
+        }
+    }
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        if (!world.isClient && entity instanceof PlayerEntity) {
+        if (!world.isClient && entity instanceof PlayerEntity)
+        {
             BlockPos downPos = pos.down();
             BlockState downState = world.getBlockState(downPos);
-            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM) {
+            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM)
+            {
                 world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
             }
         }
