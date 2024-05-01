@@ -22,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.ToughEnvironmentMod;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 @Mixin(PlayerEntity.class)
@@ -78,11 +79,11 @@ public abstract class PlayerEntityMixin extends LivingEntity
     @Unique
     private boolean isPrimitiveTool(ItemStack stack)
     {
-        return stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES)
-                || stack.isIn(ModTags.Items.PRIMITIVE_AXES)
-                || stack.isIn(ModTags.Items.PRIMITIVE_SHOVELS)
-                || stack.isIn(ModTags.Items.PRIMITIVE_HOES)
-                || stack.isIn(ModTags.Items.PRIMITIVE_CHISELS);
+        return stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)
+                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_AXES)
+                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_SHOVELS)
+                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_HOES)
+                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS);
     }
 
 }

@@ -10,16 +10,6 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:small_stone",
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": 8
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
               "name": "tough_environment:cobblestone_loose",
               "conditions": [
                 {
@@ -34,13 +24,23 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:small_stone",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 8
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ]
             }
           ]
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
         }
       ]
     }

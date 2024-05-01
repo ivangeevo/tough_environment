@@ -7,6 +7,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -21,77 +22,52 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
-        this.addToModTags(arg);
-        this.addToVanillaTags(arg);
+        this.addToConventionalTags();
+        this.addToModTags();
+        this.addToVanillaTags();
     }
 
 
 
+    private void addToConventionalTags()
+    {
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
+                .add(ModItems.CHISEL_WOOD)
+                .add(ModItems.CHISEL_STONE);
 
-    private void addToModTags(RegistryWrapper.WrapperLookup arg)
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_CHISELS)
+                .add(ModItems.CHISEL_IRON)
+                .add(ModItems.CHISEL_DIAMOND);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_SHOVELS)
+                .add(Items.WOODEN_SHOVEL)
+                .add(Items.STONE_SHOVEL);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_SHOVELS)
+                .add(Items.IRON_SHOVEL)
+                .add(Items.GOLDEN_SHOVEL)
+                .add(Items.DIAMOND_SHOVEL)
+                .add(Items.NETHERITE_SHOVEL);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_SHOVELS)
+                .add(Items.NETHERITE_SHOVEL);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK)
+                .addTag(BTWRConventionalTags.Items.MODERN_SHOVELS)
+                .addTag(BTWRConventionalTags.Items.ADVANCED_SHOVELS);
+
+
+
+    }
+
+
+    private void addToModTags()
     {
         getOrCreateTagBuilder(ModTags.Items.SMALL_STONES)
                 .add(ModItems.SMALL_STONE)
                 .add(ModItems.SMALL_STONE_1)
                 .add(ModItems.SMALL_STONE_2);
 
-
-        getOrCreateTagBuilder(ModTags.Items.MODERN_CHISELS)
-                .add(ModItems.CHISEL_IRON)
-                .add(ModItems.CHISEL_DIAMOND);
-
-        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_CHISELS)
-                .add(ModItems.CHISEL_WOOD)
-                .add(ModItems.CHISEL_STONE);
-
-        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_PICKAXES)
-                .add(Items.WOODEN_PICKAXE)
-                .add(Items.STONE_PICKAXE);
-
-        getOrCreateTagBuilder(ModTags.Items.MODERN_PICKAXES)
-                .add(Items.IRON_PICKAXE)
-                .add(Items.GOLDEN_PICKAXE)
-                .add(Items.DIAMOND_PICKAXE);
-
-        getOrCreateTagBuilder(ModTags.Items.ADVANCED_PICKAXES)
-                .add(Items.NETHERITE_PICKAXE);
-
-        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_AXES)
-                .add(Items.WOODEN_AXE)
-                .add(Items.STONE_AXE);
-
-        getOrCreateTagBuilder(ModTags.Items.MODERN_AXES)
-                .add(Items.IRON_AXE)
-                .add(Items.GOLDEN_AXE)
-                .add(Items.DIAMOND_AXE);
-
-        getOrCreateTagBuilder(ModTags.Items.ADVANCED_AXES)
-                .add(Items.NETHERITE_AXE);
-
-        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_SHOVELS)
-                .add(Items.WOODEN_SHOVEL)
-                .add(Items.STONE_SHOVEL);
-
-        getOrCreateTagBuilder(ModTags.Items.MODERN_SHOVELS)
-                .add(Items.IRON_SHOVEL)
-                .add(Items.GOLDEN_SHOVEL)
-                .add(Items.DIAMOND_SHOVEL)
-                .add(Items.NETHERITE_SHOVEL);
-
-        getOrCreateTagBuilder(ModTags.Items.ADVANCED_SHOVELS)
-                .add(Items.NETHERITE_SHOVEL);
-
-        getOrCreateTagBuilder(ModTags.Items.PRIMITIVE_HOES)
-                .add(Items.WOODEN_HOE)
-                .add(Items.STONE_HOE);
-
-        getOrCreateTagBuilder(ModTags.Items.MODERN_HOES)
-                .add(Items.IRON_HOE)
-                .add(Items.GOLDEN_HOE)
-                .add(Items.DIAMOND_HOE);
-
-        getOrCreateTagBuilder(ModTags.Items.ADVANCED_HOES)
-                .add(Items.NETHERITE_HOE);
 
         getOrCreateTagBuilder(ModTags.Items.MORTARING_ITEMS)
                 .add(Items.CLAY_BALL)
@@ -111,7 +87,7 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.SHARD_DIORITE);
     }
 
-    private void addToVanillaTags (RegistryWrapper.WrapperLookup arg)
+    private void addToVanillaTags ()
     {
         getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
                 .add(ModItems.SMALL_STONE)

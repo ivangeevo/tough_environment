@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#minecraft:redstone_ores",
-    "#minecraft:gold_ores",
-    "#minecraft:lapis_ores"
-  ]
-}

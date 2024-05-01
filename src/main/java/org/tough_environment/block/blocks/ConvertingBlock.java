@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -12,9 +13,11 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.tough_environment.block.BlockManager;
 import org.tough_environment.state.property.ModProperties;
+import org.tough_environment.tag.BTWRConventionalTags;
 
-public class ConvertingBlock extends Block implements StateConvertableBlock
+public class ConvertingBlock extends Block
 {
     public static final IntProperty BREAK_LEVEL = ModProperties.BREAK_LEVEL;
 
@@ -40,26 +43,14 @@ public class ConvertingBlock extends Block implements StateConvertableBlock
 
     }
 
-
     public void convert(World world, BlockPos pos, BlockState state, ItemStack stack)
     {
-        world.setBlockState(pos, state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1));
-    }
-
-    @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player)
-    {
-
-        int breakLevel = state.get(BREAK_LEVEL);
-
-        if (breakLevel == 0 || breakLevel == 2 || breakLevel == 4 || breakLevel == 6 || breakLevel == 8)
+        if (!world.isClient)
         {
-            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_ANVIL_LAND,
-                    SoundCategory.BLOCKS,0.5F,world.random.nextFloat() * 0.25F + 1.75F);
+            world.setBlockState(pos, state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1));
         }
-
-        super.onBreak(world, pos, state, player);
     }
+
 
 
 

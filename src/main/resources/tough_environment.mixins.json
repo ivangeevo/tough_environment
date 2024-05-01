@@ -5,11 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BlockMixin",
+    "ExperienceDroppingBlockMixin",
     "FarmlandBlockMixin",
     "GrassBlockMixin",
     "HoeItemMixin",
     "ItemEntityMixin",
-    "ItemMixin",
     "MiningToolItemMixin",
     "PlayerEntityMixin",
     "SpreadableBlockMixin",

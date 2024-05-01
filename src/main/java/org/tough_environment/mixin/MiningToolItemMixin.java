@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.ToughEnvironmentMod;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 @Mixin(MiningToolItem.class)
@@ -23,7 +24,7 @@ public abstract class MiningToolItemMixin extends ToolItem
     public MiningToolItemMixin(ToolMaterial material, Settings settings)
     { super(material, settings); }
 
-    @Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
+    //@Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
     private void injectedCustomSpeed(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir)
     {
 
@@ -32,10 +33,11 @@ public abstract class MiningToolItemMixin extends ToolItem
             return;
         }
 
-            // All Minable block entries will be 5x faster.
+            // All tools besides primitive tools are 5x if they are suitable for the block.
+            // Primitive tools are regular
             if (state.isIn(this.effectiveBlocks))
             {
-                cir.setReturnValue(!isPrimitiveTool(stack) ? this.miningSpeed * 5 : this.miningSpeed * 2 );
+                cir.setReturnValue(!isPrimitiveTool(stack) ? this.miningSpeed * 5.0F : this.miningSpeed );
             }
 
 
@@ -45,10 +47,10 @@ public abstract class MiningToolItemMixin extends ToolItem
 
     private boolean isPrimitiveTool(ItemStack stack)
     {
-        return stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES)
-                || stack.isIn(ModTags.Items.PRIMITIVE_AXES)
-                || stack.isIn(ModTags.Items.PRIMITIVE_SHOVELS)
-                || stack.isIn(ModTags.Items.PRIMITIVE_HOES)
-                || stack.isIn(ModTags.Items.PRIMITIVE_CHISELS);
+        return stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)
+                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_AXES)
+                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_SHOVELS)
+                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_HOES)
+                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS);
     }
 }

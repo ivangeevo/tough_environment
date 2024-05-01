@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class StoneConvertingBlock extends ConvertingBlock
@@ -21,10 +22,10 @@ public class StoneConvertingBlock extends ConvertingBlock
     {
 
         int breakLevel = state.get(BREAK_LEVEL);
-        boolean isModernChisel = stack.isIn(ModTags.Items.MODERN_CHISELS);
-        boolean isPrimitivePickaxe = stack.isIn(ModTags.Items.PRIMITIVE_PICKAXES);
-        boolean isModernPickaxe = stack.isIn(ModTags.Items.MODERN_PICKAXES);
-        boolean isAdvancedPickaxe = stack.isIn(ModTags.Items.ADVANCED_PICKAXES);
+        boolean isModernChisel = stack.isIn(BTWRConventionalTags.Items.MODERN_CHISELS);
+        boolean isPrimitivePickaxe = stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES);
+        boolean isModernPickaxe = stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES);
+        boolean isAdvancedPickaxe = stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
 
 
 

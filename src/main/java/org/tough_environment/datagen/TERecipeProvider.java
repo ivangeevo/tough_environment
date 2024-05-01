@@ -43,13 +43,13 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerShapelessRecipe(exporter, ModItems.CHISEL_STONE, ModItems.SMALL_STONE, "group_btwr", 1);
         offerFourInputShapelessRecipe(exporter, ModItems.CHISEL_IRON, Items.IRON_NUGGET, Items.IRON_NUGGET, Items.IRON_NUGGET, Items.IRON_NUGGET, "group_btwr",1);
         // We add the diamond chisel manually with a data pack.
-        //offerTwoInputShapelessRecipe(exporter, ModItems.CHISEL_DIAMOND, ModItems.DIAMOND_INGOT,  ModItems.DIAMOND_INGOT, "group_btwr",1);
+        //offerTwoInputShapelessRecipe(exporter, ModItems.CHISEL_DIAMOND, ModItems.DIAMOND_INGOT, ModItems.DIAMOND_INGOT, "group_btwr",1);
 
         // Misc
         offerTwoInputShapelessRecipe(exporter, Items.COAL, ModItems.DUST_COAL, ModItems.DUST_COAL, "group_btwr", 1);
         offerTwoInputShapelessRecipe(exporter, Items.RAW_IRON, ModItems.DUST_IRON, ModItems.DUST_IRON, "group_btwr", 1);
         offerShapelessRecipe(exporter, Items.BRICK, ModBlocks.BRICKS_LOOSE, "group_te", 4);
-        offerShapelessRecipe(exporter, Items.CLAY_BALL, ModBlocks.SLAB_BRICK_LOOSE, "group_te", 4);
+        //offerShapelessRecipe(exporter, Items.BRICK, ModBlocks.SLAB_BRICK_LOOSE, "group_te", 4);
 
 
         /** Shaped **/
@@ -57,16 +57,15 @@ public class TERecipeProvider extends FabricRecipeProvider
 
         // Stairs
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COBBLESTONE_LOOSE_STAIRS,4).input('#', ModBlocks.COBBLESTONE_LOOSE).pattern("# ").pattern("##").criterion("has_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE)).offerTo(exporter);
-        //ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COBBLESTONE_LOOSE_STAIRS, 4).input('#', ModBlocks.COBBLESTONE_LOOSE).pattern("##").pattern(" #").criterion("has_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE)).offerTo(exporter);
     }
     private void addLesserDropRecipes(Consumer<RecipeJsonProvider> exporter)
     {
         /** Reversed Slab crafts  **/
         // Piles, Stones & Shards from Slabs
-        offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.SLAB_DIRT, "group_te", 3);
-        offerShapelessRecipe(exporter, ModItems.PILE_SAND, ModBlocks.SLAB_SAND, "group_te", 3);
-        offerShapelessRecipe(exporter, ModItems.PILE_RED_SAND, ModBlocks.SLAB_RED_SAND, "group_te", 3);
-        offerShapelessRecipe(exporter, ModItems.PILE_GRAVEL, ModBlocks.SLAB_GRAVEL, "group_te", 3);
+        offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.SLAB_DIRT, "group_te", 4);
+        offerShapelessRecipe(exporter, ModItems.PILE_SAND, ModBlocks.SLAB_SAND, "group_te", 4);
+        offerShapelessRecipe(exporter, ModItems.PILE_RED_SAND, ModBlocks.SLAB_RED_SAND, "group_te", 4);
+        offerShapelessRecipe(exporter, ModItems.PILE_GRAVEL, ModBlocks.SLAB_GRAVEL, "group_te", 4);
 
         offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.SLAB_COBBLESTONE_LOOSE, "group_te", 4);
         // TODO: insert level 1 (mantle) here when added!
@@ -76,10 +75,10 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerShapelessRecipe(exporter, Items.BRICK, ModBlocks.SLAB_BRICK_LOOSE, "group_te", 4);
 
         // Piles, Stones & Shards from Full Blocks
-        offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.DIRT_LOOSE, "group_te", 6);
-        offerShapelessRecipe(exporter, ModItems.PILE_SAND, Blocks.SAND, "group_te", 6);
-        offerShapelessRecipe(exporter, ModItems.PILE_RED_SAND, Blocks.RED_SAND, "group_te", 6);
-        offerShapelessRecipe(exporter, ModItems.PILE_GRAVEL, Blocks.GRAVEL, "group_te", 6);
+        offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.DIRT_LOOSE, "group_te", 8);
+        offerShapelessRecipe(exporter, ModItems.PILE_SAND, Blocks.SAND, "group_te", 8);
+        offerShapelessRecipe(exporter, ModItems.PILE_RED_SAND, Blocks.RED_SAND, "group_te", 8);
+        offerShapelessRecipe(exporter, ModItems.PILE_GRAVEL, Blocks.GRAVEL, "group_te", 8);
 
         offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.COBBLESTONE_LOOSE, "group_te", 8);
         // TODO: insert level 1 (mantle) here when added!
@@ -87,10 +86,13 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerShapelessRecipe(exporter, ModItems.SHARD_ANDESITE, ModBlocks.ANDESITE_LOOSE, "group_te", 8);
         offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.GRANITE_LOOSE, "group_te", 8);
 
+        // Piles, Stones & Shards from Stair Blocks
+        offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.COBBLESTONE_LOOSE_STAIRS, "group_te", 6);
+
+
     }
     private void addFullBlockRecipes(Consumer<RecipeJsonProvider> exporter)
     {
-
 
         // From loose slabs
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.SAND).input('#', ModBlocks.SLAB_SAND).pattern("#").pattern("#").criterion("has_slab_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_SAND)).offerTo(exporter);
@@ -125,7 +127,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE,4).input('#', ModBlocks.COBBLED_DEEPSLATE_LOOSE).pattern("##").criterion("has_slab_cobbled_deepslate_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_GRANITE_LOOSE,4).input('#', ModBlocks.GRANITE_LOOSE).pattern("##").criterion("has_slab_granite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_ANDESITE_LOOSE,4).input('#', ModBlocks.ANDESITE_LOOSE).pattern("##").criterion("has_slab_andesite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_BRICK_LOOSE,4).input('#', ModBlocks.BRICKS_LOOSE).pattern("##").criterion("has_slab_brick_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_BRICK_LOOSE)).offerTo(exporter);
+        //ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_BRICK_LOOSE,4).input('#', ModBlocks.BRICKS_LOOSE).pattern("##").criterion("has_slab_brick_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_BRICK_LOOSE)).offerTo(exporter);
 
     }
     public static void offerTwoInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input,  ItemConvertible input2, @Nullable String group, int outputCount) {

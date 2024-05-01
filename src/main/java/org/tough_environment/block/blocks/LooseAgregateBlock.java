@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class LooseAgregateBlock extends FallingBlock
@@ -40,7 +41,7 @@ public class LooseAgregateBlock extends FallingBlock
 
 
         // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
-        if (tool.isIn(ModTags.Items.MODERN_HOES) || tool.isIn(ModTags.Items.ADVANCED_HOES))
+        if (tool.isIn(BTWRConventionalTags.Items.MODERN_HOES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES))
         {
 
             if (state.isOf(ModBlocks.DIRT_LOOSE))

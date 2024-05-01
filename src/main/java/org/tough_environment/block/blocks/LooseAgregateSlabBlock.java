@@ -31,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggable
@@ -91,7 +92,7 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
 
 
         // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
-        if (tool.isIn(ModTags.Items.MODERN_HOES) || tool.isIn(ModTags.Items.ADVANCED_HOES))
+        if (tool.isIn(BTWRConventionalTags.Items.MODERN_HOES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES))
         {
 
             if (state.isOf(ModBlocks.SLAB_DIRT) && state.get(TYPE) == SlabType.DOUBLE)

@@ -24,7 +24,7 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
         super(settings);
     }
 
-    @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
+    //@Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void injectedRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci)
     {
         if (!canSurvive(state, world, pos)) {

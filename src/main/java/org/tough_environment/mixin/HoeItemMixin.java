@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.block.ModBlocks;
-import org.tough_environment.tag.ModTags;
+import org.tough_environment.tag.BTWRConventionalTags;
 
 @Mixin(HoeItem.class)
 public abstract class HoeItemMixin extends MiningToolItem {
@@ -33,6 +33,7 @@ public abstract class HoeItemMixin extends MiningToolItem {
         cir.setReturnValue(ActionResult.FAIL);
     }
 
+    /**
     // Make the item mine these blocks faster.
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
@@ -42,6 +43,7 @@ public abstract class HoeItemMixin extends MiningToolItem {
         }
         return super.getMiningSpeedMultiplier(stack, state);
     }
+     **/
 
 
 
@@ -49,7 +51,7 @@ public abstract class HoeItemMixin extends MiningToolItem {
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner)
 
     {
-        if (stack.isIn(ModTags.Items.MODERN_HOES))
+        if (stack.isIn(BTWRConventionalTags.Items.MODERN_HOES) || stack.isIn(BTWRConventionalTags.Items.ADVANCED_HOES))
         {
             if (miner instanceof PlayerEntity playerEntity)
             {
@@ -60,6 +62,8 @@ public abstract class HoeItemMixin extends MiningToolItem {
                 stack.damage(1, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
             }
         }
+
         return false;
+
     }
 }

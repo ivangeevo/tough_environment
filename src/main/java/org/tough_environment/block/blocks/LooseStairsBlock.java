@@ -85,8 +85,10 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
     {
         super(settings);
         this.setDefaultState((((((this.stateManager.getDefaultState())
-                .with(FACING, Direction.NORTH)).with(HALF, BlockHalf.BOTTOM))
-                .with(SHAPE, StairShape.STRAIGHT)).with(WATERLOGGED, false)));
+                .with(FACING, Direction.NORTH))
+                .with(HALF, BlockHalf.BOTTOM))
+                .with(SHAPE, StairShape.STRAIGHT))
+                .with(WATERLOGGED, false)));
         this.baseBlock = baseBlockState.getBlock();
         this.baseBlockState = baseBlockState;
     }

@@ -14,18 +14,21 @@ public class BlockMortarMapInitializer
 {
     private static final String JSON_FILE = "block_mortar_replacement_map.json";
 
-    public static void initMap() {
+    public static void initMap()
+    {
         Map<String, String> blockReplacementMap = new HashMap<>();
         blockReplacementMap.put("tough_environment:cobblestone_loose", "minecraft:cobblestone");
         blockReplacementMap.put("tough_environment:cobbled_deepslate_loose", "minecraft:cobbled_deepslate");
         blockReplacementMap.put("tough_environment:granite_loose", "minecraft:granite");
         blockReplacementMap.put("tough_environment:andesite_loose", "minecraft:andesite");
         blockReplacementMap.put("tough_environment:bricks_loose", "minecraft:bricks");
+        blockReplacementMap.put("tough_environment:cobblestone_loose_stairs", "minecraft:cobblestone_stairs");
 
         saveToJson(blockReplacementMap);
     }
 
-    private static void saveToJson(Map<String, String> blockReplacementMap) {
+    private static void saveToJson(Map<String, String> blockReplacementMap)
+    {
         Gson gson = new Gson();
         String json = gson.toJson(blockReplacementMap);
         try (FileWriter writer = new FileWriter(JSON_FILE)) {
@@ -35,11 +38,15 @@ public class BlockMortarMapInitializer
         }
     }
 
-    public static Map<String, String> loadMap() {
-        try (FileReader reader = new FileReader(JSON_FILE)) {
+    public static Map<String, String> loadMap()
+    {
+        try (FileReader reader = new FileReader(JSON_FILE))
+        {
             Gson gson = new Gson();
             return gson.fromJson(reader, HashMap.class);
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
             return null;
         }

@@ -8,6 +8,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -23,10 +24,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
-
         this.addToVanillaTags(arg);
         this.addToModTags(arg);
-
     }
 
     private void addToVanillaTags(RegistryWrapper.WrapperLookup arg)
@@ -47,6 +46,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS);
+
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(ModBlocks.SLAB_DIRT)
@@ -69,12 +69,11 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     private void addToModTags(RegistryWrapper.WrapperLookup arg)
     {
 
-
         getOrCreateTagBuilder(ModTags.Mineable.CHISEL_MINEABLE)
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
                 .forceAddTag(BlockTags.BASE_STONE_NETHER)
-                .forceAddTag(BlockTags.BASE_STONE_NETHER)
+                .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
 
                 .add(Blocks.END_STONE)
 
