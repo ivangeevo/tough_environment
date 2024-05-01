@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "group_btwr",
+  "ingredients": [
+    {
+      "item": "tough_environment:dust_iron"
+    },
+    {
+      "item": "tough_environment:dust_iron"
+    }
+  ],
+  "result": {
+    "item": "minecraft:raw_iron"
+  }
+}
