@@ -63,6 +63,10 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.CALCITE_CONVERTING)
                 .add(ModBlocks.TUFF_CONVERTING);
 
+        getOrCreateTagBuilder(BlockTags.DIRT)
+                .add(ModBlocks.DIRT_LOOSE)
+                .add(ModBlocks.SLAB_DIRT);
+
 
     }
 

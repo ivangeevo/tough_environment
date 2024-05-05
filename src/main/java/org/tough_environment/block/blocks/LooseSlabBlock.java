@@ -153,14 +153,18 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         if (blockState.isOf(this)) {
             // If the block is the same as the LooseSlabBlock, set it to double slab
             return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
-        } else {
+        }
+        else
+        {
             // Otherwise, handle placement based on the direction and hit position
             boolean isTopHalf = ctx.getHitPos().y - blockPos.getY() > 0.5;
 
             if (direction == Direction.DOWN || isTopHalf) {
                 // If placing on the bottom part or top half, place as a bottom slab
                 return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-            } else {
+            }
+            else
+            {
                 // If placing on the top part, place as a bottom slab instead
                 return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             }
