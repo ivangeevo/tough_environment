@@ -34,11 +34,11 @@ public abstract class ToolMaterialsMixin
         }
         else if (this.miningLevel == MiningLevels.DIAMOND)
         {
-            cir.setReturnValue(6.5f);
+            cir.setReturnValue(8.0f);
         }
         else if (this.miningLevel == MiningLevels.NETHERITE)
         {
-            cir.setReturnValue(7.5f);
+            cir.setReturnValue(9.0f);
         }
 
     }
