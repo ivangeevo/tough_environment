@@ -35,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
+import org.tough_environment.tag.ModTags;
 
 import java.util.stream.IntStream;
 
@@ -92,6 +93,27 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
         this.baseBlock = baseBlockState.getBlock();
         this.baseBlockState = baseBlockState;
     }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
+    {
+        if (!world.isClient && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
+        {
+            BlockState newState = world.getBlockState(pos).with(SHAPE, state.get(SHAPE));
+
+            // Mortar the block
+            this.applyMortar(newState, world, pos, player);
+
+            // Reduce item stack size
+            ItemStack handStack = player.getStackInHand(hand);
+            handStack.decrement(1);
+
+            return ActionResult.SUCCESS;
+        }
+
+        return this.baseBlockState.onUse(world, player, hand, hit);
+    }
+
 
     @Override
     public boolean hasSidedTransparency(BlockState state) {
@@ -178,12 +200,7 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
 
     }
 
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                              Hand hand, BlockHitResult hit)
-    {
-        return this.baseBlockState.onUse(world, player, hand, hit);
-    }
+
 
     @Override
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion)

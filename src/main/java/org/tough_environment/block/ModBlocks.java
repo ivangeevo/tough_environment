@@ -26,8 +26,10 @@ public class ModBlocks
     public static final Block SLAB_BRICK_LOOSE = registerBlock("slab_brick_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.STONE).nonOpaque()));
 
 
-    public static final Block SLAB_GRANITE_LOOSE = registerBlock("slab_granite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
-    public static final Block SLAB_ANDESITE_LOOSE = registerBlock("slab_andesite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
+    public static final Block SLAB_GRANITE_LOOSE = registerBlock("slab_granite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
+    public static final Block SLAB_ANDESITE_LOOSE = registerBlock("slab_andesite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
+    public static final Block SLAB_DIORITE_LOOSE = registerBlock("slab_diorite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
+    public static final Block SLAB_CALCITE_LOOSE = registerBlock("slab_calcite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.CALCITE).nonOpaque()));
 
 
 
@@ -35,11 +37,16 @@ public class ModBlocks
 
     public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAgregateBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block COBBLESTONE_LOOSE = registerBlock("cobblestone_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block COBBLED_DEEPSLATE_LOOSE = registerBlock("cobbled_deepslate_loose", new LooseBlock(FabricBlockSettings.create().strength(1.1F).sounds(BlockSoundGroup.STONE)));
+    public static final Block COBBLED_DEEPSLATE_LOOSE = registerBlock("cobbled_deepslate_loose", new LooseBlock(FabricBlockSettings.create().strength(1.1F).sounds(BlockSoundGroup.DEEPSLATE)));
     public static final Block GRANITE_LOOSE = registerBlock("granite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block ANDESITE_LOOSE = registerBlock("andesite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-
     public static final Block DIORITE_LOOSE = registerBlock("diorite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+
+    public static final Block CALCITE_LOOSE = registerBlock("calcite_loose", new LooseBlock(FabricBlockSettings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.CALCITE)));
+    public static final Block TUFF_LOOSE = registerBlock("tuff_loose", new LooseBlock(FabricBlockSettings.create().strength(0.8F).requiresTool().sounds(BlockSoundGroup.TUFF)));
+    public static final Block BLACKSTONE_LOOSE = registerBlock("blackstone_loose", new LooseBlock(FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
+    public static final Block BASALT_LOOSE = registerBlock("basalt_loose", new LoosePillarBlock(FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.BASALT)));
+    public static final Block END_STONE_LOOSE = registerBlock("end_stone_loose", new LooseBlock(FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
 
     public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new LooseBlock(FabricBlockSettings.create().strength(0.7F).sounds(BlockSoundGroup.STONE).nonOpaque()));
 

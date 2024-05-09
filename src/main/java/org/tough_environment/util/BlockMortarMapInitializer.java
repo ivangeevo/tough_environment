@@ -21,6 +21,15 @@ public class BlockMortarMapInitializer
         blockReplacementMap.put("tough_environment:cobbled_deepslate_loose", "minecraft:cobbled_deepslate");
         blockReplacementMap.put("tough_environment:granite_loose", "minecraft:granite");
         blockReplacementMap.put("tough_environment:andesite_loose", "minecraft:andesite");
+        blockReplacementMap.put("tough_environment:diorite_loose", "minecraft:diorite");
+        blockReplacementMap.put("tough_environment:calcite_loose", "minecraft:calcite");
+
+        blockReplacementMap.put("tough_environment:tuff_loose", "minecraft:tuff");
+        blockReplacementMap.put("tough_environment:end_stone_loose", "minecraft:end_stone");
+        blockReplacementMap.put("tough_environment:blackstone_loose", "minecraft:blackstone");
+        blockReplacementMap.put("tough_environment:basalt_loose", "minecraft:basalt");
+
+
         blockReplacementMap.put("tough_environment:bricks_loose", "minecraft:bricks");
         blockReplacementMap.put("tough_environment:cobblestone_loose_stairs", "minecraft:cobblestone_stairs");
 

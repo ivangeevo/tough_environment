@@ -24,7 +24,7 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
         super(settings);
     }
 
-    //@Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void injectedRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci)
     {
         if (!canSurvive(state, world, pos)) {
@@ -35,8 +35,8 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
             BlockState blockState = this.getDefaultState();
             for (int i = 0; i < 4; ++i) {
                 BlockPos blockPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                if ( (!world.getBlockState(blockPos).isOf(Blocks.DIRT) || !world.getBlockState(blockPos).isOf(ModBlocks.DIRT_LOOSE))
-                        || !canSpread(blockState, world, blockPos)) continue;
+                if ( ( !world.getBlockState(blockPos).isOf(Blocks.DIRT) || !world.getBlockState(blockPos).isOf(ModBlocks.DIRT_LOOSE) )
+                        || !canSpread(blockState, world, blockPos) ) continue;
                 world.setBlockState(blockPos, blockState.with(SNOWY, world.getBlockState(blockPos.up()).isOf(Blocks.SNOW)));
             }
         }

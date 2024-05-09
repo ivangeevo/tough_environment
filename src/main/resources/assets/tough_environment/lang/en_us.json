@@ -2,7 +2,23 @@
 
   "block.tough_environment.dirt_loose": "Loose Dirt",
   "block.tough_environment.cobblestone_loose": "Loose Cobblestone",
+  "block.tough_environment.cobbled_mantlestone_loose": "Loose Cobbled Mantlestone",
   "block.tough_environment.cobbled_deepslate_loose": "Loose Cobbled Deepslate",
+  "block.tough_environment.andesite_loose": "Loose Andesite",
+  "block.tough_environment.granite_loose": "Loose Granite",
+  "block.tough_environment.diorite_loose": "Loose Diorite",
+  "block.tough_environment.calcite_loose": "Loose Calcite",
+  "block.tough_environment.tuff_loose": "Loose Tuff",
+  "block.tough_environment.end_stone_loose": "Loose End Stone",
+  "block.tough_environment.basalt_loose": "Loose Basalt",
+  "block.tough_environment.blackstone_loose": "Loose Blackstone",
+
+
+
+
+
+  "block.tough_environment.cobblestone_loose_stairs": "Loose Cobblestone Stairs",
+
 
   "block.tough_environment.slab_dirt": "Dirt Slab",
   "block.tough_environment.slab_gravel": "Gravel Slab",
@@ -23,7 +39,9 @@
   "item.tough_environment.small_stone_1": "Mantle Small Stone",
   "item.tough_environment.small_stone_2": "Deepslate Small Stone",
 
-
+  "item.tough_environment.shard_granite": "Granite Shard",
+  "item.tough_environment.shard_andesite": "Andesite Shard",
+  "item.tough_environment.shard_diorite": "Diorite Shard",
 
   "item.tough_environment.dust_coal": "Pile of Coal Dust",
   "item.tough_environment.dust_iron": "Pile of Iron Dust",
@@ -31,7 +49,6 @@
   "item.tough_environment.ore_iron_chunk": "Chunk of Iron Ore",
   "item.tough_environment.ore_gold_chunk": "Chunk of Gold Ore",
   "item.tough_environment.ore_copper_clump": "Clump of Copper",
-
 
   "item.tough_environment.chisel_wood": "Pointy Stick",
   "item.tough_environment.chisel_stone": "Sharp Stone",

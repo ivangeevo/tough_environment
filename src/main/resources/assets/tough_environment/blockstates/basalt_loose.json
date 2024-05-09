@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "tough_environment:block/basalt_loose",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "tough_environment:block/basalt_loose"
+    },
+    "axis=z": {
+      "model": "tough_environment:block/basalt_loose",
+      "x": 90
+    }
+  }
+}

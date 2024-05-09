@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:end_stone_loose"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tough_environment:blocks/end_stone_loose"
+}

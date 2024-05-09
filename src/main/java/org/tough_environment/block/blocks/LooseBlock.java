@@ -27,6 +27,8 @@ import org.tough_environment.tag.ModTags;
 import java.util.HashMap;
 import java.util.Map;
 
+import static net.minecraft.block.PillarBlock.AXIS;
+
 public class LooseBlock extends MortarReceiverBlock implements LandingBlock
 {
 

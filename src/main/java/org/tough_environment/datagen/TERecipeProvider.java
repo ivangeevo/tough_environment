@@ -72,6 +72,8 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerShapelessRecipe(exporter, ModItems.SMALL_STONE_2, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, "group_te", 4);
         offerShapelessRecipe(exporter, ModItems.SHARD_ANDESITE, ModBlocks.SLAB_ANDESITE_LOOSE, "group_te", 4);
         offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.SLAB_GRANITE_LOOSE, "group_te", 4);
+        offerShapelessRecipe(exporter, ModItems.SHARD_DIORITE, ModBlocks.SLAB_DIORITE_LOOSE, "group_te", 4);
+
         offerShapelessRecipe(exporter, Items.BRICK, ModBlocks.SLAB_BRICK_LOOSE, "group_te", 4);
 
         // Piles, Stones & Shards from Full Blocks
@@ -85,6 +87,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerShapelessRecipe(exporter, ModItems.SMALL_STONE_2, ModBlocks.COBBLED_DEEPSLATE_LOOSE, "group_te", 8);
         offerShapelessRecipe(exporter, ModItems.SHARD_ANDESITE, ModBlocks.ANDESITE_LOOSE, "group_te", 8);
         offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.GRANITE_LOOSE, "group_te", 8);
+        offerShapelessRecipe(exporter, ModItems.SHARD_DIORITE, ModBlocks.DIORITE_LOOSE, "group_te", 8);
 
         // Piles, Stones & Shards from Stair Blocks
         offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.COBBLESTONE_LOOSE_STAIRS, "group_te", 6);
@@ -103,6 +106,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COBBLED_DEEPSLATE_LOOSE).input('#', ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE).pattern("#").pattern("#").criterion("has_slab_cobbled_deepslate_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GRANITE_LOOSE).input('#', ModBlocks.SLAB_GRANITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_granite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANDESITE_LOOSE).input('#', ModBlocks.SLAB_ANDESITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_andesite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIORITE_LOOSE).input('#', ModBlocks.SLAB_DIORITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_diorite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIORITE_LOOSE)).offerTo(exporter);
 
     }
     private void addSlabRecipes(Consumer<RecipeJsonProvider> exporter)
@@ -116,7 +120,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2 , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_GRANITE_LOOSE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE , "group_te", 1 );
         offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_ANDESITE_LOOSE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_BRICK_LOOSE, Items.BRICK, Items.BRICK, Items.BRICK, Items.BRICK , "group_te", 1 );
+        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_DIORITE_LOOSE, ModItems.SHARD_DIORITE, ModItems.SHARD_DIORITE, ModItems.SHARD_DIORITE, ModItems.SHARD_DIORITE , "group_te", 1 );
 
         // From full loose blocks
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_DIRT,4).input('#', ModBlocks.DIRT_LOOSE).pattern("##").criterion("has_slab_dirt", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIRT)).offerTo(exporter);
@@ -127,7 +131,10 @@ public class TERecipeProvider extends FabricRecipeProvider
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE,4).input('#', ModBlocks.COBBLED_DEEPSLATE_LOOSE).pattern("##").criterion("has_slab_cobbled_deepslate_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_GRANITE_LOOSE,4).input('#', ModBlocks.GRANITE_LOOSE).pattern("##").criterion("has_slab_granite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_ANDESITE_LOOSE,4).input('#', ModBlocks.ANDESITE_LOOSE).pattern("##").criterion("has_slab_andesite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
-        //ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_BRICK_LOOSE,4).input('#', ModBlocks.BRICKS_LOOSE).pattern("##").criterion("has_slab_brick_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_BRICK_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_DIORITE_LOOSE,4).input('#', ModBlocks.DIORITE_LOOSE).pattern("##").criterion("has_slab_diorite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIORITE_LOOSE)).offerTo(exporter);
+
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_BRICK_LOOSE,4).input('#', ModBlocks.BRICKS_LOOSE).pattern("##").criterion("has_slab_brick_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_BRICK_LOOSE)).offerTo(exporter);
 
     }
     public static void offerTwoInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input,  ItemConvertible input2, @Nullable String group, int outputCount) {

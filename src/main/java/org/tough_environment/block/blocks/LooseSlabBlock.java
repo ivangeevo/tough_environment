@@ -178,6 +178,7 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     {
         ItemStack itemStack = context.getStack();
         SlabType slabType = state.get(TYPE);
+
         if (slabType != SlabType.DOUBLE && itemStack.isOf(this.asItem()))
         {
             if (context.canReplaceExisting())

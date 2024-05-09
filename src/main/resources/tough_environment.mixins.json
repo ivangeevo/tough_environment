@@ -6,8 +6,6 @@
   "mixins": [
     "BlockMixin",
     "FarmlandBlockMixin",
-    "GrassBlockMixin",
-    "HoeItemMixin",
     "ItemEntityMixin",
     "MiningToolItemMixin",
     "PlayerEntityMixin",

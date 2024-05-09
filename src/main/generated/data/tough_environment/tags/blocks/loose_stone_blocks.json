@@ -8,6 +8,7 @@
     "tough_environment:cobblestone_loose",
     "tough_environment:granite_loose",
     "tough_environment:diorite_loose",
-    "tough_environment:andesite_loose"
+    "tough_environment:andesite_loose",
+    "tough_environment:cobblestone_loose_stairs"
   ]
 }

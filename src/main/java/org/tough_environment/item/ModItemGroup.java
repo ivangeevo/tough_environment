@@ -70,7 +70,14 @@ public class ModItemGroup
                         entries.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE);
                         entries.add(ModBlocks.GRANITE_LOOSE);
                         entries.add(ModBlocks.ANDESITE_LOOSE);
+                        entries.add(ModBlocks.DIORITE_LOOSE);
+                        entries.add(ModBlocks.CALCITE_LOOSE);
+                        entries.add(ModBlocks.TUFF_LOOSE);
+                        entries.add(ModBlocks.BLACKSTONE_LOOSE);
+                        entries.add(ModBlocks.BASALT_LOOSE);
+                        entries.add(ModBlocks.END_STONE_LOOSE);
                         entries.add(ModBlocks.BRICKS_LOOSE);
+
                         entries.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
 
                     }).build());

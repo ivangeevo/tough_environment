@@ -1,4 +1,4 @@
-package org.tough_environment.datagen.tag;
+package org.tough_environment.datagen;
 
 import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -24,11 +24,11 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
-        this.addToVanillaTags(arg);
-        this.addToModTags(arg);
+        this.addToVanillaTags();
+        this.addToModTags();
     }
 
-    private void addToVanillaTags(RegistryWrapper.WrapperLookup arg)
+    private void addToVanillaTags()
     {
 
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
@@ -55,6 +55,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_RED_SAND)
                 .add(ModBlocks.DIRT_LOOSE);
 
+        getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
+                .add(ModBlocks.DIRT_LOOSE);
+
         getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD)
                 .add(ModBlocks.STONE_CONVERTING)
                 .add(ModBlocks.GRANITE_CONVERTING)
@@ -70,7 +73,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     }
 
-    private void addToModTags(RegistryWrapper.WrapperLookup arg)
+    private void addToModTags()
     {
 
         getOrCreateTagBuilder(ModTags.Mineable.CHISEL_MINEABLE)
@@ -156,13 +159,16 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.COBBLESTONE_LOOSE)
                 .add(ModBlocks.GRANITE_LOOSE)
                 .add(ModBlocks.DIORITE_LOOSE)
-                .add(ModBlocks.ANDESITE_LOOSE);
+                .add(ModBlocks.ANDESITE_LOOSE)
                 //.add(ModBlocks.CALCITE_LOOSE)
                 //.add(ModBlocks.TUFF_LOOSE)
                 //.add(ModBlocks.BLACKSTONE_LOOSE)
                 //.add(ModBlocks.DEEPSLATE_LOOSE)
                 //.add(ModBlocks.BASALT_LOOSE)
                 //.add(ModBlocks.END_STONE_LOOSE)
+
+                .add(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
+
 
         getOrCreateTagBuilder(ModTags.Blocks.MORTARED_BLOCKS)
                 .add(Blocks.COBBLESTONE)
