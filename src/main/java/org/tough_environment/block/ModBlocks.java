@@ -23,16 +23,10 @@ public class ModBlocks
     public static final Block SLAB_GRAVEL = registerBlock("slab_gravel", new LooseAgregateSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
     public static final Block SLAB_COBBLESTONE_LOOSE = registerBlock("slab_cobblestone_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
     public static final Block SLAB_COBBLED_DEEPSLATE_LOOSE = registerBlock("slab_cobbled_deepslate_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(1.1F).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block SLAB_BRICK_LOOSE = registerBlock("slab_brick_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.STONE).nonOpaque()));
-
-
     public static final Block SLAB_GRANITE_LOOSE = registerBlock("slab_granite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
     public static final Block SLAB_ANDESITE_LOOSE = registerBlock("slab_andesite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
     public static final Block SLAB_DIORITE_LOOSE = registerBlock("slab_diorite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block SLAB_CALCITE_LOOSE = registerBlock("slab_calcite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.CALCITE).nonOpaque()));
-
-
-
+    public static final Block SLAB_BRICK_LOOSE = registerBlock("slab_brick_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.STONE).nonOpaque()));
 
 
     public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAgregateBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
@@ -62,6 +56,17 @@ public class ModBlocks
     public static final Block END_STONE_CONVERTING = registerBlock("end_stone_converting", new StoneConvertingBlock(FabricBlockSettings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
     public static final Block COBBLESTONE_LOOSE_STAIRS = registerBlock("cobblestone_loose_stairs", new LooseStairsBlock(ModBlocks.COBBLESTONE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block COBBLED_DEEPSLATE_LOOSE_STAIRS = registerBlock("cobbled_deepslate_loose_stairs", new LooseStairsBlock(ModBlocks.COBBLED_DEEPSLATE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.DEEPSLATE)));
+    public static final Block ANDESITE_LOOSE_STAIRS = registerBlock("andesite_loose_stairs", new LooseStairsBlock(ModBlocks.ANDESITE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block GRANITE_LOOSE_STAIRS = registerBlock("granite_loose_stairs", new LooseStairsBlock(ModBlocks.GRANITE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block DIORITE_LOOSE_STAIRS = registerBlock("diorite_loose_stairs", new LooseStairsBlock(ModBlocks.DIORITE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+
+    public static final Block COBBLESTONE_STAIRS = registerBlock("cobblestone_stairs", new StairsBlock(Blocks.COBBLESTONE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block COBBLED_DEEPSLATE_STAIRS = registerBlock("cobbled_deepslate_stairs", new StairsBlock(Blocks.COBBLED_DEEPSLATE.getDefaultState(), FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.DEEPSLATE)));
+    public static final Block ANDESITE_STAIRS = registerBlock("andesite_stairs", new StairsBlock(Blocks.ANDESITE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block GRANITE_STAIRS = registerBlock("granite_stairs", new StairsBlock(Blocks.GRANITE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block DIORITE_STAIRS = registerBlock("diorite_stairs", new StairsBlock(Blocks.DIORITE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+
 
     /** Depleted(broken) blocks have exactly 10f more strength than their normal counterparts. **/
 

@@ -26,6 +26,24 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     {
         this.addToVanillaTags();
         this.addToModTags();
+        this.addToConventionalTags();
+    }
+
+    private void addToConventionalTags()
+    {
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS)
+                .add(ModBlocks.STONE_CONVERTING)
+                .add(ModBlocks.GRANITE_CONVERTING)
+                .add(ModBlocks.DIORITE_CONVERTING)
+                .add(ModBlocks.ANDESITE_CONVERTING)
+                .add(ModBlocks.TUFF_CONVERTING)
+                .add(ModBlocks.BLACKSTONE_CONVERTING)
+                .add(ModBlocks.DEEPSLATE_CONVERTING)
+                .add(ModBlocks.BASALT_CONVERTING)
+                .add(ModBlocks.END_STONE_CONVERTING);
+
+
+
     }
 
     private void addToVanillaTags()

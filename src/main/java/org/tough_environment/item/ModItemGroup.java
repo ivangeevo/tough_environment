@@ -40,6 +40,7 @@ public class ModItemGroup
                         entries.add(ModItems.SMALL_STONE_2);
                         entries.add(ModItems.SHARD_GRANITE);
                         entries.add(ModItems.SHARD_ANDESITE);
+                        entries.add(ModItems.SHARD_DIORITE);
                         entries.add(ModItems.ORE_IRON_CHUNK);
                         entries.add(ModItems.ORE_COPPER_CLUMP);
                         entries.add(ModItems.ORE_GOLD_CHUNK);
@@ -62,6 +63,7 @@ public class ModItemGroup
                         entries.add(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE);
                         entries.add(ModBlocks.SLAB_GRANITE_LOOSE);
                         entries.add(ModBlocks.SLAB_ANDESITE_LOOSE);
+                        entries.add(ModBlocks.SLAB_DIORITE_LOOSE);
                         entries.add(ModBlocks.SLAB_BRICK_LOOSE);
 
                         // Full blocks
@@ -79,12 +81,22 @@ public class ModItemGroup
                         entries.add(ModBlocks.BRICKS_LOOSE);
 
                         entries.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
+                        entries.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS);
+                        entries.add(ModBlocks.ANDESITE_LOOSE_STAIRS);
+                        entries.add(ModBlocks.GRANITE_LOOSE_STAIRS);
+                        entries.add(ModBlocks.DIORITE_LOOSE_STAIRS);
+
+                        entries.add(ModBlocks.COBBLESTONE_STAIRS);
+                        entries.add(ModBlocks.COBBLED_DEEPSLATE_STAIRS);
+                        entries.add(ModBlocks.ANDESITE_STAIRS);
+                        entries.add(ModBlocks.GRANITE_STAIRS);
+                        entries.add(ModBlocks.DIORITE_STAIRS);
+
 
                     }).build());
 
     public static void registerItemGroups()
     {
         ToughEnvironmentMod.LOGGER.info("Registering Item Groups for " + ToughEnvironmentMod.MOD_ID);
-
     }
 }

@@ -12,12 +12,17 @@
   "block.tough_environment.end_stone_loose": "Loose End Stone",
   "block.tough_environment.basalt_loose": "Loose Basalt",
   "block.tough_environment.blackstone_loose": "Loose Blackstone",
-
-
-
-
+  "block.tough_environment.bricks_loose": "Loose Bricks",
 
   "block.tough_environment.cobblestone_loose_stairs": "Loose Cobblestone Stairs",
+  "block.tough_environment.cobbled_deepslate_loose_stairs": "Loose Cobbled Deepslate Stairs",
+  "block.tough_environment.andesite_loose_stairs": "Loose Andesite Stairs",
+  "block.tough_environment.granite_loose_stairs": "Loose Granite Stairs",
+  "block.tough_environment.diorite_loose_stairs": "Loose Diorite Stairs",
+
+  "block.tough_environment.andesite_stairs": "Andesite Stairs",
+  "block.tough_environment.granite_stairs": "Granite Stairs",
+  "block.tough_environment.diorite_stairs": "Diorite Stairs",
 
 
   "block.tough_environment.slab_dirt": "Dirt Slab",
@@ -26,6 +31,9 @@
   "block.tough_environment.slab_red_sand": "Red Sand Slab",
   "block.tough_environment.slab_cobblestone_loose": "Loose Cobblestone Slab",
   "block.tough_environment.slab_cobbled_deepslate_loose": "Loose Cobbled Deepslate Slab",
+  "block.tough_environment.slab_granite_loose": "Loose Granite Slab",
+  "block.tough_environment.slab_andesite_loose": "Loose Andesite Slab",
+  "block.tough_environment.slab_diorite_loose": "Loose Diorite Slab",
   "block.tough_environment.slab_brick_loose": "Loose Brick Slab",
 
 

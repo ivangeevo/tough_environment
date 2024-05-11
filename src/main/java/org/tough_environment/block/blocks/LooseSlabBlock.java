@@ -76,7 +76,7 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         {
 
             // Mortar the block
-            this.applyMortar(state, world, pos, player);
+            this.applyMortar(state.with(WATERLOGGED, state.get(WATERLOGGED)), world, pos, player);
 
             // Optionally, reduce item stack size or perform other actions
             ItemStack handStack = player.getStackInHand(hand);

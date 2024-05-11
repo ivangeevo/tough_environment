@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "bottom": "minecraft:block/granite",
-    "side": "minecraft:block/granite",
-    "top": "minecraft:block/granite"
+    "bottom": "tough_environment:block/granite_loose",
+    "side": "tough_environment:block/granite_loose",
+    "top": "tough_environment:block/granite_loose"
   }
 }

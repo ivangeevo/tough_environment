@@ -127,6 +127,7 @@ public class BlockManager
             blockMap.put(Blocks.STONE, ModBlocks.STONE_CONVERTING.getDefaultState());
             blockMap.put(Blocks.GRANITE, ModBlocks.GRANITE_CONVERTING.getDefaultState());
             blockMap.put(Blocks.ANDESITE, ModBlocks.ANDESITE_CONVERTING.getDefaultState());
+            blockMap.put(Blocks.DIORITE, ModBlocks.DIORITE_CONVERTING.getDefaultState());
             blockMap.put(Blocks.CALCITE, ModBlocks.CALCITE_CONVERTING.getDefaultState());
             blockMap.put(Blocks.TUFF, ModBlocks.TUFF_CONVERTING.getDefaultState());
             blockMap.put(Blocks.BLACKSTONE, ModBlocks.BLACKSTONE_CONVERTING.getDefaultState());

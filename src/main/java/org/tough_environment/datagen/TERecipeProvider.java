@@ -42,6 +42,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerShapelessRecipe(exporter, ModItems.CHISEL_WOOD, Items.STICK, "group_btwr", 1);
         offerShapelessRecipe(exporter, ModItems.CHISEL_STONE, ModItems.SMALL_STONE, "group_btwr", 1);
         offerFourInputShapelessRecipe(exporter, ModItems.CHISEL_IRON, Items.IRON_NUGGET, Items.IRON_NUGGET, Items.IRON_NUGGET, Items.IRON_NUGGET, "group_btwr",1);
+
         // We add the diamond chisel manually with a data pack.
         //offerTwoInputShapelessRecipe(exporter, ModItems.CHISEL_DIAMOND, ModItems.DIAMOND_INGOT, ModItems.DIAMOND_INGOT, "group_btwr",1);
 
@@ -57,6 +58,17 @@ public class TERecipeProvider extends FabricRecipeProvider
 
         // Stairs
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COBBLESTONE_LOOSE_STAIRS,4).input('#', ModBlocks.COBBLESTONE_LOOSE).pattern("# ").pattern("##").criterion("has_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.COBBLESTONE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS,4).input('#', ModBlocks.COBBLED_DEEPSLATE_LOOSE).pattern("# ").pattern("##").criterion("has_cobbled_deepslate_loose", RecipeProvider.conditionsFromItem(ModBlocks.COBBLED_DEEPSLATE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.GRANITE_LOOSE_STAIRS,4).input('#', ModBlocks.GRANITE_LOOSE).pattern("# ").pattern("##").criterion("has_granite_loose", RecipeProvider.conditionsFromItem(ModBlocks.GRANITE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.ANDESITE_LOOSE_STAIRS,4).input('#', ModBlocks.ANDESITE_LOOSE).pattern("# ").pattern("##").criterion("has_andesite_loose", RecipeProvider.conditionsFromItem(ModBlocks.ANDESITE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.DIORITE_LOOSE_STAIRS,4).input('#', ModBlocks.DIORITE_LOOSE).pattern("# ").pattern("##").criterion("has_diorite_loose", RecipeProvider.conditionsFromItem(ModBlocks.DIORITE_LOOSE)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COBBLESTONE_STAIRS,4).input('#', Blocks.COBBLESTONE).pattern("# ").pattern("##").criterion("has_cobblestone", RecipeProvider.conditionsFromItem(Blocks.COBBLESTONE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COBBLED_DEEPSLATE_STAIRS,4).input('#', Blocks.COBBLED_DEEPSLATE).pattern("# ").pattern("##").criterion("has_cobbled_deepslate", RecipeProvider.conditionsFromItem(Blocks.COBBLED_DEEPSLATE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.GRANITE_STAIRS,4).input('#', Blocks.GRANITE).pattern("# ").pattern("##").criterion("has_granite", RecipeProvider.conditionsFromItem(Blocks.GRANITE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.ANDESITE_STAIRS,4).input('#', Blocks.ANDESITE).pattern("# ").pattern("##").criterion("has_andesite", RecipeProvider.conditionsFromItem(Blocks.ANDESITE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.DIORITE_STAIRS,4).input('#', Blocks.DIORITE).pattern("# ").pattern("##").criterion("has_diorite", RecipeProvider.conditionsFromItem(Blocks.DIORITE)).offerTo(exporter);
+
     }
     private void addLesserDropRecipes(Consumer<RecipeJsonProvider> exporter)
     {
@@ -91,6 +103,11 @@ public class TERecipeProvider extends FabricRecipeProvider
 
         // Piles, Stones & Shards from Stair Blocks
         offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.COBBLESTONE_LOOSE_STAIRS, "group_te", 6);
+        // TODO: insert level 1 (mantle) here when added!
+        offerShapelessRecipe(exporter, ModItems.SMALL_STONE_2, ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, "group_te", 6);
+        offerShapelessRecipe(exporter, ModItems.SHARD_ANDESITE, ModBlocks.ANDESITE_LOOSE_STAIRS, "group_te", 6);
+        offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.GRANITE_LOOSE_STAIRS, "group_te", 6);
+        offerShapelessRecipe(exporter, ModItems.SHARD_DIORITE, ModBlocks.DIORITE_LOOSE_STAIRS, "group_te", 6);
 
 
     }

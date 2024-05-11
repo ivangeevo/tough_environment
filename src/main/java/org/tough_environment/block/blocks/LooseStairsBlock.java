@@ -99,7 +99,11 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
     {
         if (!world.isClient && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
         {
-            BlockState newState = world.getBlockState(pos).with(SHAPE, state.get(SHAPE));
+            BlockState newState = world.getBlockState(pos)
+                    .with(FACING, state.get(FACING))
+                    .with(HALF, state.get(HALF))
+                    .with(SHAPE, state.get(SHAPE))
+                    .with(WATERLOGGED, state.get(WATERLOGGED));
 
             // Mortar the block
             this.applyMortar(newState, world, pos, player);
