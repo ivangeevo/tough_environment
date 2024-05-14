@@ -38,11 +38,6 @@ public class ModItems
 
     public static final Item DUST_IRON = registerItem( "dust_iron", new Item (new FabricItemSettings()));
 
-    public static final Item ORE_IRON_CHUNK = registerItem( "ore_iron_chunk", new Item (new FabricItemSettings()));
-
-    public static final Item ORE_COPPER_CLUMP = registerItem( "ore_copper_clump", new Item (new FabricItemSettings()));
-
-    public static final Item ORE_GOLD_CHUNK = registerItem( "ore_gold_chunk", new Item (new FabricItemSettings()));
 
 
     // Tool Items

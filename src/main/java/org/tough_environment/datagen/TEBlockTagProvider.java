@@ -173,19 +173,24 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)
                 .add(ModBlocks.SLAB_ANDESITE_LOOSE)
                 .add(ModBlocks.SLAB_GRANITE_LOOSE)
+                .add(ModBlocks.SLAB_DIORITE_LOOSE)
 
                 .add(ModBlocks.COBBLESTONE_LOOSE)
                 .add(ModBlocks.GRANITE_LOOSE)
                 .add(ModBlocks.DIORITE_LOOSE)
                 .add(ModBlocks.ANDESITE_LOOSE)
-                //.add(ModBlocks.CALCITE_LOOSE)
-                //.add(ModBlocks.TUFF_LOOSE)
-                //.add(ModBlocks.BLACKSTONE_LOOSE)
-                //.add(ModBlocks.DEEPSLATE_LOOSE)
-                //.add(ModBlocks.BASALT_LOOSE)
-                //.add(ModBlocks.END_STONE_LOOSE)
+                .add(ModBlocks.CALCITE_LOOSE)
+                .add(ModBlocks.TUFF_LOOSE)
+                .add(ModBlocks.BLACKSTONE_LOOSE)
+                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.BASALT_LOOSE)
+                .add(ModBlocks.END_STONE_LOOSE)
 
-                .add(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
+                .add(ModBlocks.COBBLESTONE_LOOSE_STAIRS)
+                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS)
+                .add(ModBlocks.ANDESITE_LOOSE_STAIRS)
+                .add(ModBlocks.GRANITE_LOOSE_STAIRS)
+                .add(ModBlocks.DIORITE_LOOSE_STAIRS);
 
 
         getOrCreateTagBuilder(ModTags.Blocks.MORTARED_BLOCKS)
@@ -198,12 +203,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.ANDESITE_SLAB)
                 .add(Blocks.GRANITE_SLAB);
 
-        getOrCreateTagBuilder(ModTags.Blocks.ALL_LOOSE_BLOCKS)
-                .add(ModBlocks.DIRT_LOOSE)
-                .add(ModBlocks.COBBLESTONE_LOOSE)
-                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
-                .add(ModBlocks.GRANITE_LOOSE)
-                .add(ModBlocks.ANDESITE_LOOSE);
+
 
 
         getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONE_BLOCKS)

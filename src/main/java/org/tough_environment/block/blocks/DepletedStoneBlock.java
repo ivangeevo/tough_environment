@@ -19,7 +19,7 @@ public class DepletedStoneBlock extends ConvertingBlock
     @Override
     public void convert(World world, BlockPos pos, BlockState state, ItemStack stack) {
 
-        if (state.getBlock() instanceof DepletedStoneBlock && stack.isIn(ItemTags.PICKAXES))
+        if (stack.isIn(ItemTags.PICKAXES))
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             //this.emitBlockEvents(world, pos, state);

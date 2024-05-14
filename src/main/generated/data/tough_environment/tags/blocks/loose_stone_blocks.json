@@ -5,10 +5,21 @@
     "tough_environment:slab_cobbled_deepslate_loose",
     "tough_environment:slab_andesite_loose",
     "tough_environment:slab_granite_loose",
+    "tough_environment:slab_diorite_loose",
     "tough_environment:cobblestone_loose",
     "tough_environment:granite_loose",
     "tough_environment:diorite_loose",
     "tough_environment:andesite_loose",
-    "tough_environment:cobblestone_loose_stairs"
+    "tough_environment:calcite_loose",
+    "tough_environment:tuff_loose",
+    "tough_environment:blackstone_loose",
+    "tough_environment:cobbled_deepslate_loose",
+    "tough_environment:basalt_loose",
+    "tough_environment:end_stone_loose",
+    "tough_environment:cobblestone_loose_stairs",
+    "tough_environment:cobbled_deepslate_loose_stairs",
+    "tough_environment:andesite_loose_stairs",
+    "tough_environment:granite_loose_stairs",
+    "tough_environment:diorite_loose_stairs"
   ]
 }

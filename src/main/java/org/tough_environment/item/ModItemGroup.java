@@ -41,9 +41,6 @@ public class ModItemGroup
                         entries.add(ModItems.SHARD_GRANITE);
                         entries.add(ModItems.SHARD_ANDESITE);
                         entries.add(ModItems.SHARD_DIORITE);
-                        entries.add(ModItems.ORE_IRON_CHUNK);
-                        entries.add(ModItems.ORE_COPPER_CLUMP);
-                        entries.add(ModItems.ORE_GOLD_CHUNK);
 
                         // Tools
                         entries.add(ModItems.CHISEL_WOOD);
@@ -86,8 +83,6 @@ public class ModItemGroup
                         entries.add(ModBlocks.GRANITE_LOOSE_STAIRS);
                         entries.add(ModBlocks.DIORITE_LOOSE_STAIRS);
 
-                        entries.add(ModBlocks.COBBLESTONE_STAIRS);
-                        entries.add(ModBlocks.COBBLED_DEEPSLATE_STAIRS);
                         entries.add(ModBlocks.ANDESITE_STAIRS);
                         entries.add(ModBlocks.GRANITE_STAIRS);
                         entries.add(ModBlocks.DIORITE_STAIRS);

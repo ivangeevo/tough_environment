@@ -61,8 +61,6 @@ public class ModBlocks
     public static final Block GRANITE_LOOSE_STAIRS = registerBlock("granite_loose_stairs", new LooseStairsBlock(ModBlocks.GRANITE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block DIORITE_LOOSE_STAIRS = registerBlock("diorite_loose_stairs", new LooseStairsBlock(ModBlocks.DIORITE_LOOSE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
-    public static final Block COBBLESTONE_STAIRS = registerBlock("cobblestone_stairs", new StairsBlock(Blocks.COBBLESTONE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block COBBLED_DEEPSLATE_STAIRS = registerBlock("cobbled_deepslate_stairs", new StairsBlock(Blocks.COBBLED_DEEPSLATE.getDefaultState(), FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.DEEPSLATE)));
     public static final Block ANDESITE_STAIRS = registerBlock("andesite_stairs", new StairsBlock(Blocks.ANDESITE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_STAIRS = registerBlock("granite_stairs", new StairsBlock(Blocks.GRANITE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block DIORITE_STAIRS = registerBlock("diorite_stairs", new StairsBlock(Blocks.DIORITE.getDefaultState(), FabricBlockSettings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
