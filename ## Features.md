@@ -10,8 +10,6 @@ Configuration Settings in mod mod menu for:
 * Chisel Items.
 
 
-
-
 ## Changed:
 
 * Most blocks in the world drop lesser loot instead of full blocks when harvested with an improper tool.
@@ -19,10 +17,11 @@ Configuration Settings in mod mod menu for:
 * Mortaring mechanic for loose stone type blocks.
 * Stone Blocks in the world break in layers when mined with a primitive tool.
 * Farmland is now made by breaking Grass Blocks twice(first grass, then dirt) with a hoe.
-* Primitive tools (stone & wooden) have reduced durability.
+* Primitive tools (stone & wooden types) have reduced durability.
 * Ores now drop "Ore Chunks" which smelt into nuggets instead of full bars.
-* 
-
-
+* Changed recipes for all stone tools to require string or hemp fiber.
 
 ## Removed:
++ All vanilla wooden tools.
++ Stone sword & Stone hoe recipes.
++ The ability to repair items by combining them together.

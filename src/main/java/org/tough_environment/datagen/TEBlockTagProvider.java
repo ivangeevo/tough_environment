@@ -177,6 +177,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_ANDESITE_LOOSE)
                 .add(ModBlocks.SLAB_GRANITE_LOOSE)
                 .add(ModBlocks.SLAB_DIORITE_LOOSE)
+                .add(ModBlocks.SLAB_BRICK_LOOSE)
 
                 .add(ModBlocks.COBBLESTONE_LOOSE)
                 .add(ModBlocks.GRANITE_LOOSE)
