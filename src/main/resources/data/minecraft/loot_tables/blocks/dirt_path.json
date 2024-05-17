@@ -40,14 +40,14 @@
                   "function": "minecraft:set_count",
                   "count": 6
                 }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
               ]
             }
           ]
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
         }
       ]
     }

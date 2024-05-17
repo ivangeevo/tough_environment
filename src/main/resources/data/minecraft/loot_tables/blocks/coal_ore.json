@@ -30,11 +30,6 @@
             {
               "type": "minecraft:item",
               "name": "minecraft:coal",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ],
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -67,6 +62,42 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:dust_coal",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1,
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:dust_coal",
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.15
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }
