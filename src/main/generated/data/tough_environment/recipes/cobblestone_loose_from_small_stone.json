@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:small_stone"
+    },
+    {
+      "item": "tough_environment:small_stone"
+    },
+    {
+      "item": "tough_environment:small_stone"
+    },
+    {
+      "item": "tough_environment:small_stone"
+    },
+    {
+      "item": "tough_environment:small_stone"
+    },
+    {
+      "item": "tough_environment:small_stone"
+    },
+    {
+      "item": "tough_environment:small_stone"
+    },
+    {
+      "item": "tough_environment:small_stone"
+    }
+  ],
+  "result": {
+    "item": "tough_environment:cobblestone_loose"
+  }
+}

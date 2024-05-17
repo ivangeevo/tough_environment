@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "group_te",
+  "key": {
+    "#": {
+      "item": "tough_environment:shard_andesite"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "item": "tough_environment:slab_andesite_loose"
+  },
+  "show_notification": true
+}

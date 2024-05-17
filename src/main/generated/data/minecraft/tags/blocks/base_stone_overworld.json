@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "tough_environment:stone_converting",
+    "tough_environment:granite_converting",
+    "tough_environment:diorite_converting",
+    "tough_environment:andesite_converting",
+    "tough_environment:calcite_converting",
+    "tough_environment:tuff_converting"
+  ]
+}

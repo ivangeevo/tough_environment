@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "tough_environment:slab_dirt",
+    "tough_environment:slab_gravel",
+    "tough_environment:slab_sand",
+    "tough_environment:slab_red_sand",
+    "tough_environment:dirt_loose"
+  ]
+}

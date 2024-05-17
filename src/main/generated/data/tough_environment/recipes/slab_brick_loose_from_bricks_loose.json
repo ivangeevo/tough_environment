@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "group_te",
+  "key": {
+    "#": {
+      "item": "tough_environment:bricks_loose"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "tough_environment:slab_brick_loose"
+  },
+  "show_notification": true
+}
