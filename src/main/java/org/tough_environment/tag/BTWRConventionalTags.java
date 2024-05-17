@@ -19,6 +19,9 @@ public class BTWRConventionalTags
         // Stump blocks grouped; initially used for Sturdy Tree's Stump blocks
         public static final TagKey<Block> STUMP_BLOCKS = createTag("stump_blocks");
 
+        public static final TagKey<Block> STONE = createTag("stone");
+
+
         private static TagKey<Block> createTag(String name) {
             return TagKey.of(RegistryKeys.BLOCK, new Identifier("c", name));
         }

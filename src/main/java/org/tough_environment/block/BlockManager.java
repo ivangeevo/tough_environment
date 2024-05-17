@@ -34,17 +34,14 @@ import java.util.Map;
 
 import static org.tough_environment.block.blocks.ConvertingBlock.BREAK_LEVEL;
 
-/** An experimental utility class that is used for managing the behaviour of mixin'd in logic for blocks in the mod.
- *  Different vanilla blocks are affected in more advanced ways with BTWR, so they require additional logic
- *  that requires a specific class that many of them lack.
+/** A class that is used for managing the behaviour of mixin'd in logic for blocks in the mod.
+ *  Different vanilla blocks are affected in more advanced ways with BTWR, so we inject additional logic
+ *  that would usually require a dedicated class.
  */
 public class BlockManager
 {
-
-    // Helper method to
     public static void handleOnPlaced(LivingEntity placer)
     {
-
         if (placer instanceof PlayerEntity)
         {
             HungerManager hungerManager = ((PlayerEntity) placer).getHungerManager();
@@ -78,6 +75,8 @@ public class BlockManager
         if (state.getBlock() instanceof ConvertingBlock && stack.getItem() != null)
         {
             int breakLevel = state.get(BREAK_LEVEL);
+            //int breakLevel = world.getBlockState(pos).get(BREAK_LEVEL);
+
 
             if ( (breakLevel == 0 || breakLevel == 2 || breakLevel == 4 || breakLevel == 6 || breakLevel == 8)
                     && !isFullyBreakingTool(stack) )
@@ -86,8 +85,7 @@ public class BlockManager
             }
         }
 
-        if ((state.getBlock() instanceof ExperienceDroppingBlock || state.isIn(BlockTags.BASE_STONE_OVERWORLD))
-                && !isFullyBreakingTool(stack) )
+        if ( (state.getBlock() instanceof ExperienceDroppingBlock && !isFullyBreakingTool(stack)) )
         {
             return true;
         }

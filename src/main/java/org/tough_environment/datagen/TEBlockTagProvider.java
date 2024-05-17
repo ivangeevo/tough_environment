@@ -42,6 +42,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BASALT_CONVERTING)
                 .add(ModBlocks.END_STONE_CONVERTING);
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STONE)
+                .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS);
+
 
 
     }
