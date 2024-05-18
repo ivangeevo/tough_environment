@@ -1,8 +1,5 @@
 # Tough Environment List of features
 
-
-# Working:
-
 ## Added:
 
 Configuration Settings in mod mod menu for:
