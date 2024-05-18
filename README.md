@@ -5,8 +5,9 @@ At the start, your only mining tools are wooden and stone chisels. The wooden ch
 Additionally, all loose blocks have slab alternatives, and blocks like dirt, sand, and gravel break into piles if harvested with improper tools. Gravity affects these loose blocks, but the new "Mortaring" mechanic lets you hold stone blocks in place.
 
 Tough Environment adds a layer of complexity, making resource gathering and construction more demanding and rewarding, transforming your Minecraft experience into a test of skill and strategy.
-Full List of Features:
-Added:
+
+## Full List of Features:
+### Added:
 
     Chisel Items.
     Loose Blocks variants for most stone blocks & Loose Dirt. Slab block variants for those blocks as well.
@@ -16,7 +17,7 @@ Configuration Settings in mod mod menu for:
 
     Hardcore Mining Speed (slower speed)
 
-Changed:
+### Changed:
 
     Most blocks in the world drop lesser loot instead of full blocks when harvested with an improper tool.
     Stone Blocks in the world break in layers when mined with a primitive tool.
@@ -29,7 +30,7 @@ Changed:
     Bucket & Compass recipes also changed to require iron nuggets.
     Clock recipe changed to require gold nuggets instead of ingots & quartz instead of redstone.
 
-Removed:
+### Removed:
 
     All vanilla wooden tools.
     Stone sword & stone hoe recipes.
