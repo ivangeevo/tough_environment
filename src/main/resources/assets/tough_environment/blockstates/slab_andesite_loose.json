@@ -4,7 +4,7 @@
       "model": "tough_environment:block/slab_andesite_loose"
     },
     "type=double": {
-      "model": "minecraft:block/andesite"
+      "model": "tough_environment:block/andesite_loose"
     },
     "type=top": {
       "model": "tough_environment:block/slab_andesite_loose_top"

@@ -1,6 +1,7 @@
 package org.tough_environment.block.blocks;
 
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -55,6 +56,37 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         builder.add(TYPE, WATERLOGGED);
     }
 
+    @Override
+    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        if (!world.isClient && entity instanceof PlayerEntity) {
+            BlockPos downPos = pos.down();
+            BlockState downState = world.getBlockState(downPos);
+            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM) {
+                world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
+            }
+        }
+        super.onLandedUpon(world, state, pos, entity, fallDistance);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
+    {
+        if (!world.isClient
+                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
+        {
+
+            // Mortar the block
+            this.applyMortar(state.with(WATERLOGGED, state.get(WATERLOGGED)), world, pos, player);
+
+            // Optionally, reduce item stack size or perform other actions
+            ItemStack handStack = player.getStackInHand(hand);
+            handStack.decrement(1);
+
+            return ActionResult.SUCCESS;
+        }
+
+        return ActionResult.PASS;
+    }
 
     // Overriding the original method, because slabs need some extra logic, depending on the slab type placed.
     @Override
@@ -86,40 +118,6 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
             return slabType == SlabType.DOUBLE ? Blocks.GRANITE : Blocks.GRANITE_SLAB;
         }
         return null;
-    }
-
-
-
-    @Override
-    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        if (!world.isClient && entity instanceof PlayerEntity) {
-            BlockPos downPos = pos.down();
-            BlockState downState = world.getBlockState(downPos);
-            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM) {
-                world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
-            }
-        }
-        super.onLandedUpon(world, state, pos, entity, fallDistance);
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
-    {
-        if (!world.isClient
-                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
-        {
-
-            // Mortar the block
-            this.applyMortar(state, world, pos, player);
-
-            // Optionally, reduce item stack size or perform other actions
-            ItemStack handStack = player.getStackInHand(hand);
-            handStack.decrement(1);
-
-            return ActionResult.SUCCESS;
-        }
-
-        return ActionResult.PASS;
     }
 
     public boolean hasSidedTransparency(BlockState state) {
@@ -155,14 +153,18 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         if (blockState.isOf(this)) {
             // If the block is the same as the LooseSlabBlock, set it to double slab
             return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
-        } else {
+        }
+        else
+        {
             // Otherwise, handle placement based on the direction and hit position
             boolean isTopHalf = ctx.getHitPos().y - blockPos.getY() > 0.5;
 
             if (direction == Direction.DOWN || isTopHalf) {
                 // If placing on the bottom part or top half, place as a bottom slab
                 return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-            } else {
+            }
+            else
+            {
                 // If placing on the top part, place as a bottom slab instead
                 return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             }
@@ -176,6 +178,7 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     {
         ItemStack itemStack = context.getStack();
         SlabType slabType = state.get(TYPE);
+
         if (slabType != SlabType.DOUBLE && itemStack.isOf(this.asItem()))
         {
             if (context.canReplaceExisting())

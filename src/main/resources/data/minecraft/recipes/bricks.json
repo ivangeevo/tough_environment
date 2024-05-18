@@ -1,15 +1,9 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:air"
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:brick"
-    }
-  },
   "result": {
-    "item": "tough_environment:slab_brick_loose"
+    "item": "minecraft:air"
   }
 }

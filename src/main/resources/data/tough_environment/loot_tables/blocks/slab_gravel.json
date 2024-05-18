@@ -1,0 +1,110 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:alternatives",
+              "children": [
+                {
+                  "type": "minecraft:alternatives",
+                  "children": [
+                    {
+                      "type": "minecraft:item",
+                      "name": "tough_environment:slab_gravel",
+                      "functions": [
+                        {
+                          "function": "minecraft:set_count",
+                          "count": 2
+                        }
+                      ],
+                      "conditions": [
+                        {
+                          "condition": "minecraft:block_state_property",
+                          "block": "tough_environment:slab_gravel",
+                          "properties": {
+                            "type": "double"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "minecraft:item",
+                      "name": "tough_environment:slab_gravel",
+                      "conditions": [
+                        {
+                          "condition": "minecraft:block_state_property",
+                          "block": "tough_environment:slab_gravel",
+                          "properties": {
+                            "type": "bottom"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "conditions": [
+                    {
+                      "condition": "minecraft:match_tool",
+                      "predicate": {
+                        "items": [
+                          "minecraft:iron_shovel",
+                          "minecraft:golden_shovel",
+                          "minecraft:diamond_shovel",
+                          "minecraft:netherite_shovel"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "minecraft:alternatives",
+              "children": [
+                {
+                  "type": "minecraft:item",
+                  "name": "tough_environment:pile_gravel",
+                  "functions": [
+                    {
+                      "function": "minecraft:set_count",
+                      "count": 6
+                    }
+                  ],
+                  "conditions": [
+                    {
+                      "condition": "minecraft:block_state_property",
+                      "block": "tough_environment:slab_gravel",
+                      "properties": {
+                        "type": "double"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "tough_environment:pile_gravel",
+                  "functions": [
+                    {
+                      "function": "minecraft:set_count",
+                      "count": 3
+                    }
+                  ]
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

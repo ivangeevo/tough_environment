@@ -1,0 +1,194 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:pile_gravel"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "tough_environment:chisel_iron",
+                  "tough_environment:chisel_diamond"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:shard_andesite",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 3
+                }
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "minecraft:stone_pickaxe"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:andesite_loose",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 1
+                }
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "minecraft:iron_pickaxe",
+                  "minecraft:diamond_pickaxe",
+                  "minecraft:golden_pickaxe",
+                  "minecraft:netherite_pickaxe"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "tough_environment:chisel_wood",
+                  "tough_environment:chisel_stone"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "btwr:stone_brick"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "tough_environment:chisel_iron",
+                  "tough_environment:chisel_diamond"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:pile_gravel"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "minecraft:stone_pickaxe"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:shard_andesite",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 1
+                }
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "minecraft:iron_pickaxe",
+                  "minecraft:diamond_pickaxe",
+                  "minecraft:golden_pickaxe",
+                  "minecraft:netherite_pickaxe"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "minecraft:iron_pickaxe",
+                  "minecraft:diamond_pickaxe",
+                  "minecraft:golden_pickaxe",
+                  "minecraft:netherite_pickaxe"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

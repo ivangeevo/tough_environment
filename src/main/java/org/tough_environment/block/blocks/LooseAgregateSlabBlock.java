@@ -1,8 +1,10 @@
 package org.tough_environment.block.blocks;
 
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.SlabType;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -29,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggable
@@ -55,18 +58,52 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
         builder.add(TYPE, WATERLOGGED);
     }
 
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack)
+    {
+        BlockPos downPos = pos.down();
+        BlockState downState = world.getBlockState(downPos);
 
+        if (world.getBlockState(downPos) == this.getDefaultState().with(TYPE, SlabType.BOTTOM))
+        {
+            world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
+        }
+    }
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        if (!world.isClient && entity instanceof PlayerEntity) {
+        if (!world.isClient && entity instanceof PlayerEntity)
+        {
             BlockPos downPos = pos.down();
             BlockState downState = world.getBlockState(downPos);
-            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM) {
+            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM)
+            {
                 world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
             }
         }
         super.onLandedUpon(world, state, pos, entity, fallDistance);
+    }
+
+    // Block specific logic //
+    @Override
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state,
+                           @Nullable BlockEntity blockEntity, ItemStack tool)
+    {
+
+
+        // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
+        if (tool.isIn(BTWRConventionalTags.Items.MODERN_HOES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES))
+        {
+
+            if (state.isOf(ModBlocks.SLAB_DIRT) && state.get(TYPE) == SlabType.DOUBLE)
+            {
+                world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
+            }
+
+        }
+
+        super.afterBreak(world, player, pos, state, blockEntity, tool);
+
     }
 
 

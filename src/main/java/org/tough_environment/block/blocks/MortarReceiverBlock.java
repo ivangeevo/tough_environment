@@ -34,8 +34,7 @@ public class MortarReceiverBlock extends FallingBlock
 
         if (newBlock != null)
         {
-            BlockState newState = newBlock.getDefaultState();
-            world.setBlockState(pos, newState);
+            world.setBlockState(pos, newBlock.getStateWithProperties(state));
         }
 
         world.playSound(null,pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
@@ -55,7 +54,8 @@ public class MortarReceiverBlock extends FallingBlock
 
         // Check if the map contains the loose block key
         String replacementKey = looseBlockId.toString();
-        if (blockReplacementMap.containsKey(replacementKey)) {
+        if (blockReplacementMap != null && blockReplacementMap.containsKey(replacementKey))
+        {
             String replacementValue = blockReplacementMap.get(replacementKey);
             return Registries.BLOCK.get(new Identifier(replacementValue));
         }
@@ -64,7 +64,8 @@ public class MortarReceiverBlock extends FallingBlock
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify)
+    {
 
         if (!world.isClient())
         {

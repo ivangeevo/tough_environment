@@ -4,7 +4,7 @@
       "model": "tough_environment:block/slab_granite_loose"
     },
     "type=double": {
-      "model": "minecraft:block/granite"
+      "model": "tough_environment:block/granite_loose"
     },
     "type=top": {
       "model": "tough_environment:block/slab_granite_loose_top"

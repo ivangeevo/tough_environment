@@ -1,22 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
   "group": "group_te",
-  "ingredients": [
-    {
-      "item": "tough_environment:pile_dirt"
-    },
-    {
-      "item": "tough_environment:pile_dirt"
-    },
-    {
-      "item": "tough_environment:pile_dirt"
-    },
-    {
+  "key": {
+    "#": {
       "item": "tough_environment:pile_dirt"
     }
+  },
+  "pattern": [
+    "##",
+    "##"
   ],
   "result": {
     "item": "tough_environment:slab_dirt"
-  }
+  },
+  "show_notification": true
 }

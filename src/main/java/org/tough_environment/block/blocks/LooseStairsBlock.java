@@ -35,12 +35,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
+import org.tough_environment.tag.ModTags;
 
 import java.util.stream.IntStream;
 
-public class LooseStairsBlock
-        extends FallingBlock
-        implements Waterloggable {
+public class LooseStairsBlock extends LooseBlock implements Waterloggable
+{
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final EnumProperty<BlockHalf> HALF = Properties.BLOCK_HALF;
     public static final EnumProperty<StairShape> SHAPE = Properties.STAIR_SHAPE;
@@ -86,11 +86,38 @@ public class LooseStairsBlock
     {
         super(settings);
         this.setDefaultState((((((this.stateManager.getDefaultState())
-                .with(FACING, Direction.NORTH)).with(HALF, BlockHalf.BOTTOM))
-                .with(SHAPE, StairShape.STRAIGHT)).with(WATERLOGGED, false)));
+                .with(FACING, Direction.NORTH))
+                .with(HALF, BlockHalf.BOTTOM))
+                .with(SHAPE, StairShape.STRAIGHT))
+                .with(WATERLOGGED, false)));
         this.baseBlock = baseBlockState.getBlock();
         this.baseBlockState = baseBlockState;
     }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
+    {
+        if (!world.isClient && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
+        {
+            BlockState newState = world.getBlockState(pos)
+                    .with(FACING, state.get(FACING))
+                    .with(HALF, state.get(HALF))
+                    .with(SHAPE, state.get(SHAPE))
+                    .with(WATERLOGGED, state.get(WATERLOGGED));
+
+            // Mortar the block
+            this.applyMortar(newState, world, pos, player);
+
+            // Reduce item stack size
+            ItemStack handStack = player.getStackInHand(hand);
+            handStack.decrement(1);
+
+            return ActionResult.SUCCESS;
+        }
+
+        return this.baseBlockState.onUse(world, player, hand, hit);
+    }
+
 
     @Override
     public boolean hasSidedTransparency(BlockState state) {
@@ -177,12 +204,7 @@ public class LooseStairsBlock
 
     }
 
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                              Hand hand, BlockHitResult hit)
-    {
-        return this.baseBlockState.onUse(world, player, hand, hit);
-    }
+
 
     @Override
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion)
@@ -191,14 +213,15 @@ public class LooseStairsBlock
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx)
-    {
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
         Direction direction = ctx.getSide();
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        BlockState blockState = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing()).with(HALF, direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.5 ? BlockHalf.TOP : BlockHalf.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        BlockState blockState = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing()).with(HALF, BlockHalf.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+
         return blockState.with(SHAPE, getStairShape(blockState, ctx.getWorld(), blockPos));
     }
+
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
@@ -268,7 +291,7 @@ public class LooseStairsBlock
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation)
     {
-        return  state.with(FACING, rotation.rotate(state.get(FACING)));
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
     @Override

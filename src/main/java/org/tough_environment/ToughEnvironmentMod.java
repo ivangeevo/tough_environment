@@ -35,18 +35,21 @@ public class ToughEnvironmentMod implements ModInitializer
         loadSettings();
         instance = this;
 
+        // Initialize or load the block replacement map
+        Map<String, String> blockReplacementMap = BlockMortarMapInitializer.loadMap();
+        if (blockReplacementMap == null)
+        {
+            BlockMortarMapInitializer.initMap();
+            BlockMortarMapInitializer.loadMap();
+        }
+
         ModBlocks.registerModBlocks();
         ModItems.registerModItems();
         ModItemGroup.registerItemGroups();
 
 
 
-        // Initialize or load the block replacement map
-        Map<String, String> blockReplacementMap = BlockMortarMapInitializer.loadMap();
-        if (blockReplacementMap == null) {
-            BlockMortarMapInitializer.initMap();
-            BlockMortarMapInitializer.loadMap();
-        }
+
     }
 
 

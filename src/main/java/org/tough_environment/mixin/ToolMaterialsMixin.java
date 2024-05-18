@@ -17,11 +17,12 @@ public abstract class ToolMaterialsMixin
     @Shadow @Final private int miningLevel;
 
     @Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
-    private void customMiningSpeedMultiplier(CallbackInfoReturnable<Float> cir) {
+    private void customMiningSpeedMultiplier(CallbackInfoReturnable<Float> cir)
+    {
 
         if (this.miningLevel == MiningLevels.WOOD)
         {
-            cir.setReturnValue(1.5f);
+            cir.setReturnValue(1.1f);
         }
         else if (this.miningLevel == MiningLevels.STONE)
         {
@@ -33,11 +34,11 @@ public abstract class ToolMaterialsMixin
         }
         else if (this.miningLevel == MiningLevels.DIAMOND)
         {
-            cir.setReturnValue(6.5f);
+            cir.setReturnValue(8.0f);
         }
         else if (this.miningLevel == MiningLevels.NETHERITE)
         {
-            cir.setReturnValue(7.5f);
+            cir.setReturnValue(9.0f);
         }
 
     }

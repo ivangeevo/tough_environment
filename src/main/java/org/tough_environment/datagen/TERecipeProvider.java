@@ -10,7 +10,6 @@ import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
-import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 
@@ -27,118 +26,237 @@ public class TERecipeProvider extends FabricRecipeProvider
     public void generate(Consumer<RecipeJsonProvider> exporter)
     {
 
-        offerShapelessRecipe(exporter, ModItems.CHISEL_WOOD, Items.STICK, "group_btwr", 1);
-        offerShapelessRecipe(exporter, ModItems.CHISEL_STONE, ModItems.SMALL_STONE, "group_btwr", 1);
+    this.addBlockRecipes(exporter);
+    this.addLesserDropRecipes(exporter);
+    this.addSlabRecipes(exporter);
+    this.addMiscRecipes(exporter);
 
-        offerTwoInputShapelessRecipe(exporter, Items.COAL, ModItems.DUST_COAL, ModItems.DUST_COAL, "group_btwr", 1);
-        offerTwoInputShapelessRecipe(exporter, Items.RAW_IRON, ModItems.DUST_IRON, ModItems.DUST_IRON, "group_btwr", 1);
+    }
 
+    private void addMiscRecipes(Consumer<RecipeJsonProvider> exporter)
+    {
+        /** Shapeless **/
 
-
-        offerFourInputShapelessRecipe(exporter, ModItems.CHISEL_IRON, Items.IRON_NUGGET, Items.IRON_NUGGET, Items.IRON_NUGGET, Items.IRON_NUGGET, "group_btwr",1);
-
+        // Tools
+        offerShapelessRecipe(exporter, ModItems.CHISEL_WOOD, Items.STICK, "group_te", 1);
+        offerShapelessRecipe(exporter, ModItems.CHISEL_STONE, ModItems.SMALL_STONE, "group_te", 1);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CHISEL_IRON).input('#', Items.IRON_NUGGET).pattern("##").pattern("##").criterion("has_iron_nugget", RecipeProvider.conditionsFromItem(Items.IRON_NUGGET)).offerTo(exporter);
         // We add the diamond chisel manually with a data pack.
-        //offerTwoInputShapelessRecipe(exporter, ModItems.CHISEL_DIAMOND, ModItems.DIAMOND_INGOT,  ModItems.DIAMOND_INGOT, "group_btwr",1);
+
+        // Misc
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.COAL).input(ModItems.DUST_COAL).input(ModItems.DUST_COAL).criterion("has_dust_coal", RecipeProvider.conditionsFromItem(ModItems.DUST_COAL)).offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.RAW_IRON).input(ModItems.DUST_IRON).input(ModItems.DUST_IRON).criterion("has_dust_iron", RecipeProvider.conditionsFromItem(ModItems.DUST_IRON)).offerTo(exporter);
 
 
+        /** Shaped **/
 
-        /** Lesser drops crafts **/
-
-        // Piles, Stones & Shards to Slabs
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_DIRT,ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT, ModItems.PILE_DIRT , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_SAND,ModItems.PILE_SAND, ModItems.PILE_SAND, ModItems.PILE_SAND, ModItems.PILE_SAND , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_RED_SAND,ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND, ModItems.PILE_RED_SAND , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_GRAVEL,ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL, ModItems.PILE_GRAVEL , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_COBBLESTONE_LOOSE,ModItems.SMALL_STONE, ModItems.SMALL_STONE, ModItems.SMALL_STONE, ModItems.SMALL_STONE , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE,ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2, ModItems.SMALL_STONE_2 , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_GRANITE_LOOSE,ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE, ModItems.SHARD_GRANITE , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_ANDESITE_LOOSE,ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE, ModItems.SHARD_ANDESITE , "group_te", 1 );
-        offerFourInputShapelessRecipe(exporter, ModBlocks.SLAB_BRICK_LOOSE,Items.BRICK, Items.BRICK, Items.BRICK, Items.BRICK , "group_te", 1 );
-
-
-        /** Reversed Slab crafts  **/
-        // Piles, Stones & Shards from Slabs
-        offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.SLAB_DIRT, "group_te", 3);
-        offerShapelessRecipe(exporter, ModItems.PILE_SAND, ModBlocks.SLAB_SAND, "group_te", 3);
-        offerShapelessRecipe(exporter, ModItems.PILE_RED_SAND, ModBlocks.SLAB_RED_SAND, "group_te", 3);
-        offerShapelessRecipe(exporter, ModItems.PILE_GRAVEL, ModBlocks.SLAB_GRAVEL, "group_te", 3);
-
-        offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.SLAB_COBBLESTONE_LOOSE, "group_te", 4);
-        // TODO: insert level 1 (mantle) here when added!
-        offerShapelessRecipe(exporter, ModItems.SMALL_STONE_2, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, "group_te", 4);
-        offerShapelessRecipe(exporter, ModItems.SHARD_ANDESITE, ModBlocks.SLAB_ANDESITE_LOOSE, "group_te", 4);
-        offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.SLAB_GRANITE_LOOSE, "group_te", 4);
-        offerShapelessRecipe(exporter, Items.BRICK, ModBlocks.SLAB_BRICK_LOOSE, "group_te", 4);
-
-        // Piles, Stones & Shards from Full Blocks
-        offerShapelessRecipe(exporter, ModItems.PILE_DIRT, ModBlocks.DIRT_LOOSE, "group_te", 6);
-        offerShapelessRecipe(exporter, ModItems.PILE_SAND, Blocks.SAND, "group_te", 6);
-        offerShapelessRecipe(exporter, ModItems.PILE_RED_SAND, Blocks.RED_SAND, "group_te", 6);
-        offerShapelessRecipe(exporter, ModItems.PILE_GRAVEL, Blocks.GRAVEL, "group_te", 6);
-
-        offerShapelessRecipe(exporter, ModItems.SMALL_STONE, ModBlocks.COBBLESTONE_LOOSE, "group_te", 8);
-        // TODO: insert level 1 (mantle) here when added!
-        offerShapelessRecipe(exporter, ModItems.SMALL_STONE_2, ModBlocks.COBBLED_DEEPSLATE_LOOSE, "group_te", 8);
-        offerShapelessRecipe(exporter, ModItems.SHARD_ANDESITE, ModBlocks.ANDESITE_LOOSE, "group_te", 8);
-        offerShapelessRecipe(exporter, ModItems.SHARD_GRANITE, ModBlocks.GRANITE_LOOSE, "group_te", 8);
-
-        offerShapelessRecipe(exporter, Items.BRICK, ModBlocks.BRICKS_LOOSE, "group_te", 4);
-
-        offerShapelessRecipe(exporter, Items.CLAY_BALL, ModBlocks.SLAB_BRICK_LOOSE, "group_te", 4);
-
-
-
-
-        // Shaped Recipes
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CLAY_BALL).input('#', ModItems.PILE_CLAY).pattern("#").pattern("#").criterion("has_pile_clay", RecipeProvider.conditionsFromItem(ModItems.PILE_CLAY)).offerTo(exporter);
 
 
+    }
+    private void addLesserDropRecipes(Consumer<RecipeJsonProvider> exporter)
+    {
+        // Piles, Stones & Shards from Slabs
+        offerLesserDropsFromSlab(exporter, ModItems.PILE_DIRT, ModBlocks.SLAB_DIRT);
+        offerLesserDropsFromSlab(exporter, ModItems.PILE_SAND, ModBlocks.SLAB_SAND);
+        offerLesserDropsFromSlab(exporter, ModItems.PILE_RED_SAND, ModBlocks.SLAB_RED_SAND);
+        offerLesserDropsFromSlab(exporter, ModItems.PILE_GRAVEL, ModBlocks.SLAB_GRAVEL);
+        offerLesserDropsFromSlab(exporter, ModItems.SMALL_STONE, ModBlocks.SLAB_COBBLESTONE_LOOSE);
+        // TODO: insert level 1 (mantle) here when added!
+        offerLesserDropsFromSlab(exporter, ModItems.SMALL_STONE_2, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE);
+        offerLesserDropsFromSlab(exporter, ModItems.SHARD_ANDESITE, ModBlocks.SLAB_ANDESITE_LOOSE);
+        offerLesserDropsFromSlab(exporter, ModItems.SHARD_GRANITE, ModBlocks.SLAB_GRANITE_LOOSE);
+        offerLesserDropsFromSlab(exporter, ModItems.SHARD_DIORITE, ModBlocks.SLAB_DIORITE_LOOSE);
+        offerLesserDropsFromSlab(exporter, Items.BRICK, ModBlocks.SLAB_BRICKS_LOOSE);
 
-        // Full block from LOOSE SLABS
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.SAND).input('#', ModBlocks.SLAB_SAND).pattern("#").pattern("#").criterion("has_slab_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_SAND)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.RED_SAND).input('#', ModBlocks.SLAB_RED_SAND).pattern("#").pattern("#").criterion("has_slab_red_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_RED_SAND)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.GRAVEL).input('#', ModBlocks.SLAB_GRAVEL).pattern("#").pattern("#").criterion("has_slab_gravel", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRAVEL)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE).input('#', ModBlocks.SLAB_DIRT).pattern("#").pattern("#").criterion("has_slab_dirt", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIRT)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COBBLESTONE_LOOSE).input('#', ModBlocks.SLAB_COBBLESTONE_LOOSE).pattern("#").pattern("#").criterion("has_slab_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COBBLED_DEEPSLATE_LOOSE).input('#', ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE).pattern("#").pattern("#").criterion("has_slab_cobbled_deepslate_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)).offerTo(exporter);
+        // Piles, Stones & Shards from Full Blocks
+        offerLesserDropsFromBlock(exporter, ModItems.PILE_DIRT, ModBlocks.DIRT_LOOSE);
+        offerLesserDropsFromBlock(exporter, ModItems.PILE_SAND, Blocks.SAND);
+        offerLesserDropsFromBlock(exporter, ModItems.PILE_RED_SAND, Blocks.RED_SAND);
+        offerLesserDropsFromBlock(exporter, ModItems.PILE_GRAVEL, Blocks.GRAVEL);
+        offerLesserDropsFromBlock(exporter, ModItems.SMALL_STONE, ModBlocks.COBBLESTONE_LOOSE);
+        // TODO: insert level 1 (mantle) here when added!
+        offerLesserDropsFromBlock(exporter, ModItems.SMALL_STONE_2, ModBlocks.COBBLED_DEEPSLATE_LOOSE);
+        offerLesserDropsFromBlock(exporter, ModItems.SHARD_ANDESITE, ModBlocks.ANDESITE_LOOSE);
+        offerLesserDropsFromBlock(exporter, ModItems.SHARD_GRANITE, ModBlocks.GRANITE_LOOSE);
+        offerLesserDropsFromBlock(exporter, ModItems.SHARD_DIORITE, ModBlocks.DIORITE_LOOSE);
 
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.GRANITE_LOOSE).input('#', ModBlocks.SLAB_GRANITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_granite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ANDESITE_LOOSE).input('#', ModBlocks.SLAB_ANDESITE_LOOSE).pattern("#").pattern("#").criterion("has_slab_andesite", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
+        // Piles, Stones & Shards from Stair Blocks
+        offerLesserDropsFromStairs(exporter, ModItems.SMALL_STONE, ModBlocks.COBBLESTONE_LOOSE_STAIRS);
+        // TODO: insert level 1 (mantle) here when added!
+        offerLesserDropsFromStairs(exporter, ModItems.SMALL_STONE_2, ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS);
+        offerLesserDropsFromStairs(exporter, ModItems.SHARD_ANDESITE, ModBlocks.ANDESITE_LOOSE_STAIRS);
+        offerLesserDropsFromStairs(exporter, ModItems.SHARD_ANDESITE, ModBlocks.GRANITE_LOOSE_STAIRS);
+        offerLesserDropsFromStairs(exporter, ModItems.SHARD_DIORITE, ModBlocks.DIORITE_LOOSE_STAIRS);
+    }
+    private void addBlockRecipes(Consumer<RecipeJsonProvider> exporter)
+    {
 
-        // Slabs from Full Loose Blocks
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_DIRT,4).input('#', ModBlocks.DIRT_LOOSE).pattern("##").criterion("has_slab_dirt", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_DIRT)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_SAND,4).input('#', Blocks.SAND).pattern("##").criterion("has_slab_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_SAND)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_RED_SAND,4).input('#', Blocks.RED_SAND).pattern("##").criterion("has_slab_red_sand", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_RED_SAND)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_GRAVEL,4).input('#', Blocks.GRAVEL).pattern("##").criterion("has_slab_gravel", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRAVEL)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_COBBLESTONE_LOOSE,4).input('#', ModBlocks.COBBLESTONE_LOOSE).pattern("##").criterion("has_slab_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE,4).input('#', ModBlocks.COBBLED_DEEPSLATE_LOOSE).pattern("##").criterion("has_slab_cobbled_deepslate_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_GRANITE_LOOSE,4).input('#', ModBlocks.GRANITE_LOOSE).pattern("##").criterion("has_slab_granite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_GRANITE_LOOSE)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_ANDESITE_LOOSE,4).input('#', ModBlocks.ANDESITE_LOOSE).pattern("##").criterion("has_slab_andesite_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_ANDESITE_LOOSE)).offerTo(exporter);
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SLAB_BRICK_LOOSE,4).input('#', ModBlocks.BRICKS_LOOSE).pattern("##").criterion("has_slab_brick_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_BRICK_LOOSE)).offerTo(exporter);
+        // From slabs
+        offerBlockFromSlabs(exporter, ModBlocks.DIRT_LOOSE, ModBlocks.SLAB_DIRT);
+        offerBlockFromSlabs(exporter, Blocks.SAND, ModBlocks.SLAB_SAND);
+        offerBlockFromSlabs(exporter, Blocks.RED_SAND, ModBlocks.SLAB_RED_SAND);
+        offerBlockFromSlabs(exporter, Blocks.GRAVEL, ModBlocks.SLAB_GRAVEL);
+        offerBlockFromSlabs(exporter, ModBlocks.COBBLESTONE_LOOSE, ModBlocks.SLAB_COBBLESTONE_LOOSE);
+        offerBlockFromSlabs(exporter, ModBlocks.COBBLED_DEEPSLATE_LOOSE, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE);
+        offerBlockFromSlabs(exporter, ModBlocks.GRANITE_LOOSE, ModBlocks.SLAB_GRANITE_LOOSE);
+        offerBlockFromSlabs(exporter, ModBlocks.ANDESITE_LOOSE, ModBlocks.SLAB_ANDESITE_LOOSE);
+        offerBlockFromSlabs(exporter, ModBlocks.DIORITE_LOOSE, ModBlocks.SLAB_DIORITE_LOOSE);
+
+        // From piles, small stones/shards
+        offerBlockFromLesserDrops(exporter, Blocks.SAND, ModItems.PILE_SAND);
+        offerBlockFromLesserDrops(exporter, Blocks.RED_SAND, ModItems.PILE_RED_SAND);
+        offerBlockFromLesserDrops(exporter, Blocks.GRAVEL, ModItems.PILE_GRAVEL);
+        offerBlockFromLesserDrops(exporter, ModBlocks.DIRT_LOOSE, ModItems.PILE_DIRT);
+        offerBlockFromLesserDrops(exporter, ModBlocks.COBBLESTONE_LOOSE, ModItems.SMALL_STONE);
+        offerBlockFromLesserDrops(exporter, ModBlocks.COBBLED_DEEPSLATE_LOOSE, ModItems.SMALL_STONE_2);
+        offerBlockFromLesserDrops(exporter, ModBlocks.GRANITE_LOOSE, ModItems.SHARD_GRANITE);
+        offerBlockFromLesserDrops(exporter, ModBlocks.ANDESITE_LOOSE, ModItems.SHARD_ANDESITE);
+        offerBlockFromLesserDrops(exporter, ModBlocks.DIORITE_LOOSE, ModItems.SHARD_DIORITE);
+        offerBlockFromLesserDrops(exporter, Items.BRICK, ModBlocks.BRICKS_LOOSE);
+
+        // 2x2 and 3x3 stair recipes in one method.
+        offerStairs(exporter, ModBlocks.COBBLESTONE_LOOSE_STAIRS, ModBlocks.COBBLESTONE_LOOSE);
+        offerStairs(exporter, ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, ModBlocks.COBBLED_DEEPSLATE_LOOSE);
+        offerStairs(exporter, ModBlocks.GRANITE_LOOSE_STAIRS, ModBlocks.GRANITE_LOOSE);
+        offerStairs(exporter, ModBlocks.ANDESITE_LOOSE_STAIRS, ModBlocks.ANDESITE_LOOSE);
+        offerStairs(exporter, ModBlocks.DIORITE_LOOSE_STAIRS, ModBlocks.DIORITE_LOOSE);
+        offerStairs(exporter, ModBlocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE);
+        offerStairs(exporter, ModBlocks.ANDESITE_STAIRS, ModBlocks.ANDESITE_LOOSE);
+        offerStairs(exporter, ModBlocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE);
+
+    }
+    private void addSlabRecipes(Consumer<RecipeJsonProvider> exporter)
+    {
+        // From lesser drops/items (stones/piles/dust)
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT);
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_SAND, ModItems.PILE_SAND);
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_RED_SAND, ModItems.PILE_RED_SAND);
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_GRAVEL, ModItems.PILE_GRAVEL);
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_COBBLESTONE_LOOSE, ModItems.SMALL_STONE);
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, ModItems.SMALL_STONE_2);
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_GRANITE_LOOSE, ModItems.SHARD_GRANITE);
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_ANDESITE_LOOSE, ModItems.SHARD_ANDESITE);
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_DIORITE_LOOSE, ModItems.SHARD_DIORITE);
+
+        // From full loose blocks
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_DIRT, ModBlocks.DIRT_LOOSE);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_SAND, Blocks.SAND);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_RED_SAND, Blocks.RED_SAND);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_GRAVEL, Blocks.GRAVEL);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_COBBLESTONE_LOOSE, ModBlocks.COBBLESTONE_LOOSE);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, ModBlocks.COBBLED_DEEPSLATE_LOOSE);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_GRANITE_LOOSE, ModBlocks.GRANITE_LOOSE);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_ANDESITE_LOOSE, ModBlocks.ANDESITE_LOOSE);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_DIORITE_LOOSE, ModBlocks.DIORITE_LOOSE);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_BRICKS_LOOSE, ModBlocks.BRICKS_LOOSE);
 
     }
 
-
-    public static void offerTwoInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input,  ItemConvertible input2, @Nullable String group, int outputCount) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, outputCount)
-                .input(input).input(input2)
-                .group(group)
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, convertBetween(output, input));
-    }
-    public static void offerThreeInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input,  ItemConvertible input2, ItemConvertible input3, @Nullable String group, int outputCount) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, outputCount)
-                .input(input).input(input2).input(input3)
-                .group(group)
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, convertBetween(output, input));
-    }
-    public static void offerFourInputShapelessRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input,  ItemConvertible input2, ItemConvertible input3,ItemConvertible input4, @Nullable String group, int outputCount) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, output, outputCount)
-                .input(input).input(input2).input(input3).input(input4)
-                .group(group)
+    // LESSER DROP METHODS
+    private static void offerLesserDropsFromSlab(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
+                .input(input)
+                .group("group_te")
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter,  convertBetween(output, input));
     }
+    private static void offerLesserDropsFromBlock(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 8)
+                .input(input)
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter,  convertBetween(output, input));
+    }
+    public static void offerLesserDropsFromStairs(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 6)
+                .input(input)
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter,  convertBetween(output, input));
+    }
+
+    // SLAB METHODS
+    private static void offerSlabsFromBlock(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
+                .input('#', input)
+                .pattern("##")
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, convertBetween(output, input));
+    }
+    private static void offerSlabFromLesserDrops(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .input('#', input)
+                .pattern("##")
+                .pattern("##")
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter,  convertBetween(output, input));
+    }
+
+    // BLOCK METHODS
+    private static void offerBlockFromSlabs(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .input('#', input)
+                .pattern("#")
+                .pattern("#")
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, convertBetween(output, input));
+
+    }
+    private static void offerBlockFromLesserDrops(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .input(input).input(input).input(input).input(input).input(input).input(input).input(input).input(input)
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, convertBetween(output, input));
+    }
+    private static void offerStairs(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
+                .input('#', input)
+                .pattern("# ")
+                .pattern("##")
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, (convertBetween(output, input) + "_compact"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 8)
+                .input('#', input)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, convertBetween(output, input));
+
+    }
+
+    // use later
+    private static void offerBiDirectionalConversionRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input, int inputQuantity, int outputQuantity) {
+        // From block to lesser drops
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, outputQuantity)
+                .input(input, inputQuantity)
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, convertBetween(output, input));
+
+        // From lesser drops to block
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, input, inputQuantity)
+                .input(output, outputQuantity)
+                .group("group_te")
+                .criterion(hasItem(output), conditionsFromItem(output))
+                .offerTo(exporter, convertBetween(input, output));
+    }
+
 }

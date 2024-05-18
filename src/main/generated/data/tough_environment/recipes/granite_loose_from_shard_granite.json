@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:shard_granite"
+    },
+    {
+      "item": "tough_environment:shard_granite"
+    },
+    {
+      "item": "tough_environment:shard_granite"
+    },
+    {
+      "item": "tough_environment:shard_granite"
+    },
+    {
+      "item": "tough_environment:shard_granite"
+    },
+    {
+      "item": "tough_environment:shard_granite"
+    },
+    {
+      "item": "tough_environment:shard_granite"
+    },
+    {
+      "item": "tough_environment:shard_granite"
+    }
+  ],
+  "result": {
+    "item": "tough_environment:granite_loose"
+  }
+}

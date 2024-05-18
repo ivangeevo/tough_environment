@@ -8,6 +8,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -23,32 +24,60 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg)
     {
+        this.addToVanillaTags();
+        this.addToModTags();
+        this.addToConventionalTags();
+    }
 
-        this.addToVanillaTags(arg);
-        this.addToModTags(arg);
+    private void addToConventionalTags()
+    {
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS)
+                .add(ModBlocks.STONE_CONVERTING)
+                .add(ModBlocks.GRANITE_CONVERTING)
+                .add(ModBlocks.DIORITE_CONVERTING)
+                .add(ModBlocks.ANDESITE_CONVERTING)
+                .add(ModBlocks.TUFF_CONVERTING)
+                .add(ModBlocks.BLACKSTONE_CONVERTING)
+                .add(ModBlocks.DEEPSLATE_CONVERTING)
+                .add(ModBlocks.BASALT_CONVERTING)
+                .add(ModBlocks.END_STONE_CONVERTING);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STONE)
+                .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS);
+
+
 
     }
 
-    private void addToVanillaTags(RegistryWrapper.WrapperLookup arg)
+    private void addToVanillaTags()
     {
-
+        /**
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .forceAddTag(ModTags.Blocks.STONE_STRATA3);
+
+        getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+                .forceAddTag(ModTags.Blocks.STONE_STRATA2);
+         **/
+
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .addTag(ModTags.Blocks.ORES_ALL)
                 .addTag(ModTags.Blocks.STONE_STRATA1)
-                .addTag(ModTags.Blocks.STONE_STRATA2)
+                //.addTag(ModTags.Blocks.STONE_STRATA2)
                 .addTag(ModTags.Blocks.STONE_STRATA3)
-
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
+                .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS);
+
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(ModBlocks.SLAB_DIRT)
                 .add(ModBlocks.SLAB_GRAVEL)
                 .add(ModBlocks.SLAB_SAND)
                 .add(ModBlocks.SLAB_RED_SAND)
+                .add(ModBlocks.DIRT_LOOSE);
+
+        getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
                 .add(ModBlocks.DIRT_LOOSE);
 
         getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD)
@@ -59,19 +88,23 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.CALCITE_CONVERTING)
                 .add(ModBlocks.TUFF_CONVERTING);
 
+        getOrCreateTagBuilder(BlockTags.DIRT)
+                .add(ModBlocks.DIRT_LOOSE)
+                .add(ModBlocks.SLAB_DIRT);
+
 
     }
 
-    private void addToModTags(RegistryWrapper.WrapperLookup arg)
+    private void addToModTags()
     {
-
 
         getOrCreateTagBuilder(ModTags.Mineable.CHISEL_MINEABLE)
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
                 .forceAddTag(BlockTags.BASE_STONE_NETHER)
-                .forceAddTag(BlockTags.BASE_STONE_NETHER)
+                .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
 
+                .add(Blocks.CALCITE)
                 .add(Blocks.END_STONE)
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
@@ -140,6 +173,32 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BASALT_CONVERTING)
                 .add(ModBlocks.END_STONE_CONVERTING);
 
+        getOrCreateTagBuilder(ModTags.Blocks.LOOSE_STONE_BLOCKS)
+                .add(ModBlocks.SLAB_COBBLESTONE_LOOSE)
+                .add(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.SLAB_ANDESITE_LOOSE)
+                .add(ModBlocks.SLAB_GRANITE_LOOSE)
+                .add(ModBlocks.SLAB_DIORITE_LOOSE)
+                .add(ModBlocks.SLAB_BRICKS_LOOSE)
+
+                .add(ModBlocks.COBBLESTONE_LOOSE)
+                .add(ModBlocks.GRANITE_LOOSE)
+                .add(ModBlocks.DIORITE_LOOSE)
+                .add(ModBlocks.ANDESITE_LOOSE)
+                .add(ModBlocks.CALCITE_LOOSE)
+                .add(ModBlocks.TUFF_LOOSE)
+                .add(ModBlocks.BLACKSTONE_LOOSE)
+                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.BASALT_LOOSE)
+                .add(ModBlocks.END_STONE_LOOSE)
+
+                .add(ModBlocks.COBBLESTONE_LOOSE_STAIRS)
+                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS)
+                .add(ModBlocks.ANDESITE_LOOSE_STAIRS)
+                .add(ModBlocks.GRANITE_LOOSE_STAIRS)
+                .add(ModBlocks.DIORITE_LOOSE_STAIRS);
+
+
         getOrCreateTagBuilder(ModTags.Blocks.MORTARED_BLOCKS)
                 .add(Blocks.COBBLESTONE)
                 .add(Blocks.COBBLED_DEEPSLATE)
@@ -150,12 +209,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.ANDESITE_SLAB)
                 .add(Blocks.GRANITE_SLAB);
 
-        getOrCreateTagBuilder(ModTags.Blocks.LOOSE_BLOCKS)
-                .add(ModBlocks.DIRT_LOOSE)
-                .add(ModBlocks.COBBLESTONE_LOOSE)
-                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
-                .add(ModBlocks.GRANITE_LOOSE)
-                .add(ModBlocks.ANDESITE_LOOSE);
+
 
 
         getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONE_BLOCKS)
@@ -174,11 +228,22 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.STONE)
                 .add(Blocks.GRANITE)
                 .add(Blocks.ANDESITE)
-                .add(Blocks.DIORITE);
+                .add(Blocks.DIORITE)
+                .add(Blocks.CALCITE);
 
+        getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA2)
+                .add(Blocks.BASALT)
+                .add(Blocks.SMOOTH_BASALT)
+                .add(Blocks.MAGMA_BLOCK)
+                .add(Blocks.PRISMARINE)
+                .add(Blocks.DRIPSTONE_BLOCK);
 
         getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA3)
+                .add(Blocks.OBSIDIAN)
+                .add(Blocks.BLACKSTONE)
+                .add(Blocks.END_STONE)
                 .add(Blocks.DEEPSLATE);
+
 
 
     }

@@ -1,12 +1,15 @@
 package org.tough_environment.block.blocks;
 
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -14,6 +17,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
@@ -22,19 +27,15 @@ import org.tough_environment.tag.ModTags;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LooseBlock extends MortarReceiverBlock
+import static net.minecraft.block.PillarBlock.AXIS;
+
+public class LooseBlock extends MortarReceiverBlock implements LandingBlock
 {
 
     // Block parameters and constants & Super settings //
     public LooseBlock(Settings settings)
     {
         super(settings);
-        this.setDefaultState((this.stateManager.getDefaultState()));
-    }
-
-    @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        super.onPlaced(world, pos, state, placer, itemStack);
     }
 
     @Override
@@ -55,31 +56,6 @@ public class LooseBlock extends MortarReceiverBlock
 
         return ActionResult.PASS;
     }
-
-
-    // Block specific logic //
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state,
-                           @Nullable BlockEntity blockEntity, ItemStack tool)
-    {
-
-
-        // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
-        if (tool.isIn(ModTags.Items.MODERN_HOES))
-        {
-
-            if (state.isOf(ModBlocks.DIRT_LOOSE))
-            {
-                world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
-            }
-
-        }
-
-        super.afterBreak(world, player, pos, state, blockEntity, tool);
-
-
-    }
-
-
 
 
     // ---------------------------------- //

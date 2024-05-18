@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "group_te",
+  "key": {
+    "#": {
+      "item": "tough_environment:granite_loose"
+    }
+  },
+  "pattern": [
+    "# ",
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "item": "tough_environment:granite_stairs"
+  },
+  "show_notification": true
+}

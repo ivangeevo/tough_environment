@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:shard_andesite"
+    },
+    {
+      "item": "tough_environment:shard_andesite"
+    },
+    {
+      "item": "tough_environment:shard_andesite"
+    },
+    {
+      "item": "tough_environment:shard_andesite"
+    },
+    {
+      "item": "tough_environment:shard_andesite"
+    },
+    {
+      "item": "tough_environment:shard_andesite"
+    },
+    {
+      "item": "tough_environment:shard_andesite"
+    },
+    {
+      "item": "tough_environment:shard_andesite"
+    }
+  ],
+  "result": {
+    "item": "tough_environment:andesite_loose"
+  }
+}

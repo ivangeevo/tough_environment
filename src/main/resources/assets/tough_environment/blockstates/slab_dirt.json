@@ -4,7 +4,7 @@
       "model": "tough_environment:block/slab_dirt"
     },
     "type=double": {
-      "model": "minecraft:block/dirt"
+      "model": "tough_environment:block/dirt_loose"
     },
     "type=top": {
       "model": "tough_environment:block/slab_dirt_top"

@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
+  "category": "building",
   "group": "group_te",
   "ingredients": [
     {
@@ -8,7 +8,7 @@
     }
   ],
   "result": {
-    "count": 6,
+    "count": 8,
     "item": "tough_environment:pile_red_sand"
   }
 }

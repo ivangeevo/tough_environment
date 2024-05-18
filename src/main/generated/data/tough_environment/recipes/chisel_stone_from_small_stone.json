@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "group": "group_btwr",
+  "group": "group_te",
   "ingredients": [
     {
       "item": "tough_environment:small_stone"
