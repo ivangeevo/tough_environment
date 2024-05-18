@@ -227,7 +227,7 @@ public class BlockManager
 
 
         return ( !stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES) && !stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) )
-                || !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)  && state.isIn(ModTags.Blocks.STONE_STRATA2);
+                || !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && state.isIn(ModTags.Blocks.STONE_STRATA2);
     }
 
 

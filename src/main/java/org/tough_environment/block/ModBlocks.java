@@ -26,7 +26,7 @@ public class ModBlocks
     public static final Block SLAB_GRANITE_LOOSE = registerBlock("slab_granite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
     public static final Block SLAB_ANDESITE_LOOSE = registerBlock("slab_andesite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
     public static final Block SLAB_DIORITE_LOOSE = registerBlock("slab_diorite_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block SLAB_BRICK_LOOSE = registerBlock("slab_brick_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.STONE).nonOpaque()));
+    public static final Block SLAB_BRICKS_LOOSE = registerBlock("slab_bricks_loose", new LooseSlabBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.STONE).nonOpaque()));
 
 
     public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAgregateBlock(FabricBlockSettings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));

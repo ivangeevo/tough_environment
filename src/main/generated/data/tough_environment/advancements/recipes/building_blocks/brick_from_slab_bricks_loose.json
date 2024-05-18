@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_slab_brick_loose": {
+    "has_slab_bricks_loose": {
       "conditions": {
         "items": [
           {
             "items": [
-              "tough_environment:slab_brick_loose"
+              "tough_environment:slab_bricks_loose"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:brick_from_slab_brick_loose"
+        "recipe": "minecraft:brick_from_slab_bricks_loose"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_slab_brick_loose",
+      "has_slab_bricks_loose",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:brick_from_slab_brick_loose"
+      "minecraft:brick_from_slab_bricks_loose"
     ]
   },
   "sends_telemetry_event": false

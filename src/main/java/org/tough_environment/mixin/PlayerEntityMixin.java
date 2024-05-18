@@ -47,23 +47,19 @@ public abstract class PlayerEntityMixin extends LivingEntity
         float defaultSpeed = this.inventory.getBlockBreakingSpeed(state);
         ItemStack stack = this.getMainHandStack();
 
-        if (state.isIn(BlockTags.NEEDS_DIAMOND_TOOL) || state.isIn(BlockTags.NEEDS_IRON_TOOL) || state.isIn(BlockTags.NEEDS_STONE_TOOL))
+        // super slow to mine by hand blocks, possible but practically not viable.
+        if ( isProblemToBreak(state, stack))
         {
-            if (!stack.isSuitableFor(state))
-            {
-                f = defaultSpeed / 8000;
-                cir.setReturnValue(f);
-            }
+            f = defaultSpeed / 8000;
+            cir.setReturnValue(f);
         }
-        else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
+        // mineable by hand, but still kinda slow
+        else if ( state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && !stack.isSuitableFor(state) )
         {
-            if (!stack.isSuitableFor(state))
-            {
-                f = defaultSpeed / 80;
-                cir.setReturnValue(f);
-            }
+            f = defaultSpeed / 80;
+            cir.setReturnValue(f);
         }
-
+        // mined the wrong
         if (isPrimitiveTool(stack) || !(stack.getItem() instanceof MiningToolItem))
         {
             f = defaultSpeed / 6;
@@ -84,6 +80,13 @@ public abstract class PlayerEntityMixin extends LivingEntity
                 || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_SHOVELS)
                 || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_HOES)
                 || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS);
+    }
+
+    @Unique
+    private boolean isProblemToBreak(BlockState state, ItemStack stack)
+    {
+        return ( (state.isIn(ModTags.Blocks.STONE_STRATA2) || state.isIn(ModTags.Blocks.STONE_STRATA3)) && !stack.isSuitableFor(state) )
+                || ( state.isIn(ModTags.Blocks.STONE_STRATA1) && !(stack.getItem() instanceof MiningToolItem) );
     }
 
 }

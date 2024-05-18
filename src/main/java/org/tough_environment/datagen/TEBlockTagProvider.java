@@ -51,12 +51,13 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     private void addToVanillaTags()
     {
-
+        /**
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .forceAddTag(ModTags.Blocks.STONE_STRATA3);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .forceAddTag(ModTags.Blocks.STONE_STRATA2);
+         **/
 
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
@@ -103,6 +104,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .forceAddTag(BlockTags.BASE_STONE_NETHER)
                 .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
 
+                .add(Blocks.CALCITE)
                 .add(Blocks.END_STONE)
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
@@ -177,7 +179,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_ANDESITE_LOOSE)
                 .add(ModBlocks.SLAB_GRANITE_LOOSE)
                 .add(ModBlocks.SLAB_DIORITE_LOOSE)
-                .add(ModBlocks.SLAB_BRICK_LOOSE)
+                .add(ModBlocks.SLAB_BRICKS_LOOSE)
 
                 .add(ModBlocks.COBBLESTONE_LOOSE)
                 .add(ModBlocks.GRANITE_LOOSE)
@@ -226,11 +228,22 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.STONE)
                 .add(Blocks.GRANITE)
                 .add(Blocks.ANDESITE)
-                .add(Blocks.DIORITE);
+                .add(Blocks.DIORITE)
+                .add(Blocks.CALCITE);
 
+        getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA2)
+                .add(Blocks.BASALT)
+                .add(Blocks.SMOOTH_BASALT)
+                .add(Blocks.MAGMA_BLOCK)
+                .add(Blocks.PRISMARINE)
+                .add(Blocks.DRIPSTONE_BLOCK);
 
         getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA3)
+                .add(Blocks.OBSIDIAN)
+                .add(Blocks.BLACKSTONE)
+                .add(Blocks.END_STONE)
                 .add(Blocks.DEEPSLATE);
+
 
 
     }

@@ -34,24 +34,6 @@
           ]
         }
       ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:raw_copper",
-          "conditions": [
-            {
-              "condition": "minecraft:survives_explosion"
-            },
-            {
-              "condition": "minecraft:random_chance",
-              "chance": 0.25
-            }
-          ]
-        }
-      ]
     }
   ]
 }

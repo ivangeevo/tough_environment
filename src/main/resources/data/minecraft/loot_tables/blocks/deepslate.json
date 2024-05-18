@@ -133,7 +133,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:small_stone",
+              "name": "tough_environment:small_stone_2",
               "functions": [
                 {
                   "function": "minecraft:set_count",
@@ -177,29 +177,6 @@
               }
             }
           ]
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "tough_environment:small_stone_2",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2,
-                "max": 6
-              }
-            }
-          ]
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
         }
       ]
     }

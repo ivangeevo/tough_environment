@@ -67,7 +67,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerLesserDropsFromSlab(exporter, ModItems.SHARD_ANDESITE, ModBlocks.SLAB_ANDESITE_LOOSE);
         offerLesserDropsFromSlab(exporter, ModItems.SHARD_GRANITE, ModBlocks.SLAB_GRANITE_LOOSE);
         offerLesserDropsFromSlab(exporter, ModItems.SHARD_DIORITE, ModBlocks.SLAB_DIORITE_LOOSE);
-        offerLesserDropsFromSlab(exporter, Items.BRICK, ModBlocks.SLAB_BRICK_LOOSE);
+        offerLesserDropsFromSlab(exporter, Items.BRICK, ModBlocks.SLAB_BRICKS_LOOSE);
 
         // Piles, Stones & Shards from Full Blocks
         offerLesserDropsFromBlock(exporter, ModItems.PILE_DIRT, ModBlocks.DIRT_LOOSE);
@@ -150,7 +150,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_GRANITE_LOOSE, ModBlocks.GRANITE_LOOSE);
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_ANDESITE_LOOSE, ModBlocks.ANDESITE_LOOSE);
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_DIORITE_LOOSE, ModBlocks.DIORITE_LOOSE);
-        offerSlabsFromBlock(exporter, ModBlocks.SLAB_BRICK_LOOSE, ModBlocks.BRICKS_LOOSE);
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_BRICKS_LOOSE, ModBlocks.BRICKS_LOOSE);
 
     }
 

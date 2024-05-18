@@ -24,21 +24,6 @@
                   }
                 }
               ]
-            },
-            {
-              "type": "minecraft:item",
-              "name": "tough_environment:small_stone_2",
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": 8
-                }
-              ],
-              "conditions": [
-                {
-                  "condition": "minecraft:survives_explosion"
-                }
-              ]
             }
           ]
         }

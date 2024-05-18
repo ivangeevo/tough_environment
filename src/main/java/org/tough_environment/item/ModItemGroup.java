@@ -61,7 +61,7 @@ public class ModItemGroup
                         entries.add(ModBlocks.SLAB_GRANITE_LOOSE);
                         entries.add(ModBlocks.SLAB_ANDESITE_LOOSE);
                         entries.add(ModBlocks.SLAB_DIORITE_LOOSE);
-                        entries.add(ModBlocks.SLAB_BRICK_LOOSE);
+                        entries.add(ModBlocks.SLAB_BRICKS_LOOSE);
 
                         // Full blocks
                         entries.add(ModBlocks.DIRT_LOOSE);

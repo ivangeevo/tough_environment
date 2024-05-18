@@ -22,7 +22,7 @@ public class ToughEnvironmentClient implements ClientModInitializer
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLAB_GRANITE_LOOSE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLAB_ANDESITE_LOOSE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLAB_DIORITE_LOOSE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLAB_BRICK_LOOSE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLAB_BRICKS_LOOSE, RenderLayer.getCutout());
 
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COBBLESTONE_LOOSE_STAIRS, RenderLayer.getCutout());

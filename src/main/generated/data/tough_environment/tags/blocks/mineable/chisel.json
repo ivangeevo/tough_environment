@@ -5,6 +5,7 @@
     "#minecraft:base_stone_overworld",
     "#minecraft:base_stone_nether",
     "#c:stump_blocks",
+    "minecraft:calcite",
     "minecraft:end_stone",
     "#tough_environment:converted_stone_blocks",
     "minecraft:coal_ore",

@@ -46,7 +46,7 @@ public class ModItems
                     new FabricItemSettings().maxDamage(2)));
     public static final Item CHISEL_STONE = registerItem( "chisel_stone",
             new ChiselItem(-0.05f,-1f, ToolMaterials.STONE, ChiselItem.ChiselType.STONE,
-                    new FabricItemSettings().maxDamage(10)));
+                    new FabricItemSettings().maxDamage(8)));
     public static final Item CHISEL_IRON = registerItem( "chisel_iron",
             new ChiselItem(-0.10f,0.2f, ToolMaterials.IRON, ChiselItem.ChiselType.IRON,
                     new FabricItemSettings().maxDamage(238)));

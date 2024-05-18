@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "minecraft:obsidian",
+    "minecraft:blackstone",
+    "minecraft:end_stone",
     "minecraft:deepslate"
   ]
 }

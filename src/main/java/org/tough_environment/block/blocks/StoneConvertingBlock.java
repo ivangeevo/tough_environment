@@ -47,7 +47,7 @@ public class StoneConvertingBlock extends ConvertingBlock
             return;
         }
 
-        if (breakLevel >= 9 && !(state.getBlock() instanceof DepletedStoneBlock))
+        if (breakLevel >= 8 && !(state.getBlock() instanceof DepletedStoneBlock))
         {
 
             if (state.isIn(ModTags.Blocks.CONVERTED_STONE_BLOCKS))
@@ -68,7 +68,7 @@ public class StoneConvertingBlock extends ConvertingBlock
         int breakLevel = state.get(BREAK_LEVEL);
 
         // Calculate the new break level
-        int newBreakLevel = Math.min(breakLevel + 2, 9);
+        int newBreakLevel = Math.min(breakLevel + 2, 8);
 
         // If break level is greater or equal to 7, set to broken state;
         // otherwise, update the block state

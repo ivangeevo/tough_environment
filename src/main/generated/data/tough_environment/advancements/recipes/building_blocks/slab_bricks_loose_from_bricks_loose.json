@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:slab_brick_loose_from_bricks_loose"
+        "recipe": "minecraft:slab_bricks_loose_from_bricks_loose"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:slab_brick_loose_from_bricks_loose"
+      "minecraft:slab_bricks_loose_from_bricks_loose"
     ]
   },
   "sends_telemetry_event": false
