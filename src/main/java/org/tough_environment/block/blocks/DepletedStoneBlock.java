@@ -19,13 +19,13 @@ public class DepletedStoneBlock extends ConvertingBlock
     @Override
     public void convert(World world, BlockPos pos, BlockState state, ItemStack stack) {
 
-        if (stack.isIn(ItemTags.PICKAXES))
+        // if broken with a pickaxe, break fully (set to air)
+        if (stack.isIn(ItemTags.PICKAXES) && !world.isClient)
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            //this.emitBlockEvents(world, pos, state);
             return;
         }
-
+        // else increment break level
         super.convert(world, pos, state, stack);
     }
 }

@@ -72,11 +72,9 @@ public class BlockManager
     private static boolean shouldDingOnBreak(BlockState state, ItemStack stack)
     {
 
-        if (state.getBlock() instanceof ConvertingBlock && stack.getItem() != null)
+        if (state.getBlock() instanceof ConvertingBlock && stack.getItem() != null && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
         {
             int breakLevel = state.get(BREAK_LEVEL);
-            //int breakLevel = world.getBlockState(pos).get(BREAK_LEVEL);
-
 
             if ( (breakLevel == 0 || breakLevel == 2 || breakLevel == 4 || breakLevel == 6 || breakLevel == 8)
                     && !isFullyBreakingTool(stack) )
