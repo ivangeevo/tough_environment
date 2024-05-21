@@ -31,6 +31,16 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:pile_dirt",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 6
+                }
+              ]
             }
           ]
         }
