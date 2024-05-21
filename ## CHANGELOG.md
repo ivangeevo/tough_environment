@@ -1,10 +1,8 @@
-# 1.0 Release
+# 1.1 Alpha
 
-Additions so far:
++ Increased mining speed for pickaxes on depleted(broken stone) blocks.
++ Added sound cues for depleted blocks when breaking them.
 
-+ Changes Clay block texture
-+ Makes the player unable to break things that are significantly tougher,
- like stone blocks & such (ofc you can still break trees, but much slower).
-+ Decreases the durability of "primitive" (wooden & stone) tools.
-+ Removed the ability to repair items by combining them together.
-+ 
+# 1.0 Alpha
+
++ Initial release
