@@ -71,7 +71,7 @@ public class BlockManager
 
     private static boolean shouldDingOnBreak(BlockState state, ItemStack stack)
     {
-
+        // TODO: Add chisel ding sound when breaking and also ding sound for primitive pickaxes breaking stone.
         if (state.getBlock() instanceof ConvertingBlock && stack.getItem() != null && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
         {
             int breakLevel = state.get(BREAK_LEVEL);

@@ -114,7 +114,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerBlockFromLesserDrops(exporter, ModBlocks.GRANITE_LOOSE, ModItems.SHARD_GRANITE);
         offerBlockFromLesserDrops(exporter, ModBlocks.ANDESITE_LOOSE, ModItems.SHARD_ANDESITE);
         offerBlockFromLesserDrops(exporter, ModBlocks.DIORITE_LOOSE, ModItems.SHARD_DIORITE);
-        offerBlockFromLesserDrops(exporter, Items.BRICK, ModBlocks.BRICKS_LOOSE);
+        offerBlockFromLesserDrops(exporter, ModBlocks.BRICKS_LOOSE, Items.BRICK);
 
         // 2x2 and 3x3 stair recipes in one method.
         offerStairs(exporter, ModBlocks.COBBLESTONE_LOOSE_STAIRS, ModBlocks.COBBLESTONE_LOOSE);
