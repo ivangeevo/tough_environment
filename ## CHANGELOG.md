@@ -1,6 +1,7 @@
 # 0.2
 
 + Fixed a bug with wrong recipe for loose bricks from item.
++ Added missing brick to loose brick slab recipe.
 
 
 + # 0.1.1 Alpha

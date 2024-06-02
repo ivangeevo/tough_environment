@@ -51,6 +51,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         /** Shaped **/
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CLAY_BALL).input('#', ModItems.PILE_CLAY).pattern("#").pattern("#").criterion("has_pile_clay", RecipeProvider.conditionsFromItem(ModItems.PILE_CLAY)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.SLAB_BRICKS_LOOSE).input('#', Items.BRICK).pattern("##").pattern("##").criterion("has_brick", RecipeProvider.conditionsFromItem(Items.BRICK)).offerTo(exporter);
 
 
     }
