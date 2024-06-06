@@ -1,7 +1,8 @@
 # 0.2
 
 + Fixed a bug with wrong recipe for loose bricks from item.
-+ Added missing brick to loose brick slab recipe.
++ Added missing "brick to loose brick" slab recipe.
++ Added dirt piles drop when clay blocks get broken.
 
 
 + # 0.1.1 Alpha

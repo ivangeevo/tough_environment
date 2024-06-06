@@ -9,37 +9,40 @@
           "type": "minecraft:alternatives",
           "children": [
             {
-              "type": "minecraft:alternatives",
-              "children": [
+              "type": "minecraft:item",
+              "name": "minecraft:clay_ball",
+              "conditions": [
                 {
-                  "type": "minecraft:item",
-                  "name": "minecraft:clay_ball",
-                  "conditions": [
-                    {
-                      "condition": "minecraft:match_tool",
-                      "predicate": {
-                        "items": [
-                          "minecraft:stone_shovel",
-                          "minecraft:iron_shovel",
-                          "minecraft:golden_shovel",
-                          "minecraft:diamond_shovel",
-                          "minecraft:netherite_shovel"
-                        ]
-                      }
-                    }
-                  ]
-                }
-              ],
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": 1
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "tag": "minecraft:shovels"
+                  }
                 }
               ]
             },
             {
               "type": "minecraft:item",
               "name": "tough_environment:pile_clay"
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_dirt",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
             }
           ]
         }
