@@ -2,6 +2,7 @@ package org.tough_environment.tag;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -52,6 +53,8 @@ public class BTWRConventionalTags
         public static final TagKey<Item> PRIMITIVE_SHOVELS = createTag("primitive_shovels");
         public static final TagKey<Item> MODERN_SHOVELS = createTag("modern_shovels");
         public static final TagKey<Item> ADVANCED_SHOVELS = createTag("advanced_shovels");
+
+        public static final TagKey<Item> SPIT_CAMPFIRE_ITEMS = createTag("spit_campfire_items");
 
         public static final TagKey<Item> SHOVELS_HARVEST_FULL_BLOCK = createTag("shovels_harvest_full_block");
 

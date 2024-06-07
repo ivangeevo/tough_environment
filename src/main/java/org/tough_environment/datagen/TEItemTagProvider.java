@@ -31,6 +31,9 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
     private void addToConventionalTags()
     {
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.SPIT_CAMPFIRE_ITEMS)
+                .add(ModItems.CHISEL_WOOD);
+
         getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
                 .add(ModItems.CHISEL_WOOD)
                 .add(ModItems.CHISEL_STONE);
@@ -55,8 +58,6 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK)
                 .addTag(BTWRConventionalTags.Items.MODERN_SHOVELS)
                 .addTag(BTWRConventionalTags.Items.ADVANCED_SHOVELS);
-
-
 
     }
 

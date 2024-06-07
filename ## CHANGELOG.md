@@ -3,6 +3,7 @@
 + Fixed a bug with wrong recipe for loose bricks from item.
 + Added missing "brick to loose brick" slab recipe.
 + Added dirt piles drop when clay blocks get broken.
++ Added wooden chisel to be usable as a spit for campfires from the Self-Sustainable mod.
 
 
 + # 0.1.1 Alpha
