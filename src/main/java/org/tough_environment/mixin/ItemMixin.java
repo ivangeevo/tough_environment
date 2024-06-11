@@ -6,6 +6,7 @@ import net.minecraft.item.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -55,6 +56,7 @@ public abstract class ItemMixin
                 {
                     world.setBlockState(placePos, placedBlockState);
                     heldStack.decrement(1);
+                    world.emitGameEvent(GameEvent.BLOCK_PLACE, pos, GameEvent.Emitter.of(context.getPlayer()));
 
                     // Indicate the interaction was successful
                     cir.setReturnValue(ActionResult.SUCCESS);

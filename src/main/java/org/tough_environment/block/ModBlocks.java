@@ -80,10 +80,10 @@ public class ModBlocks
     public static final Block ENDSTONE_BROKEN = registerBlock("endstone_broken", new DepletedStoneBlock(FabricBlockSettings.create().strength(13f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
 
-    // Placed ore blocks
-    public static final Block RAW_COPPER_PLACED =  registerBlockNoItem("raw_copper_placed", new PlacedOreChunkBlock(FabricBlockSettings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
-    public static final Block RAW_IRON_PLACED =  registerBlockNoItem("raw_iron_placed", new PlacedOreChunkBlock(FabricBlockSettings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
-    public static final Block RAW_GOLD_PLACED =  registerBlockNoItem("raw_gold_placed", new PlacedOreChunkBlock(FabricBlockSettings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
+    // Placeable ore blocks
+    public static final Block RAW_COPPER_PLACED = registerBlockNoItem("raw_copper_placed", new PlacedOreChunkBlock(FabricBlockSettings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
+    public static final Block RAW_IRON_PLACED = registerBlockNoItem("raw_iron_placed", new PlacedOreChunkBlock(FabricBlockSettings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
+    public static final Block RAW_GOLD_PLACED = registerBlockNoItem("raw_gold_placed", new PlacedOreChunkBlock(FabricBlockSettings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
 
 
 
