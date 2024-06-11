@@ -54,8 +54,6 @@ public class PlacedOreChunkBlock extends Block
         return VoxelShapes.cuboid(ORE_WIDTH_MIN, ORE_HEIGHT_MIN, ORE_LENGTH_MIN, ORE_WIDTH_MAX, ORE_HEIGHT_MAX, ORE_LENGTH_MAX);
     }
 
-
-
     @Override
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
@@ -78,10 +76,13 @@ public class PlacedOreChunkBlock extends Block
         return BlockRenderType.MODEL;
     }
 
+    //TODO: make not placeable on top of itself, and only placeable from top side of a block.
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)
     {
-        return world.getBlockState(pos.down()).isSolidBlock(world, pos.down());
+        BlockState belowBlockState = world.getBlockState(pos.down());
+        // Ensure the block is only placeable on top of a solid block and not on top of itself
+        return belowBlockState.isSolidBlock(world, pos.down()) && !(belowBlockState.getBlock() instanceof PlacedOreChunkBlock);
     }
     @Override
     public boolean isShapeFullCube(BlockState state, BlockView world, BlockPos pos) {
