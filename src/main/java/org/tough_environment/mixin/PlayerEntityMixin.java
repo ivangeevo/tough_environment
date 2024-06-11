@@ -35,7 +35,7 @@ public abstract class PlayerEntityMixin extends LivingEntity
         super(entityType, world);
     }
 
-    @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
+    // TODO : FIX EFFICIENCY, HASTE & MINING FATIGUE NOT APPLIED FROM THE ORIGINAL LOGIC   @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
     private void customBlockBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir) {
 
         if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
@@ -47,19 +47,19 @@ public abstract class PlayerEntityMixin extends LivingEntity
         float defaultSpeed = this.inventory.getBlockBreakingSpeed(state);
         ItemStack stack = this.getMainHandStack();
 
-        // super slow to mine by hand blocks, possible but practically not viable.
+        // super slow to mine by hand blocks, possible but not viable.
         if ( isProblemToBreak(state, stack))
         {
             f = defaultSpeed / 8000;
             cir.setReturnValue(f);
         }
-        // mineable by hand, but still kinda slow
+        // mineable by hand, but still very slow
         else if ( state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && !stack.isSuitableFor(state) )
         {
             f = defaultSpeed / 80;
             cir.setReturnValue(f);
         }
-        // mined the wrong
+        // mined the wrong one
         if (isPrimitiveTool(stack) || !(stack.getItem() instanceof MiningToolItem))
         {
             f = defaultSpeed / 6;
