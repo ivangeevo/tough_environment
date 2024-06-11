@@ -1,0 +1,10 @@
+{
+  "variants":
+  {
+    "facing=east": { "model": "tough_environment:block/raw_copper_placed",  "y": 270 },
+    "facing=north": { "model": "tough_environment:block/raw_copper_placed", "y": 180 },
+    "facing=south": { "model": "tough_environment:block/raw_copper_placed" },
+    "facing=west": { "model": "tough_environment:block/raw_copper_placed", "y": 90 }
+
+  }
+}

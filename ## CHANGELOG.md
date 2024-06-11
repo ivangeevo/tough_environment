@@ -4,7 +4,8 @@
 + Added missing "brick to loose brick" slab recipe.
 + Added dirt piles drop when clay blocks get broken.
 + Added wooden chisel to be usable as a spit for campfires from the Self-Sustainable mod.
-
++ Changed Raw Iron, Raw Gold & Raw Copper item's display names to " Chunks of ore ".
++ Made Raw ore items(chunks) to be placeable in the world as blocks.
 
 + # 0.1.1 Alpha
 
