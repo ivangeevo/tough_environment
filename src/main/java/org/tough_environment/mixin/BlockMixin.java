@@ -31,7 +31,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         BlockManager.handleOnPlaced(placer);
     }
 
-    // Injecting our own logic and cancelling, because we got custom stack logic.
+    // Injecting our own logic and cancelling.
     @Inject(method = "afterBreak", at = @At("HEAD"))
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci)
     {
