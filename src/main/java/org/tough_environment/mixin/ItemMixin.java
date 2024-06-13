@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.block.blocks.PlacedOreChunkBlock;
 
 import java.util.Objects;
 
@@ -44,6 +45,14 @@ public abstract class ItemMixin
             {
                 BlockPos placePos = pos.up(); // Position to place the new block
 
+                // Check the block below the target position
+                BlockState belowBlockState = world.getBlockState(pos);
+                if (belowBlockState.getBlock() instanceof PlacedOreChunkBlock)
+                {
+                    // Prevent placing the block on top of itself
+                    cir.setReturnValue(ActionResult.FAIL);
+                    return;
+                }
                 //TODO: Possibly not good idea to access widen getHitResult(the last parameter) try something else if compatability issues arise.
 
                 // Create an ItemPlacementContext for the new block position
