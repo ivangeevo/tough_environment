@@ -1,4 +1,4 @@
-# 0.2
+# 0.2 Alpha
 
 + Fixed a bug with wrong recipe for loose bricks from item.
 + Fixed missing loose cobbled deepslate drop from breaking Deepslate.
@@ -9,7 +9,7 @@
 + Changed Compass, clock & flint & steel and bucket to use nuggets instead of ingots.
 + Made Raw ore items(chunks) to be placeable in the world as blocks.
 
-+ # 0.1.1 Alpha
+# 0.1.1 Alpha
 
 + Changed version numbering from 1.0 to 0.1
 + Fixed a bug where dirt wasn't dropping dirt piles when broken with hand.

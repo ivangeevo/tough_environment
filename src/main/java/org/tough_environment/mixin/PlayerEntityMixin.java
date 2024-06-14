@@ -35,7 +35,8 @@ public abstract class PlayerEntityMixin extends LivingEntity
         super(entityType, world);
     }
 
-    // TODO : FIX EFFICIENCY, HASTE & MINING FATIGUE NOT APPLIED FROM THE ORIGINAL LOGIC   @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
+    // TODO : FIX EFFICIENCY, HASTE & MINING FATIGUE NOT APPLIED FROM THE ORIGINAL LOGIC
+    @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
     private void customBlockBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir) {
 
         if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
