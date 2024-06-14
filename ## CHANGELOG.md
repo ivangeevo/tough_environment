@@ -1,10 +1,12 @@
 # 0.2
 
 + Fixed a bug with wrong recipe for loose bricks from item.
++ Fixed missing loose cobbled deepslate drop from breaking Deepslate.
 + Added missing "brick to loose brick" slab recipe.
 + Added dirt piles drop when clay blocks get broken.
 + Added wooden chisel to be usable as a spit for campfires from the Self-Sustainable mod.
 + Changed Raw Iron, Raw Gold & Raw Copper item's display names to " Chunks of ore ".
++ Changed Compass, clock & flint & steel and bucket to use nuggets instead of ingots.
 + Made Raw ore items(chunks) to be placeable in the world as blocks.
 
 + # 0.1.1 Alpha

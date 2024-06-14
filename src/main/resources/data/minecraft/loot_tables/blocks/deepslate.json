@@ -18,7 +18,8 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
-                  "tough_environment:chisel_iron"
+                  "tough_environment:chisel_iron",
+                  "tough_environment:chisel_diamond"
                 ]
               }
             }
@@ -48,7 +49,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
-                  "minecraft:iron_pickaxe"
+                  "minecraft:stone_pickaxe"
                 ]
               }
             }
@@ -73,7 +74,9 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
+                  "minecraft:iron_pickaxe",
                   "minecraft:diamond_pickaxe",
+                  "minecraft:golden_pickaxe",
                   "minecraft:netherite_pickaxe"
                 ]
               }
@@ -82,7 +85,18 @@
         },
         {
           "type": "minecraft:item",
-          "name": "tough_environment:pile_gravel"
+          "name": "tough_environment:pile_gravel",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "tough_environment:chisel_wood",
+                  "tough_environment:chisel_stone"
+                ]
+              }
+            }
+          ]
         }
       ]
     },
@@ -103,6 +117,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
+                  "tough_environment:chisel_iron",
                   "tough_environment:chisel_diamond"
                 ]
               }
