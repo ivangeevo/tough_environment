@@ -98,6 +98,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     private void addToModTags()
     {
 
+
         getOrCreateTagBuilder(ModTags.Mineable.CHISEL_MINEABLE)
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
@@ -108,13 +109,11 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.END_STONE)
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
+                .addTag(ModTags.Blocks.STONE_STRATA3)
+                .addTag(ModTags.Blocks.STONE_STRATA2)
 
-                .add(Blocks.COAL_ORE)
-                .add(Blocks.IRON_ORE)
-                .add(Blocks.COPPER_ORE)
-                .add(Blocks.REDSTONE_ORE)
-                .add(Blocks.LAPIS_ORE)
-                .add(Blocks.GOLD_ORE);
+
+                .addTag(ModTags.Blocks.ORES_ALL);
 
 
         getOrCreateTagBuilder(ModTags.Blocks.ORES_ALL)
@@ -208,9 +207,6 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.COBBLED_DEEPSLATE_SLAB)
                 .add(Blocks.ANDESITE_SLAB)
                 .add(Blocks.GRANITE_SLAB);
-
-
-
 
         getOrCreateTagBuilder(ModTags.Blocks.BROKEN_STONE_BLOCKS)
                 .add(ModBlocks.STONE_BROKEN)

@@ -179,13 +179,14 @@ public class BlockManager
 
     private static void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool) {
 
-        if (!shouldConvertOre(state, tool))
-        {
+        if (!shouldConvertOre(state, tool)) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
         }
 
-        if (tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES) || tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS))
+        if (tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)
+                || tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
+                || tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS))
         {
             if (state.isIn(ModTags.Blocks.STONE_ORES))
             {
@@ -196,13 +197,22 @@ public class BlockManager
             if (state.isIn(ModTags.Blocks.MANTLE_ORES))
             {
                 // TODO: add mantle converting block here
-                world.setBlockState(pos, ModBlocks.STONE_CONVERTING.getDefaultState().with(BREAK_LEVEL,5));
+                world.setBlockState(pos, ModBlocks.STONE_CONVERTING.getDefaultState().with(BREAK_LEVEL, 5));
                 return;
             }
 
             if (state.isIn(ModTags.Blocks.DEEPSLATE_ORES))
             {
-                world.setBlockState(pos, ModBlocks.DEEPSLATE_CONVERTING.getDefaultState().with(BREAK_LEVEL,5));
+                world.setBlockState(pos, ModBlocks.DEEPSLATE_CONVERTING.getDefaultState().with(BREAK_LEVEL, 5));
+            }
+
+        }
+        else if (tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES))
+        {
+
+            if (state.isIn(ModTags.Blocks.DEEPSLATE_ORES))
+            {
+                world.setBlockState(pos, ModBlocks.DEEPSLATE_CONVERTING.getDefaultState().with(BREAK_LEVEL, 5));
             }
 
         }
@@ -218,14 +228,7 @@ public class BlockManager
             return false;
         }
 
-        if ( stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.STONE_STRATA3) )
-        {
-            return false;
-        }
-
-
-        return ( !stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES) && !stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) )
-                || !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && state.isIn(ModTags.Blocks.STONE_STRATA2);
+        return !stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) || state.isIn(ModTags.Blocks.DEEPSLATE_ORES);
     }
 
 

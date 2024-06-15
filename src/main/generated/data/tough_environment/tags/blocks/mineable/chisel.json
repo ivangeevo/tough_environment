@@ -8,11 +8,8 @@
     "minecraft:calcite",
     "minecraft:end_stone",
     "#tough_environment:converted_stone_blocks",
-    "minecraft:coal_ore",
-    "minecraft:iron_ore",
-    "minecraft:copper_ore",
-    "minecraft:redstone_ore",
-    "minecraft:lapis_ore",
-    "minecraft:gold_ore"
+    "#tough_environment:stone_strata3",
+    "#tough_environment:stone_strata2",
+    "#tough_environment:ores_all"
   ]
 }
