@@ -35,7 +35,8 @@ public abstract class PlayerEntityMixin extends LivingEntity
     @Final
     private PlayerInventory inventory;
 
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world)
+    {
         super(entityType, world);
     }
     @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
@@ -47,6 +48,21 @@ public abstract class PlayerEntityMixin extends LivingEntity
         }
 
         float f = this.inventory.getBlockBreakingSpeed(state);
+
+        // Tough Environment: Added
+        // condition for breaking blocks without the correct item
+        if (!this.getMainHandStack().isSuitableFor(state))
+        {
+            // if the block is requiring a tool, make it nearly unbreakable
+            if (state.isToolRequired())
+            {
+                f /= 8000F;
+            }
+
+            // 6x times slower speed for all other blocks
+            f /= 6F;
+        }
+        // Tough Environment: End Mod
 
         if (f > 1.0F)
         {
@@ -86,21 +102,6 @@ public abstract class PlayerEntityMixin extends LivingEntity
         {
             f /= 5.0F;
         }
-
-        // Tough Environment: Added
-        // condition for breaking blocks without the correct item
-        if (!(this.getMainHandStack().getItem() instanceof MiningToolItem))
-        {
-            // if the block is requiring a tool, make it nearly unbreakable
-            if (state.isToolRequired())
-            {
-                f /= 8000F;
-            }
-
-            // 6x times slower speed for all other blocks
-            f /= 6F;
-        }
-        // Tough Environment: End Mod
 
         cir.setReturnValue(f);
     }

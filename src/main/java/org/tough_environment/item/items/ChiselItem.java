@@ -59,22 +59,29 @@ public class ChiselItem extends MiningToolItem
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
     {
-
-        if (stack.isOf(ModItems.CHISEL_STONE))
+        // decrease stone chisel's speed,
+        // because it uses the same speed as stone tool materials in vanilla, which is too fast
+        if (chiselType == ChiselType.STONE)
         {
             return super.getMiningSpeedMultiplier(stack, state) / 2f;
         }
 
+
         if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
         {
-
+            // diamond chisels are 6x faster against stumps
             if (chiselType == ChiselType.DIAMOND)
             {
                 return super.getMiningSpeedMultiplier(stack, state) * 6f;
             }
 
+            // all other chisels are 2x faster against stumps
             return super.getMiningSpeedMultiplier(stack, state) * 2f;
         }
+
+
+
+
 
         return super.getMiningSpeedMultiplier(stack, state);
     }
