@@ -34,13 +34,14 @@ public abstract class MiningToolItemMixin extends ToolItem
     @Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
     private void injectedGetMiningSpeedMultiplier(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir)
     {
-        // inappropriate for the block, but can still break it slowly.
-        // handles stratified stone cases and other similar breaks.
 
-        if ( isUnviableToBreak(state, stack))
+        // pretty much unbreakable
+        if ( isUnviableToBreak(state, stack) )
         {
             cir.setReturnValue(this.miningSpeed / 8000f);
         }
+        // inappropriate for the block, but can still break it slowly.
+        // handles stratified stone cases and other similar breaks.
         else if ( isProblemToBreak(state, stack) )
         {
             cir.setReturnValue(this.miningSpeed / 80f);
