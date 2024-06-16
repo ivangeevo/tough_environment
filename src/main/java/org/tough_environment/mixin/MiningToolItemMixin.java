@@ -61,22 +61,6 @@ public abstract class MiningToolItemMixin extends ToolItem
     }
 
     @Unique
-    private boolean isStrata3Converting(BlockState state)
-    {
-        return state.isOf(ModBlocks.DEEPSLATE_CONVERTING)
-                || state.isOf(ModBlocks.BLACKSTONE_CONVERTING)
-                || state.isOf(ModBlocks.END_STONE_CONVERTING);
-    }
-
-
-
-    @Unique
-    private boolean isStrata2Converting(BlockState state)
-    {
-        return state.isOf(ModBlocks.BASALT_CONVERTING);
-    }
-
-    @Unique
     private boolean isProblemToBreak(BlockState state, ItemStack stack)
     {
         boolean isStrata3 = state.isIn(ModTags.Blocks.STONE_STRATA3);
@@ -148,6 +132,20 @@ public abstract class MiningToolItemMixin extends ToolItem
         }
 
         return false;
+    }
+
+    @Unique
+    private boolean isStrata3Converting(BlockState state)
+    {
+        return state.isOf(ModBlocks.DEEPSLATE_CONVERTING)
+                || state.isOf(ModBlocks.BLACKSTONE_CONVERTING)
+                || state.isOf(ModBlocks.END_STONE_CONVERTING);
+    }
+
+    @Unique
+    private boolean isStrata2Converting(BlockState state)
+    {
+        return state.isOf(ModBlocks.BASALT_CONVERTING);
     }
 
     @Unique
