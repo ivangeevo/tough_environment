@@ -76,7 +76,6 @@ public abstract class MiningToolItemMixin extends ToolItem
         return state.isOf(ModBlocks.BASALT_CONVERTING);
     }
 
-    // This method handles cases where the tool is inappropriate for the block, but can break it very slowly.
     @Unique
     private boolean isProblemToBreak(BlockState state, ItemStack stack)
     {
@@ -84,8 +83,8 @@ public abstract class MiningToolItemMixin extends ToolItem
         boolean isStrata2 = state.isIn(ModTags.Blocks.STONE_STRATA2);
         boolean isStrata1 = state.isIn(ModTags.Blocks.STONE_STRATA1);
 
-
-        // conditions for pickaxes breaking strata stones to be tougher to break
+        // for pickaxes
+        // making strata stones to be tougher to break
         if ( isStrata3 && ( !stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES) ) )
         {
             return true;
@@ -94,11 +93,6 @@ public abstract class MiningToolItemMixin extends ToolItem
         {
             return true;
         }
-
-        // conditions for pickaxes breaking converted stones to be tougher to break
-
-
-
 
         // for chisels
         // used to disallow breaking after getting ore drops from said block
@@ -123,7 +117,11 @@ public abstract class MiningToolItemMixin extends ToolItem
     @Unique
     private boolean isUnviableToBreak(BlockState state, ItemStack stack)
     {
-        // conditions for pickaxes trying breaking converted stones
+        // conditions for trying to break converted stones
+        // used to disallow breaking after getting ore drops from said block
+
+
+        // for pickaxes
         if ( isStrata3Converting(state) && ( !stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES) ) )
         {
             return true;
@@ -133,13 +131,7 @@ public abstract class MiningToolItemMixin extends ToolItem
             return true;
         }
 
-        // conditions for pickaxes breaking converted stones to be tougher to break
-
-
-
-
         // for chisels
-        // used to disallow breaking after getting ore drops from said block
         if ( stack.getItem() instanceof ChiselItem )
         {
 
