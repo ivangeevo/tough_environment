@@ -42,10 +42,12 @@ public abstract class PlayerEntityMixin extends LivingEntity
     @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
     private void customBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir)
     {
+        /**
         if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
         {
             return;
         }
+         **/
 
         float f = this.inventory.getBlockBreakingSpeed(state);
 
