@@ -99,6 +99,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     {
 
 
+
+
         getOrCreateTagBuilder(ModTags.Mineable.CHISEL_MINEABLE)
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
@@ -107,6 +109,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
                 .add(Blocks.CALCITE)
                 .add(Blocks.END_STONE)
+
+                .add(Blocks.COBBLESTONE)
+
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.STONE_STRATA3)
@@ -240,7 +245,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.END_STONE)
                 .add(Blocks.DEEPSLATE);
 
-
+        getOrCreateTagBuilder(ModTags.Blocks.MISC_REQUIRING_TOOL)
+                .add(Blocks.SNOW);
 
     }
 

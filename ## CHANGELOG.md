@@ -11,7 +11,8 @@
 + Reworked breaking speeds logic and fixed a bug that made haste, efficiency and mining fatigue not apply to items.
 + Stone and Iron pickaxes will no longer break strata 3 stones (deepslate).
 + Temporary disabled Hardcore breaking speed mod menu config until future update.
-+ Added missing recipe for pozdol breaking into loose dirt/dirt piles.
++ Added missing loot table for Podzol breaking into loose dirt/dirt piles.
++ Added missing recipe for loose bricks block from loose brick slabs.
 
 
 # 0.1.1 Alpha

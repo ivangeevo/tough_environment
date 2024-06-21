@@ -53,7 +53,7 @@ public abstract class ItemMixin
                     cir.setReturnValue(ActionResult.FAIL);
                     return;
                 }
-                //TODO: Possibly not good idea to access widen getHitResult(the last parameter) try something else if compatability issues arise.
+                //TODO:Possibly not good idea to access widen getHitResult(the last parameter) try something else if compatibility issues arise.
 
                 // Create an ItemPlacementContext for the new block position
                 ItemPlacementContext placementContext = new ItemPlacementContext(Objects.requireNonNull(context.getPlayer()), context.getHand(), heldStack, context.getHitResult());

@@ -49,12 +49,17 @@ public abstract class PlayerEntityMixin extends LivingEntity
 
         float f = this.inventory.getBlockBreakingSpeed(state);
 
+        // TODO: Fix blocks like snow unable to be broken by hand.
+        //  using workaround tag for now && a replaceable check.
+
+
         // Tough Environment: Added
         // condition for breaking blocks without the correct item
-        if (!this.getMainHandStack().isSuitableFor(state))
+        if ( !this.getMainHandStack().isSuitableFor(state) )
         {
             // if the block is requiring a tool, make it nearly unbreakable
-            if (state.isToolRequired())
+            if ( state.isToolRequired()
+                    && ( !state.isIn(ModTags.Blocks.MISC_REQUIRING_TOOL) || state.getBlock().getDefaultState().isReplaceable() ) )
             {
                 f /= 8000F;
             }
@@ -64,25 +69,25 @@ public abstract class PlayerEntityMixin extends LivingEntity
         }
         // Tough Environment: End Mod
 
-        if (f > 1.0F)
+        if ( f > 1.0F )
         {
             int i = EnchantmentHelper.getEfficiency(this);
             ItemStack itemStack = this.getMainHandStack();
 
-            if (i > 0 && !itemStack.isEmpty())
+            if ( i > 0 && !itemStack.isEmpty() )
             {
                 f += (float)(i * i + 1);
             }
         }
 
-        if (StatusEffectUtil.hasHaste(this))
+        if ( StatusEffectUtil.hasHaste(this) )
         {
-            f *= 1.0F + (float)(StatusEffectUtil.getHasteAmplifier(this) + 1) * 0.2F;
+            f *= 1.0F + (float)( StatusEffectUtil.getHasteAmplifier(this) + 1 ) * 0.2F;
         }
 
-        if (this.hasStatusEffect(StatusEffects.MINING_FATIGUE))
+        if ( this.hasStatusEffect(StatusEffects.MINING_FATIGUE) )
         {
-            float g = switch (Objects.requireNonNull(this.getStatusEffect(StatusEffects.MINING_FATIGUE)).getAmplifier())
+            float g = switch ( Objects.requireNonNull(this.getStatusEffect(StatusEffects.MINING_FATIGUE)).getAmplifier())
             {
                 case 0 -> 0.3F;
                 case 1 -> 0.09F;
@@ -93,12 +98,12 @@ public abstract class PlayerEntityMixin extends LivingEntity
             f *= g;
         }
 
-        if (this.isSubmergedIn(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(this))
+        if ( this.isSubmergedIn(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(this) )
         {
             f /= 5.0F;
         }
 
-        if (!this.isOnGround())
+        if ( !this.isOnGround() )
         {
             f /= 5.0F;
         }

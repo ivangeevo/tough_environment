@@ -104,6 +104,8 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerBlockFromSlabs(exporter, ModBlocks.GRANITE_LOOSE, ModBlocks.SLAB_GRANITE_LOOSE);
         offerBlockFromSlabs(exporter, ModBlocks.ANDESITE_LOOSE, ModBlocks.SLAB_ANDESITE_LOOSE);
         offerBlockFromSlabs(exporter, ModBlocks.DIORITE_LOOSE, ModBlocks.SLAB_DIORITE_LOOSE);
+        offerBlockFromSlabs(exporter, ModBlocks.BRICKS_LOOSE, ModBlocks.SLAB_BRICKS_LOOSE);
+
 
         // From piles, small stones/shards
         offerBlockFromLesserDrops(exporter, Blocks.SAND, ModItems.PILE_SAND);

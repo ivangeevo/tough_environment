@@ -19,6 +19,9 @@ public class ModTags
         // Blocks that are mortared, mostly used to identify which blocks loose blocks can hold on to if placed against.
         public static final TagKey<Block> MORTARED_BLOCKS = register("mortared_blocks");
 
+        /** Workaround tag to group miscallaneous blocks like the snow layer blocks and others. **/
+        public static final TagKey<Block> MISC_REQUIRING_TOOL = register("misc_requiring_tools");
+
 
         public static final TagKey<Block> LOOSE_STONE_BLOCKS = register("loose_stone_blocks");
 

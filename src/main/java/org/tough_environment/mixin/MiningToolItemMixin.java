@@ -67,13 +67,17 @@ public abstract class MiningToolItemMixin extends ToolItem
         boolean isStrata2 = state.isIn(ModTags.Blocks.STONE_STRATA2);
         boolean isStrata1 = state.isIn(ModTags.Blocks.STONE_STRATA1);
 
+
+        boolean isModernPickaxe = stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES);
+        boolean isAdvancedPickaxe = stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
         // for pickaxes
         // making strata stones to be tougher to break
-        if ( isStrata3 && ( !stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES) ) )
+        if ( isStrata3 && !isAdvancedPickaxe )
         {
             return true;
         }
-        else if (isStrata2 && !stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES))
+
+        if (isStrata2 && !isAdvancedPickaxe && !isModernPickaxe)
         {
             return true;
         }
