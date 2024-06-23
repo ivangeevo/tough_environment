@@ -34,7 +34,7 @@ public abstract class ItemMixin
     }
 
     @Unique
-    private void makePlaceableAsBlock(Item item, Block block, World world, BlockPos pos, ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
+    private void makePlaceableAsBlock(Item item, Block block, World world, BlockPos pos, ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir )
     {
         ItemStack heldStack = context.getStack();
 
@@ -53,7 +53,8 @@ public abstract class ItemMixin
                     cir.setReturnValue(ActionResult.FAIL);
                     return;
                 }
-                //TODO:Possibly not good idea to access widen getHitResult(the last parameter) try something else if compatibility issues arise.
+
+                // TODO: Possibly not good idea to access widen getHitResult(the last parameter) try something else if compatability issues arise.
 
                 // Create an ItemPlacementContext for the new block position
                 ItemPlacementContext placementContext = new ItemPlacementContext(Objects.requireNonNull(context.getPlayer()), context.getHand(), heldStack, context.getHitResult());
@@ -65,7 +66,6 @@ public abstract class ItemMixin
                 {
                     world.setBlockState(placePos, placedBlockState);
                     heldStack.decrement(1);
-                    world.emitGameEvent(GameEvent.BLOCK_PLACE, pos, GameEvent.Emitter.of(context.getPlayer()));
 
                     // Indicate the interaction was successful
                     cir.setReturnValue(ActionResult.SUCCESS);
@@ -73,7 +73,5 @@ public abstract class ItemMixin
             }
         }
     }
-
-
 
 }

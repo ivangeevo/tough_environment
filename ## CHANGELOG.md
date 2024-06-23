@@ -1,3 +1,7 @@
+# 0.3? Alpha
+
++ Changed Anvil recipe to only require ingots.
+
 # 0.2 Alpha
 + Added missing "brick to loose brick" slab recipe.
 + Added dirt piles drop when clay blocks get broken.

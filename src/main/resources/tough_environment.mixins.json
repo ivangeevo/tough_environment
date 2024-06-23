@@ -11,6 +11,7 @@
     "ItemMixin",
     "MiningToolItemMixin",
     "PlayerEntityMixin",
+    "SpreadableBlockMixin",
     "ToolMaterialsMixin"
   ],
   "client": [

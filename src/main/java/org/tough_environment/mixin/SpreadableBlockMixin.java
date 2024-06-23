@@ -1,6 +1,5 @@
 package org.tough_environment.mixin;
 
-
 import net.minecraft.block.*;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.world.ServerWorld;
@@ -16,17 +15,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.tough_environment.block.ModBlocks;
 
-
 @Mixin(SpreadableBlock.class)
 public abstract class SpreadableBlockMixin extends SnowyBlock {
 
-    public SpreadableBlockMixin(Settings settings) {
+    public SpreadableBlockMixin(AbstractBlock.Settings settings) {
         super(settings);
     }
 
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-    private void injectedRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci)
-    {
+    private void injectedRandomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         if (!canSurvive(state, world, pos)) {
             world.setBlockState(pos, Blocks.DIRT.getDefaultState());
             return;
@@ -35,14 +32,13 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
             BlockState blockState = this.getDefaultState();
             for (int i = 0; i < 4; ++i) {
                 BlockPos blockPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                if ( ( !world.getBlockState(blockPos).isOf(Blocks.DIRT) || !world.getBlockState(blockPos).isOf(ModBlocks.DIRT_LOOSE) )
-                        || !canSpread(blockState, world, blockPos) ) continue;
-                world.setBlockState(blockPos, blockState.with(SNOWY, world.getBlockState(blockPos.up()).isOf(Blocks.SNOW)));
+                BlockState targetState = world.getBlockState(blockPos);
+                if ((targetState.isOf(Blocks.DIRT) || targetState.isOf(ModBlocks.DIRT_LOOSE)) && canSpread(blockState, world, blockPos)) {
+                    world.setBlockState(blockPos, blockState.with(SNOWY, world.getBlockState(blockPos.up()).isOf(Blocks.SNOW)));
+                }
             }
         }
         ci.cancel();
-
-
     }
 
     @Shadow
@@ -64,5 +60,4 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
         BlockPos blockPos = pos.up();
         return canSurvive(state, world, pos) && !world.getFluidState(blockPos).isIn(FluidTags.WATER);
     }
-
 }

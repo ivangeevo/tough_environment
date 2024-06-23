@@ -33,6 +33,7 @@ public class PlacedOreChunkBlock extends Block
     private static final double ORE_HEIGHT_MAX = 3.5 / 16.0;
     private static final double ORE_LENGTH_MIN = 6.0 / 16.0;
     private static final double ORE_LENGTH_MAX = 10.0 / 16.0;
+    private static final VoxelShape SHAPE = VoxelShapes.cuboid(ORE_WIDTH_MIN, ORE_HEIGHT_MIN, ORE_LENGTH_MIN, ORE_WIDTH_MAX, ORE_HEIGHT_MAX, ORE_LENGTH_MAX);
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
@@ -51,7 +52,7 @@ public class PlacedOreChunkBlock extends Block
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
     {
-        return VoxelShapes.cuboid(ORE_WIDTH_MIN, ORE_HEIGHT_MIN, ORE_LENGTH_MIN, ORE_WIDTH_MAX, ORE_HEIGHT_MAX, ORE_LENGTH_MAX);
+        return SHAPE;
     }
 
     @Override
@@ -76,7 +77,6 @@ public class PlacedOreChunkBlock extends Block
         return BlockRenderType.MODEL;
     }
 
-    //TODO: make not placeable on top of itself.
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)
     {
@@ -93,25 +93,25 @@ public class PlacedOreChunkBlock extends Block
     private void dropBlockAsItem(World world, BlockPos pos)
     {
         BlockState stateAtPos = world.getBlockState(pos);
-        ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), Objects.requireNonNull(getDropItemForBlock(stateAtPos)));
+        ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), Objects.requireNonNull(getDropItemForBlock(stateAtPos)).getDefaultStack());
     }
 
-    private ItemStack getDropItemForBlock(BlockState state)
+    private Item getDropItemForBlock(BlockState state)
     {
 
         if (state.isOf(ModBlocks.RAW_COPPER_PLACED))
         {
-            return Items.RAW_COPPER.getDefaultStack();
+            return Items.RAW_COPPER;
         }
 
         if (state.isOf(ModBlocks.RAW_IRON_PLACED))
         {
-            return Items.RAW_IRON.getDefaultStack();
+            return Items.RAW_IRON;
         }
 
         if (state.isOf(ModBlocks.RAW_GOLD_PLACED))
         {
-            return Items.RAW_GOLD.getDefaultStack();
+            return Items.RAW_GOLD;
         }
 
         return null;
