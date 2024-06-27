@@ -40,7 +40,18 @@ import static org.tough_environment.block.blocks.ConvertingBlock.BREAK_LEVEL;
  */
 public class BlockManager
 {
-    public static void handleOnPlaced(LivingEntity placer)
+
+    private static final BlockManager instance = new BlockManager();
+
+    // Private constructor to prevent instantiation
+    private BlockManager() {}
+    public static BlockManager getInstance()
+    {
+        return instance;
+    }
+
+
+    public void handleOnPlaced(LivingEntity placer)
     {
         if (placer instanceof PlayerEntity)
         {
@@ -49,7 +60,7 @@ public class BlockManager
         }
     }
 
-    public static void handleAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, ItemStack tool) {
+    public void handleAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, ItemStack tool) {
 
         setConvertibleState(world, pos, state, tool);
 
@@ -60,7 +71,7 @@ public class BlockManager
 
     }
 
-    public static void playSoundOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack, PlayerEntity player)
+    public void playSoundOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack, PlayerEntity player)
     {
         if ( shouldDingOnBreak(state, stack) && !player.isCreative())
         {
@@ -69,7 +80,7 @@ public class BlockManager
         }
     }
 
-    private static boolean shouldDingOnBreak(BlockState state, ItemStack stack)
+    private boolean shouldDingOnBreak(BlockState state, ItemStack stack)
     {
         // TODO: Add chisel ding sound when breaking and also ding sound for primitive pickaxes breaking stone.
         if (state.getBlock() instanceof ConvertingBlock && stack.getItem() != null && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
@@ -94,7 +105,7 @@ public class BlockManager
 
 
 
-    private static boolean isFullyBreakingTool(ItemStack stack)
+    private boolean isFullyBreakingTool(ItemStack stack)
     {
        return stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
                || stack.isIn(BTWRConventionalTags.Items.ADVANCED_SHOVELS)
@@ -105,7 +116,7 @@ public class BlockManager
                || stack.isIn(BTWRConventionalTags.Items.MODERN_AXES);
     }
 
-    private static void setConvertibleState(World world, BlockPos pos, BlockState state, ItemStack tool)
+    private void setConvertibleState(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
         if (!world.isClient)
         {
@@ -150,7 +161,7 @@ public class BlockManager
 
     }
 
-    private static void setStateForStone(World world, BlockPos pos, ItemStack tool, BlockState state)
+    private void setStateForStone(World world, BlockPos pos, ItemStack tool, BlockState state)
     {
 
         if (tool.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
@@ -177,7 +188,7 @@ public class BlockManager
 
     }
 
-    private static void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool) {
+    private void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool) {
 
         if (!shouldConvertOre(state, tool)) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
@@ -220,7 +231,7 @@ public class BlockManager
 
     }
 
-    private static boolean shouldConvertOre(BlockState state, ItemStack stack)
+    private boolean shouldConvertOre(BlockState state, ItemStack stack)
     {
 
         if ( stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES) )
@@ -232,7 +243,7 @@ public class BlockManager
     }
 
 
-    private static void setStateForDirt(World world, BlockPos pos, BlockState state, ItemStack tool)
+    private void setStateForDirt(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
 
         boolean isAboveDirtAndTwoAboveGrass = state.isOf(Blocks.DIRT)
@@ -283,7 +294,7 @@ public class BlockManager
 
     }
 
-    private static void setAdjacentDirtBlocksOnBreak(World world, BlockPos pos)
+    private void setAdjacentDirtBlocksOnBreak(World world, BlockPos pos)
     {
         BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
@@ -319,7 +330,7 @@ public class BlockManager
 
 
     @NotNull
-    public static Direction getBlockHitSide()
+    public Direction getBlockHitSide()
     {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         ClientPlayerEntity player = minecraftClient.player;

@@ -152,73 +152,6 @@ public abstract class PlayerEntityMixin extends LivingEntity
 
     }
 
-    /** v2 Experimental
-    @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
-    private void customBlockBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir) {
-
-        if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
-        {
-            return;
-        }
-
-        float defaultSpeed = this.inventory.getBlockBreakingSpeed(state);
-        float f;
-        ItemStack stack = this.getMainHandStack();
-
-        // Custom logic: super slow to mine by hand blocks, possible but not viable.
-        if (isProblemToBreak(state, stack)) {
-            f = defaultSpeed / 8000;
-        }
-        // Custom logic: mineable by hand, but still very slow
-        else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && !stack.isSuitableFor(state)) {
-            f = defaultSpeed / 80;
-        }
-        // Custom logic: mined the wrong one
-        else if (isPrimitiveTool(stack) || !(stack.getItem() instanceof MiningToolItem)) {
-            f = defaultSpeed / 6;
-        }
-        // Custom logic: base speed reduction for other tools
-        else {
-            f = defaultSpeed / 2;
-        }
-
-        // Apply efficiency enchantment
-        int efficiencyLevel = EnchantmentHelper.getEfficiency(this);
-        if (efficiencyLevel > 0 && !stack.isEmpty()) {
-            f += (efficiencyLevel * efficiencyLevel + 1);
-        }
-
-        // Apply haste effect
-        if (StatusEffectUtil.hasHaste(this)) {
-            f *= 1.0F + (float) (StatusEffectUtil.getHasteAmplifier(this) + 1) * 0.2F;
-        }
-
-        // Apply mining fatigue effect
-        if (this.hasStatusEffect(StatusEffects.MINING_FATIGUE)) {
-            float g = switch (this.getStatusEffect(StatusEffects.MINING_FATIGUE).getAmplifier()) {
-                case 0 -> 0.3F;
-                case 1 -> 0.09F;
-                case 2 -> 0.0027F;
-                default -> 8.1E-4F;
-            };
-            f *= g;
-        }
-
-        // Apply water penalty
-        if (this.isSubmergedIn(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(this)) {
-            f /= 5.0F;
-        }
-
-        // Apply off-ground penalty
-        if (!this.isOnGround()) {
-            f /= 5.0F;
-        }
-
-        cir.setReturnValue(f);
-    }
-    **/
-
-
     // This method handles cases where the tool is very, very slow to break the block. Almost unbreakable.
     @Unique
     private boolean isProblemToBreak(BlockState state, ItemStack stack) {
@@ -267,14 +200,3 @@ public abstract class PlayerEntityMixin extends LivingEntity
                 || stack.isIn(BTWRConventionalTags.Items.ADVANCED_HOES);
     }
 }
-
-
-/**
- @Unique
- private boolean isProblemToBreak(BlockState state, ItemStack stack)
- {
-
- return ( (state.isIn(ModTags.Blocks.STONE_STRATA2) || state.isIn(ModTags.Blocks.STONE_STRATA3)) && !stack.isSuitableFor(state) )
- || ( state.isIn(ModTags.Blocks.STONE_STRATA1) && !(stack.getItem() instanceof MiningToolItem) );
- }
- **/
