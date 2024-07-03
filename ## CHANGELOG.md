@@ -1,8 +1,13 @@
-# 0.2.1 Alpha
 
-+ Changed Anvil recipe to only require ingots.
-+ Changed Coarse Dirt & Farmland loot tables to drop loose dirt and piles when they should.
-+ Fixed code to work as intended on the server side as well.
+# 0.3 Alpha
+
++ Added Pile of Gold Dust and Pile of Copper Dust items.
++ Changed Anvil's recipe to only require ingots.
++ Changed Coarse Dirt, Farmland & Mycelium to drop loose dirt and piles when they should.
++ Changed names of Sharp Stick and Sharp Stone to be called "Chisels". ( Hi Zhil ;) )
++ Changes to conventional tags.
++ Corrected most of the loot tables for ore blocks to drop the correct items.
++ Fixed code to work as intended on the server side.
 
 # 0.2 Alpha
 + Added missing "brick to loose brick" slab recipe.
