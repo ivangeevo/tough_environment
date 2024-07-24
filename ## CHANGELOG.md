@@ -12,7 +12,6 @@
 + Fixed most loot tables for ore blocks to drop the correct items.
 + Fixed code to work as intended on the server side.
 
-
 # 0.2 Alpha
 + Added missing "brick to loose brick" slab recipe.
 + Added dirt piles drop when clay blocks get broken.
