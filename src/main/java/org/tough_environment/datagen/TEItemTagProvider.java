@@ -83,7 +83,21 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.SMALL_STONE_2)
                 .add(ModItems.SHARD_ANDESITE)
                 .add(ModItems.SHARD_GRANITE)
-                .add(ModItems.SHARD_DIORITE);
+                .add(ModItems.SHARD_DIORITE)
+
+                // vanilla ores
+                .add(Items.COAL)
+                .add(Items.RAW_IRON)
+                .add(Items.RAW_COPPER)
+                .add(Items.RAW_GOLD)
+                .add(Items.REDSTONE)
+                .add(Items.COAL)
+                .add(Items.COAL)
+                .add(Items.COAL)
+
+
+        ;
+
     }
 
     private void addToVanillaTags ()
