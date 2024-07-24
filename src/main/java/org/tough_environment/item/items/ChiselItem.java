@@ -1,8 +1,13 @@
 package org.tough_environment.item.items;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.component.type.AttributeModifierSlot;
+import net.minecraft.component.type.AttributeModifiersComponent;
+import net.minecraft.component.type.ToolComponent;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
@@ -15,6 +20,8 @@ import net.minecraft.world.World;
 import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
+import java.util.List;
+
 public class ChiselItem extends MiningToolItem
 {
     private final Type chiselType;
@@ -22,15 +29,22 @@ public class ChiselItem extends MiningToolItem
     {
         WOOD, STONE, IRON, DIAMOND
     }
+    public static AttributeModifiersComponent createAttributeModifiers() {
+        return AttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 1.0, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND).add(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -0.8f, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND).build();
+    }
+
+    public static ToolComponent createToolComponent(float speed, int damage) {
+        return new ToolComponent(List.of(), speed, damage);
+    }
 
     public Type getType() {
         return chiselType;
     }
 
-    public ChiselItem(float attackDamage, float attackSpeed, ToolMaterials material, Type chiselType, Settings settings)
+    public ChiselItem(ToolMaterials material, Type chiselType, Settings settings)
     {
 
-        super(attackDamage, attackSpeed, material, ModTags.Mineable.CHISEL, settings);
+        super(material, ModTags.Mineable.CHISEL, settings);
         this.chiselType = chiselType;
 
     }
@@ -43,26 +57,26 @@ public class ChiselItem extends MiningToolItem
 
             if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
             {
-                stack.damage(5, miner, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                stack.damage(5, miner, EquipmentSlot.MAINHAND);
 
             }
             else
             {
-                stack.damage(1, miner, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+                stack.damage(1, miner, EquipmentSlot.MAINHAND);
             }
 
         }
         return true;
     }
 
+
     @Override
-    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
-    {
+    public float getMiningSpeed(ItemStack stack, BlockState state) {
         // decrease stone chisel's speed,
         // because it uses the same speed as stone tool materials in vanilla, which is too fast
         if (chiselType == Type.STONE)
         {
-            return super.getMiningSpeedMultiplier(stack, state) / 2f;
+            return super.getMiningSpeed(stack, state) / 2f;
         }
 
         if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
@@ -70,11 +84,11 @@ public class ChiselItem extends MiningToolItem
             // diamond chisels are 6x faster against stumps
             if (chiselType == Type.DIAMOND)
             {
-                return super.getMiningSpeedMultiplier(stack, state) * 6f;
+                return super.getMiningSpeed(stack, state) * 6f;
             }
 
             // all other chisels are 2x faster against stumps
-            return super.getMiningSpeedMultiplier(stack, state) * 2f;
+            return super.getMiningSpeed(stack, state) * 2f;
         }
 
         if ( getType() == Type.IRON || getType() == Type.STONE )
@@ -82,18 +96,16 @@ public class ChiselItem extends MiningToolItem
             if ( state.isIn(ModTags.Blocks.STONE_CONVERTING_STRATA3)
                     || state.isIn(ModTags.Blocks.STONE_CONVERTING_STRATA2) )
             {
-                return this.miningSpeed / 80f;
+                return this.getMiningSpeed(stack, state) / 80f;
 
             }
         }
 
-        return super.getMiningSpeedMultiplier(stack, state);
+        return super.getMiningSpeed(stack, state);
     }
 
     @Override
-    public void onCraft(ItemStack stack, World world, PlayerEntity player)
-    {
-
+    public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player) {
         BlockPos thisPos = player.getBlockPos();
         SoundEvent craftingSound;
 
@@ -114,7 +126,6 @@ public class ChiselItem extends MiningToolItem
         }
 
         player.tick();
-
     }
 
 }

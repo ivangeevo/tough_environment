@@ -33,9 +33,8 @@ public class LoosePillarBlock extends LooseBlock
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
-    {
-        if (!world.isClient && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS))
         {
             BlockState newState = world.getBlockState(pos).with(AXIS, state.get(AXIS));
 
@@ -43,7 +42,7 @@ public class LoosePillarBlock extends LooseBlock
             this.applyMortar(newState, world, pos, player);
 
             // Reduce item stack size
-            ItemStack handStack = player.getStackInHand(hand);
+            ItemStack handStack = player.getStackInHand(player.getActiveHand());
             handStack.decrement(1);
 
             return ActionResult.SUCCESS;
@@ -51,6 +50,7 @@ public class LoosePillarBlock extends LooseBlock
 
         return ActionResult.PASS;
     }
+
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {

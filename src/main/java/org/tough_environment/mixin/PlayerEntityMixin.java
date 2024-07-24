@@ -33,7 +33,7 @@ public abstract class PlayerEntityMixin extends LivingEntity
 {
     @Shadow
     @Final
-    private PlayerInventory inventory;
+    PlayerInventory inventory;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world)
     {

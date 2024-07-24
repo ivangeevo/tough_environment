@@ -39,23 +39,23 @@ public class LooseBlock extends MortarReceiverBlock implements LandingBlock
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
-    {
-        if (!world.isClient && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS))
         {
 
             // Mortar the block
             this.applyMortar(state, world, pos, player);
 
             // Reduce item stack size
-            ItemStack handStack = player.getStackInHand(hand);
+            ItemStack handStack = player.getStackInHand(player.getActiveHand());
             handStack.decrement(1);
 
             return ActionResult.SUCCESS;
         }
 
-        return ActionResult.PASS;
-    }
+        return ActionResult.PASS;    }
+
+
 
 
     // ---------------------------------- //

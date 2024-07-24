@@ -1,5 +1,6 @@
 package org.tough_environment.block.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.SlabType;
@@ -44,7 +45,11 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
     protected static final VoxelShape BOTTOM_SHAPE;
     protected static final VoxelShape TOP_SHAPE;
 
-
+    public static final MapCodec<LooseAgregateSlabBlock> CODEC = LooseAgregateSlabBlock.createCodec(LooseAgregateSlabBlock::new);
+    @Override
+    protected MapCodec<? extends FallingBlock> getCodec() {
+        return CODEC;
+    }
 
     public LooseAgregateSlabBlock(Settings settings)
     {
@@ -187,22 +192,24 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
             return false;
         }
     }
-
+    @Override
     public FluidState getFluidState(BlockState state)
     {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
+    @Override
 
     public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState)
     {
         return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.tryFillWithFluid(world, pos, state, fluidState);
     }
 
-    public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid)
+    @Override
+    public boolean canFillWithFluid(PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid)
     {
-        return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.canFillWithFluid(world, pos, state, fluid);
+        return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.canFillWithFluid(player, world, pos, state, fluid);
     }
-
+    @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
                                                 WorldAccess world, BlockPos pos, BlockPos neighborPos)
     {

@@ -1,5 +1,7 @@
 package org.tough_environment.block.blocks;
 
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FallingBlock;
@@ -19,11 +21,17 @@ import org.tough_environment.tag.ModTags;
 
 public class LooseAgregateBlock extends FallingBlock
 {
+    public static final MapCodec<LooseAgregateBlock> CODEC = LooseAgregateBlock.createCodec(LooseAgregateBlock::new);
 
     // Block parameters and constants & Super settings //
     public LooseAgregateBlock(Settings settings)
     {
         super(settings);
+    }
+
+    @Override
+    protected MapCodec<? extends FallingBlock> getCodec() {
+        return CODEC;
     }
 
     @Override

@@ -20,13 +20,40 @@ import org.tough_environment.tag.ModTags;
 @Mixin(MiningToolItem.class)
 public abstract class MiningToolItemMixin extends ToolItem
 {
-    @Shadow @Final protected float miningSpeed;
-
     public MiningToolItemMixin(ToolMaterial material, Settings settings)
     {
         super(material, settings);
     }
 
+    @Override
+    public float getMiningSpeed(ItemStack stack, BlockState state) {
+        // pretty much unbreakable
+        if ( isUnfeasibleToBreak(state, stack) )
+        {
+            return super.getMiningSpeed(stack, state) / 8000f;
+        }
+        // inappropriate for the block, but can still break it slowly.
+        // handles stratified stone cases and other similar breaks.
+        else if ( isProblemToBreak(state, stack) )
+        {
+            return super.getMiningSpeed(stack, state) / 80f;
+        }
+        // primitive tools are 6x slower for their materials.
+        else if ( isPrimitiveTool(stack) )
+        {
+            return super.getMiningSpeed(stack, state) / 6f;
+        }
+
+        // if the block is broken type, and the stack is suitable for it.
+        if ( state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && stack.isSuitableFor(state) )
+        {
+            return super.getMiningSpeed(stack, state) * 12;
+        }
+
+        return super.getMiningSpeed(stack, state);
+    }
+
+    /**
     @Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
     private void injectedGetMiningSpeedMultiplier(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir)
     {
@@ -55,6 +82,7 @@ public abstract class MiningToolItemMixin extends ToolItem
         }
 
     }
+     **/
 
     @Unique
     private boolean isProblemToBreak(BlockState state, ItemStack stack)

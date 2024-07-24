@@ -3,37 +3,38 @@ package org.tough_environment.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class TERecipeProvider extends FabricRecipeProvider
 {
-    public TERecipeProvider(FabricDataOutput output)
-    {
-        super(output);
+
+    public TERecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
-    public void generate(Consumer<RecipeJsonProvider> exporter)
+    public void generate(RecipeExporter exporter)
     {
-
-    this.addBlockRecipes(exporter);
-    this.addLesserDropRecipes(exporter);
-    this.addSlabRecipes(exporter);
-    this.addMiscRecipes(exporter);
+        this.addBlockRecipes(exporter);
+        this.addLesserDropRecipes(exporter);
+        this.addSlabRecipes(exporter);
+        this.addMiscRecipes(exporter);
 
     }
 
-    private void addMiscRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addMiscRecipes(RecipeExporter exporter)
     {
         /** Shapeless **/
 
@@ -57,7 +58,7 @@ public class TERecipeProvider extends FabricRecipeProvider
 
 
     }
-    private void addLesserDropRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addLesserDropRecipes(RecipeExporter exporter)
     {
         // Piles, Stones & Shards from Slabs
         offerLesserDropsFromSlab(exporter, ModItems.PILE_DIRT, ModBlocks.SLAB_DIRT);
@@ -93,7 +94,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerLesserDropsFromStairs(exporter, ModItems.SHARD_ANDESITE, ModBlocks.GRANITE_LOOSE_STAIRS);
         offerLesserDropsFromStairs(exporter, ModItems.SHARD_DIORITE, ModBlocks.DIORITE_LOOSE_STAIRS);
     }
-    private void addBlockRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addBlockRecipes(RecipeExporter exporter)
     {
 
         // From slabs
@@ -132,7 +133,7 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerStairs(exporter, ModBlocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE);
 
     }
-    private void addSlabRecipes(Consumer<RecipeJsonProvider> exporter)
+    private void addSlabRecipes(RecipeExporter exporter)
     {
         // From lesser drops/items (stones/piles/dust)
         offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT);
@@ -160,7 +161,7 @@ public class TERecipeProvider extends FabricRecipeProvider
     }
 
     // LESSER DROP METHODS
-    private static void offerLesserDropsFromSlab(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    private static void offerLesserDropsFromSlab(RecipeExporter exporter, ItemConvertible output, ItemConvertible input)
     {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .input(input)
@@ -168,7 +169,7 @@ public class TERecipeProvider extends FabricRecipeProvider
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter,  convertBetween(output, input));
     }
-    private static void offerLesserDropsFromBlock(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    private static void offerLesserDropsFromBlock(RecipeExporter exporter, ItemConvertible output, ItemConvertible input)
     {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 8)
                 .input(input)
@@ -176,7 +177,7 @@ public class TERecipeProvider extends FabricRecipeProvider
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter,  convertBetween(output, input));
     }
-    public static void offerLesserDropsFromStairs(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    public static void offerLesserDropsFromStairs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input)
     {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 6)
                 .input(input)
@@ -186,7 +187,7 @@ public class TERecipeProvider extends FabricRecipeProvider
     }
 
     // SLAB METHODS
-    private static void offerSlabsFromBlock(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    private static void offerSlabsFromBlock(RecipeExporter exporter, ItemConvertible output, ItemConvertible input)
     {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .input('#', input)
@@ -195,7 +196,7 @@ public class TERecipeProvider extends FabricRecipeProvider
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter, convertBetween(output, input));
     }
-    private static void offerSlabFromLesserDrops(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    private static void offerSlabFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input)
     {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
                 .input('#', input)
@@ -207,7 +208,7 @@ public class TERecipeProvider extends FabricRecipeProvider
     }
 
     // BLOCK METHODS
-    private static void offerBlockFromSlabs(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    private static void offerBlockFromSlabs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input)
     {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
                 .input('#', input)
@@ -218,7 +219,7 @@ public class TERecipeProvider extends FabricRecipeProvider
                 .offerTo(exporter, convertBetween(output, input));
 
     }
-    private static void offerBlockFromLesserDrops(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    private static void offerBlockFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input)
     {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
                 .input(input).input(input).input(input).input(input).input(input).input(input).input(input).input(input)
@@ -226,7 +227,7 @@ public class TERecipeProvider extends FabricRecipeProvider
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter, convertBetween(output, input));
     }
-    private static void offerStairs(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input)
+    private static void offerStairs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input)
     {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .input('#', input)
@@ -248,7 +249,7 @@ public class TERecipeProvider extends FabricRecipeProvider
     }
 
     // use later
-    private static void offerBiDirectionalConversionRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible output, ItemConvertible input, int inputQuantity, int outputQuantity) {
+    private static void offerBiDirectionalConversionRecipe(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, int inputQuantity, int outputQuantity) {
         // From block to lesser drops
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, outputQuantity)
                 .input(input, inputQuantity)
@@ -264,4 +265,5 @@ public class TERecipeProvider extends FabricRecipeProvider
                 .offerTo(exporter, convertBetween(input, output));
     }
 
+    
 }

@@ -4,7 +4,6 @@
 package org.tough_environment.block.blocks;
 
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.StairShape;
 import net.minecraft.entity.Entity;
@@ -34,7 +33,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
-import org.jetbrains.annotations.Nullable;
 import org.tough_environment.tag.ModTags;
 
 import java.util.stream.IntStream;
@@ -95,8 +93,10 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
-    {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+
+        Hand hand = player.getActiveHand();
+
         if (!world.isClient && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
         {
             BlockState newState = world.getBlockState(pos)
@@ -115,8 +115,10 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
             return ActionResult.SUCCESS;
         }
 
-        return this.baseBlockState.onUse(world, player, hand, hit);
+        return this.baseBlockState.onUse(world, player, hit);
     }
+
+
 
 
     @Override
@@ -168,7 +170,7 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
             return;
         }
         world.updateNeighbor(this.baseBlockState, pos, Blocks.AIR, pos, false);
-        this.baseBlock.onBlockAdded(this.baseBlockState, world, pos, oldState, true);
+        this.baseBlock.getDefaultState().onBlockAdded(world, pos, oldState, true);
     }
 
     @Override
@@ -188,19 +190,19 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
 
     @Override
     public boolean hasRandomTicks(BlockState state) {
-        return this.baseBlock.hasRandomTicks(state);
+        return this.baseBlock.getDefaultState().hasRandomTicks();
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
-        this.baseBlock.randomTick(state, world, pos, random);
+        this.baseBlock.getDefaultState().randomTick(world, pos, random);
     }
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
-        this.baseBlock.scheduledTick(state, world, pos, random);
+        this.baseBlock.getDefaultState().scheduledTick(world, pos, random);
 
     }
 
@@ -350,10 +352,10 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
     }
 
     @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type)
-    {
-        return false;
+    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
+        return super.canPathfindThrough(state, type);
     }
+
 
 }
 

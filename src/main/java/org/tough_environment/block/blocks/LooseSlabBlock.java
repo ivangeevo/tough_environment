@@ -69,17 +69,16 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit)
-    {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient
-                && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
+                && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS))
         {
 
             // Mortar the block
             this.applyMortar(state.with(WATERLOGGED, state.get(WATERLOGGED)), world, pos, player);
 
             // Optionally, reduce item stack size or perform other actions
-            ItemStack handStack = player.getStackInHand(hand);
+            ItemStack handStack = player.getStackInHand(player.getActiveHand());
             handStack.decrement(1);
 
             return ActionResult.SUCCESS;
@@ -87,6 +86,7 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 
         return ActionResult.PASS;
     }
+
 
     // Overriding the original method, because slabs need some extra logic, depending on the slab type placed.
     @Override
@@ -215,9 +215,9 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.tryFillWithFluid(world, pos, state, fluidState);
     }
 
-    public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid)
+    public boolean canFillWithFluid(PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid)
     {
-        return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.canFillWithFluid(world, pos, state, fluid);
+        return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.canFillWithFluid(player, world, pos, state, fluid);
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,

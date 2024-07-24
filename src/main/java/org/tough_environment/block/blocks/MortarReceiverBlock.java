@@ -1,5 +1,6 @@
 package org.tough_environment.block.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
@@ -22,10 +23,16 @@ public class MortarReceiverBlock extends FallingBlock
 {
 
     private static final int SLOW_FALL_DELAY_TICKS = 40;
+    public static final MapCodec<MortarReceiverBlock> CODEC = MortarReceiverBlock.createCodec(MortarReceiverBlock::new);
+    @Override
+    protected MapCodec<? extends FallingBlock> getCodec() {
+        return CODEC;
+    }
 
     public MortarReceiverBlock(Settings settings) {
         super(settings);
     }
+
 
     public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player)
     {
