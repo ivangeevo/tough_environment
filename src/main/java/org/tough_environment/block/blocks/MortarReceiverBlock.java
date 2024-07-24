@@ -21,7 +21,7 @@ import java.util.Map;
 public class MortarReceiverBlock extends FallingBlock
 {
 
-    private static final int FALL_DELAY_TICKS = 40;
+    private static final int SLOW_FALL_DELAY_TICKS = 40;
 
     public MortarReceiverBlock(Settings settings) {
         super(settings);
@@ -64,43 +64,26 @@ public class MortarReceiverBlock extends FallingBlock
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify)
-    {
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        if (world.isClient()) return;
 
-        if (!world.isClient())
-        {
-            boolean mortarable = false;
-            // Iterate over all neighboring positions
-            for (Direction direction : Direction.values())
-            {
-                BlockPos neighborPos = pos.offset(direction);
-                BlockState neighborState = world.getBlockState(neighborPos);
+        boolean hasMortaredNeighbor = Direction.stream()
+                .map(pos::offset)
+                .map(world::getBlockState)
+                .anyMatch(neighborState -> neighborState.isIn(ModTags.Blocks.MORTARED_BLOCKS));
 
-                // Check if the adjacent block is part of the specified tag
-                if (neighborState.isIn(ModTags.Blocks.MORTARED_BLOCKS))
-                {
-                    mortarable = true;
-                    break;
-                }
-            }
-
+        if (hasMortaredNeighbor) {
             // Create an OrderedTick for the block
-            OrderedTick<Block> orderedTick = new OrderedTick<>(state.getBlock(), pos, 0, TickPriority.NORMAL, 0);
-
-            // If the block is not part of the mortarable blocks tag, schedule an immediate tick
-            if (!mortarable)
-            {
-                world.getBlockTickScheduler().scheduleTick(orderedTick);
-            }
-            else
-            {
-                // If the block is part of the mortared blocks tag, schedule the tick for 40 ticks later
-                orderedTick = new OrderedTick<>(state.getBlock(), pos, world.getTime() + FALL_DELAY_TICKS,
-                        TickPriority.NORMAL, 0);
-                world.getBlockTickScheduler().scheduleTick(orderedTick);
-            }
+            OrderedTick<Block> orderedTick = new OrderedTick<>(
+                    state.getBlock(), pos, world.getTime() + SLOW_FALL_DELAY_TICKS, TickPriority.NORMAL, 0
+            );
+            world.getBlockTickScheduler().scheduleTick(orderedTick);
+        } else {
+            // Schedule the normal fall tick (default for falling blocks)
+            super.onBlockAdded(state, world, pos, oldState, notify);
         }
     }
+
 
 
 
