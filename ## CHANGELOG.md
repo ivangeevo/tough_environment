@@ -1,14 +1,17 @@
 
 # 0.3 Alpha
-
++ The mod now requires BTWR:Core v0.25. It didn't require it before, which caused some blocks to not drop correctly when mined.
 + Added Pile of Gold Dust and Pile of Copper Dust items.
 + Added Pile of Coal Dust and Wooden Chisel as viable fuel items.
 + Changed Anvil's recipe to only require ingots.
 + Changed Coarse Dirt, Farmland & Mycelium to drop loose dirt and piles when they should.
-+ Changed names of Sharp Stick and Sharp Stone to be called "Chisels". ( Hi Zhil ;) )
++ Changed names of Sharp Stick and Sharp Stone to be called "Chisels". Hi Zhil ;)
++ Changed (improved) code for falling of loose blocks.
++ Changed the mod to require Fabric API 0.92.2
 + Changes to conventional tags.
-+ Corrected most of the loot tables for ore blocks to drop the correct items.
++ Fixed most loot tables for ore blocks to drop the correct items.
 + Fixed code to work as intended on the server side.
+
 
 # 0.2 Alpha
 + Added missing "brick to loose brick" slab recipe.
