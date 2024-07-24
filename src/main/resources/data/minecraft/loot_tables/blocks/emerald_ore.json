@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:deepslate_gold_ore",
+              "name": "minecraft:emerald_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:raw_gold",
+              "name": "minecraft:emerald",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -52,7 +52,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:raw_gold",
+          "name": "minecraft:emerald",
           "conditions": [
             {
               "condition": "minecraft:survives_explosion"
@@ -71,7 +71,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tough_environment:small_stone_2",
+          "name": "tough_environment:small_stone",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -83,6 +83,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
+                  "minecraft:iron_pickaxe",
                   "minecraft:diamond_pickaxe",
                   "minecraft:netherite_pickaxe"
                 ]
@@ -93,5 +94,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/deepslate_gold_ore"
+  "random_sequence": "minecraft:blocks/emerald_ore"
 }

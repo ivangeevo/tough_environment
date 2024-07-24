@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:deepslate_gold_ore",
+              "name": "minecraft:deepslate_redstone_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,22 +29,27 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:raw_gold",
+              "name": "minecraft:redstone",
               "functions": [
                 {
-                  "function": "minecraft:explosion_decay"
-                }
-              ],
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": [
-                      "minecraft:iron_pickaxe",
-                      "minecraft:diamond_pickaxe",
-                      "minecraft:netherite_pickaxe"
-                    ]
+                  "function": "minecraft:set_count",
+                  "add": false,
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 5.0,
+                    "min": 4.0
                   }
+                },
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:uniform_bonus_count",
+                  "parameters": {
+                    "bonusMultiplier": 1
+                  }
+                },
+                {
+                  "function": "minecraft:explosion_decay"
                 }
               ]
             }
@@ -52,7 +57,18 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:raw_gold",
+          "name": "minecraft:redstone",
+          "functions": [
+              {
+                "function": "minecraft:set_count",
+                "add": false,
+                "count": {
+                  "type": "minecraft:uniform",
+                  "max": 5.0,
+                  "min": 4.0
+                }
+              }
+            ],
           "conditions": [
             {
               "condition": "minecraft:survives_explosion"
@@ -93,5 +109,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/deepslate_gold_ore"
+  "random_sequence": "minecraft:blocks/deepslate_redstone_ore"
 }

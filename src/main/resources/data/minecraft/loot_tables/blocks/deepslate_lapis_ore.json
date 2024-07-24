@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:deepslate_gold_ore",
+              "name": "minecraft:deepslate_lapis_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,30 +29,44 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:raw_gold",
+              "name": "minecraft:lapis_lazuli",
               "functions": [
+                {
+                  "add": false,
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 9.0,
+                    "min": 4.0
+                  },
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:ore_drops",
+                  "function": "minecraft:apply_bonus"
+                },
                 {
                   "function": "minecraft:explosion_decay"
                 }
-              ],
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": [
-                      "minecraft:iron_pickaxe",
-                      "minecraft:diamond_pickaxe",
-                      "minecraft:netherite_pickaxe"
-                    ]
-                  }
-                }
               ]
             }
+
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:raw_gold",
+          "name": "minecraft:lapis_lazuli",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 9.0,
+                "min": 4.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
           "conditions": [
             {
               "condition": "minecraft:survives_explosion"
@@ -93,5 +107,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/deepslate_gold_ore"
+  "random_sequence": "minecraft:blocks/deepslate_lapis_ore"
 }

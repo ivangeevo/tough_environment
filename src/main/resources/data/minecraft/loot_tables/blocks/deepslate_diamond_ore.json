@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:deepslate_gold_ore",
+              "name": "minecraft:deepslate_diamond_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:raw_gold",
+              "name": "minecraft:diamond",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -52,7 +52,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:raw_gold",
+          "name": "minecraft:diamond",
           "conditions": [
             {
               "condition": "minecraft:survives_explosion"
@@ -93,5 +93,5 @@
       ]
     }
   ],
-  "random_sequence": "minecraft:blocks/deepslate_gold_ore"
+  "random_sequence": "minecraft:blocks/deepslate_diamond_ore"
 }

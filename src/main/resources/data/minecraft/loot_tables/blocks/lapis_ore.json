@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:redstone_ore",
+              "name": "minecraft:lapis_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
