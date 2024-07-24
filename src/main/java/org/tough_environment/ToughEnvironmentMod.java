@@ -8,6 +8,7 @@ import org.tough_environment.block.ModBlocks;
 import org.tough_environment.config.TESettings;
 import org.tough_environment.item.ModItemGroup;
 import org.tough_environment.item.ModItems;
+import org.tough_environment.registry.ModFuelItems;
 import org.tough_environment.util.BlockMortarMapInitializer;
 
 import java.io.File;
@@ -46,6 +47,7 @@ public class ToughEnvironmentMod implements ModInitializer
         ModBlocks.registerModBlocks();
         ModItems.registerModItems();
         ModItemGroup.registerItemGroups();
+        ModFuelItems.register();
 
 
 

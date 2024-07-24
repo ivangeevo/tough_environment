@@ -1,6 +1,5 @@
 package org.tough_environment.item.items;
 
-import com.terraformersmc.modmenu.util.mod.Mod;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -13,24 +12,25 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Unique;
-import org.tough_environment.item.ModItems;
 import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class ChiselItem extends MiningToolItem
 {
-    private final ChiselType chiselType;
-    public enum ChiselType { WOOD, STONE, IRON, DIAMOND }
+    private final Type chiselType;
+    public enum Type
+    {
+        WOOD, STONE, IRON, DIAMOND
+    }
 
-    public ChiselType getType() {
+    public Type getType() {
         return chiselType;
     }
 
-    public ChiselItem(float attackDamage, float attackSpeed, ToolMaterials material, ChiselType chiselType, Settings settings)
+    public ChiselItem(float attackDamage, float attackSpeed, ToolMaterials material, Type chiselType, Settings settings)
     {
 
-        super(attackDamage, attackSpeed, material, ModTags.Mineable.CHISEL_MINEABLE, settings);
+        super(attackDamage, attackSpeed, material, ModTags.Mineable.CHISEL, settings);
         this.chiselType = chiselType;
 
     }
@@ -55,22 +55,20 @@ public class ChiselItem extends MiningToolItem
         return true;
     }
 
-
     @Override
     public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
     {
         // decrease stone chisel's speed,
         // because it uses the same speed as stone tool materials in vanilla, which is too fast
-        if (chiselType == ChiselType.STONE)
+        if (chiselType == Type.STONE)
         {
             return super.getMiningSpeedMultiplier(stack, state) / 2f;
         }
 
-
         if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
         {
             // diamond chisels are 6x faster against stumps
-            if (chiselType == ChiselType.DIAMOND)
+            if (chiselType == Type.DIAMOND)
             {
                 return super.getMiningSpeedMultiplier(stack, state) * 6f;
             }
@@ -79,14 +77,18 @@ public class ChiselItem extends MiningToolItem
             return super.getMiningSpeedMultiplier(stack, state) * 2f;
         }
 
+        if ( getType() == Type.IRON || getType() == Type.STONE )
+        {
+            if ( state.isIn(ModTags.Blocks.STONE_CONVERTING_STRATA3)
+                    || state.isIn(ModTags.Blocks.STONE_CONVERTING_STRATA2) )
+            {
+                return this.miningSpeed / 80f;
 
-
-
+            }
+        }
 
         return super.getMiningSpeedMultiplier(stack, state);
     }
-
-
 
     @Override
     public void onCraft(ItemStack stack, World world, PlayerEntity player)
@@ -95,17 +97,17 @@ public class ChiselItem extends MiningToolItem
         BlockPos thisPos = player.getBlockPos();
         SoundEvent craftingSound;
 
-        if (chiselType == ChiselType.WOOD)
+        if (chiselType == Type.WOOD)
         {
             craftingSound = SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR;
             world.playSound(player, thisPos, craftingSound, SoundCategory.BLOCKS, 0.2f, 1.2f);
         }
-        else if (chiselType == ChiselType.STONE)
+        else if (chiselType == Type.STONE)
         {
             craftingSound = SoundEvents.BLOCK_ANVIL_LAND;
             world.playSound(player,thisPos, craftingSound, SoundCategory.BLOCKS,0.2f,1.2f);
         }
-        else if (chiselType == ChiselType.IRON || chiselType == ChiselType.DIAMOND)
+        else if (chiselType == Type.IRON || chiselType == Type.DIAMOND)
         {
             craftingSound = SoundEvents.BLOCK_ANVIL_USE;
             world.playSound(player,thisPos, craftingSound, SoundCategory.BLOCKS,0.2f,1.2f);
@@ -113,35 +115,6 @@ public class ChiselItem extends MiningToolItem
 
         player.tick();
 
-    }
-
-    @Unique
-    private boolean isPrimitiveTool(ItemStack stack)
-    {
-        return stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)
-                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_AXES)
-                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_SHOVELS)
-                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_HOES)
-                || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS);
-    }
-
-    @Unique
-    private boolean isModernTool(ItemStack stack)
-    {
-        return stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES)
-                || stack.isIn(BTWRConventionalTags.Items.MODERN_AXES)
-                || stack.isIn(BTWRConventionalTags.Items.MODERN_SHOVELS)
-                || stack.isIn(BTWRConventionalTags.Items.MODERN_HOES)
-                || stack.isIn(BTWRConventionalTags.Items.MODERN_CHISELS);
-    }
-
-    @Unique
-    private boolean isAdvancedTool(ItemStack stack)
-    {
-        return stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
-                || stack.isIn(BTWRConventionalTags.Items.ADVANCED_AXES)
-                || stack.isIn(BTWRConventionalTags.Items.ADVANCED_SHOVELS)
-                || stack.isIn(BTWRConventionalTags.Items.ADVANCED_HOES);
     }
 
 }

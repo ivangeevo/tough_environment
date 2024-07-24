@@ -33,6 +33,9 @@ public class ModItemGroup
 
                         entries.add(ModItems.DUST_COAL);
                         entries.add(ModItems.DUST_IRON);
+                        entries.add(ModItems.DUST_GOLD);
+                        entries.add(ModItems.DUST_COPPER);
+
 
                         // Stones, Shards, Crystals & Ore Chunks
                         entries.add(ModItems.SMALL_STONE);

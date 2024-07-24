@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "tough_environment:blackstone_converting",
+    "tough_environment:end_stone_converting",
+    "tough_environment:deepslate_converting"
+  ]
+}

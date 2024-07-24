@@ -53,13 +53,11 @@
 
   "item.tough_environment.dust_coal": "Pile of Coal Dust",
   "item.tough_environment.dust_iron": "Pile of Iron Dust",
+  "item.tough_environment.dust_gold": "Pile of Gold Dust",
+  "item.tough_environment.dust_copper": "Pile of Copper Dust",
 
-  "item.tough_environment.ore_iron_chunk": "Chunk of Iron Ore",
-  "item.tough_environment.ore_gold_chunk": "Chunk of Gold Ore",
-  "item.tough_environment.ore_copper_clump": "Clump of Copper",
-
-  "item.tough_environment.chisel_wood": "Pointy Stick",
-  "item.tough_environment.chisel_stone": "Sharp Stone",
+  "item.tough_environment.chisel_wood": "Wooden Chisel",
+  "item.tough_environment.chisel_stone": "Stone Chisel",
   "item.tough_environment.chisel_iron": "Iron Chisel",
   "item.tough_environment.chisel_diamond": "Diamond Chisel",
 

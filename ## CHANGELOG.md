@@ -2,6 +2,7 @@
 # 0.3 Alpha
 
 + Added Pile of Gold Dust and Pile of Copper Dust items.
++ Added Pile of Coal Dust and Wooden Chisel as viable fuel items.
 + Changed Anvil's recipe to only require ingots.
 + Changed Coarse Dirt, Farmland & Mycelium to drop loose dirt and piles when they should.
 + Changed names of Sharp Stick and Sharp Stone to be called "Chisels". ( Hi Zhil ;) )

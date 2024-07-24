@@ -51,19 +51,25 @@ public abstract class PlayerEntityMixin extends LivingEntity
 
         float f = this.inventory.getBlockBreakingSpeed(state);
 
-        // TODO: Fix blocks like snow unable to be broken by hand.
-        //  using workaround tag for now && a replaceable check.
-
+        // TODO: Fix ore blocks not breakable with chisels
+        // It's not necessarily to be fixed here, but it needs to be mentioned somewhere.
+        // For some reason the tough_environment:/mineable tags are not getting loaded at all
 
         // Tough Environment: Added
         // condition for breaking blocks without the correct item
         if ( !this.getMainHandStack().isSuitableFor(state) )
         {
-            // if the block is requiring a tool, make it nearly unbreakable
-            if ( state.isToolRequired()
-                    && ( !state.isIn(ModTags.Blocks.MISC_REQUIRING_TOOL) || state.getBlock().getDefaultState().isReplaceable() ) )
+            // if the block is requiring a tool, that means its a tough block.
+            if ( state.isToolRequired() )
             {
-                f /= 8000F;
+                // and if its not a special case block (like snow) which can still be broken by hand (but requires a tool)
+                // then make it super tough to break
+                // this additional check could probably be evaded by getting better conditions.
+                if (!state.isIn(ModTags.Blocks.MISC_REQUIRING_TOOL))
+                {
+                    f /= 8000F;
+
+                }
             }
 
             // 6x times slower speed for all other blocks

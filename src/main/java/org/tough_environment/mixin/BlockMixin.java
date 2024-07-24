@@ -24,19 +24,17 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         super(settings);
     }
 
-    // 0.005f hunger whenever a block is placed
     @Inject(method = "onPlaced", at = @At("HEAD"))
     private void injectedOnPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, CallbackInfo ci)
     {
         BlockManager.getInstance().handleOnPlaced(placer);
     }
 
-    // Injecting our own logic and cancelling.
     @Inject(method = "afterBreak", at = @At("HEAD"))
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci)
     {
         BlockManager.getInstance().handleAfterBreak(world, player, pos, state, tool);
-        BlockManager.getInstance().playSoundOnBreak(world, pos, state ,tool, player);
+        BlockManager.getInstance().playDingSoundOnBreak(world, pos, state ,tool, player);
 
     }
 }

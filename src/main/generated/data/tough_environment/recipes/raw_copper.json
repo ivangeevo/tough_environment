@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tough_environment:dust_copper"
+    },
+    {
+      "item": "tough_environment:dust_copper"
+    }
+  ],
+  "result": {
+    "item": "minecraft:raw_copper"
+  }
+}

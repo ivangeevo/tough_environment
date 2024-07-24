@@ -1,8 +1,6 @@
 package org.tough_environment.util;
 
 import com.google.gson.Gson;
-import net.minecraft.block.Blocks;
-import org.tough_environment.block.ModBlocks;
 
 import java.io.FileReader;
 import java.io.FileWriter;

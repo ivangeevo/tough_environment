@@ -29,6 +29,10 @@ public class ModTags
         public static final TagKey<Block> STONE_STRATA2 = register("stone_strata2");
         public static final TagKey<Block> STONE_STRATA3 = register("stone_strata3");
 
+        public static final TagKey<Block> STONE_CONVERTING_STRATA1 = register("stone_converting_strata1");
+        public static final TagKey<Block> STONE_CONVERTING_STRATA2 = register("stone_converting_strata2");
+        public static final TagKey<Block> STONE_CONVERTING_STRATA3 = register("stone_converting_strata3");
+
         public static final TagKey<Block> ORES_LVL1 = register("ores_lvl1");
         public static final TagKey<Block> ORES_LVL2 = register("ores_lvl2");
         public static final TagKey<Block> ORES_LVL3 = register("ores_lvl3");
@@ -37,9 +41,6 @@ public class ModTags
         public static final TagKey<Block> STONE_ORES = register("stone_ores");
         public static final TagKey<Block> MANTLE_ORES =  register("mantle_ores");
         public static final TagKey<Block> DEEPSLATE_ORES = register("deepslate_ores");
-        public static final TagKey<Block> ORES_ALL = register("ores_all");
-
-
 
         private static TagKey<Block> register(String name) {
             return TagKey.of(RegistryKeys.BLOCK, new Identifier(ToughEnvironmentMod.MOD_ID, name));
@@ -50,30 +51,28 @@ public class ModTags
     {
         public static final TagKey<Item> SHOULD_NOT_MERGE = register("should_not_merge");
         public static final TagKey<Item> SMALL_STONES = register("small_stones");
-
         public static final TagKey<Item> MORTARING_ITEMS = register("mortaring_items");
 
-        /**
-         * Item Tags that need to be manually added, or on the modpack level.
-         **/
-        // The below tags can't generate with Datagen directly.
         private static TagKey<Item> register(String name) {
             return TagKey.of(RegistryKeys.ITEM, new Identifier(ToughEnvironmentMod.MOD_ID, name));
         }
 
     }
 
+
     public static class Mineable
     {
 
-        public static final TagKey<Block> CHISEL_MINEABLE = register("mineable/chisel");
+        public static final TagKey<Block> CHISEL = register("mineable/chisel");
+
+        private static TagKey<Block> register(String id)
+        {
+            return TagKey.of(RegistryKeys.BLOCK, new Identifier(ToughEnvironmentMod.MOD_ID, id));
+        }
 
     }
 
-    private static TagKey<Block> register(String id)
-    {
-        return TagKey.of(RegistryKeys.BLOCK, new Identifier(ToughEnvironmentMod.MOD_ID, id));
-    }
+
 
 
 

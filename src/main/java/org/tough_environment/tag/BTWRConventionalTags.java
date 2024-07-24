@@ -11,16 +11,21 @@ public class BTWRConventionalTags
 {
     public static class Blocks
     {
-        // Blocks that can convert on break and are from vanilla
+        // Vanilla Blocks that can convert on break
         public static final TagKey<Block> VANILLA_CONVERTING_BLOCKS = createTag("vanilla_converting_blocks");
 
-        // Blocks that can convert on break and are NOT from vanilla
+        // Modded Blocks that can convert on break
         public static final TagKey<Block> MODDED_CONVERTING_BLOCKS = createTag("modded_converting_blocks");
 
-        // Stump blocks grouped; initially used for Sturdy Tree's Stump blocks
+        // Stump blocks grouped; normally used for Sturdy Tree's Stump blocks
         public static final TagKey<Block> STUMP_BLOCKS = createTag("stump_blocks");
 
         public static final TagKey<Block> STONE = createTag("stone");
+
+
+        // existing conventional tags from fabric
+        public static final TagKey<Block> ORES = createTag("ores");
+
 
 
         private static TagKey<Block> createTag(String name) {

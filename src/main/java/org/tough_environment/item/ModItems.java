@@ -1,6 +1,5 @@
 package org.tough_environment.item;
 
-import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterials;
@@ -35,23 +34,24 @@ public class ModItems
     public static final Item SHARD_DIORITE = registerItem( "shard_diorite", new Item(new FabricItemSettings()));
 
     public static final Item DUST_COAL = registerItem( "dust_coal", new Item (new FabricItemSettings()));
-
     public static final Item DUST_IRON = registerItem( "dust_iron", new Item (new FabricItemSettings()));
+    public static final Item DUST_GOLD = registerItem( "dust_gold", new Item (new FabricItemSettings()));
+    public static final Item DUST_COPPER = registerItem( "dust_copper", new Item (new FabricItemSettings()));
 
 
 
     // Tool Items
     public static final Item CHISEL_WOOD = registerItem( "chisel_wood",
-            new ChiselItem( -0.02f, 0.15f, ToolMaterials.WOOD, ChiselItem.ChiselType.WOOD,
+            new ChiselItem( -0.02f, 0.15f, ToolMaterials.WOOD, ChiselItem.Type.WOOD,
                     new FabricItemSettings().maxDamage(2)));
     public static final Item CHISEL_STONE = registerItem( "chisel_stone",
-            new ChiselItem(-0.05f,-1f, ToolMaterials.STONE, ChiselItem.ChiselType.STONE,
+            new ChiselItem(-0.05f,-1f, ToolMaterials.STONE, ChiselItem.Type.STONE,
                     new FabricItemSettings().maxDamage(8)));
     public static final Item CHISEL_IRON = registerItem( "chisel_iron",
-            new ChiselItem(-0.10f,0.2f, ToolMaterials.IRON, ChiselItem.ChiselType.IRON,
+            new ChiselItem(-0.10f,0.2f, ToolMaterials.IRON, ChiselItem.Type.IRON,
                     new FabricItemSettings().maxDamage(238)));
     public static final Item CHISEL_DIAMOND = registerItem( "chisel_diamond",
-            new ChiselItem(-0.12f,0.2f, ToolMaterials.DIAMOND, ChiselItem.ChiselType.DIAMOND,
+            new ChiselItem(-0.12f,0.2f, ToolMaterials.DIAMOND, ChiselItem.Type.DIAMOND,
                     new FabricItemSettings().maxDamage(500)));
 
 

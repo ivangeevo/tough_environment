@@ -4,30 +4,20 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ExperienceDroppingBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Unique;
 import org.tough_environment.block.blocks.ConvertingBlock;
+import org.tough_environment.item.items.ChiselItem;
 import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
-import org.tough_environment.util.ItemUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +41,7 @@ public class BlockManager
     }
 
 
+    // 0.005f hunger whenever a block is placed
     public void handleOnPlaced(LivingEntity placer)
     {
         if (placer instanceof PlayerEntity)
@@ -71,16 +62,16 @@ public class BlockManager
 
     }
 
-    public void playSoundOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack, PlayerEntity player)
+    public void playDingSoundOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack, PlayerEntity player)
     {
-        if ( shouldDingOnBreak(state, stack) && !player.isCreative())
+        if ( shouldDing(state, stack) && !player.isCreative())
         {
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_ANVIL_LAND,
                     SoundCategory.BLOCKS,0.5F,world.random.nextFloat() * 0.25F + 1.75F);
         }
     }
 
-    private boolean shouldDingOnBreak(BlockState state, ItemStack stack)
+    private boolean shouldDing(BlockState state, ItemStack stack)
     {
         // TODO: Add chisel ding sound when breaking and also ding sound for primitive pickaxes breaking stone.
         if (state.getBlock() instanceof ConvertingBlock && stack.getItem() != null && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
@@ -105,27 +96,19 @@ public class BlockManager
 
 
 
-    private boolean isFullyBreakingTool(ItemStack stack)
-    {
-       return stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
-               || stack.isIn(BTWRConventionalTags.Items.ADVANCED_SHOVELS)
-               || stack.isIn(BTWRConventionalTags.Items.ADVANCED_AXES)
 
-               || stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES)
-               || stack.isIn(BTWRConventionalTags.Items.MODERN_SHOVELS)
-               || stack.isIn(BTWRConventionalTags.Items.MODERN_AXES);
-    }
 
     private void setConvertibleState(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
         if (!world.isClient)
         {
 
-            if (state.isOf(Blocks.DIRT) || state.isOf(Blocks.COARSE_DIRT) || state.isOf(Blocks.DIRT_PATH)) {
+            if ( isDirtLooseningBlock(state) ) {
                 setStateForDirt(world, pos, state, tool);
             }
 
-            if (state.isIn(ModTags.Blocks.ORES_ALL)) {
+            if ( state.isIn(BTWRConventionalTags.Blocks.ORES) )
+            {
                 setStateForOre(world, pos, state, tool);
             }
 
@@ -157,8 +140,6 @@ public class BlockManager
             }
 
         }
-
-
     }
 
     private void setStateForStone(World world, BlockPos pos, ItemStack tool, BlockState state)
@@ -170,7 +151,6 @@ public class BlockManager
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
         }
-
 
         if (tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES) && state.get(BREAK_LEVEL) < 5)
         {
@@ -185,7 +165,6 @@ public class BlockManager
         }
 
         world.setBlockState(pos, state.with(BREAK_LEVEL, 0));
-
     }
 
     private void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool) {
@@ -196,8 +175,7 @@ public class BlockManager
         }
 
         if (tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)
-                || tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
-                || tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS))
+                || tool.getItem() instanceof ChiselItem)
         {
             if (state.isIn(ModTags.Blocks.STONE_ORES))
             {
@@ -265,9 +243,6 @@ public class BlockManager
             return;
         }
 
-
-
-
         if ( !isFullyBreakingShovel )
         {
 
@@ -312,45 +287,25 @@ public class BlockManager
         }
     }
 
-    /**
-    private static void dropStacks(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool)
-    {
 
-        if ( (state.isIn(ModTags.Blocks.VANILLA_CONVERTING_BLOCKS) || state.getBlock() instanceof ConvertingBlock)
-                && !tool.isIn(ModTags.Items.ADVANCED_PICKAXES) )
-        {
-            ItemUtils.ejectStackFromBlockTowardsFacing(world, player, pos, state, blockEntity, tool, getBlockHitSide());
-        }
-        else
-        {
-            Block.dropStacks(state, world, pos, blockEntity, player, tool);
-        }
+    private boolean isFullyBreakingTool(ItemStack stack)
+    {
+        return stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
+                || stack.isIn(BTWRConventionalTags.Items.ADVANCED_SHOVELS)
+                || stack.isIn(BTWRConventionalTags.Items.ADVANCED_AXES)
+
+                || stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES)
+                || stack.isIn(BTWRConventionalTags.Items.MODERN_SHOVELS)
+                || stack.isIn(BTWRConventionalTags.Items.MODERN_AXES);
     }
-     **/
 
-
-    @NotNull
-    public Direction getBlockHitSide()
+    private boolean isDirtLooseningBlock(BlockState state)
     {
-        MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        ClientPlayerEntity player = minecraftClient.player;
-
-        // Ensure the player and world are not null
-        if (player != null && minecraftClient.world != null)
-        {
-            // Get the player's crosshair position
-            HitResult hitResult = minecraftClient.crosshairTarget;
-
-            // Check if the crosshair is pointing at a block
-            if (hitResult != null && hitResult.getType() == HitResult.Type.BLOCK)
-            {
-                // Get the side from the block state
-                return ((BlockHitResult) hitResult).getSide();
-            }
-        }
-
-        // Return a default direction if the conditions are not met
-        return Direction.NORTH;
+        return state.isOf(Blocks.DIRT)
+                || state.isOf(Blocks.COARSE_DIRT)
+                || state.isOf(Blocks.DIRT_PATH)
+                || state.isOf(Blocks.GRASS_BLOCK)
+                || state.isOf(Blocks.MYCELIUM);
     }
 
 

@@ -94,7 +94,7 @@ public class MortarReceiverBlock extends FallingBlock
             }
             else
             {
-                // If the block is part of the mortarable blocks tag, schedule the tick for 40 ticks later
+                // If the block is part of the mortared blocks tag, schedule the tick for 40 ticks later
                 orderedTick = new OrderedTick<>(state.getBlock(), pos, world.getTime() + FALL_DELAY_TICKS,
                         TickPriority.NORMAL, 0);
                 world.getBlockTickScheduler().scheduleTick(orderedTick);

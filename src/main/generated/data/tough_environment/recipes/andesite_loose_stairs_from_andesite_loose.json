@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "group_te",
+  "key": {
+    "#": {
+      "item": "tough_environment:andesite_loose"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "item": "tough_environment:andesite_loose_stairs"
+  },
+  "show_notification": true
+}

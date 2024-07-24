@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tough_environment:dust_gold"
+    },
+    {
+      "item": "tough_environment:dust_gold"
+    }
+  ],
+  "result": {
+    "item": "minecraft:raw_gold"
+  }
+}

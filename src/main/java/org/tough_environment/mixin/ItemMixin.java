@@ -30,7 +30,6 @@ public abstract class ItemMixin
         makePlaceableAsBlock(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED, world, pos, context, cir);
         makePlaceableAsBlock(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED, world, pos, context, cir);
 
-
     }
 
     @Unique
