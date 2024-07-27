@@ -41,10 +41,7 @@
                   "predicate": {
                     "items": [
                       "minecraft:stone_pickaxe",
-                      "minecraft:iron_pickaxe",
-                      "minecraft:golden_pickaxe",
-                      "minecraft:diamond_pickaxe",
-                      "minecraft:netherite_pickaxe"
+                      "#c:full_mines_strata_3"
                     ]
                   }
                 }
@@ -101,9 +98,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:netherite_pickaxe"
+                  "#c:full_mines_strata_1"
                 ]
               }
             }

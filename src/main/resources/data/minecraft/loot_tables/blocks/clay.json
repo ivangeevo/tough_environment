@@ -15,7 +15,9 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "minecraft:shovels"
+                    "items": [
+                      "#minecraft:shovels"
+                    ]
                   }
                 }
               ]
