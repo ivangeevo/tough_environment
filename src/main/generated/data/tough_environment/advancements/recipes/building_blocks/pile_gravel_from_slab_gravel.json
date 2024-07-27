@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:slab_gravel"
-            ]
+            "items": "tough_environment:slab_gravel"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_slab_gravel",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_slab_gravel"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:pile_gravel_from_slab_gravel"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

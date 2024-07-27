@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:brick"
-            ]
+            "items": "minecraft:brick"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_brick",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_brick"
     ]
   ],
   "rewards": {
     "recipes": [
       "tough_environment:slab_bricks_loose"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

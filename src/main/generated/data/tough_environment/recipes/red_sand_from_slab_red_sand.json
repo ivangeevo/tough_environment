@@ -12,7 +12,7 @@
     "#"
   ],
   "result": {
-    "item": "minecraft:red_sand"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "minecraft:red_sand"
+  }
 }

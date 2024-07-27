@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "tough_environment:pile_dirt",
     "tough_environment:pile_sand",
@@ -11,6 +10,14 @@
     "tough_environment:small_stone_2",
     "tough_environment:shard_andesite",
     "tough_environment:shard_granite",
-    "tough_environment:shard_diorite"
+    "tough_environment:shard_diorite",
+    "minecraft:coal",
+    "minecraft:raw_iron",
+    "minecraft:raw_copper",
+    "minecraft:raw_gold",
+    "minecraft:redstone",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal"
   ]
 }

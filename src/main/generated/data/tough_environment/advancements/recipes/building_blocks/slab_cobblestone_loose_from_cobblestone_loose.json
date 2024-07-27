@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:cobblestone_loose"
-            ]
+            "items": "tough_environment:cobblestone_loose"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_cobblestone_loose",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cobblestone_loose"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:slab_cobblestone_loose_from_cobblestone_loose"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

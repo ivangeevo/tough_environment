@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:cobblestone_loose_stairs"
-            ]
+            "items": "tough_environment:cobblestone_loose_stairs"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_cobblestone_loose_stairs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_cobblestone_loose_stairs"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:small_stone_from_cobblestone_loose_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

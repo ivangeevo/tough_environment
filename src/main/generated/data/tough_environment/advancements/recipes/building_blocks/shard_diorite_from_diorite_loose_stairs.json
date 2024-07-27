@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:diorite_loose_stairs"
-            ]
+            "items": "tough_environment:diorite_loose_stairs"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_diorite_loose_stairs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_diorite_loose_stairs"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:shard_diorite_from_diorite_loose_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

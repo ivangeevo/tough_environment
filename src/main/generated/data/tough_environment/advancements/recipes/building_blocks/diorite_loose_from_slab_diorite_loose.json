@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:slab_diorite_loose"
-            ]
+            "items": "tough_environment:slab_diorite_loose"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_slab_diorite_loose",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_slab_diorite_loose"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:diorite_loose_from_slab_diorite_loose"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

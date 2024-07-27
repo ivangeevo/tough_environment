@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:dust_gold"
-            ]
+            "items": "tough_environment:dust_gold"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_dust_gold",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_dust_gold"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:raw_gold"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

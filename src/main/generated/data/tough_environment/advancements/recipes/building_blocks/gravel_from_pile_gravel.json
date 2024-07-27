@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:pile_gravel"
-            ]
+            "items": "tough_environment:pile_gravel"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_pile_gravel",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pile_gravel"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:gravel_from_pile_gravel"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

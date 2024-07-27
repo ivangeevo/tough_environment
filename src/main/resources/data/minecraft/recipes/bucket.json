@@ -12,7 +12,7 @@
     "###"
   ],
   "result": {
-    "item": "minecraft:bucket"
+    "id": "minecraft:bucket"
   },
   "show_notification": true
 }

@@ -13,7 +13,6 @@
   ],
   "result": {
     "count": 4,
-    "item": "tough_environment:diorite_stairs"
-  },
-  "show_notification": true
+    "id": "tough_environment:diorite_stairs"
+  }
 }

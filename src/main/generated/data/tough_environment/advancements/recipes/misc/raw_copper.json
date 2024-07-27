@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:dust_copper"
-            ]
+            "items": "tough_environment:dust_copper"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_dust_copper",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_dust_copper"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:raw_copper"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

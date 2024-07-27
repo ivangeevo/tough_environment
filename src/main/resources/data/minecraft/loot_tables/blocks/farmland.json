@@ -15,7 +15,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "c:shovels_harvest_full_block"
+                    "items": "#c:shovels_harvest_full_block"
                   }
                 }
               ]

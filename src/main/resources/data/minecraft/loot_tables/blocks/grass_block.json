@@ -18,11 +18,7 @@
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "items": [
-                          "minecraft:iron_shovel",
-                          "minecraft:diamond_shovel",
-                          "minecraft:netherite_shovel"
-                        ]
+                        "items": "#c:shovels_harvest_full_block"
                       }
                     }
                   ]
@@ -42,7 +38,7 @@
                       "term": {
                         "condition": "minecraft:match_tool",
                         "predicate": {
-                          "tag": "minecraft:hoes"
+                          "items": "#minecraft:hoes"
                         }
                       }
                     }
@@ -57,9 +53,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": [
-                      "minecraft:iron_hoe"
-                    ]
+                    "items": "minecraft:iron_hoe"
                   }
                 },
                 {
@@ -93,9 +87,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": [
-                      "minecraft:diamond_hoe"
-                    ]
+                    "items": "minecraft:diamond_hoe"
                   }
                 },
                 {
@@ -131,5 +123,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "minecraft:blocks/grass_block"
 }

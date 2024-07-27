@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:shard_diorite"
-            ]
+            "items": "tough_environment:shard_diorite"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_shard_diorite",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_shard_diorite"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:diorite_loose_from_shard_diorite"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

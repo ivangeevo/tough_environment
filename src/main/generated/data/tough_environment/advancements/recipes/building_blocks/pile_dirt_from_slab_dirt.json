@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:slab_dirt"
-            ]
+            "items": "tough_environment:slab_dirt"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_slab_dirt",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_slab_dirt"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:pile_dirt_from_slab_dirt"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

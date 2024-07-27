@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:dust_coal"
-            ]
+            "items": "tough_environment:dust_coal"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_dust_coal",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_dust_coal"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:coal"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

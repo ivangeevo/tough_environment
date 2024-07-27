@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:andesite_loose_stairs"
-            ]
+            "items": "tough_environment:andesite_loose_stairs"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_andesite_loose_stairs",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_andesite_loose_stairs"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:shard_andesite_from_andesite_loose_stairs"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

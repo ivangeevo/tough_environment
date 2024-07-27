@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:slab_andesite_loose"
-            ]
+            "items": "tough_environment:slab_andesite_loose"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_slab_andesite_loose",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_slab_andesite_loose"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:shard_andesite_from_slab_andesite_loose"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

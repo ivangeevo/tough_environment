@@ -15,7 +15,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "c:shovels_harvest_full_block"
+                    "items": "#c:shovels_harvest_full_block"
                   }
                 }
               ]
@@ -23,12 +23,10 @@
             {
               "type": "minecraft:item",
               "name": "tough_environment:pile_dirt",
-              "conditions": [
+              "functions": [
                 {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "tag": "minecraft:hoes"
-                  }
+                  "function": "minecraft:set_count",
+                  "count": 6
                 }
               ]
             }

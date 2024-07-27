@@ -12,7 +12,7 @@
     "##"
   ],
   "result": {
-    "item": "tough_environment:slab_granite_loose"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "tough_environment:slab_granite_loose"
+  }
 }

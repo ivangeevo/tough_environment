@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:small_stone"
-            ]
+            "items": "tough_environment:small_stone"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_small_stone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_small_stone"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:slab_cobblestone_loose_from_small_stone"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

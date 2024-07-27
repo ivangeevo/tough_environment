@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:pile_clay"
-            ]
+            "items": "tough_environment:pile_clay"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_pile_clay",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pile_clay"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:clay_ball"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

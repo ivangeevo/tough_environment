@@ -11,7 +11,7 @@
     "##"
   ],
   "result": {
-    "item": "tough_environment:chisel_iron"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "tough_environment:chisel_iron"
+  }
 }

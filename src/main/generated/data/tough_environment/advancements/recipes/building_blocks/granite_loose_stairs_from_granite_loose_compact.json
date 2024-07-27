@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "tough_environment:granite_loose"
-            ]
+            "items": "tough_environment:granite_loose"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_granite_loose",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_granite_loose"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:granite_loose_stairs_from_granite_loose_compact"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

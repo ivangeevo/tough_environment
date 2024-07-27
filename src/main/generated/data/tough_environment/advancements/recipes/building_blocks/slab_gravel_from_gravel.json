@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:gravel"
-            ]
+            "items": "minecraft:gravel"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_gravel",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_gravel"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecraft:slab_gravel_from_gravel"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
