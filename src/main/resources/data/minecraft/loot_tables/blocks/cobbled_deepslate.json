@@ -15,9 +15,8 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": [
-                      "#c:full_mines_strata_3"
-                    ]
+                    "items": "#c:full_mines_strata_3"
+
                   }
                 }
               ]

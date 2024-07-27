@@ -68,9 +68,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "#c:fully_mines_strata_1"
-                ]
+                "items": "#c:fully_mines_strata_1"
               }
             }
           ]
@@ -153,9 +151,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "#c:fully_mines_strata_1"
-                ]
+                "items": "#c:fully_mines_strata_1"
               }
             }
           ]
@@ -172,12 +168,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:golden_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "items": "#c:fully_mines_strata_1"
               }
             }
           ]

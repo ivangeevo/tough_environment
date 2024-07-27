@@ -72,9 +72,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "#c:fully_mines_strata_1"
-                ]
+                "items": "#c:fully_mines_strata_1"
               }
             }
           ]
@@ -157,9 +155,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "#c:fully_mines_strata_1"
-                ]
+                "items": "#c:fully_mines_strata_1"
               }
             }
           ]
@@ -176,9 +172,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "#c:fully_mines_strata_1"
-                ]
+                "items": "#c:fully_mines_strata_1"
               }
             }
           ]

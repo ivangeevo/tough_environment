@@ -1,10 +1,5 @@
 {
   "values": [
-    "minecraft:diamond_pickaxe",
-    "minecraft:netherite_pickaxe",
-    {
-      "id": "bwt:netherite_mattock",
-      "required": false
-    }
+    "#c:advanced_pickaxes"
   ]
 }

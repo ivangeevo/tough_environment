@@ -97,9 +97,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "#c:full_mines_strata_1"
-                ]
+                "items": "#c:full_mines_strata_1"
               }
             }
           ]

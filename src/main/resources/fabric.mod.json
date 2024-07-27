@@ -33,7 +33,6 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}",
     "btwr": ">=${btwr_core_version}"
-
   },
 
   "accessWidener" : "tough_environment.accesswidener"
