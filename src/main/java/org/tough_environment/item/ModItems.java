@@ -45,7 +45,7 @@ public class ModItems
     public static final Item CHISEL_WOOD = registerItem( "chisel_wood",
             new ChiselItem(ToolMaterials.WOOD, ChiselItem.Type.WOOD,
                     new Item.Settings().maxDamage(2).attributeModifiers(ChiselItem.createAttributeModifiers())
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.02f, 0))));
+                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.02f, 2))));
     public static final Item CHISEL_STONE = registerItem( "chisel_stone",
             new ChiselItem(ToolMaterials.STONE, ChiselItem.Type.STONE,
                     new Item.Settings().maxDamage(8).attributeModifiers(ChiselItem.createAttributeModifiers())

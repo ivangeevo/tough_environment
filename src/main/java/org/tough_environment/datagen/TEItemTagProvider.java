@@ -115,12 +115,11 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.RAW_COPPER)
                 .add(Items.RAW_GOLD)
                 .add(Items.REDSTONE)
-                .add(Items.COAL)
-                .add(Items.COAL)
-                .add(Items.COAL)
-
-
-        ;
+                .add(Items.LAPIS_LAZULI)
+                .add(Items.EMERALD)
+                .add(Items.DIAMOND)
+                .add(Items.QUARTZ)
+                .add(Items.ANCIENT_DEBRIS);
 
     }
 

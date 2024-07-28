@@ -10,13 +10,13 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.condition.SurvivesExplosionLootCondition;
+import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
-import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 import org.tough_environment.tag.BTWRConventionalTags;
 
@@ -43,33 +43,44 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
     private void generateVanillaTables()
     {
+
+        addDrop(Blocks.SAND, looseAggregateDrops(Blocks.SAND, Blocks.SAND, ModItems.PILE_SAND, 6));
+        addDrop(Blocks.RED_SAND, looseAggregateDrops(Blocks.RED_SAND, Blocks.RED_SAND, ModItems.PILE_RED_SAND, 6));
+        addDrop(Blocks.GRAVEL, looseAggregateDrops(Blocks.GRAVEL, Blocks.GRAVEL, ModItems.PILE_GRAVEL, 6));
+
+
     }
 
-    public static LootTable.Builder aggregateBlockDrops(Block minedBlock, Item looseDrop, Item pileDrop) {
-        // Create loot pool for shovels
-        LootPool.Builder shovelPool = LootPool.builder()
-                .rolls(ConstantLootNumberProvider.create(1.0f))
-                .with(ItemEntry.builder(looseDrop))
-                .conditionally(WITH_SHOVEL_FULLY_HARVESTS);
+    public LootTable.Builder looseAggregateDrops(Block dropWithSilkTouch, Block looseDrop, Item pileDrop, float pileDropCount) {
+        // Create an alternative entry with Silk Touch, Shovel, and default pile drop conditions
+        AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
+                ItemEntry.builder(dropWithSilkTouch).conditionally(WITH_SILK_TOUCH),
+                ItemEntry.builder(looseDrop).conditionally(WITH_SHOVEL_FULLY_HARVESTS),
+                ItemEntry.builder(pileDrop).apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
+        );
 
-        // Create loot pool for piles when not using a shovel
-        LootPool.Builder pilePool = LootPool.builder()
+        // Create the loot pool with alternative entries
+        LootPool.Builder mainPool = LootPool.builder()
                 .rolls(ConstantLootNumberProvider.create(1.0f))
-                .with(ItemEntry.builder(pileDrop)
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(6.0f))))
-                .conditionally(WITH_SHOVEL_FULLY_HARVESTS.invert());
+                .with(alternativeEntry)
+                .conditionally(SurvivesExplosionLootCondition.builder());
 
-        // Combine both pools into the loot table
-        return LootTable.builder()
-                .pool(shovelPool)
-                .pool(pilePool);
+        // Combine into the loot table
+        return LootTable.builder().pool(mainPool);
     }
+
+
+
+
+
+
+
 
     // Add hoe logic for seeds
-    public static LootTable.Builder addHoeLogic(Block block, Item seedItem, Map<Item, Float> hoeChances) {
+    public LootPool addHoeLogic(Item seedItem, Map<Item, Float> dropChance) {
         LootPool.Builder hoePool = LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f));
 
-        for (Map.Entry<Item, Float> entry : hoeChances.entrySet()) {
+        for (Map.Entry<Item, Float> entry : dropChance.entrySet()) {
             Item hoe = entry.getKey();
             float chance = entry.getValue();
 
@@ -78,14 +89,8 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                     .conditionally(RandomChanceLootCondition.builder(chance)));
         }
 
-        return LootTable.builder().pool(hoePool);
+        return hoePool.build();
     }
 
-    /**
-    // Method to get the loot table
-    public static LootTable.Builder getLootTable(Block block, Item looseDrop, Item pileDrop, Item seedItem, Map<Item, Float> hoeChances) {
-        return aggregateBlockDrops(block, looseDrop, pileDrop)
-                .pool(addHoeLogic(block, seedItem, hoeChances));
-    }
-     **/
+
 }

@@ -16,8 +16,10 @@
     "minecraft:raw_copper",
     "minecraft:raw_gold",
     "minecraft:redstone",
-    "minecraft:coal",
-    "minecraft:coal",
-    "minecraft:coal"
+    "minecraft:lapis_lazuli",
+    "minecraft:emerald",
+    "minecraft:diamond",
+    "minecraft:quartz",
+    "minecraft:ancient_debris"
   ]
 }

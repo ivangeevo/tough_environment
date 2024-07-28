@@ -17,9 +17,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "tough_environment:chisel_iron"
-                ]
+                "items": "tough_environment:chisel_iron"
               }
             }
           ]
@@ -47,9 +45,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:stone_pickaxe"
-                ]
+                "items": "minecraft:stone_pickaxe"
               }
             }
           ]
@@ -130,9 +126,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:stone_pickaxe"
-                ]
+                "items": "minecraft:stone_pickaxe"
               }
             }
           ]
