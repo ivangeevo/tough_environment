@@ -25,7 +25,9 @@
                             "type": "double"
                           }
                         }
-                      ]
+                      ],
+                      "count": 1,
+                      "function": "minecraft:set_count"
                     },
                     {
                       "type": "minecraft:item",

@@ -9,6 +9,7 @@ import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -90,6 +91,12 @@ public class BlockManager
             return true;
         }
 
+        if (isStrata1StoneBlock(state) &&
+                (stack.getItem() instanceof ChiselItem || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)))
+        {
+            return true;
+        }
+
         // Default condition
         return false;
     }
@@ -103,7 +110,7 @@ public class BlockManager
         if (!world.isClient)
         {
 
-            if ( isDirtLooseningBlock(state) ) {
+            if ( isVanillaDirtBlock(state) ) {
                 setStateForDirt(world, pos, state, tool);
             }
 
@@ -237,7 +244,7 @@ public class BlockManager
         boolean isModernOrAdvancedHoe = tool.isIn(BTWRConventionalTags.Items.MODERN_HOES)
                 || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES);
 
-        if (isModernOrAdvancedHoe)
+        if (tool.isIn(ItemTags.HOES))
         {
             world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
             return;
@@ -299,13 +306,20 @@ public class BlockManager
                 || stack.isIn(BTWRConventionalTags.Items.MODERN_AXES);
     }
 
-    private boolean isDirtLooseningBlock(BlockState state)
+    private boolean isVanillaDirtBlock(BlockState state)
     {
         return state.isOf(Blocks.DIRT)
                 || state.isOf(Blocks.COARSE_DIRT)
                 || state.isOf(Blocks.DIRT_PATH)
-                || state.isOf(Blocks.GRASS_BLOCK)
                 || state.isOf(Blocks.MYCELIUM);
+    }
+
+    private boolean isStrata1StoneBlock(BlockState state)
+    {
+        return state.isOf(Blocks.STONE)
+                || state.isOf(Blocks.ANDESITE)
+                || state.isOf(Blocks.GRANITE)
+                || state.isOf(Blocks.DIORITE);
     }
 
 

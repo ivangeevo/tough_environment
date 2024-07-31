@@ -31,7 +31,7 @@
                   }
                 }
               ],
-              "name": "minecraft:sand"
+              "name": "minecraft:red_sand"
             },
             {
               "type": "minecraft:item",
@@ -43,7 +43,7 @@
                   }
                 }
               ],
-              "name": "minecraft:sand"
+              "name": "minecraft:red_sand"
             },
             {
               "type": "minecraft:item",
@@ -65,7 +65,7 @@
                   "function": "minecraft:set_count"
                 }
               ],
-              "name": "tough_environment:pile_sand"
+              "name": "tough_environment:pile_red_sand"
             }
           ]
         }

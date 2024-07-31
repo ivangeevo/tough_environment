@@ -17,7 +17,9 @@
                     "type": "double"
                   }
                 }
-              ]
+              ],
+              "count": 1,
+              "function": "minecraft:set_count"
             },
             {
               "function": "minecraft:explosion_decay"

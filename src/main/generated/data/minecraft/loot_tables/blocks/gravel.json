@@ -31,7 +31,7 @@
                   }
                 }
               ],
-              "name": "minecraft:sand"
+              "name": "minecraft:gravel"
             },
             {
               "type": "minecraft:item",
@@ -43,7 +43,7 @@
                   }
                 }
               ],
-              "name": "minecraft:sand"
+              "name": "minecraft:gravel"
             },
             {
               "type": "minecraft:item",
@@ -65,9 +65,37 @@
                   "function": "minecraft:set_count"
                 }
               ],
-              "name": "tough_environment:pile_sand"
+              "name": "tough_environment:pile_gravel"
             }
           ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "chance": 0.1,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:flint"
         }
       ],
       "rolls": 1.0

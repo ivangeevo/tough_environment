@@ -39,10 +39,24 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": [
-                      "minecraft:stone_pickaxe",
-                      "#c:full_mines_strata_3"
-                    ]
+                    "items": "minecraft:stone_pickaxe"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:raw_copper",
+              "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:full_mines_strata_3"
                   }
                 }
               ]

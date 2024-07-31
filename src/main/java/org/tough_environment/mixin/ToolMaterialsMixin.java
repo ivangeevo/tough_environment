@@ -1,34 +1,20 @@
 package org.tough_environment.mixin;
 
-import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.block.Block;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
-import org.tough_environment.ToughEnvironmentMod;
 
 @Mixin(ToolMaterials.class)
 public abstract class ToolMaterialsMixin
 {
     @Shadow public abstract TagKey<Block> getInverseTag();
-    /**
-    @ModifyArgs(
-            method = "<clinit>",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"
-            )
-    )
+
+    //@ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
     private static void modifyToolMaterialDurability(Args args) {
         String name = args.get(0);
 
@@ -56,7 +42,6 @@ public abstract class ToolMaterialsMixin
                 break;
         }
     }
-     **/
 
     @ModifyArgs(
             method = "<clinit>",

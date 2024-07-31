@@ -2,14 +2,21 @@ package org.tough_environment;
 
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.util.ActionResult;
+import net.minecraft.world.event.GameEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.config.TESettings;
+import org.tough_environment.event.BlockBreakEvent;
 import org.tough_environment.item.ModItemGroup;
 import org.tough_environment.item.ModItems;
 import org.tough_environment.registry.ModFuelItems;
-import org.tough_environment.util.BlockMortarMapInitializer;
+import org.tough_environment.util.BlockMortarMapper;
 
 import java.io.File;
 import java.io.FileReader;
@@ -37,11 +44,11 @@ public class ToughEnvironmentMod implements ModInitializer
         instance = this;
 
         // Initialize or load the block replacement map
-        Map<String, String> blockReplacementMap = BlockMortarMapInitializer.loadMap();
+        Map<String, String> blockReplacementMap = BlockMortarMapper.loadMap();
         if (blockReplacementMap == null)
         {
-            BlockMortarMapInitializer.initMap();
-            BlockMortarMapInitializer.loadMap();
+            BlockMortarMapper.initMap();
+            BlockMortarMapper.loadMap();
         }
 
         ModBlocks.registerModBlocks();
@@ -49,6 +56,29 @@ public class ToughEnvironmentMod implements ModInitializer
         ModItemGroup.registerItemGroups();
         ModFuelItems.register();
 
+        /**
+        BlockBreakEvent.EVENT.register((world, player, pos, state) ->
+        {
+            System.out.println("Block broken at position: " + pos);
+            ItemStack tool = player.getMainHandStack();
+
+            if (tool.isIn(ItemTags.HOES) && state.isOf(Blocks.GRASS_BLOCK))
+            {
+                if (!player.isCreative())
+                {
+                    world.setBlockState(pos, ModBlocks.DIRT_LOOSE.getDefaultState(), Block.NOTIFY_ALL_AND_REDRAW);
+                    world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, ModBlocks.DIRT_LOOSE.getDefaultState()));
+                }
+                else
+                {
+                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                }
+            }
+
+            // Return ActionResult.PASS to allow normal processing, or ActionResult.FAIL to cancel
+            return ActionResult.PASS;
+        });
+        **/
 
 
 

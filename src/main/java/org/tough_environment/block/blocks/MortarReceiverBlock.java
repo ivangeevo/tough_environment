@@ -15,13 +15,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.tick.OrderedTick;
 import net.minecraft.world.tick.TickPriority;
 import org.tough_environment.tag.ModTags;
-import org.tough_environment.util.BlockMortarMapInitializer;
+import org.tough_environment.util.BlockMortarMapper;
 
 import java.util.Map;
 
 public class MortarReceiverBlock extends FallingBlock
 {
-
     private static final int SLOW_FALL_DELAY_TICKS = 40;
     public static final MapCodec<MortarReceiverBlock> CODEC = MortarReceiverBlock.createCodec(MortarReceiverBlock::new);
     @Override
@@ -53,7 +52,7 @@ public class MortarReceiverBlock extends FallingBlock
     {
 
         // Load the block replacement map
-        Map<String, String> blockReplacementMap = BlockMortarMapInitializer.loadMap();
+        Map<String, String> blockReplacementMap = BlockMortarMapper.loadMap();
 
         // Get the identifier of the loose block
         Identifier looseBlockId = Registries.BLOCK.getId(looseBlock);

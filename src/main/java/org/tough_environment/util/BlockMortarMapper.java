@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BlockMortarMapInitializer
+public class BlockMortarMapper
 {
     private static final String JSON_FILE = "block_mortar_replacement_map.json";
 
