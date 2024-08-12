@@ -1,3 +1,5 @@
+# 0.3.1 Alpha
++ Fixed placement code for ore chunk blocks on the ground to work as intended :)
 
 # 0.3 Alpha
 + The mod now requires BTWR:Core v0.25. It didn't require it before, which caused some blocks to not drop correctly when mined.

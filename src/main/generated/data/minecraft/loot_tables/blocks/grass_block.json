@@ -79,43 +79,9 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:inverted",
-                "term": {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "#minecraft:hoes"
-                  }
-                }
-              }
-            },
-            {
-              "chance": 0.04,
-              "condition": "minecraft:random_chance"
-            }
-          ],
-          "name": "minecraft:wheat_seeds"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:inverted",
-                "term": {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "#minecraft:hoes"
-                  }
-                }
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:netherite_hoe"
               }
             },
             {
@@ -135,19 +101,13 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:inverted",
-                "term": {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "#minecraft:hoes"
-                  }
-                }
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:iron_hoe"
               }
             },
             {
-              "chance": 0.06,
+              "chance": 0.03,
               "condition": "minecraft:random_chance"
             }
           ],
@@ -163,19 +123,35 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:inverted",
-                "term": {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "#minecraft:hoes"
-                  }
-                }
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:golden_hoe"
               }
             },
             {
-              "chance": 0.03,
+              "chance": 0.04,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "name": "minecraft:wheat_seeds"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:diamond_hoe"
+              }
+            },
+            {
+              "chance": 0.06,
               "condition": "minecraft:random_chance"
             }
           ],

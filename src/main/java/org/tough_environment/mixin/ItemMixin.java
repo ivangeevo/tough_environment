@@ -46,14 +46,12 @@ public abstract class ItemMixin
 
                 // Check the block below the target position
                 BlockState belowBlockState = world.getBlockState(pos);
-                if (belowBlockState.getBlock() instanceof PlacedOreChunkBlock)
+                if (!belowBlockState.isSolidBlock(world, pos) || belowBlockState.getBlock() instanceof PlacedOreChunkBlock)
                 {
-                    // Prevent placing the block on top of itself
+                    // Prevent placing the block on non-solid blocks or on top of itself
                     cir.setReturnValue(ActionResult.FAIL);
                     return;
                 }
-
-                // TODO: Possibly not good idea to access widen getHitResult(the last parameter) try something else if compatability issues arise.
 
                 // Create an ItemPlacementContext for the new block position
                 ItemPlacementContext placementContext = new ItemPlacementContext(Objects.requireNonNull(context.getPlayer()), context.getHand(), heldStack, context.getHitResult());
@@ -61,10 +59,15 @@ public abstract class ItemMixin
                 // Get the block state using the placement context
                 BlockState placedBlockState = block.getPlacementState(placementContext);
 
-                if (world.isAir(placePos) && placedBlockState != null) // Check if the position is air before placing the block
+                // Check if the target position is air or a replaceable block
+                if ((world.isAir(placePos) || world.getBlockState(placePos).canReplace(placementContext)) && placedBlockState != null)
                 {
+                    // Replace the block at the target position with the placed block
                     world.setBlockState(placePos, placedBlockState);
                     heldStack.decrement(1);
+
+                    // Trigger block placement events
+                    world.emitGameEvent(context.getPlayer(), GameEvent.BLOCK_PLACE, placePos);
 
                     // Indicate the interaction was successful
                     cir.setReturnValue(ActionResult.SUCCESS);
@@ -72,5 +75,4 @@ public abstract class ItemMixin
             }
         }
     }
-
 }
