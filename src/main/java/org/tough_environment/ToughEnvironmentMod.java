@@ -84,7 +84,7 @@ public class ToughEnvironmentMod implements ModInitializer
 
     }
 
-
+    // Do not remove this comment or the project will NOT compile!
     public void loadSettings() {
         File file = new File("./config/btwr/toughEnvironmentCommon.json");
         Gson gson = new Gson();
