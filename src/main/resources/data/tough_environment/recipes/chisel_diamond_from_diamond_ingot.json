@@ -2,14 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "group": "group_btwr",
-  "ingredients":
-  [
+  "ingredients": [
     {
       "item": "btwr:diamond_ingot"
     }
   ],
-  "result":
-  {
-    "item": "tough_environment:chisel_diamond"
+  "result": {
+    "id": "tough_environment:chisel_diamond"
   }
 }

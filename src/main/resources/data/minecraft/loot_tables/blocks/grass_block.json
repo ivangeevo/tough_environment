@@ -9,24 +9,50 @@
           "type": "minecraft:alternatives",
           "children": [
             {
-              "type": "minecraft:item",
-              "name": "tough_environment:dirt_loose",
-              "conditions": [
+              "type": "minecraft:alternatives",
+              "children": [
                 {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": [
-                      "minecraft:iron_shovel",
-                      "minecraft:diamond_shovel",
-                      "minecraft:netherite_shovel"
-                    ]
-                  }
+                  "type": "minecraft:item",
+                  "name": "tough_environment:dirt_loose",
+                  "conditions": [
+                    {
+                      "condition": "minecraft:match_tool",
+                      "predicate": {
+                        "items": [
+                          "minecraft:iron_shovel",
+                          "minecraft:diamond_shovel",
+                          "minecraft:netherite_shovel"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "tough_environment:pile_dirt",
+                  "functions": [
+                    {
+                      "function": "minecraft:set_count",
+                      "count": 6
+                    }
+                  ],
+                  "conditions": [
+                    {
+                      "condition": "minecraft:inverted",
+                      "term": {
+                        "condition": "minecraft:match_tool",
+                        "predicate": {
+                          "items": "#minecraft:hoes"
+                        }
+                      }
+                    }
+                  ]
                 }
               ]
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:wheat_seeds",
+              "name": "btwr:hemp_seeds",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -44,7 +70,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:wheat_seeds",
+              "name": "btwr:hemp_seeds",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -62,7 +88,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:wheat_seeds",
+              "name": "btwr:hemp_seeds",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -80,7 +106,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:wheat_seeds",
+              "name": "btwr:hemp_seeds",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -93,36 +119,6 @@
                 {
                   "condition": "minecraft:random_chance",
                   "chance": 0.11
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
-              "name": "tough_environment:pile_dirt",
-              "functions": [
-                {
-                  "function": "minecraft:set_count",
-                  "count": 6
-                }
-              ],
-              "conditions": [
-                {
-                  "condition": "minecraft:inverted",
-                  "term": {
-                    "condition": "minecraft:match_tool",
-                    "predicate": {
-                      "tag": "minecraft:shovels"
-                    }
-                  }
-                },
-                {
-                  "condition": "minecraft:inverted",
-                  "term": {
-                    "condition": "minecraft:match_tool",
-                    "predicate": {
-                      "tag": "minecraft:hoes"
-                    }
-                  }
                 }
               ]
             }

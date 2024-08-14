@@ -1,7 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "minecraft:bedrock"
+    {
+      "item": "minecraft:bedrock"
+    }
   ],
   "result": {
     "id": "minecraft:bedrock"

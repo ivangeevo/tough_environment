@@ -430,7 +430,7 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "tag": "c:primitive_pickaxes"
+            "items": "#c:primitive_pickaxes"
           }
         }
       ]
@@ -621,7 +621,7 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "tag": "c:modern_pickaxes"
+            "items": "#c:modern_pickaxes"
           }
         }
       ]

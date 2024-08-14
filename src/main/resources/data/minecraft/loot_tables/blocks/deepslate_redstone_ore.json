@@ -98,10 +98,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "items": "#c:advanced_pickaxes"
               }
             }
           ]

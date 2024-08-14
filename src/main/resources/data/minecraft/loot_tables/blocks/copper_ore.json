@@ -40,12 +40,25 @@
                   "condition": "minecraft:match_tool",
                   "predicate": {
                     "items": [
-                      "minecraft:stone_pickaxe",
-                      "minecraft:iron_pickaxe",
-                      "minecraft:golden_pickaxe",
-                      "minecraft:diamond_pickaxe",
-                      "minecraft:netherite_pickaxe"
+                      "minecraft:stone_pickaxe"
                     ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:raw_copper",
+              "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:pickaxes_harvest_full_block"
                   }
                 }
               ]
@@ -100,11 +113,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "items": "#c:pickaxes_harvest_full_block"
               }
             }
           ]

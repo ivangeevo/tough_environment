@@ -24,16 +24,16 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup arg) {
-        RegistryEntryLookup<Item> itemLookup = arg.getWrapperOrThrow(RegistryKeys.ITEM);
-
-        this.addToConventionalTags(itemLookup);
+    protected void configure(RegistryWrapper.WrapperLookup arg)
+    {
+        this.addToConventionalTags();
         this.addToModTags();
         this.addToVanillaTags();
     }
 
 
-    private void addToConventionalTags(RegistryEntryLookup<Item> itemLookup) {
+    private void addToConventionalTags()
+    {
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
                 .add(ModItems.CHISEL_WOOD)
@@ -57,6 +57,10 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.NETHERITE_SHOVEL)
                 .addOptional(new Identifier("bwt", "netherite_mattock"));
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_PICKAXES)
+                .add(Items.IRON_PICKAXE)
+                .add(Items.GOLDEN_PICKAXE);
+
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
                 .add(Items.DIAMOND_PICKAXE)
@@ -64,11 +68,13 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .addOptional(new Identifier("bwt", "netherite_mattock"));
 
 
-
-
         getOrCreateTagBuilder(BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK)
                 .addTag(BTWRConventionalTags.Items.MODERN_SHOVELS)
                 .addTag(BTWRConventionalTags.Items.ADVANCED_SHOVELS);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.PICKAXES_HARVEST_FULL_BLOCK)
+                .addTag(BTWRConventionalTags.Items.MODERN_PICKAXES)
+                .addTag(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.FULLY_MINES_STRATA_1)
                 .add(Items.IRON_PICKAXE)
@@ -85,7 +91,8 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
     }
 
 
-    private void addToModTags() {
+    private void addToModTags()
+    {
         getOrCreateTagBuilder(ModTags.Items.SMALL_STONES)
                 .add(ModItems.SMALL_STONE)
                 .add(ModItems.SMALL_STONE_1)
@@ -123,7 +130,8 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
     }
 
-    private void addToVanillaTags() {
+    private void addToVanillaTags()
+    {
         getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
                 .add(ModItems.SMALL_STONE)
                 .add(ModItems.SMALL_STONE_1)
@@ -133,25 +141,4 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModBlocks.COBBLESTONE_LOOSE.asItem());
 
     }
-
-    private Item getItemFromOtherMod(RegistryEntryLookup<Item> itemLookup, String modId, String itemPath) {
-        Identifier identifier = new Identifier(modId, itemPath);
-        Optional<RegistryEntry.Reference<Item>> entryOpt = itemLookup.getOptional(RegistryKey.of(RegistryKeys.ITEM, identifier));
-
-        if (entryOpt.isPresent()) {
-            return entryOpt.get().value();
-        } else {
-            // Use the fake item if the real one is not found
-            return getFakeItem(modId, itemPath);
-        }
-    }
-
-
-    private Item getFakeItem(String modId, String itemPath) {
-        // Use Minecraft's Item class directly as a placeholder
-        // This does not need to be an actual instance
-        return new Item(new Item.Settings()); // Empty settings
-    }
-
-
 }

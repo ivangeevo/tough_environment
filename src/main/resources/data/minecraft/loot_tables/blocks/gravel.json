@@ -25,11 +25,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": [
-                      "iron_shovel",
-                      "golden_shovel",
-                      "diamond_shovel"
-                    ]
+                    "items": "#c:shovels_harvest_full_block"
                   }
                 }
               ]

@@ -96,6 +96,28 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
+tasks.register('checkCommentInClass') {
+    def classFilePath = "src/main/java/org/tough_environment/ToughEnvironmentMod.java"
+    def requiredComment = "// Do not remove this comment or the project will NOT compile!"
+
+    doLast {
+        def classFile = file(classFilePath)
+        if (!classFile.exists()) {
+            throw new GradleException("Class file not found: $classFilePath")
+        }
+
+        def fileContent = classFile.text
+        if (!fileContent.contains(requiredComment)) {
+            throw new GradleException("Required comment '$requiredComment' not found in $classFilePath")
+        } else {
+            println "Required comment found in $classFilePath"
+        }
+    }
+}
+
+compileJava.dependsOn checkCommentInClass
+
+
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     if (JavaVersion.current() < javaVersion) {
