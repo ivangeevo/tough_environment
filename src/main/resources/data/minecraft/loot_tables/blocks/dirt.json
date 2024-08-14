@@ -23,6 +23,18 @@
             {
               "type": "minecraft:item",
               "name": "tough_environment:pile_dirt",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#minecraft:hoes"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:pile_dirt",
               "functions": [
                 {
                   "function": "minecraft:set_count",

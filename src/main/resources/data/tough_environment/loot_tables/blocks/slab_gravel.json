@@ -16,7 +16,13 @@
                   "children": [
                     {
                       "type": "minecraft:item",
-                      "name": "minecraft:gravel",
+                      "name": "tough_environment:slab_gravel",
+                      "functions": [
+                        {
+                          "function": "minecraft:set_count",
+                          "count": 2
+                        }
+                      ],
                       "conditions": [
                         {
                           "condition": "minecraft:block_state_property",
@@ -25,9 +31,7 @@
                             "type": "double"
                           }
                         }
-                      ],
-                      "count": 1,
-                      "function": "minecraft:set_count"
+                      ]
                     },
                     {
                       "type": "minecraft:item",
@@ -47,7 +51,12 @@
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "items": "#c:shovels_harvest_full_block"
+                        "items": [
+                          "minecraft:iron_shovel",
+                          "minecraft:golden_shovel",
+                          "minecraft:diamond_shovel",
+                          "minecraft:netherite_shovel"
+                        ]
                       }
                     }
                   ]

@@ -18,14 +18,14 @@
                   }
                 }
               ],
-              "count": 1,
+              "count": 2.0,
               "function": "minecraft:set_count"
             },
             {
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "tough_environment:bricks_loose"
+          "name": "tough_environment:slab_bricks_loose"
         }
       ],
       "rolls": 1.0

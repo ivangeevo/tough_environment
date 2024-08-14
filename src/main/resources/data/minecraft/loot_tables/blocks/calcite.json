@@ -10,7 +10,12 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "items": "#c:full_mines_strata_3"
+            "items": [
+              "minecraft:iron_pickaxe",
+              "minecraft:golden_pickaxe",
+              "minecraft:diamond_pickaxe",
+              "minecraft:netherite_pickaxe"
+            ]
           }
         }
       ],

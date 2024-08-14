@@ -15,16 +15,14 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "predicates": {
-                      "minecraft:enchantments": [
-                        {
-                          "enchantment": "minecraft:silk_touch",
-                          "levels": {
-                            "min": 1
-                          }
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
                         }
-                      ]
-                    }
+                      }
+                    ]
                   }
                 }
               ]
@@ -36,19 +34,13 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": "minecraft:stone_pickaxe"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
-              "name": "minecraft:raw_iron",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "#c:fully_mines_strata_1"
+                    "items": [
+                      "minecraft:stone_pickaxe",
+                      "minecraft:iron_pickaxe",
+                      "minecraft:golden_pickaxe",
+                      "minecraft:diamond_pickaxe",
+                      "minecraft:netherite_pickaxe"
+                    ]
                   }
                 }
               ]
@@ -103,7 +95,11 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "#c:fully_mines_strata_1"
+                "items": [
+                  "minecraft:iron_pickaxe",
+                  "minecraft:diamond_pickaxe",
+                  "minecraft:netherite_pickaxe"
+                ]
               }
             }
           ]

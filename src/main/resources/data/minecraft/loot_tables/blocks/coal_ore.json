@@ -34,19 +34,12 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": "minecraft:stone_pickaxe"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "minecraft:item",
-              "name": "minecraft:coal",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "#c:full_mines_strata_3"
+                    "items": [
+                      "minecraft:stone_pickaxe",
+                      "minecraft:iron_pickaxe",
+                      "minecraft:diamond_pickaxe",
+                      "minecraft:netherite_pickaxe"
+                    ]
                   }
                 }
               ]
@@ -101,7 +94,11 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "#c:full_mines_strata_3"
+                "items": [
+                  "minecraft:iron_pickaxe",
+                  "minecraft:diamond_pickaxe",
+                  "minecraft:netherite_pickaxe"
+                ]
               }
             }
           ]

@@ -98,7 +98,10 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "#c:fully_mines_strata_3"
+                "items": [
+                  "minecraft:diamond_pickaxe",
+                  "minecraft:netherite_pickaxe"
+                ]
               }
             }
           ]

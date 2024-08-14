@@ -6,43 +6,43 @@
       "bonus_rolls": 0,
       "entries": [
         {
+          "type": "minecraft:item",
+          "name": "flint",
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.16
+            }
+          ]
+        },
+        {
           "type": "minecraft:alternatives",
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:clay_ball",
+              "name": "gravel",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "ites": "#minecraft:shovels"
+                    "items": [
+                      "iron_shovel",
+                      "golden_shovel",
+                      "diamond_shovel"
+                    ]
                   }
                 }
               ]
             },
             {
               "type": "minecraft:item",
-              "name": "tough_environment:pile_clay"
-            }
-          ]
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "tough_environment:pile_dirt",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 3
+              "name": "tough_environment:pile_gravel",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": 6
+                }
+              ]
             }
           ]
         }

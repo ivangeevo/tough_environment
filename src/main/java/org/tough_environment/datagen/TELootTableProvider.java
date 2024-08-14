@@ -40,7 +40,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        this.generateVanillaTables();
+        //his.generateVanillaTables();
         //this.generateCustomStoneTables();
     }
 
