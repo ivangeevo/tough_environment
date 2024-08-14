@@ -1,5 +1,7 @@
 {
   "values": [
+    "minecraft:grass_block",
+    "minecraft:dirt",
     "tough_environment:dirt_loose"
   ]
 }

@@ -73,6 +73,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.DIRT_LOOSE);
 
         getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
+                .add(Blocks.GRASS_BLOCK)
+                .add(Blocks.DIRT)
                 .add(ModBlocks.DIRT_LOOSE);
 
         getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD)
