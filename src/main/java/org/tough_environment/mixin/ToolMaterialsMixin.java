@@ -43,20 +43,16 @@ public abstract class ToolMaterialsMixin
         }
     }
 
-    @ModifyArgs(
-            method = "<clinit>",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/" + "minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"
-            )
-    )
+    //@ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/" + "minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
     private static void modifyToolMaterialSpeed(Args args) {
         String name = args.get(0);
 
         switch (name) {
             case "WOOD":
-                args.set(4, 1.1f); // Setting durability to 10
+                args.set(4, 1.1f);
                 break;
             case "STONE":
-                args.set(4, 2f); // Setting durability to 50
+                args.set(4, 2f);
                 break;
             default:
                 // Do nothing for unknown tool materials
