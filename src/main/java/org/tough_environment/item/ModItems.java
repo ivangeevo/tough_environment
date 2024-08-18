@@ -43,21 +43,25 @@ public class ModItems
 
     // Tool Items
     public static final Item CHISEL_WOOD = registerItem( "chisel_wood",
-            new ChiselItem(ToolMaterials.WOOD, ChiselItem.Type.WOOD,
-                    new Item.Settings().maxDamage(2).attributeModifiers(ChiselItem.createAttributeModifiers())
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.02f, 2))));
+            new ChiselItem(ModToolMaterials.WOOD_CHISEL, ChiselItem.Type.WOOD,
+                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers())
+                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.02f))
+            ));
     public static final Item CHISEL_STONE = registerItem( "chisel_stone",
-            new ChiselItem(ToolMaterials.STONE, ChiselItem.Type.STONE,
-                    new Item.Settings().maxDamage(8).attributeModifiers(ChiselItem.createAttributeModifiers())
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.05f, 0))));
+            new ChiselItem(ModToolMaterials.STONE_CHISEL, ChiselItem.Type.STONE,
+                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers())
+                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.05f))
+            ));
     public static final Item CHISEL_IRON = registerItem( "chisel_iron",
-            new ChiselItem(ToolMaterials.IRON, ChiselItem.Type.IRON,
-                    new Item.Settings().maxDamage(238).attributeModifiers(ChiselItem.createAttributeModifiers())
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.10f, 1))));
+            new ChiselItem(ModToolMaterials.IRON_CHISEL, ChiselItem.Type.IRON,
+                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers())
+                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.10f))
+            ));
     public static final Item CHISEL_DIAMOND = registerItem( "chisel_diamond",
-            new ChiselItem(ToolMaterials.DIAMOND, ChiselItem.Type.DIAMOND,
-                    new Item.Settings().maxDamage(500).attributeModifiers(ChiselItem.createAttributeModifiers())
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.12f, 1))));
+            new ChiselItem(ModToolMaterials.DIAMOND_CHISEL, ChiselItem.Type.DIAMOND,
+                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers())
+                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.12f))
+            ));
 
 
     private static Item registerItem(String name, Item item)

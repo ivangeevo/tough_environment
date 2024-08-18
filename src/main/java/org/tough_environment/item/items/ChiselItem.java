@@ -11,12 +11,14 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.tough_environment.item.ModToolMaterials;
 import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
@@ -29,24 +31,23 @@ public class ChiselItem extends MiningToolItem
     {
         WOOD, STONE, IRON, DIAMOND
     }
+
     public static AttributeModifiersComponent createAttributeModifiers() {
         return AttributeModifiersComponent.builder().add(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Tool modifier", 1.0, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND).add(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Tool modifier", -0.8f, EntityAttributeModifier.Operation.ADD_VALUE), AttributeModifierSlot.MAINHAND).build();
     }
 
-    public static ToolComponent createToolComponent(float speed, int damage) {
-        return new ToolComponent(List.of(), speed, damage);
+    public static ToolComponent createToolComponent(float speed) {
+        return new ToolComponent(List.of(), speed,1);
     }
 
     public Type getType() {
         return chiselType;
     }
 
-    public ChiselItem(ToolMaterials material, Type chiselType, Settings settings)
+    public ChiselItem(ModToolMaterials material, Type chiselType, Settings settings)
     {
-
         super(material, ModTags.Mineable.CHISEL, settings);
         this.chiselType = chiselType;
-
     }
 
     @Override
@@ -58,7 +59,6 @@ public class ChiselItem extends MiningToolItem
             if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
             {
                 stack.damage(5, miner, EquipmentSlot.MAINHAND);
-
             }
             else
             {
@@ -66,6 +66,7 @@ public class ChiselItem extends MiningToolItem
             }
 
         }
+
         return true;
     }
 
