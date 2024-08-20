@@ -1,12 +1,7 @@
 package org.tough_environment.mixin;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterials;
-import net.minecraft.registry.tag.TagKey;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
@@ -15,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 public abstract class ToolMaterialsMixin
 {
 
-    //@ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
+    @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
     private static void modifyToolMaterialDurability(Args args)
     {
         String name = args.get(0);
@@ -45,26 +40,4 @@ public abstract class ToolMaterialsMixin
                 break;
         }
     }
-
-    //@ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/" + "minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
-    private static void modifyToolMaterialSpeed(Args args)
-    {
-        String name = args.get(0);
-
-        switch (name)
-        {
-            case "WOOD":
-                args.set(4, 1.1f);
-                break;
-            case "STONE":
-                args.set(4, 2f);
-                break;
-            default:
-                // Do nothing for unknown tool materials
-                break;
-        }
-    }
-
-
-
 }
