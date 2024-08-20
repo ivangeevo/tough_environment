@@ -1,12 +1,10 @@
 package org.tough_environment.mixin;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.MiningToolItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.ActionResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

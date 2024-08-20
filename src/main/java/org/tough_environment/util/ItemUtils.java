@@ -34,15 +34,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ItemUtils {
-
-    static public void ejectStackWithRandomOffset(World world, BlockPos pos, ItemStack stack) {
-        float xOffset = world.getRandom().nextFloat() * 0.7F + 0.15F;
-        float yOffset = world.getRandom().nextFloat() * 0.2F + 0.1F;
-        float zOffset = world.getRandom().nextFloat() * 0.7F + 0.15F;
-
-        ejectStackWithRandomVelocity(world, (float) pos.getX() + xOffset, (float) pos.getY() + yOffset, (float) pos.getZ() + zOffset, stack);
-    }
-
     static public void ejectSingleItemWithRandomOffset(World world, BlockPos pos, int iShiftedItemIndex) {
         Item item = Registries.ITEM.get(iShiftedItemIndex);
         ItemConvertible itemConvertible = item.asItem();
@@ -51,7 +42,13 @@ public class ItemUtils {
 
         ejectStackWithRandomOffset(world, pos, itemStack);
     }
+    static public void ejectStackWithRandomOffset(World world, BlockPos pos, ItemStack stack) {
+        float xOffset = world.getRandom().nextFloat() * 0.7F + 0.15F;
+        float yOffset = world.getRandom().nextFloat() * 0.2F + 0.1F;
+        float zOffset = world.getRandom().nextFloat() * 0.7F + 0.15F;
 
+        ejectStackWithRandomVelocity(world, (float) pos.getX() + xOffset, (float) pos.getY() + yOffset, (float) pos.getZ() + zOffset, stack);
+    }
 
     public static void ejectStackWithRandomVelocity(World world, double x, double y, double z, ItemStack stack) {
         ItemEntity itemEntity = new ItemEntity(world, x, y, z, stack);

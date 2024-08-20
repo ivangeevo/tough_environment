@@ -2,8 +2,6 @@ package org.tough_environment.item;
 
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
-import net.minecraft.item.ToolMaterials;
-import net.minecraft.item.TridentItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;

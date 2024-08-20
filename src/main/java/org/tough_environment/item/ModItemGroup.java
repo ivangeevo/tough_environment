@@ -12,7 +12,6 @@ import org.tough_environment.block.ModBlocks;
 
 public class ModItemGroup
 {
-
     public static final ItemGroup GROUP_TE = Registry.register(Registries.ITEM_GROUP,
             new Identifier(ToughEnvironmentMod.MOD_ID, "group_te"),
 
