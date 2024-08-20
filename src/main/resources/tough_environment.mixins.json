@@ -11,8 +11,6 @@
     "ItemMixin",
     "MiningToolItemMixin",
     "PlayerEntityMixin",
-    "ServerPlayerInteractionManagerAccessor",
-    "ServerPlayerInteractionManagerMixin",
     "SpreadableBlockMixin",
     "ToolMaterialsMixin"
   ],
