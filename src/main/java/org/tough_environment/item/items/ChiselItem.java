@@ -73,12 +73,6 @@ public class ChiselItem extends MiningToolItem
 
     @Override
     public float getMiningSpeed(ItemStack stack, BlockState state) {
-        // decrease stone chisel's speed,
-        // because it uses the same speed as stone tool materials in vanilla, which is too fast
-        if (chiselType == Type.STONE)
-        {
-            return super.getMiningSpeed(stack, state) / 2f;
-        }
 
         if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
         {
