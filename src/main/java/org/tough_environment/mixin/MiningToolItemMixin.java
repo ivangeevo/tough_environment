@@ -38,7 +38,7 @@ public abstract class MiningToolItemMixin extends ToolItem
         {
             return super.getMiningSpeed(stack, state) / 80f;
         }
-        // primitive tools are 6x slower for their materials.
+        // primitive chisels are 6x slower for their materials.
         else if ( isPrimitiveTool(stack) )
         {
             return super.getMiningSpeed(stack, state) / 6f;

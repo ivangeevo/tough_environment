@@ -10,6 +10,11 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 public abstract class ToolMaterialsMixin
 {
 
+    // modifying vanilla tool materials durability
+    // wood and stone are considered primitive, so they have been nerfed.
+    // iron is tougher to get, but its durability has been increased.
+    // diamonds also are harder to get because of stratification, so their durability has been increased slightly.
+    // netherite has also been buffed up significantly.
     @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
     private static void modifyToolMaterialDurability(Args args)
     {

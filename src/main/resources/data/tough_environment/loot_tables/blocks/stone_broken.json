@@ -21,9 +21,31 @@
           "predicate": {
             "items": [
               "minecraft:wooden_pickaxe",
-              "minecraft:stone_pickaxe",
-              "#c:pickaxes_harvest_full_block"
+              "minecraft:stone_pickaxe"
             ]
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:pile_gravel",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "items": "#c:pickaxes_harvest_full_block"
           }
         }
       ]

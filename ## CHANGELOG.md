@@ -1,5 +1,5 @@
 # 0.3.1 Alpha
-+ Fixed placement code for ore chunk blocks on the ground to work as intended :)
++ Fixed placement code for ore chunk blocks on the ground to work as intended
 + Reworked chisel block breaking speeds in some cases to be more balanced
 
 # 0.3 Alpha
