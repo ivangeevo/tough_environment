@@ -40,7 +40,9 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.CHISEL_STONE);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_CHISELS)
-                .add(ModItems.CHISEL_IRON)
+                .add(ModItems.CHISEL_IRON);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_CHISELS)
                 .add(ModItems.CHISEL_DIAMOND);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_SHOVELS)
@@ -93,6 +95,10 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
     private void addToModTags()
     {
+        getOrCreateTagBuilder(ModTags.Items.CHISELS)
+                .addTag(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
+                .addTag(BTWRConventionalTags.Items.MODERN_CHISELS);
+
         getOrCreateTagBuilder(ModTags.Items.SMALL_STONES)
                 .add(ModItems.SMALL_STONE)
                 .add(ModItems.SMALL_STONE_1)

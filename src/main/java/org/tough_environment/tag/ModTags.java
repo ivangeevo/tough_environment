@@ -52,6 +52,7 @@ public class ModTags
         public static final TagKey<Item> SHOULD_NOT_MERGE = register("should_not_merge");
         public static final TagKey<Item> SMALL_STONES = register("small_stones");
         public static final TagKey<Item> MORTARING_ITEMS = register("mortaring_items");
+        public static final TagKey<Item> CHISELS = register("chisels");
 
         private static TagKey<Item> register(String name) {
             return TagKey.of(RegistryKeys.ITEM, new Identifier(ToughEnvironmentMod.MOD_ID, name));
