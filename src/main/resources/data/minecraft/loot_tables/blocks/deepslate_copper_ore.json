@@ -15,14 +15,16 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "enchantments": [
-                      {
-                        "enchantment": "minecraft:silk_touch",
-                        "levels": {
-                          "min": 1
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantment": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
                         }
-                      }
-                    ]
+                      ]
+                    }
                   }
                 }
               ]
@@ -31,6 +33,11 @@
               "type": "minecraft:item",
               "name": "minecraft:raw_copper",
               "functions": [
+                {
+                  "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:ore_drops"
+                },
                 {
                   "function": "minecraft:explosion_decay"
                 }
@@ -43,19 +50,30 @@
                   }
                 }
               ]
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:raw_copper",
-          "conditions": [
-            {
-              "condition": "minecraft:survives_explosion"
             },
             {
-              "condition": "minecraft:random_chance",
-              "chance": 0.5
+              "type": "minecraft:item",
+              "name": "minecraft:raw_copper",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:advanced_chisels"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:dust_copper",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:modern_chisels"
+                  }
+                }
+              ]
             }
           ]
         }
@@ -85,6 +103,5 @@
         }
       ]
     }
-  ],
-  "random_sequence": "minecraft:blocks/deepslate_copper_ore"
+  ]
 }
