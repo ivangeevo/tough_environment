@@ -29,19 +29,19 @@ public class ModBlocks
 
 
     public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAgregateBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
-    public static final Block COBBLESTONE_LOOSE = registerBlock("cobblestone_loose", new LooseBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block COBBLED_DEEPSLATE_LOOSE = registerBlock("cobbled_deepslate_loose", new LooseBlock(AbstractBlock.Settings.create().strength(1.1F).sounds(BlockSoundGroup.DEEPSLATE)));
-    public static final Block GRANITE_LOOSE = registerBlock("granite_loose", new LooseBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block ANDESITE_LOOSE = registerBlock("andesite_loose", new LooseBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block DIORITE_LOOSE = registerBlock("diorite_loose", new LooseBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block COBBLESTONE_LOOSE = registerBlock("cobblestone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block COBBLED_DEEPSLATE_LOOSE = registerBlock("cobbled_deepslate_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.1F).sounds(BlockSoundGroup.DEEPSLATE)));
+    public static final Block GRANITE_LOOSE = registerBlock("granite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block ANDESITE_LOOSE = registerBlock("andesite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block DIORITE_LOOSE = registerBlock("diorite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
-    public static final Block CALCITE_LOOSE = registerBlock("calcite_loose", new LooseBlock(AbstractBlock.Settings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.CALCITE)));
-    public static final Block TUFF_LOOSE = registerBlock("tuff_loose", new LooseBlock(AbstractBlock.Settings.create().strength(0.8F).requiresTool().sounds(BlockSoundGroup.TUFF)));
-    public static final Block BLACKSTONE_LOOSE = registerBlock("blackstone_loose", new LooseBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
+    public static final Block CALCITE_LOOSE = registerBlock("calcite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.CALCITE)));
+    public static final Block TUFF_LOOSE = registerBlock("tuff_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).requiresTool().sounds(BlockSoundGroup.TUFF)));
+    public static final Block BLACKSTONE_LOOSE = registerBlock("blackstone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
     public static final Block BASALT_LOOSE = registerBlock("basalt_loose", new LoosePillarBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.BASALT)));
-    public static final Block END_STONE_LOOSE = registerBlock("end_stone_loose", new LooseBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
+    public static final Block END_STONE_LOOSE = registerBlock("end_stone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
 
-    public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new LooseBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE).nonOpaque()));
+    public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE).nonOpaque()));
 
     public static final Block STONE_CONVERTING = registerBlock("stone_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));

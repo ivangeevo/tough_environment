@@ -3,10 +3,12 @@
  */
 package org.tough_environment.block.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.StairShape;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -37,7 +39,8 @@ import org.tough_environment.tag.ModTags;
 
 import java.util.stream.IntStream;
 
-public class LooseStairsBlock extends LooseBlock implements Waterloggable
+//TODO: Fix stair blocks turning to the baseBlockState when starting to fall
+public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggable, LandingBlock
 {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final EnumProperty<BlockHalf> HALF = Properties.BLOCK_HALF;
@@ -62,6 +65,7 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
     private static VoxelShape[] composeShapes(VoxelShape base, VoxelShape northWest, VoxelShape northEast, VoxelShape southWest, VoxelShape southEast) {
         return IntStream.range(0, 16).mapToObj(i -> composeShape(i, base, northWest, northEast, southWest, southEast)).toArray(VoxelShape[]::new);
     }
+
 
     private static VoxelShape composeShape(int i, VoxelShape base, VoxelShape northWest, VoxelShape northEast, VoxelShape southWest, VoxelShape southEast) {
         VoxelShape voxelShape = base;
@@ -91,6 +95,7 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
         this.baseBlock = baseBlockState.getBlock();
         this.baseBlockState = baseBlockState;
     }
+
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
@@ -137,6 +142,7 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
         return state.get(SHAPE).ordinal() * 4 + state.get(FACING).getHorizontal();
     }
 
+
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random)
     {
@@ -173,6 +179,7 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
         this.baseBlock.getDefaultState().onBlockAdded(world, pos, oldState, true);
     }
 
+
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.isOf(newState.getBlock()))
@@ -200,13 +207,12 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
     }
 
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
-    {
-        this.baseBlock.getDefaultState().scheduledTick(world, pos, random);
-
+    protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
+            FallingBlockEntity fallingBlockEntity = FallingBlockEntity.spawnFromBlock(world, pos, state);
+            this.configureFallingBlockEntity(fallingBlockEntity);
+        }
     }
-
-
 
     @Override
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion)
@@ -219,7 +225,10 @@ public class LooseStairsBlock extends LooseBlock implements Waterloggable
         Direction direction = ctx.getSide();
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-        BlockState blockState = this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing()).with(HALF, BlockHalf.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        BlockState blockState = this.getDefaultState()
+                .with(FACING, ctx.getHorizontalPlayerFacing())
+                .with(HALF, BlockHalf.BOTTOM)
+                .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
 
         return blockState.with(SHAPE, getStairShape(blockState, ctx.getWorld(), blockPos));
     }
