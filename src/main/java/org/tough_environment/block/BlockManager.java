@@ -61,9 +61,11 @@ public class BlockManager
             player.addExhaustion(0.2f);
         }
 
+        this.playDingSoundOnBreak(world, pos, state, tool, player);
+
     }
 
-    public void playDingSoundOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack, PlayerEntity player)
+    private void playDingSoundOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack, PlayerEntity player)
     {
         if ( shouldDing(state, stack) && !player.isCreative())
         {

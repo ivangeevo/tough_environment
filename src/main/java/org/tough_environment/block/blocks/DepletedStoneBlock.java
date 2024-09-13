@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 public class DepletedStoneBlock extends ConvertingBlock
 {
 
-
     public DepletedStoneBlock(Settings settings)
     {
         super(settings);

@@ -34,7 +34,5 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci)
     {
         BlockManager.getInstance().handleAfterBreak(world, player, pos, state, tool);
-        BlockManager.getInstance().playDingSoundOnBreak(world, pos, state ,tool, player);
-
     }
 }
