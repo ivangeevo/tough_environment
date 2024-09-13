@@ -6,24 +6,10 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
-              "name": "tough_environment:cobblestone_loose",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "#c:pickaxes_harvest_full_block"
-                  }
-                }
-              ]
-            }
-          ]
+          "type": "minecraft:item",
+          "name": "tough_environment:cobblestone_loose"
         }
       ]
     }
-  ],
-  "random_sequence": "minecraft:blocks/cobblestone"
+  ]
 }

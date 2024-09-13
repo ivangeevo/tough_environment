@@ -1,4 +1,5 @@
 # TODO LIST OVERALL
 
 1. Make Magma blocks to require at least iron pick to drop themselves.
-2. Fix Iron Pick breaking Strata 3 (Deepslate) & also not dropping stacks(loot table).
+2. Fix Iron Pick breaking Strata 3 (Deepslate) & also not dropping stacks(loot table). ?? check if true
+3. Fix pickaxes not breaking broken blocks fast enough.
