@@ -11,11 +11,10 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tough_environment:basalt_loose"
+          "name": "minecraft:raw_copper"
         }
       ],
       "rolls": 1.0
     }
-  ],
-  "random_sequence": "tough_environment:blocks/basalt_loose"
+  ]
 }

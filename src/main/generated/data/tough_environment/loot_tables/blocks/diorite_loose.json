@@ -11,11 +11,10 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tough_environment:cobblestone_loose"
+          "name": "tough_environment:diorite_loose"
         }
       ],
       "rolls": 1.0
     }
-  ],
-  "random_sequence": "tough_environment:blocks/cobblestone_loose"
+  ]
 }

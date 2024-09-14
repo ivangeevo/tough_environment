@@ -39,7 +39,6 @@ import org.tough_environment.tag.ModTags;
 
 import java.util.stream.IntStream;
 
-//TODO: Fix stair blocks turning to the baseBlockState when starting to fall
 public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggable, LandingBlock
 {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;

@@ -1,10 +1,8 @@
-# 0.3.2 Alpha
-+ General fixes for loot tables of blocks to drop correctly. 
-+ Fixed a bug that caused falling(loose) block stairs to turn to their full block counterpart when falling.
-
 # 0.3.1 Alpha
 + Fixed placement code for ore chunk blocks on the ground to work as intended
 + Reworked chisel block breaking speeds in some cases to be more balanced
++ General fixes for loot tables of blocks to drop correctly.
++ Fixed a bug that caused falling(loose) block stairs to turn to their full block counterpart when falling.
 
 # 0.3 Alpha
 + The mod now requires BTWR:Core v0.25. It didn't require it before, which caused some blocks to not drop correctly when mined.

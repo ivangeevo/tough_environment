@@ -11,11 +11,10 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tough_environment:diorite_loose"
+          "name": "minecraft:raw_iron"
         }
       ],
       "rolls": 1.0
     }
-  ],
-  "random_sequence": "tough_environment:blocks/diorite_loose"
+  ]
 }

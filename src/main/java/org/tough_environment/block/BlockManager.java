@@ -112,7 +112,7 @@ public class BlockManager
         if (!world.isClient)
         {
 
-            if ( isVanillaDirtBlock(state) ) {
+            if ( isVanillaDirtBlock(state) || state.isOf(Blocks.GRASS_BLOCK) ) {
                 setStateForDirt(world, pos, state, tool);
             }
 
@@ -121,28 +121,28 @@ public class BlockManager
                 setStateForOre(world, pos, state, tool);
             }
 
-            Map<Block, BlockState> blockMap = new HashMap<>();
+            Map<Block, Block> blockMap = new HashMap<>();
 
-            blockMap.put(Blocks.STONE, ModBlocks.STONE_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.GRANITE, ModBlocks.GRANITE_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.ANDESITE, ModBlocks.ANDESITE_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.DIORITE, ModBlocks.DIORITE_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.CALCITE, ModBlocks.CALCITE_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.TUFF, ModBlocks.TUFF_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.BLACKSTONE, ModBlocks.BLACKSTONE_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.BASALT, ModBlocks.BASALT_CONVERTING.getDefaultState());
-            blockMap.put(Blocks.END_STONE, ModBlocks.END_STONE_CONVERTING.getDefaultState());
+            blockMap.put(Blocks.STONE, ModBlocks.STONE_CONVERTING);
+            blockMap.put(Blocks.GRANITE, ModBlocks.GRANITE_CONVERTING);
+            blockMap.put(Blocks.ANDESITE, ModBlocks.ANDESITE_CONVERTING);
+            blockMap.put(Blocks.DIORITE, ModBlocks.DIORITE_CONVERTING);
+            blockMap.put(Blocks.CALCITE, ModBlocks.CALCITE_CONVERTING);
+            blockMap.put(Blocks.TUFF, ModBlocks.TUFF_CONVERTING);
+            blockMap.put(Blocks.BLACKSTONE, ModBlocks.BLACKSTONE_CONVERTING);
+            blockMap.put(Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_CONVERTING);
+            blockMap.put(Blocks.BASALT, ModBlocks.BASALT_CONVERTING);
+            blockMap.put(Blocks.END_STONE, ModBlocks.END_STONE_CONVERTING);
 
 
-            for (Map.Entry<Block, BlockState> entry : blockMap.entrySet())
+            for (Map.Entry<Block, Block> entry : blockMap.entrySet())
             {
                 Block originalBlock = entry.getKey();
-                BlockState convertedState = entry.getValue();
+                Block convertedBlock = entry.getValue();
 
                 if (state.isOf(originalBlock))
                 {
-                    setStateForStone(world, pos, tool, convertedState);
+                    setStateForStone(world, pos, tool, convertedBlock);
                     break;
                 }
 
@@ -151,8 +151,10 @@ public class BlockManager
         }
     }
 
-    private void setStateForStone(World world, BlockPos pos, ItemStack tool, BlockState state)
+    private void setStateForStone(World world, BlockPos pos, ItemStack tool, Block block)
     {
+
+        BlockState state = block.getDefaultState();
 
         if (tool.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
                 || (tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.STONE_STRATA3)) )
