@@ -30,7 +30,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:shard_granite",
+              "name": "tough_environment:shard_andesite",
               "functions": [
                 {
                   "function": "minecraft:set_count",
@@ -44,6 +44,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
+                  "minecraft:wooden_pickaxe",
                   "minecraft:stone_pickaxe"
                 ]
               }
@@ -55,7 +56,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:granite_loose",
+              "name": "tough_environment:andesite_loose",
               "functions": [
                 {
                   "function": "minecraft:set_count",
@@ -127,6 +128,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
+                  "minecraft:wooden_pickaxe",
                   "minecraft:stone_pickaxe"
                 ]
               }
@@ -138,7 +140,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:shard_granite",
+              "name": "tough_environment:shard_andesite",
               "functions": [
                 {
                   "function": "minecraft:set_count",
@@ -151,12 +153,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:golden_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "items": "#c:pickaxes_harvest_full_block"
               }
             }
           ]
@@ -173,12 +170,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:golden_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "items": "#c:pickaxes_harvest_full_block"
               }
             }
           ]

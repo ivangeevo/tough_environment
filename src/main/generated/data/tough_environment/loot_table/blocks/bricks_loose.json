@@ -21,7 +21,7 @@
                     "predicates": {
                       "minecraft:enchantments": [
                         {
-                          "enchantment": "minecraft:silk_touch",
+                          "enchantments": "minecraft:silk_touch",
                           "levels": {
                             "min": 1
                           }
@@ -31,7 +31,7 @@
                   }
                 }
               ],
-              "name": "tough_environment:dirt_loose"
+              "name": "tough_environment:bricks_loose"
             },
             {
               "type": "minecraft:item",
@@ -39,11 +39,11 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": "#c:shovels_harvest_full_block"
+                    "items": "#c:pickaxes_harvest_full_block"
                   }
                 }
               ],
-              "name": "tough_environment:dirt_loose"
+              "name": "tough_environment:bricks_loose"
             },
             {
               "type": "minecraft:item",
@@ -61,11 +61,11 @@
               "functions": [
                 {
                   "add": false,
-                  "count": 6.0,
+                  "count": 8.0,
                   "function": "minecraft:set_count"
                 }
               ],
-              "name": "tough_environment:pile_dirt"
+              "name": "minecraft:brick"
             }
           ]
         }

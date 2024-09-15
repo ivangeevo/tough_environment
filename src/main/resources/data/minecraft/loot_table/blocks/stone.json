@@ -18,8 +18,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
-                  "tough_environment:chisel_iron",
-                  "tough_environment:chisel_diamond"
+                  "tough_environment:chisel_iron"
                 ]
               }
             }
@@ -30,11 +29,16 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:shard_diorite",
+              "name": "tough_environment:small_stone",
               "functions": [
                 {
                   "function": "minecraft:set_count",
                   "count": 3
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
                 }
               ]
             }
@@ -44,6 +48,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
+                  "minecraft:wooden_pickaxe",
                   "minecraft:stone_pickaxe"
                 ]
               }
@@ -55,7 +60,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:diorite_loose",
+              "name": "tough_environment:cobblestone_loose",
               "functions": [
                 {
                   "function": "minecraft:set_count",
@@ -127,6 +132,7 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": [
+                  "minecraft:wooden_pickaxe",
                   "minecraft:stone_pickaxe"
                 ]
               }
@@ -138,7 +144,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:shard_diorite",
+              "name": "tough_environment:small_stone",
               "functions": [
                 {
                   "function": "minecraft:set_count",

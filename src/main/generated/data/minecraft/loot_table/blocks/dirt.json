@@ -21,7 +21,7 @@
                     "predicates": {
                       "minecraft:enchantments": [
                         {
-                          "enchantment": "minecraft:silk_touch",
+                          "enchantments": "minecraft:silk_touch",
                           "levels": {
                             "min": 1
                           }
@@ -31,7 +31,7 @@
                   }
                 }
               ],
-              "name": "minecraft:gravel"
+              "name": "tough_environment:dirt_loose"
             },
             {
               "type": "minecraft:item",
@@ -43,7 +43,7 @@
                   }
                 }
               ],
-              "name": "minecraft:gravel"
+              "name": "tough_environment:dirt_loose"
             },
             {
               "type": "minecraft:item",
@@ -65,37 +65,9 @@
                   "function": "minecraft:set_count"
                 }
               ],
-              "name": "tough_environment:pile_gravel"
+              "name": "tough_environment:pile_dirt"
             }
           ]
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "chance": 0.1,
-              "condition": "minecraft:random_chance"
-            }
-          ],
-          "functions": [
-            {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "minecraft:flint"
         }
       ],
       "rolls": 1.0

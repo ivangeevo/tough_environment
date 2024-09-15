@@ -43,7 +43,7 @@ public class ModTags
         public static final TagKey<Block> DEEPSLATE_ORES = register("deepslate_ores");
 
         private static TagKey<Block> register(String name) {
-            return TagKey.of(RegistryKeys.BLOCK, new Identifier(ToughEnvironmentMod.MOD_ID, name));
+            return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
     }
 
@@ -55,7 +55,7 @@ public class ModTags
         public static final TagKey<Item> CHISELS = register("chisels");
 
         private static TagKey<Item> register(String name) {
-            return TagKey.of(RegistryKeys.ITEM, new Identifier(ToughEnvironmentMod.MOD_ID, name));
+            return TagKey.of(RegistryKeys.ITEM, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
 
     }
@@ -68,7 +68,7 @@ public class ModTags
 
         private static TagKey<Block> register(String id)
         {
-            return TagKey.of(RegistryKeys.BLOCK, new Identifier(ToughEnvironmentMod.MOD_ID, id));
+            return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, id));
         }
 
     }

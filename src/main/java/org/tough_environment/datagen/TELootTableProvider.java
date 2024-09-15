@@ -244,7 +244,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
         // Define the main loot pool with conditions
         AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
-                ItemEntry.builder(dropWithSilkTouch).conditionally(WITH_SILK_TOUCH),
+                ItemEntry.builder(dropWithSilkTouch).conditionally(createSilkTouchCondition()),
                 ItemEntry.builder(looseDrop).conditionally(toolCondition),
                 ItemEntry.builder(pileDrop)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))

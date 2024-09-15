@@ -87,7 +87,7 @@ public class MortarReceiverBlock extends FallingBlock
         if (blockReplacementMap != null && blockReplacementMap.containsKey(replacementKey))
         {
             String replacementValue = blockReplacementMap.get(replacementKey);
-            return Registries.BLOCK.get(new Identifier(replacementValue));
+            return Registries.BLOCK.get(Identifier.of(replacementValue));
         }
 
         return null;

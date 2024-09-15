@@ -57,7 +57,7 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_SHOVELS)
                 .add(Items.NETHERITE_SHOVEL)
-                .addOptional(new Identifier("bwt", "netherite_mattock"));
+                .addOptional(Identifier.of("bwt", "netherite_mattock"));
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_PICKAXES)
                 .add(Items.IRON_PICKAXE)
@@ -67,7 +67,7 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
                 .add(Items.DIAMOND_PICKAXE)
                 .add(Items.NETHERITE_PICKAXE)
-                .addOptional(new Identifier("bwt", "netherite_mattock"));
+                .addOptional(Identifier.of("bwt", "netherite_mattock"));
 
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK)

@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,6 +34,7 @@ public abstract class PlayerEntityMixin extends LivingEntity
     {
         super(entityType, world);
     }
+
     @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
     private void customBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir)
     {
@@ -66,26 +68,17 @@ public abstract class PlayerEntityMixin extends LivingEntity
         }
         // Tough Environment: End Mod
 
-        if ( f > 1.0F )
-        {
-            int i = EnchantmentHelper.getEfficiency(this);
-            ItemStack itemStack = this.getMainHandStack();
 
-            if ( i > 0 && !itemStack.isEmpty() )
-            {
-                f += (float)(i * i + 1);
-            }
+        if (f > 1.0F) {
+            f += (float)this.getAttributeValue(EntityAttributes.PLAYER_MINING_EFFICIENCY);
         }
 
-        if ( StatusEffectUtil.hasHaste(this) )
-        {
-            f *= 1.0F + (float)( StatusEffectUtil.getHasteAmplifier(this) + 1 ) * 0.2F;
+        if (StatusEffectUtil.hasHaste(this)) {
+            f *= 1.0F + (float)(StatusEffectUtil.getHasteAmplifier(this) + 1) * 0.2F;
         }
 
-        if ( this.hasStatusEffect(StatusEffects.MINING_FATIGUE) )
-        {
-            float g = switch ( Objects.requireNonNull(this.getStatusEffect(StatusEffects.MINING_FATIGUE)).getAmplifier())
-            {
+        if (this.hasStatusEffect(StatusEffects.MINING_FATIGUE)) {
+            float g = switch (Objects.requireNonNull(this.getStatusEffect(StatusEffects.MINING_FATIGUE)).getAmplifier()) {
                 case 0 -> 0.3F;
                 case 1 -> 0.09F;
                 case 2 -> 0.0027F;
@@ -95,13 +88,12 @@ public abstract class PlayerEntityMixin extends LivingEntity
             f *= g;
         }
 
-        if ( this.isSubmergedIn(FluidTags.WATER) && !EnchantmentHelper.hasAquaAffinity(this) )
-        {
-            f /= 5.0F;
+        f *= (float)this.getAttributeValue(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+        if (this.isSubmergedIn(FluidTags.WATER)) {
+            f *= (float) Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.PLAYER_SUBMERGED_MINING_SPEED)).getValue();
         }
 
-        if ( !this.isOnGround() )
-        {
+        if (!this.isOnGround()) {
             f /= 5.0F;
         }
 

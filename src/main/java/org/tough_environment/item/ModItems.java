@@ -42,29 +42,29 @@ public class ModItems
     // Tool Items
     public static final Item CHISEL_WOOD = registerItem( "chisel_wood",
             new ChiselItem(ModToolMaterials.WOOD_CHISEL, ChiselItem.Type.WOOD,
-                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers())
+                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers(ModToolMaterials.WOOD_CHISEL, 1.0f, -2.8f))
                             .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.02f))
             ));
     public static final Item CHISEL_STONE = registerItem( "chisel_stone",
             new ChiselItem(ModToolMaterials.STONE_CHISEL, ChiselItem.Type.STONE,
-                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers())
+                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers(ModToolMaterials.STONE_CHISEL, 1.0f, -2.8f))
                             .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.05f))
             ));
     public static final Item CHISEL_IRON = registerItem( "chisel_iron",
             new ChiselItem(ModToolMaterials.IRON_CHISEL, ChiselItem.Type.IRON,
-                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers())
+                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers(ModToolMaterials.IRON_CHISEL, 1.0f, -2.8f))
                             .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.10f))
             ));
     public static final Item CHISEL_DIAMOND = registerItem( "chisel_diamond",
             new ChiselItem(ModToolMaterials.DIAMOND_CHISEL, ChiselItem.Type.DIAMOND,
-                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers())
+                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers(ModToolMaterials.DIAMOND_CHISEL, 1.0f, -2.8f))
                             .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.12f))
             ));
 
 
     private static Item registerItem(String name, Item item)
     {
-        return Registry.register(Registries.ITEM, new Identifier(ToughEnvironmentMod.MOD_ID, name), item);
+        return Registry.register(Registries.ITEM, Identifier.of(ToughEnvironmentMod.MOD_ID, name), item);
     }
 
     public static void registerModItems()
