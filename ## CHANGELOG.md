@@ -4,6 +4,7 @@
 + Fixed mod icon in the creative mod menu to display properly instead of the "missing" texture.
 + Reworked chisel block breaking speeds in some cases to be more balanced
 + General fixes for loot tables of blocks to drop correctly.
++ Removed the new texture for copper ore chunk and reverted it to the vanilla original one for raw copper.
 + Updated the mod to Minecraft 1.21.1, Fabric Loader 0.16.5 & Fabric API 0.104.0
 
 # 0.3 Alpha
