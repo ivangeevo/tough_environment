@@ -3,11 +3,6 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -49,13 +44,7 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "condition": "minecraft:inverted",
-                  "term": {
-                    "condition": "minecraft:match_tool",
-                    "predicate": {
-                      "items": "#minecraft:hoes"
-                    }
-                  }
+                  "condition": "minecraft:survives_explosion"
                 }
               ],
               "functions": [

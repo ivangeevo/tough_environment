@@ -3,11 +3,6 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -103,6 +98,28 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
+                "items": "minecraft:diamond_hoe"
+              }
+            },
+            {
+              "chance": 0.06,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "name": "minecraft:wheat_seeds"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
                 "items": "minecraft:golden_hoe"
               }
             },
@@ -130,28 +147,6 @@
             },
             {
               "chance": 0.03,
-              "condition": "minecraft:random_chance"
-            }
-          ],
-          "name": "minecraft:wheat_seeds"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "minecraft:diamond_hoe"
-              }
-            },
-            {
-              "chance": 0.06,
               "condition": "minecraft:random_chance"
             }
           ],

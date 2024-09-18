@@ -1,0 +1,98 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:pickaxes_harvest_full_block"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "block": "tough_environment:slab_andesite_loose",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "type": "double"
+                      }
+                    }
+                  ],
+                  "count": 2.0,
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "condition": "minecraft:inverted",
+                      "term": {
+                        "block": "tough_environment:slab_andesite_loose",
+                        "condition": "minecraft:block_state_property",
+                        "properties": {
+                          "type": "double"
+                        }
+                      }
+                    }
+                  ],
+                  "count": 1.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "tough_environment:slab_andesite_loose"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "tough_environment:slab_andesite_loose",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "type": "double"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                },
+                {
+                  "add": false,
+                  "count": 8.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "minecraft:brick"
+            },
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                },
+                {
+                  "add": false,
+                  "count": 4.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "minecraft:brick"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "tough_environment:bricks_loose"
+              "name": "tough_environment:andesite_stairs"
             },
             {
               "type": "minecraft:item",
@@ -38,23 +38,21 @@
                   }
                 }
               ],
-              "name": "tough_environment:bricks_loose"
+              "name": "tough_environment:andesite_loose_stairs"
             },
             {
               "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:survives_explosion"
-                }
-              ],
               "functions": [
                 {
+                  "function": "minecraft:explosion_decay"
+                },
+                {
                   "add": false,
-                  "count": 8.0,
+                  "count": 4.0,
                   "function": "minecraft:set_count"
                 }
               ],
-              "name": "minecraft:brick"
+              "name": "tough_environment:shard_andesite"
             }
           ]
         }

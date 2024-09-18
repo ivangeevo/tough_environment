@@ -1,29 +1,29 @@
 package org.tough_environment.datagen;
 
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.enums.SlabType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.condition.MatchToolLootCondition;
-import net.minecraft.loot.condition.RandomChanceLootCondition;
-import net.minecraft.loot.condition.SurvivesExplosionLootCondition;
+import net.minecraft.loot.condition.*;
 import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LeafEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.state.property.Properties;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
 import org.tough_environment.tag.BTWRConventionalTags;
-import org.tough_environment.tag.ModTags;
 
 import java.util.List;
 import java.util.Map;
@@ -48,6 +48,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
     private void forVanilla()
     {
+        // Blocks that require a tool to drop fully
         addDrop(Blocks.DIRT, dropsForLooseAggregate(ModBlocks.DIRT_LOOSE, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6));
         addDrop(Blocks.SAND, dropsForLooseAggregate(Blocks.SAND, Blocks.SAND, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_SAND, 6));
         addDrop(Blocks.RED_SAND, dropsForLooseAggregate(Blocks.RED_SAND, Blocks.RED_SAND, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_RED_SAND, 6));
@@ -56,30 +57,18 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.GRASS_BLOCK, dropsForLooseAggregate(Blocks.GRASS_BLOCK, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6,
                 null, Map.of(Items.IRON_HOE, 0.03f, Items.GOLDEN_HOE, 0.04f, Items.DIAMOND_HOE, 0.06f, Items.NETHERITE_HOE, 0.11f), Items.WHEAT_SEEDS));
 
-        /**
-        addDrop(Blocks.STONE,
-                dropsForStoneBlock(Blocks.STONE, ModItems.SMALL_STONE, 3, ModBlocks.COBBLESTONE_LOOSE,
-                        List.of(new StoneDropEntry(ModItems.PILE_GRAVEL, ModTags.Items.CHISELS, null)),
-                        Map.of(
-                                Items.IRON_PICKAXE, 0.05f,
-                                Items.DIAMOND_PICKAXE, 0.1f
-                        ), Items.STONE_BRICKS, true));
-         **/
 
-
-        // TODO: Add other stone blocks like granite, diorite, etc.
+        // TODO: Add stone blocks & others like granite, diorite, etc.
 
     }
 
     private void forMod()
     {
-        // Loose blocks that have pile items drops
-        addDrop(ModBlocks.DIRT_LOOSE, dropsForLooseAggregate(ModBlocks.DIRT_LOOSE, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6));
 
-        // Special case loose blocks with pile drops
+        // Loose blocks
+        addDrop(ModBlocks.DIRT_LOOSE, dropsForLooseAggregate(ModBlocks.DIRT_LOOSE, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6));
         addDrop(ModBlocks.BRICKS_LOOSE, dropsForLooseAggregate(ModBlocks.BRICKS_LOOSE, ModBlocks.BRICKS_LOOSE, WITH_PICKAXE_FULLY_HARVESTS, Items.BRICK, 8));
 
-        // Loose blocks without a pile item drop
         addDrop(ModBlocks.COBBLESTONE_LOOSE);
         addDrop(ModBlocks.COBBLED_DEEPSLATE_LOOSE);
         addDrop(ModBlocks.GRANITE_LOOSE);
@@ -91,6 +80,33 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.BASALT_LOOSE);
         addDrop(ModBlocks.END_STONE_LOOSE);
 
+        // Loose Slab blocks
+        addDrop(ModBlocks.SLAB_DIRT, dropsForLooseSlab(ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
+        addDrop(ModBlocks.SLAB_GRAVEL, dropsForLooseSlab(ModBlocks.SLAB_GRAVEL, ModItems.PILE_GRAVEL, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
+        addDrop(ModBlocks.SLAB_SAND, dropsForLooseSlab(ModBlocks.SLAB_SAND, ModItems.PILE_SAND, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
+        addDrop(ModBlocks.SLAB_RED_SAND, dropsForLooseSlab(ModBlocks.SLAB_RED_SAND, ModItems.PILE_RED_SAND, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
+        addDrop(ModBlocks.SLAB_BRICKS_LOOSE, dropsForLooseSlab(ModBlocks.SLAB_ANDESITE_LOOSE, Items.BRICK, 4, 8, WITH_PICKAXE_FULLY_HARVESTS));
+
+        addDrop(ModBlocks.SLAB_COBBLESTONE_LOOSE);
+        addDrop(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE);
+        addDrop(ModBlocks.SLAB_GRANITE_LOOSE);
+        addDrop(ModBlocks.SLAB_DIORITE_LOOSE);
+        addDrop(ModBlocks.SLAB_ANDESITE_LOOSE);
+
+        // Loose Stair blocks
+        addDrop(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
+        addDrop(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS);
+        addDrop(ModBlocks.GRANITE_LOOSE_STAIRS);
+        addDrop(ModBlocks.ANDESITE_LOOSE_STAIRS);
+        addDrop(ModBlocks.DIORITE_LOOSE_STAIRS);
+        addDrop(ModBlocks.GRANITE_LOOSE_STAIRS);
+
+        // Non-loose blocks that break into loose
+        addDrop(ModBlocks.GRANITE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_GRANITE, 4));
+        addDrop(ModBlocks.ANDESITE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.ANDESITE_STAIRS, ModBlocks.ANDESITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_ANDESITE, 4));
+        addDrop(ModBlocks.DIORITE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_DIORITE, 4));
+
+
         // Placed Ore block loot tables
         addDrop(ModBlocks.RAW_IRON_PLACED, Items.RAW_IRON);
         addDrop(ModBlocks.RAW_COPPER_PLACED, Items.RAW_COPPER);
@@ -100,101 +116,9 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
     }
 
-    // Overloaded method: Adds optional stone brick drops
-    public LootTable.Builder dropsForStoneBlock(Block block, Item smallStone, int smallStoneCount, Block looseDrop, List<StoneDropEntry> stoneDropEntries, Map<Item, Float> pickaxeDrops, Item stoneBrick, boolean dropStoneBrick) {
-        LootTable.Builder lootTableBuilder = dropsForStoneBlock(block, smallStone, smallStoneCount, looseDrop, stoneDropEntries, pickaxeDrops); // Call the previous method
-
-        // Optionally add stone brick drops
-        if (dropStoneBrick && stoneBrick != null) {
-            LootPool.Builder stoneBrickPool = LootPool.builder()
-                    .rolls(ConstantLootNumberProvider.create(1.0f))
-                    .with(ItemEntry.builder(stoneBrick));
-
-            lootTableBuilder.pool(stoneBrickPool);
-        }
-
-        return lootTableBuilder;
-    }
-
-    // Overloaded method: Adds pickaxe-specific drops
-    public LootTable.Builder dropsForStoneBlock(Block block, Item smallStone, int smallStoneCount, Block looseDrop, List<StoneDropEntry> stoneDropEntries, Map<Item, Float> pickaxeDrops) {
-        LootTable.Builder lootTableBuilder = dropsForStoneBlock(block, smallStone, smallStoneCount, looseDrop, stoneDropEntries); // Call the previous method
-
-        // Add custom drops for specific pickaxes
-        if (pickaxeDrops != null)
-        {
-            for (Map.Entry<Item, Float> entry : pickaxeDrops.entrySet())
-            {
-                Item pickaxe = entry.getKey();
-                float chance = entry.getValue();
-
-                LootPool.Builder pickaxeDropPool = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1.0f))
-                        .with(ItemEntry.builder(smallStone) // Adjust based on your drop
-                                .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().items(pickaxe)))
-                                .conditionally(RandomChanceLootCondition.builder(chance)));
-
-                lootTableBuilder.pool(pickaxeDropPool);
-            }
-        }
-
-        return lootTableBuilder;
-    }
-
-    // Overloaded method: Adds stone-specific entries
-    public LootTable.Builder dropsForStoneBlock(Block block, Item smallStone, int smallStoneCount, Block looseDrop, List<StoneDropEntry> stoneDropEntries) {
-        LootTable.Builder lootTableBuilder = dropsForStoneBlock(block, smallStone, smallStoneCount, looseDrop); // Call the previous method
-
-        // Add stone-specific tool drops
-        for (StoneDropEntry entry : stoneDropEntries) {
-            LootPool.Builder stoneDropPool = LootPool.builder()
-                    .rolls(ConstantLootNumberProvider.create(1.0f))
-                    .with(ItemEntry.builder(entry.item))
-                    .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(entry.toolTag)))
-                    .conditionally(entry.extraCondition != null ? entry.extraCondition : SurvivesExplosionLootCondition.builder());
-
-            lootTableBuilder.pool(stoneDropPool);
-        }
-
-        return lootTableBuilder;
-    }
-
-    // Overloaded method: Adds loose drop block
-    public LootTable.Builder dropsForStoneBlock(Block block, Item smallStone, int smallStoneCount, Block looseDrop) {
-        return dropsForStoneBlock(block, smallStone, smallStoneCount) // Call the previous method
-                .pool(LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1.0f))
-                        .with(ItemEntry.builder(looseDrop)));
-    }
-
-    // Overloaded method: Adds small stone count
-    public LootTable.Builder dropsForStoneBlock(Block block, Item smallStone, int smallStoneCount) {
-        return dropsForStoneBlock(block, smallStone) // Call the simpler method
-                .pool(LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1.0f))
-                        .with(ItemEntry.builder(smallStone)
-                                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(smallStoneCount))))
-                        .conditionally(SurvivesExplosionLootCondition.builder()));
-    }
-
-    // Handles only basic stone block drops
-    public LootTable.Builder dropsForStoneBlock(Block block, Item smallStone) {
-        LootTable.Builder lootTableBuilder = LootTable.builder();
-
-        // Basic drop logic for small stone
-        LootPool.Builder smallStonePool = LootPool.builder()
-                .rolls(ConstantLootNumberProvider.create(1.0f))
-                .with(ItemEntry.builder(smallStone))
-                .conditionally(SurvivesExplosionLootCondition.builder());
-
-        lootTableBuilder.pool(smallStonePool);
-
-        return lootTableBuilder;
-    }
-
     // Overloaded method: Adds hoe-specific drops
-    public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, float pileDropCount, List<AdditionalDrop> additionalDrops, Map<Item, Float> hoeDrops, Item hoeDroppedItem) {
-        LootTable.Builder lootTableBuilder = dropsForLooseAggregate(dropWithSilkTouch, looseDrop, toolCondition, pileDrop, pileDropCount, additionalDrops); // Call the previous method
+    public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount, List<AdditionalDrop> additionalDrops, Map<Item, Float> hoeDrops, Item hoeDroppedItem) {
+        LootTable.Builder builder = dropsForLooseAggregate(dropWithSilkTouch, looseDrop, toolCondition, pileDrop, pileDropCount, additionalDrops); // Call the previous method
 
         // Add hoe-specific drops
         if (hoeDrops != null) {
@@ -208,17 +132,17 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                                 .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().items(hoe)))
                                 .conditionally(RandomChanceLootCondition.builder(chance)));
 
-                lootTableBuilder.pool(hoePool);
+                builder.pool(hoePool);
             }
         }
 
-        return lootTableBuilder;
+        return builder;
     }
 
     // Overloaded method: Adds additional drops
     // Only gravel from flint for now (could be abstracted further to be suitable for different cases as well)
-    public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, float pileDropCount, List<AdditionalDrop> additionalDrops) {
-        LootTable.Builder lootTableBuilder = dropsForLooseAggregate(dropWithSilkTouch, looseDrop, toolCondition, pileDrop, pileDropCount); // Call the previous method
+    public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount, List<AdditionalDrop> additionalDrops) {
+        LootTable.Builder builder = dropsForLooseAggregate(dropWithSilkTouch, looseDrop, toolCondition, pileDrop, pileDropCount); // Call the previous method
 
         // Add additional drops
         if (additionalDrops != null) {
@@ -230,39 +154,99 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                                 .conditionally(RandomChanceLootCondition.builder(additionalDrop.chance)))
                         .conditionally(SurvivesExplosionLootCondition.builder());
 
-                lootTableBuilder.pool(additionalPool);
+                builder.pool(additionalPool);
             }
         }
 
-        return lootTableBuilder;
+        return builder;
     }
 
 
     // Handles only basic loose aggregate drops
-    public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, float pileDropCount) {
-        LootTable.Builder lootTableBuilder = LootTable.builder();
-
+    public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
         // Define the main loot pool with conditions
         AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
                 ItemEntry.builder(dropWithSilkTouch).conditionally(createSilkTouchCondition()),
                 ItemEntry.builder(looseDrop).conditionally(toolCondition),
                 ItemEntry.builder(pileDrop)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
-                        .conditionally(WITHOUT_HOE)
+                        .conditionally(dropWithSilkTouch == Blocks.GRASS_BLOCK ? WITHOUT_HOE : SurvivesExplosionLootCondition.builder())
         );
 
         LootPool.Builder mainPool = LootPool.builder()
                 .rolls(ConstantLootNumberProvider.create(1.0f))
-                .with(alternativeEntry)
-                .conditionally(SurvivesExplosionLootCondition.builder());
+                .with(alternativeEntry);
 
-        lootTableBuilder.pool(mainPool);
 
-        return lootTableBuilder;
+        return LootTable.builder().pool(mainPool);
     }
 
+    public LootTable.Builder dropsForLooseSlab(Block drop, Item pileDrop, int singleSlabPileDropCount, int doubleSlabPileDropCount, LootCondition.Builder toolCondition) {
+        return LootTable.builder()
+                .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0F))
+                                .with(
+                                        // An alternative entry that drops piles if the tool condition is not met
+                                        AlternativeEntry.builder(
+                                                // Case 1: Drop slab itself if tool condition is met
+                                                ItemEntry.builder(drop)
+                                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))
+                                                                .conditionally(isDoubleSlab(drop))) // Drop 2 slabs for double slab
+                                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))
+                                                                .conditionally(isDoubleSlab(drop).invert())) // Drop 1 slab for bottom/top slab
+                                                        .conditionally(toolCondition),
+
+                                                // Case 2: Drop pile items for DOUBLE slab
+                                                this.applyExplosionDecay(pileDrop, ItemEntry.builder(pileDrop))
+                                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(doubleSlabPileDropCount)))
+                                                        .conditionally(isDoubleSlab(drop)),
+
+                                                // Case 3: Drop pile items for BOTTOM and TOP slab types
+                                                this.applyExplosionDecay(pileDrop, ItemEntry.builder(pileDrop))
+                                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(singleSlabPileDropCount)))
+                                        )
+                                )
+                );
+    }
+
+    public LootTable.Builder dropsForSimpleLooseBlock(Block silkTouchDrop, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount)
+    {
+        LeafEntry.Builder<?> silkTouchDropEntry = ItemEntry.builder(silkTouchDrop).conditionally(this.createSilkTouchCondition());
+        LeafEntry.Builder<?> looseDropEntry = ItemEntry.builder(looseDrop).conditionally(toolCondition);
+        LeafEntry.Builder<?> pileDropEntry = this.applyExplosionDecay(pileDrop, ItemEntry.builder(pileDrop))
+                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)));
+
+        return LootTable.builder()
+                .pool(
+                        LootPool.builder()
+                                .with(
+                                        AlternativeEntry.builder(silkTouchDropEntry, looseDropEntry, pileDropEntry)
+                                )
+                );
+    }
+
+    // Entry definition for blocks that have and (might) break to piles(dust) when broken
+    public AlternativeEntry.Builder alternativeLooseAndPileBreakable(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
+        LeafEntry.Builder<?> silkTouchDropEntry = ItemEntry.builder(dropWithSilkTouch).conditionally(this.createSilkTouchCondition());
+        LeafEntry.Builder<?> looseDropEntry = ItemEntry.builder(looseDrop).conditionally(toolCondition);
+        LeafEntry.Builder<?> pileDropEntry = this.applyExplosionDecay(pileDrop, ItemEntry.builder(pileDrop))
+                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)));
+
+        return AlternativeEntry.builder(silkTouchDropEntry, looseDropEntry, pileDropEntry);
+    }
+
+
+
     public record AdditionalDrop(Item item, int count, float chance) {}
-    public record StoneDropEntry(Item item, TagKey<Item> toolTag, LootCondition.Builder extraCondition) {}
+
+    // Helper methods
+    private static LootCondition.Builder isDoubleSlab(Block block)
+    {
+        return BlockStatePropertyLootCondition.builder(block)
+                .properties(StatePredicate.Builder.create().exactMatch(Properties.SLAB_TYPE, SlabType.DOUBLE));
+    }
+
 
 
 }
