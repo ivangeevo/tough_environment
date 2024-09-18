@@ -107,16 +107,23 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     }
 
 
+    // TODO: Figure out a better and less hardcoded way to manage blocks in here.
+    //  We want to set loose slab blocks to become full loose blocks on double slab type.
     private Block getStateReplacementBlock(Block originalBlock, SlabType slabType) {
         if (originalBlock == ModBlocks.SLAB_COBBLESTONE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? Blocks.COBBLESTONE : Blocks.COBBLESTONE_SLAB;
+            return slabType == SlabType.DOUBLE ? ModBlocks.COBBLESTONE_LOOSE : ModBlocks.SLAB_COBBLESTONE_LOOSE;
         } else if (originalBlock == ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? Blocks.COBBLED_DEEPSLATE : Blocks.COBBLED_DEEPSLATE_SLAB;
+            return slabType == SlabType.DOUBLE ? ModBlocks.COBBLED_DEEPSLATE_LOOSE : ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE;
         } else if (originalBlock == ModBlocks.SLAB_ANDESITE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? Blocks.ANDESITE : Blocks.ANDESITE_SLAB;
+            return slabType == SlabType.DOUBLE ? ModBlocks.ANDESITE_LOOSE : ModBlocks.SLAB_ANDESITE_LOOSE;
         } else if (originalBlock == ModBlocks.SLAB_GRANITE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? Blocks.GRANITE : Blocks.GRANITE_SLAB;
+            return slabType == SlabType.DOUBLE ? ModBlocks.GRANITE_LOOSE : ModBlocks.SLAB_GRANITE_LOOSE;
+        } else if (originalBlock == ModBlocks.SLAB_DIORITE_LOOSE) {
+            return slabType == SlabType.DOUBLE ? ModBlocks.DIORITE_LOOSE : ModBlocks.SLAB_DIORITE_LOOSE;
+        } else if (originalBlock == ModBlocks.SLAB_BRICKS_LOOSE) {
+            return slabType == SlabType.DOUBLE ? ModBlocks.BRICKS_LOOSE: ModBlocks.SLAB_BRICKS_LOOSE;
         }
+
         return null;
     }
 
