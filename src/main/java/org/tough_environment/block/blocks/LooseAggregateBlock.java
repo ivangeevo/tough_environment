@@ -1,7 +1,6 @@
 package org.tough_environment.block.blocks;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FallingBlock;
@@ -9,22 +8,18 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.BTWRConventionalTags;
-import org.tough_environment.tag.ModTags;
 
-public class LooseAgregateBlock extends FallingBlock
+public class LooseAggregateBlock extends FallingBlock
 {
-    public static final MapCodec<LooseAgregateBlock> CODEC = LooseAgregateBlock.createCodec(LooseAgregateBlock::new);
+    public static final MapCodec<LooseAggregateBlock> CODEC = LooseAggregateBlock.createCodec(LooseAggregateBlock::new);
 
     // Block parameters and constants & Super settings //
-    public LooseAgregateBlock(Settings settings)
+    public LooseAggregateBlock(Settings settings)
     {
         super(settings);
     }

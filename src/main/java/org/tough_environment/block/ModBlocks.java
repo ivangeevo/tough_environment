@@ -28,7 +28,7 @@ public class ModBlocks
     public static final Block SLAB_BRICKS_LOOSE = registerBlock("slab_bricks_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.STONE).nonOpaque()));
 
 
-    public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAgregateBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAggregateBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block COBBLESTONE_LOOSE = registerBlock("cobblestone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block COBBLED_DEEPSLATE_LOOSE = registerBlock("cobbled_deepslate_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.1F).sounds(BlockSoundGroup.DEEPSLATE)));
     public static final Block GRANITE_LOOSE = registerBlock("granite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
@@ -65,18 +65,17 @@ public class ModBlocks
     public static final Block DIORITE_STAIRS = registerBlock("diorite_stairs", new StairsBlock(Blocks.DIORITE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
 
-    /** Depleted(broken) blocks have exactly 10f more strength than their normal counterparts. **/
-
-    public static final Block STONE_BROKEN = registerBlock("stone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block GRANITE_BROKEN = registerBlock("granite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block DIORITE_BROKEN = registerBlock("diorite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block ANDESITE_BROKEN = registerBlock("andesite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block CALCITE_BROKEN = registerBlock("calcite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(10.75f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block TUFF_BROKEN = registerBlock("tuff_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block BLACKSTONE_BROKEN = registerBlock("blackstone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(11.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block DEEPSLATE_BROKEN = registerBlock("deepslate_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(13.0f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block BASALT_BROKEN = registerBlock("basalt_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(11.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block ENDSTONE_BROKEN = registerBlock("endstone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(13f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    // Depleted(broken) blocks
+    public static final Block STONE_BROKEN = registerBlock("stone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block GRANITE_BROKEN = registerBlock("granite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DIORITE_BROKEN = registerBlock("diorite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ANDESITE_BROKEN = registerBlock("andesite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block CALCITE_BROKEN = registerBlock("calcite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block TUFF_BROKEN = registerBlock("tuff_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BLACKSTONE_BROKEN = registerBlock("blackstone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DEEPSLATE_BROKEN = registerBlock("deepslate_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(3.0f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block BASALT_BROKEN = registerBlock("basalt_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block ENDSTONE_BROKEN = registerBlock("endstone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
 
     // Placeable ore blocks
