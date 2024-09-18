@@ -1,8 +1,9 @@
 # 0.4 Alpha
 + Fixed placement code for ore chunk blocks on the ground to work as intended
++ Fixed a bug that caused falling(loose) block stairs to turn to their full block counterpart when falling.
++ Fixed mod icon in the creative mod menu to display properly instead of the "missing" texture.
 + Reworked chisel block breaking speeds in some cases to be more balanced
 + General fixes for loot tables of blocks to drop correctly.
-+ Fixed a bug that caused falling(loose) block stairs to turn to their full block counterpart when falling.
 + Updated the mod to Minecraft 1.21.1, Fabric Loader 0.16.5 & Fabric API 0.104.0
 
 # 0.3 Alpha
