@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
@@ -39,8 +40,13 @@ public abstract class MiningToolItemMixin extends ToolItem
             return super.getMiningSpeed(stack, state) / 80f;
         }
         // primitive chisels are 6x slower for their materials.
-        else if ( isPrimitiveTool(stack) )
+        else if ( isPrimitiveTool(stack)  )
         {
+            if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
+            {
+                return super.getMiningSpeed(stack, state);
+            }
+
             return super.getMiningSpeed(stack, state) / 6f;
         }
 
