@@ -69,11 +69,10 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (!world.isClient
-                && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS))
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
+    {
+        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS))
         {
-
             // Mortar the block
             this.applyMortar(state.with(WATERLOGGED, state.get(WATERLOGGED)), world, pos, player);
 
@@ -90,21 +89,28 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 
     // Overriding the original method, because slabs need some extra logic, depending on the slab type placed.
     @Override
-    public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+    public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player)
+    {
         SlabType slabType = state.get(TYPE);
-
         Block newBlock = getStateReplacementBlock(state.getBlock(), slabType);
-        if (newBlock != null) {
+
+        if (newBlock != null)
+        {
             BlockState newState = newBlock.getDefaultState();
-            if (newState.getProperties().contains(TYPE)) {  // Check if TYPE property exists
+
+            // Check if TYPE property exists
+            if (newState.getProperties().contains(TYPE))
+            {
                 newState = newState.with(TYPE, slabType);
             }
+
             world.setBlockState(pos, newState);
         }
 
         world.playSound(null,pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
 
     }
+
 
 
     // TODO: Figure out a better and less hardcoded way to manage blocks in here.
