@@ -1,5 +1,6 @@
 package org.tough_environment.datagen;
 
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
@@ -110,11 +111,13 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
                 .add(Blocks.CALCITE)
                 .add(Blocks.END_STONE)
-                .add(Blocks.COBBLESTONE)
-        /**
-        **/
+                .add(Blocks.COBBLESTONE);
 
-        ;
+        getOrCreateTagBuilder(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK)
+                .add(Blocks.DIRT)
+                .add(Blocks.GRASS_BLOCK)
+                .add(Blocks.PODZOL)
+                .add(Blocks.COARSE_DIRT);
 
         getOrCreateTagBuilder(ModTags.Blocks.STONE_ORES)
                 .add(Blocks.COAL_ORE)

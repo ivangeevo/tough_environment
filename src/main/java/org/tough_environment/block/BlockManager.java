@@ -1,5 +1,6 @@
 package org.tough_environment.block;
 
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -256,21 +257,7 @@ public class BlockManager
 
         if ( !isFullyBreakingShovel )
         {
-
-            if (isAboveDirtAndTwoAboveGrass)
-            {
-                world.setBlockState(pos.up(1), ModBlocks.DIRT_LOOSE.getDefaultState());
-                return;
-            }
-
-            if (isDirtAbove || isGrassAbove)
-            {
-                world.setBlockState(pos.up(), ModBlocks.DIRT_LOOSE.getDefaultState());
-                return;
-            }
-
             setAdjacentDirtBlocksOnBreak(world, pos);
-
         }
         // TODO: Fix hoes not turning the block to farmland
         else
@@ -292,6 +279,19 @@ public class BlockManager
 
             // Check if the neighbor is dirt and not already loose dirt
             if (neighborState.getBlock() == Blocks.DIRT && neighborState.getBlock() != ModBlocks.DIRT_LOOSE)
+            {
+                world.setBlockState(mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState());
+            }
+        }
+
+        // Check the top and bottom directions
+        for (Direction direction : Direction.Type.VERTICAL)
+        {
+            mutablePos.set(pos).move(direction);
+            BlockState neighborState = world.getBlockState(mutablePos);
+
+            // Check if the neighbor is dirt and not already loose dirt
+            if (neighborState.isIn(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK) && neighborState.getBlock() != ModBlocks.DIRT_LOOSE)
             {
                 world.setBlockState(mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState());
             }
