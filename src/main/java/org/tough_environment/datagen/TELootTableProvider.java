@@ -198,13 +198,18 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                                                         .conditionally(toolCondition),
 
                                                 // Case 2: Drop pile items for DOUBLE slab
-                                                this.applyExplosionDecay(pileDrop, ItemEntry.builder(pileDrop))
-                                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(doubleSlabPileDropCount)))
-                                                        .conditionally(isDoubleSlab(drop)),
-
+                                                this.applyExplosionDecay(pileDrop,
+                                                                ItemEntry.builder(pileDrop)
+                                                                        .apply(SetCountLootFunction.builder(
+                                                                                ConstantLootNumberProvider.create(singleSlabPileDropCount))))
+                                                        .apply(SetCountLootFunction.builder(
+                                                                ConstantLootNumberProvider.create(doubleSlabPileDropCount))
+                                                                .conditionally(isDoubleSlab(drop)))
+                                                /**
                                                 // Case 3: Drop pile items for BOTTOM and TOP slab types
                                                 this.applyExplosionDecay(pileDrop, ItemEntry.builder(pileDrop))
                                                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(singleSlabPileDropCount)))
+                                                 **/
                                         )
                                 )
                 );

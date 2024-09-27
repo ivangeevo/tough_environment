@@ -76,11 +76,11 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "minecraft:golden_hoe"
+                "items": "minecraft:diamond_hoe"
               }
             },
             {
-              "chance": 0.04,
+              "chance": 0.06,
               "condition": "minecraft:random_chance"
             }
           ],
@@ -98,11 +98,11 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "minecraft:diamond_hoe"
+                "items": "minecraft:golden_hoe"
               }
             },
             {
-              "chance": 0.06,
+              "chance": 0.04,
               "condition": "minecraft:random_chance"
             }
           ],

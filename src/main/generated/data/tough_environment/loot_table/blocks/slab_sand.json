@@ -54,36 +54,27 @@
             },
             {
               "type": "minecraft:item",
-              "conditions": [
-                {
-                  "block": "tough_environment:slab_sand",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "type": "double"
-                  }
-                }
-              ],
               "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                },
-                {
-                  "add": false,
-                  "count": 6.0,
-                  "function": "minecraft:set_count"
-                }
-              ],
-              "name": "tough_environment:pile_sand"
-            },
-            {
-              "type": "minecraft:item",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                },
                 {
                   "add": false,
                   "count": 3.0,
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "function": "minecraft:explosion_decay"
+                },
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "block": "tough_environment:slab_sand",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "type": "double"
+                      }
+                    }
+                  ],
+                  "count": 6.0,
                   "function": "minecraft:set_count"
                 }
               ],
