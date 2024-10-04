@@ -5,9 +5,14 @@ public class TESettings
         public boolean hcMaterialDurability = true;
         public boolean hcPlayerMiningSpeed = true;
 
+        public boolean stratificationToughness = true;
+
 
         public boolean isHardcorePlayerMiningSpeedEnabled() {
                 return hcPlayerMiningSpeed;
+        }
+        public boolean isStratificationToughnessEnabled() {
+                return stratificationToughness;
         }
 
 }

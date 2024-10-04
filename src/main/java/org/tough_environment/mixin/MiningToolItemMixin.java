@@ -15,12 +15,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.ToughEnvironmentMod;
+import org.tough_environment.config.TESettings;
 import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 @Mixin(MiningToolItem.class)
 public abstract class MiningToolItemMixin extends ToolItem
 {
+    @Unique
+    private static final TESettings configChecker = ToughEnvironmentMod.getInstance().settings;
+
     public MiningToolItemMixin(ToolMaterial material, Settings settings)
     {
         super(material, settings);
@@ -35,18 +39,13 @@ public abstract class MiningToolItemMixin extends ToolItem
         }
         // inappropriate for the block, but can still break it slowly.
         // handles stratified stone cases and other similar breaks.
-        else if ( isProblemToBreak(state, stack) )
+        else if ( isProblemToBreak(state, stack) && configChecker.isStratificationToughnessEnabled() )
         {
             return super.getMiningSpeed(stack, state) / 80f;
         }
         // primitive chisels are 6x slower for their materials.
-        else if ( isPrimitiveTool(stack)  )
+        else if ( isPrimitiveTool(stack) && configChecker.isHardcorePlayerMiningSpeedEnabled()  )
         {
-            if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
-            {
-                return super.getMiningSpeed(stack, state);
-            }
-
             return super.getMiningSpeed(stack, state) / 6f;
         }
 
@@ -58,37 +57,6 @@ public abstract class MiningToolItemMixin extends ToolItem
 
         return super.getMiningSpeed(stack, state);
     }
-
-    /**
-    @Inject(method = "getMiningSpeedMultiplier", at = @At("HEAD"), cancellable = true)
-    private void injectedGetMiningSpeedMultiplier(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir)
-    {
-
-        // pretty much unbreakable
-        if ( isUnfeasibleToBreak(state, stack) )
-        {
-            cir.setReturnValue(this.miningSpeed / 8000f);
-        }
-        // inappropriate for the block, but can still break it slowly.
-        // handles stratified stone cases and other similar breaks.
-        else if ( isProblemToBreak(state, stack) )
-        {
-            cir.setReturnValue(this.miningSpeed / 80f);
-        }
-        // primitive tools are 6x slower for their materials.
-        else if ( isPrimitiveTool(stack) )
-        {
-            cir.setReturnValue(this.miningSpeed / 6f);
-        }
-
-        // if the block is broken type, and the stack is suitable for it.
-        if ( state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && stack.isSuitableFor(state) )
-        {
-            cir.setReturnValue(this.miningSpeed * 12);
-        }
-
-    }
-     **/
 
     @Unique
     private boolean isProblemToBreak(BlockState state, ItemStack stack)

@@ -33,9 +33,16 @@ public class SettingsGUI
 
         general.addEntry(entryBuilder
                 .startBooleanToggle(
+                        Text.translatable("config.tough_environment.hcStratificationToughness"), settingsCommon.stratificationToughness)
+                .setDefaultValue(true)
+                .setSaveConsumer(newValue -> settingsCommon.stratificationToughness = newValue)
+                .build());
+
+        general.addEntry(entryBuilder
+                .startBooleanToggle(
                         Text.translatable("config.tough_environment.hcPlayerMiningSpeed"), settingsCommon.hcPlayerMiningSpeed)
                 .setDefaultValue(true)
-                .setSaveConsumer(newValue -> settingsCommon.hcPlayerMiningSpeed =newValue)
+                .setSaveConsumer(newValue -> settingsCommon.hcPlayerMiningSpeed = newValue)
                 .build());
 
 
