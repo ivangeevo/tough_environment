@@ -67,6 +67,7 @@
   "config.tough_environment.category.general": "General config settings category.",
   "config.tough_environment.hcMaterialDurability": "Hardcore tool material durability",
   "config.tough_environment.hcPlayerMiningSpeed": "Hardcore mining speed",
+  "config.tough_environment.stratificationToughness": "Stratification Toughness",
 
 
 

@@ -36,23 +36,20 @@ public class TERecipeProvider extends FabricRecipeProvider
 
     private void addMiscRecipes(RecipeExporter exporter)
     {
-        /** Shapeless **/
 
         // Tools
         offerShapelessRecipe(exporter, ModItems.CHISEL_WOOD, Items.STICK, "group_te", 1);
         offerShapelessRecipe(exporter, ModItems.CHISEL_STONE, ModItems.SMALL_STONE, "group_te", 1);
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CHISEL_IRON).input('#', Items.IRON_NUGGET).pattern("##").pattern("##").criterion("has_iron_nugget", RecipeProvider.conditionsFromItem(Items.IRON_NUGGET)).offerTo(exporter);
-        // We add the diamond chisel manually with a data pack.
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CHISEL_DIAMOND).input(Items.DIAMOND).criterion("has_diamond", RecipeProvider.conditionsFromItem(Items.DIAMOND)).offerTo(exporter);
 
-        // Misc
+        // Ore chunks from dust
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.COAL).input(ModItems.DUST_COAL).input(ModItems.DUST_COAL).criterion("has_dust_coal", RecipeProvider.conditionsFromItem(ModItems.DUST_COAL)).offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.RAW_IRON).input(ModItems.DUST_IRON).input(ModItems.DUST_IRON).criterion("has_dust_iron", RecipeProvider.conditionsFromItem(ModItems.DUST_IRON)).offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.RAW_GOLD).input(ModItems.DUST_GOLD).input(ModItems.DUST_GOLD).criterion("has_dust_gold", RecipeProvider.conditionsFromItem(ModItems.DUST_GOLD)).offerTo(exporter);
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.RAW_COPPER).input(ModItems.DUST_COPPER).input(ModItems.DUST_COPPER).criterion("has_dust_copper", RecipeProvider.conditionsFromItem(ModItems.DUST_COPPER)).offerTo(exporter);
 
-
-        /** Shaped **/
-
+        // Misc
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.CLAY_BALL).input('#', ModItems.PILE_CLAY).pattern("#").pattern("#").criterion("has_pile_clay", RecipeProvider.conditionsFromItem(ModItems.PILE_CLAY)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.SLAB_BRICKS_LOOSE).input('#', Items.BRICK).pattern("##").pattern("##").criterion("has_brick", RecipeProvider.conditionsFromItem(Items.BRICK)).offerTo(exporter);
 

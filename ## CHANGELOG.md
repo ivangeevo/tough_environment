@@ -1,10 +1,16 @@
 # 0.4 Alpha
-+ Fixed placement code for ore chunk blocks on the ground to work as intended
++ Improved code for breaking dirt into loose dirt and also added other dirt-like blocks to break in the same way.
++ General improvements of loot tables for blocks to drop the proper items and remove/fix wrong drops.
++ Brought back the ability to combine tools to repair them. (will only be modified in the btwr modpack)
++ Fixed placement code for ore chunk blocks on the ground to work as intended.
 + Fixed a bug that caused falling(loose) block stairs to turn to their full block counterpart when falling.
++ Fixed the hardcore mining speed configuration setting in Mod Menu to work properly.
++ Fixed mining speed of primitive chisels for higher tier ores to be slower.
 + Fixed mod icon in the creative mod menu to display properly instead of the "missing" texture.
-+ Reworked chisel block breaking speeds in some cases to be more balanced
-+ General fixes for loot tables of blocks to drop correctly.
++ Fixed some chisels making a ding sound on the wrong block breaks.
++ Changed diamond chisel's crafting recipe to use a diamond instead of diamond ingot by default.
 + Removed the new texture for copper ore chunk and reverted it to the vanilla original one for raw copper.
++ Other minor fixes/improvements which should've worked as intended.
 + Updated the mod to Minecraft 1.21.1, Fabric Loader 0.16.5 & Fabric API 0.104.0
 
 # 0.3 Alpha
