@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 public class ToughEnvironmentMod implements ModInitializer
 {
@@ -36,19 +35,20 @@ public class ToughEnvironmentMod implements ModInitializer
         loadSettings();
         instance = this;
 
-        // Initialize or load the block replacement map
-        Map<String, String> blockReplacementMap = BlockMortarMapper.loadMap();
-        if (blockReplacementMap == null)
-        {
-            BlockMortarMapper.initMap();
-            BlockMortarMapper.loadMap();
-        }
-
         ModBlocks.registerModBlocks();
         ModItems.registerModItems();
         ModItemGroup.registerItemGroups();
         ModFuelItems.register();
 
+        // Initialize or load the block replacement map
+        BlockMortarMapper.init();
+
+        /** save for later attempts // trying to make a custom vanilla resourcepack with datagen.
+        // Built in resource-pack
+        Identifier vanillaOverrideId = Identifier.ofVanilla("vanilla_override");
+        ModContainer modContainer = FabricLoader.getInstance().getModContainer("minecraft").orElseThrow();
+        ResourceManagerHelper.registerBuiltinResourcePack(vanillaOverrideId, modContainer, ResourcePackActivationType.NORMAL);
+          **/
     }
 
     // Do not remove this comment or the project will NOT compile!

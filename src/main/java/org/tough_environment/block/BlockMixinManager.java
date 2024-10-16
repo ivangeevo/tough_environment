@@ -1,6 +1,5 @@
 package org.tough_environment.block;
 
-import com.terraformersmc.modmenu.util.mod.Mod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -30,14 +29,14 @@ import static org.tough_environment.block.blocks.ConvertingBlock.BREAK_LEVEL;
  *  Different vanilla blocks are affected in more advanced ways with BTWR, so we inject additional logic
  *  that would usually require a dedicated class.
  */
-public class BlockManager
+public class BlockMixinManager
 {
 
-    private static final BlockManager instance = new BlockManager();
+    private static final BlockMixinManager instance = new BlockMixinManager();
 
     // Private constructor to prevent instantiation
-    private BlockManager() {}
-    public static BlockManager getInstance()
+    private BlockMixinManager() {}
+    public static BlockMixinManager getInstance()
     {
         return instance;
     }
@@ -62,13 +61,8 @@ public class BlockManager
             player.addExhaustion(0.2f);
         }
 
-        this.playDingSoundOnBreak(world, pos, state, tool, player);
-
-    }
-
-    private void playDingSoundOnBreak(World world, BlockPos pos, BlockState state, ItemStack stack, PlayerEntity player)
-    {
-        if ( shouldDing(state, stack) && !player.isCreative())
+        // play ding sound on break with certain tools
+        if ( shouldDing(state, tool) && !player.isCreative())
         {
             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_ANVIL_LAND,
                     SoundCategory.BLOCKS,0.5F,world.random.nextFloat() * 0.25F + 1.75F);
@@ -77,7 +71,6 @@ public class BlockManager
 
     private boolean shouldDing(BlockState state, ItemStack stack)
     {
-        // TODO: Add chisel ding sound when breaking and also ding sound for primitive pickaxes breaking stone.
         if (state.getBlock() instanceof ConvertingBlock && stack.getItem() != null && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS))
         {
             int breakLevel = state.get(BREAK_LEVEL);
@@ -94,19 +87,15 @@ public class BlockManager
             return true;
         }
 
-        if (isStrata1StoneBlock(state) &&
-                (stack.getItem() instanceof ChiselItem || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES)))
-        {
-            return true;
-        }
-
-        // Default condition
-        return false;
+        return isStrata1StoneBlock(state) &&
+                ( isDingChisel(stack) || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES));
     }
 
-
-
-
+    // Check for chisels that are modern or advanced (aka they make ding sound)
+    private boolean isDingChisel(ItemStack stack)
+    {
+        return stack.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || stack.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS);
+    }
 
     private void setConvertibleState(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
@@ -170,7 +159,7 @@ public class BlockManager
             return;
         }
 
-        if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS))
+        if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS))
         {
             world.setBlockState(pos, state.with(BREAK_LEVEL, 3));
             return;
@@ -218,7 +207,6 @@ public class BlockManager
 
         }
 
-
     }
 
     private boolean shouldConvertOre(BlockState state, ItemStack stack)
@@ -231,7 +219,6 @@ public class BlockManager
 
         return !stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) || state.isIn(ModTags.Blocks.DEEPSLATE_ORES);
     }
-
 
     private void setStateForDirt(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
@@ -298,7 +285,6 @@ public class BlockManager
         }
     }
 
-
     private boolean isFullyBreakingTool(ItemStack stack)
     {
         return stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
@@ -325,7 +311,5 @@ public class BlockManager
                 || state.isOf(Blocks.GRANITE)
                 || state.isOf(Blocks.DIORITE);
     }
-
-
 
 }

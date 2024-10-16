@@ -1,4 +1,4 @@
-package org.tough_environment.mixin;
+package org.tough_environment.mixin.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.tough_environment.block.BlockManager;
+import org.tough_environment.block.BlockMixinManager;
 import org.tough_environment.block.interfaces.DirectionalDroppingBlock;
 
 @Mixin(Block.class)
@@ -27,12 +27,12 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     @Inject(method = "onPlaced", at = @At("HEAD"))
     private void injectedOnPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, CallbackInfo ci)
     {
-        BlockManager.getInstance().handleOnPlaced(placer);
+        BlockMixinManager.getInstance().handleOnPlaced(placer);
     }
 
     @Inject(method = "afterBreak", at = @At("HEAD"))
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci)
     {
-        BlockManager.getInstance().handleAfterBreak(world, player, pos, state, tool);
+        BlockMixinManager.getInstance().handleAfterBreak(world, player, pos, state, tool);
     }
 }

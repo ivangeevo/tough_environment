@@ -35,6 +35,16 @@ public abstract class PlayerEntityMixin extends LivingEntity
         super(entityType, world);
     }
 
+    /**
+    @Inject(method = "getBlockBreakingSpeed", at = @At("RETURN"))
+    private void custom(BlockState block, CallbackInfoReturnable<Float> cir)
+    {
+
+    }
+     **/
+
+    // TODO: Find a better way to mix in the custom logic added by the inject below.
+    //  It might be better to do so at the RETURN, try it.
     @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
     private void customBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir)
     {
@@ -47,19 +57,18 @@ public abstract class PlayerEntityMixin extends LivingEntity
         float f = this.inventory.getBlockBreakingSpeed(state);
 
         // Tough Environment: Added
-        // condition for breaking blocks without the correct item
+        // conditions for restricting breaking blocks without the correct item
         if ( !this.getMainHandStack().isSuitableFor(state) )
         {
             // if the block is requiring a tool, that means its a tough block.
             if ( state.isToolRequired() )
             {
-                // and if its not a special case block (like snow) which can still be broken by hand (but requires a tool)
+                // and if it's not a special case block (like snow) which can still be broken by hand (but requires a tool)
                 // then make it super tough to break
                 // this additional check could probably be evaded by getting better conditions.
                 if (!state.isIn(ModTags.Blocks.MISC_REQUIRING_TOOL))
                 {
                     f /= 8000F;
-
                 }
             }
 

@@ -12,7 +12,18 @@ public class BlockMortarMapper
 {
     private static final String JSON_FILE = "block_mortar_replacement_map.json";
 
-    public static void initMap()
+
+    public static void init()
+    {
+        Map<String, String> blockReplacementMap = BlockMortarMapper.loadMap();
+        if (blockReplacementMap == null)
+        {
+            BlockMortarMapper.saveMap();
+            BlockMortarMapper.loadMap();
+        }
+    }
+
+    private static void saveMap()
     {
         Map<String, String> blockReplacementMap = new HashMap<>();
         blockReplacementMap.put("tough_environment:cobblestone_loose", "minecraft:cobblestone");

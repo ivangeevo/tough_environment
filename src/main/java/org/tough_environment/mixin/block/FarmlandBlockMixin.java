@@ -1,4 +1,4 @@
-package org.tough_environment.mixin;
+package org.tough_environment.mixin.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

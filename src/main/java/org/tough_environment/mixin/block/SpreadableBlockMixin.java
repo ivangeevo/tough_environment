@@ -1,4 +1,4 @@
-package org.tough_environment.mixin;
+package org.tough_environment.mixin.block;
 
 import net.minecraft.block.*;
 import net.minecraft.registry.tag.FluidTags;
@@ -38,6 +38,7 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
                 }
             }
         }
+
         ci.cancel();
     }
 
