@@ -62,6 +62,18 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:emerald",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:advanced_chisels"
+                  }
+                }
+              ]
             }
           ]
         }

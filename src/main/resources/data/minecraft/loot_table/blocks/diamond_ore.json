@@ -44,6 +44,18 @@
             {
               "type": "minecraft:item",
               "name": "minecraft:diamond",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:advanced_chisels"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:diamond",
               "functions": [
                 {
                   "function": "minecraft:apply_bonus",

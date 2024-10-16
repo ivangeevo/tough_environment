@@ -91,6 +91,84 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "btwr:stone_brick",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:stone_converting",
+              "properties": {
+                "break_level": "3"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "items": "#c:advanced_chisels"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "btwr:stone_brick",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:stone_converting",
+              "properties": {
+                "break_level": "5"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "items": "#c:modern_chisels"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "btwr:stone_brick",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:stone_converting",
+              "properties": {
+                "break_level": "5"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "items": "#c:advanced_chisels"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "tough_environment:pile_gravel",
           "functions": [
             {
