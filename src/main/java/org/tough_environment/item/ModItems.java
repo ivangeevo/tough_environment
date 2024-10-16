@@ -1,6 +1,5 @@
 package org.tough_environment.item;
 
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -41,24 +40,23 @@ public class ModItems
 
     // Tool Items
     public static final Item CHISEL_WOOD = registerItem( "chisel_wood",
-            new ChiselItem(ModToolMaterials.WOOD_CHISEL, ChiselItem.Type.WOOD,
-                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers(ModToolMaterials.WOOD_CHISEL, 1.0f, -2.8f))
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.02f))
+            new ChiselItem(
+                    ChiselToolMaterials.WOOD_CHISEL, new Item.Settings()
+                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.WOOD_CHISEL, 1.0f, -2.8f))
             ));
     public static final Item CHISEL_STONE = registerItem( "chisel_stone",
-            new ChiselItem(ModToolMaterials.STONE_CHISEL, ChiselItem.Type.STONE,
-                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers(ModToolMaterials.STONE_CHISEL, 1.0f, -2.8f))
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.05f))
+            new ChiselItem(ChiselToolMaterials.STONE_CHISEL, new Item.Settings()
+                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.STONE_CHISEL, 1.0f, -2.8f))
+
             ));
     public static final Item CHISEL_IRON = registerItem( "chisel_iron",
-            new ChiselItem(ModToolMaterials.IRON_CHISEL, ChiselItem.Type.IRON,
-                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers(ModToolMaterials.IRON_CHISEL, 1.0f, -2.8f))
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.10f))
+            new ChiselItem(ChiselToolMaterials.IRON_CHISEL, new Item.Settings()
+                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.IRON_CHISEL, 1.0f, -2.8f))
+
             ));
     public static final Item CHISEL_DIAMOND = registerItem( "chisel_diamond",
-            new ChiselItem(ModToolMaterials.DIAMOND_CHISEL, ChiselItem.Type.DIAMOND,
-                    new Item.Settings().attributeModifiers(ChiselItem.createAttributeModifiers(ModToolMaterials.DIAMOND_CHISEL, 1.0f, -2.8f))
-                            .component(DataComponentTypes.TOOL, ChiselItem.createToolComponent(-0.12f))
+            new ChiselItem(ChiselToolMaterials.DIAMOND_CHISEL, new Item.Settings()
+                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.DIAMOND_CHISEL, 1.0f, -2.8f))
             ));
 
 

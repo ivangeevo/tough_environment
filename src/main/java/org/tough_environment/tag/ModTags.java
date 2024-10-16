@@ -43,6 +43,10 @@ public class ModTags
         public static final TagKey<Block> MANTLE_ORES =  register("mantle_ores");
         public static final TagKey<Block> DEEPSLATE_ORES = register("deepslate_ores");
 
+        public static final TagKey<Block> INCORRECT_FOR_WOODEN_CHISEL = register("incorrect_for_wooden_tool");
+        public static final TagKey<Block> INCORRECT_FOR_STONE_CHISEL = register("incorrect_for_stone_tool");
+
+
         private static TagKey<Block> register(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
