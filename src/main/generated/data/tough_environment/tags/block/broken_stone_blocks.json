@@ -1,0 +1,14 @@
+{
+  "values": [
+    "tough_environment:stone_broken",
+    "tough_environment:granite_broken",
+    "tough_environment:diorite_broken",
+    "tough_environment:andesite_broken",
+    "tough_environment:calcite_broken",
+    "tough_environment:tuff_broken",
+    "tough_environment:blackstone_broken",
+    "tough_environment:deepslate_broken",
+    "tough_environment:basalt_broken",
+    "tough_environment:endstone_broken"
+  ]
+}
