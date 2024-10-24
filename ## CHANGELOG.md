@@ -3,7 +3,7 @@
 + Added 2 new mod menu configuration options:
  1. Block Breaking Restrictions - Makes blocks unbreakable if the player is not using the correct tool.
 
- 2. Stratification Toughness - Makes somme blocks that are considered higher strata than stone level blocks require higher level pickaxes to mine effectively.
+ 2. Stratification Toughness - Makes some blocks that are considered higher strata than stone level blocks require higher level pickaxes to mine effectively.
 + Improved code for breaking dirt into loose dirt and also added other dirt-like blocks to break in the same way.
 + General improvements of loot tables for blocks to drop the proper items and remove/fix wrong drops.
 + Brought back the ability to combine tools to repair them. (will only be modified in the btwr modpack)
