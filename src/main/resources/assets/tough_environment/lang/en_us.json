@@ -61,14 +61,18 @@
   "item.tough_environment.chisel_iron": "Iron Chisel",
   "item.tough_environment.chisel_diamond": "Diamond Chisel",
 
-
   "title.tough_environment.config": "Tough Environment Configuration Menu",
 
   "config.tough_environment.category.general": "General config settings category.",
   "config.tough_environment.hcMaterialDurability": "Hardcore tool material durability",
   "config.tough_environment.hcPlayerMiningSpeed": "Hardcore mining speed",
   "config.tough_environment.stratificationToughness": "Stratification Toughness",
+  "config.tough_environment.blockBreakingRestrictions": "Block Breaking Restrictions",
 
+  "config.tough_environment.tooltip.hcMaterialDurability": "null",
+  "config.tough_environment.tooltip.hcPlayerMiningSpeed": "Makes most blocks take longer to break overall (with or without tool)",
+  "config.tough_environment.tooltip.stratificationToughness": "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes",
+  "config.tough_environment.tooltip.blockBreakingRestrictions": "This restricts breaking blocks without the correct tool",
 
 
   "itemgroup.group_te": "Tough Environment!"

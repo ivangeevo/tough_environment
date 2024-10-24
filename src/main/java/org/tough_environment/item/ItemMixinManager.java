@@ -23,12 +23,16 @@ import java.util.Objects;
 public class ItemMixinManager
 {
     @Unique private static final TESettings configChecker = ToughEnvironmentMod.getInstance().settings;
+
     private static final ItemMixinManager instance = new ItemMixinManager();
+
     private ItemMixinManager() {}
+
     public static ItemMixinManager getInstance()
     {
         return instance;
     }
+
     public void handleUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
     {
         World world = context.getWorld();
@@ -51,7 +55,7 @@ public class ItemMixinManager
             float originalSpeed = toolComponent.getSpeed(state);
 
             // Apply custom logic
-            if (isUnfeasibleToBreak(state, stack)) {
+            if (isUnfeasibleToBreak(state, stack) && configChecker.isStratificationToughnessEnabled()) {
                 cir.setReturnValue(originalSpeed / 8000f);
             } else if (isProblemToBreak(state, stack)) {
                 cir.setReturnValue(originalSpeed / 80f);

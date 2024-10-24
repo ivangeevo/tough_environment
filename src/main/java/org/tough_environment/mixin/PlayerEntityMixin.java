@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.ToughEnvironmentMod;
+import org.tough_environment.config.TESettings;
 import org.tough_environment.tag.ModTags;
 
 import java.util.Objects;
@@ -29,6 +30,8 @@ public abstract class PlayerEntityMixin extends LivingEntity
     @Shadow
     @Final
     PlayerInventory inventory;
+
+    private TESettings configChecker = ToughEnvironmentMod.getInstance().settings;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world)
     {
@@ -49,16 +52,11 @@ public abstract class PlayerEntityMixin extends LivingEntity
     private void customBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir)
     {
 
-        if (!ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled())
-        {
-            return;
-        }
-
         float f = this.inventory.getBlockBreakingSpeed(state);
 
         // Tough Environment: Added
         // conditions for restricting breaking blocks without the correct item
-        if ( !this.getMainHandStack().isSuitableFor(state) )
+        if ( !this.getMainHandStack().isSuitableFor(state) && configChecker.isBlockBreakingRestrictionsEnabled() )
         {
             // if the block is requiring a tool, that means its a tough block.
             if ( state.isToolRequired() )
@@ -72,8 +70,11 @@ public abstract class PlayerEntityMixin extends LivingEntity
                 }
             }
 
-            // 6x times slower speed for all other blocks
-            f /= 6F;
+            if (configChecker.isHardcorePlayerMiningSpeedEnabled())
+            {
+                // 6x times slower speed for all other blocks
+                f /= 6F;
+            }
         }
         // Tough Environment: End Mod
 
