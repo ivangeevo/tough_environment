@@ -10,12 +10,18 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 public abstract class ToolMaterialsMixin
 {
 
+    // TODO:
+    //  Figure out another way of modifying the durability of vanilla tools
+    //  ( and probably only vanilla tools is a better option) instead of this,
+    //  because this makes the .damage and .maxDamage Item.Settings to not work properly.
     // Modifying vanilla tool materials durability
     // Wood and stone are considered primitive, so they have been nerfed.
     // Iron is tougher to get, but its durability has been increased.
     // Diamonds also are harder to get because of stratification, so their durability has increased slightly.
     // Netherite has been buffed up significantly.
-    @ModifyArgs(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
+    //@ModifyArgs(method = "<clinit>",
+    // at = @At(value = "INVOKE",
+    // target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
     private static void modifyToolMaterialDurability(Args args)
     {
         String name = args.get(0);
@@ -45,4 +51,6 @@ public abstract class ToolMaterialsMixin
                 break;
         }
     }
+
+
 }

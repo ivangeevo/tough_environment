@@ -1,26 +1,25 @@
 package org.tough_environment.item;
 
+import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
-import java.util.function.Supplier;
 import net.minecraft.block.Block;
+import net.minecraft.component.type.ToolComponent;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
+import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
-/**
- * Provides custom {@link ToolMaterial}s used by chisels.
- */
+import java.util.List;
+
 public enum ChiselToolMaterials implements ToolMaterial
 {
-    WOOD_CHISEL(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL, 2, 1.2F, 0.0F, 15, () -> Ingredient.fromTag(ItemTags.PLANKS)),
-    STONE_CHISEL(BlockTags.INCORRECT_FOR_STONE_TOOL, 8, 2.0F, 1.0F, 5, () -> Ingredient.fromTag(ItemTags.STONE_TOOL_MATERIALS)),
-    IRON_CHISEL(BlockTags.INCORRECT_FOR_IRON_TOOL, 238, 3.0F, 2.0F, 14, () -> Ingredient.ofItems(Items.IRON_NUGGET)),
-    DIAMOND_CHISEL(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 500, 4.0F, 3.0F, 10, () -> Ingredient.ofItems(Items.DIAMOND)),
-    NETHERITE_CHISEL(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 720, 4.5F, 4.0F, 15, () -> Ingredient.ofItems(Items.NETHERITE_INGOT));
+    WOOD(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL, 2, 1.2F, 0.0F, 15, () -> Ingredient.fromTag(ItemTags.PLANKS)),
+    STONE(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL, 8, 2.0F, 1.0F, 5, () -> Ingredient.fromTag(ItemTags.STONE_TOOL_MATERIALS)),
+    IRON(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL, 238, 3.0F, 2.0F, 14, () -> Ingredient.ofItems(Items.IRON_NUGGET)),
+    DIAMOND(ModTags.Blocks.INCORRECT_FOR_DIAMOND_CHISEL, 500, 4.0F, 3.0F, 10, () -> Ingredient.ofItems(Items.DIAMOND));
 
     private final TagKey<Block> inverseTag;
     private final int itemDurability;
@@ -74,4 +73,21 @@ public enum ChiselToolMaterials implements ToolMaterial
     public Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
     }
+
+    /**
+     * Create a ToolComponent dynamically for this material, setting up block-specific mining speeds.
+     */
+    @Override
+    public ToolComponent createComponent(TagKey<Block> tag) {
+        float stumpSpeed = (this == DIAMOND) ? 55.0F : 2.0F;  // Custom speed for STUMP_BLOCKS based on material
+        return new ToolComponent(
+                List.of(
+                        ToolComponent.Rule.ofNeverDropping(this.getInverseTag()),
+                        ToolComponent.Rule.ofAlwaysDropping(tag, this.getMiningSpeedMultiplier()),
+                        ToolComponent.Rule.of(BTWRConventionalTags.Blocks.STUMP_BLOCKS, 55F)  // Handle STUMP_BLOCKS specifically
+                ),
+                1.0F, 1
+        );
+    }
+
 }
