@@ -53,7 +53,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:raw_copper",
+              "name": "tough_environment:dust_copper",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",

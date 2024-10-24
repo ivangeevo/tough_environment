@@ -55,7 +55,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal",
+          "name": "tough_environment:dust_coal",
           "conditions": [
             {
               "condition": "minecraft:match_tool",

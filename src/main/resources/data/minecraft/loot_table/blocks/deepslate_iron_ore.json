@@ -53,7 +53,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:raw_iron",
+              "name": "tough_environment:dust_iron",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
