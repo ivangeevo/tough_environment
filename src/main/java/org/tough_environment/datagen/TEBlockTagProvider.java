@@ -48,13 +48,12 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     private void addToVanillaTags()
     {
-        /**
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
-                .forceAddTag(ModTags.Blocks.STONE_STRATA3);
+                .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
-                .forceAddTag(ModTags.Blocks.STONE_STRATA2);
-         **/
+                .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
+
 
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
@@ -89,15 +88,26 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
         getOrCreateTagBuilder(BlockTags.DIRT)
                 .add(ModBlocks.DIRT_LOOSE)
                 .add(ModBlocks.SLAB_DIRT);
-
-
     }
 
     private void addToModTags()
     {
 
-        getOrCreateTagBuilder(ModTags.Mineable.CHISEL)
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_DIAMOND_CHISEL);
 
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL);
+
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
+
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .forceAddTag(BlockTags.NEEDS_IRON_TOOL)
+                .forceAddTag(BlockTags.NEEDS_STONE_TOOL);
+
+        getOrCreateTagBuilder(ModTags.Mineable.CHISEL)
                 .forceAddTag(BlockTags.LOGS)
                 .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
                 .forceAddTag(BlockTags.BASE_STONE_NETHER)
@@ -252,10 +262,6 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
         getOrCreateTagBuilder(ModTags.Blocks.MISC_REQUIRING_TOOL)
                 .add(Blocks.SNOW);
-
-
     }
-
-
 
 }

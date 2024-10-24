@@ -23,6 +23,16 @@ public class ModTags
         /** Workaround tag to group miscallaneous blocks like the snow layer blocks and others. **/
         public static final TagKey<Block> MISC_REQUIRING_TOOL = register("misc_requiring_tools");
 
+        public static final TagKey<Block> NEEDS_DIAMOND_CHISEL = register("needs_diamond_chisel");
+        public static final TagKey<Block> NEEDS_IRON_CHISEL = register("needs_iron_chisel");
+        public static final TagKey<Block> NEEDS_STONE_CHISEL = register("needs_stone_chisel");
+
+        public static final TagKey<Block> INCORRECT_FOR_DIAMOND_CHISEL = register("incorrect_for_diamond_chisel");
+        public static final TagKey<Block> INCORRECT_FOR_IRON_CHISEL = register("incorrect_for_iron_chisel");
+        public static final TagKey<Block> INCORRECT_FOR_STONE_CHISEL = register("incorrect_for_stone_chisel");
+        public static final TagKey<Block> INCORRECT_FOR_WOODEN_CHISEL = register("incorrect_for_wooden_chisel");
+
+
 
         public static final TagKey<Block> LOOSE_STONE_BLOCKS = register("loose_stone_blocks");
 
@@ -42,9 +52,6 @@ public class ModTags
         public static final TagKey<Block> STONE_ORES = register("stone_ores");
         public static final TagKey<Block> MANTLE_ORES =  register("mantle_ores");
         public static final TagKey<Block> DEEPSLATE_ORES = register("deepslate_ores");
-
-        public static final TagKey<Block> INCORRECT_FOR_WOODEN_CHISEL = register("incorrect_for_wooden_tool");
-        public static final TagKey<Block> INCORRECT_FOR_STONE_CHISEL = register("incorrect_for_stone_tool");
 
 
         private static TagKey<Block> register(String name) {

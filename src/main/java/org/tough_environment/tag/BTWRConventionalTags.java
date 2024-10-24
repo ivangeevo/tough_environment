@@ -54,7 +54,6 @@ public class BTWRConventionalTags
         public static final TagKey<Item> FULLY_MINES_STRATA_2 = createTag("fully_mines_strata_2");
         public static final TagKey<Item> FULLY_MINES_STRATA_3 = createTag("fully_mines_strata_3");
 
-
         public static final TagKey<Item> PRIMITIVE_AXES = createTag("primitive_axes");
         public static final TagKey<Item> MODERN_AXES = createTag("modern_axes");
         public static final TagKey<Item> ADVANCED_AXES = createTag("advanced_axes");

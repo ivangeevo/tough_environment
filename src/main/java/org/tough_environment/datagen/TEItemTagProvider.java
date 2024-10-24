@@ -97,7 +97,8 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
     {
         getOrCreateTagBuilder(ModTags.Items.CHISELS)
                 .addTag(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
-                .addTag(BTWRConventionalTags.Items.MODERN_CHISELS);
+                .addTag(BTWRConventionalTags.Items.MODERN_CHISELS)
+                .addTag(BTWRConventionalTags.Items.ADVANCED_CHISELS);
 
         getOrCreateTagBuilder(ModTags.Items.SMALL_STONES)
                 .add(ModItems.SMALL_STONE)
