@@ -32,6 +32,16 @@ public class TERecipeProvider extends FabricRecipeProvider
         this.addSlabRecipes(exporter);
         this.addMiscRecipes(exporter);
 
+        this.addVanillaBlockRecipes(exporter);
+
+    }
+
+    // We add recipes for some existing vanilla blocks.
+    // In this case, we need a new recipe for Furnace because the one with making it out of
+    // 8 loose cobblestone is too hard to acquire with just stone chisel.
+    private void addVanillaBlockRecipes(RecipeExporter exporter)
+    {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Items.FURNACE).input('S', ModBlocks.SLAB_COBBLESTONE_LOOSE).pattern("##").pattern("##").criterion("has_slab_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE)).offerTo(exporter);
     }
 
     private void addMiscRecipes(RecipeExporter exporter)

@@ -1,3 +1,8 @@
+# 0.4.1 Alpha
++ Added another recipe for Furnace made from four loose cobblestone slabs.
+  This makes getting furnace in the very early game much 
+  more accessible because the previous recipe required eight whole loose blocks.
+
 # 0.4 Alpha
 
 + Added 2 new mod menu configuration options:
