@@ -41,7 +41,7 @@ public class TERecipeProvider extends FabricRecipeProvider
     // 8 loose cobblestone is too hard to acquire with just stone chisel.
     private void addVanillaBlockRecipes(RecipeExporter exporter)
     {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Items.FURNACE).input('S', ModBlocks.SLAB_COBBLESTONE_LOOSE).pattern("##").pattern("##").criterion("has_slab_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Items.FURNACE).input('#', ModBlocks.SLAB_COBBLESTONE_LOOSE).pattern("##").pattern("##").criterion("has_slab_cobblestone_loose", RecipeProvider.conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE)).offerTo(exporter);
     }
 
     private void addMiscRecipes(RecipeExporter exporter)
