@@ -48,8 +48,6 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     private void addToVanillaTags()
     {
-        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
-                .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
