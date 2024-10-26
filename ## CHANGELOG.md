@@ -1,9 +1,10 @@
 # 0.4.1 Alpha
++ Added BTWR: Core v0.26 as a dependency as it was removed by mistake during one of the last updates.
 + Added another recipe for Furnace made from four loose cobblestone slabs.
   This makes getting furnace in the very early game much 
   more accessible because the previous recipe required eight whole loose blocks.
 + Fixed iron chisel being too slow when breaking stump blocks from Sturdy Trees.
-+ Updated the mod to Fabric Loader 0.16.8 & Fabric API 0.107.0
++ Updated the mod to Fabric Loader 0.16.7 & Fabric API 0.107.0
 
 # 0.4 Alpha
 
