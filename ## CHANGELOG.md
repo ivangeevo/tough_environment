@@ -2,6 +2,8 @@
 + Added another recipe for Furnace made from four loose cobblestone slabs.
   This makes getting furnace in the very early game much 
   more accessible because the previous recipe required eight whole loose blocks.
++ Fixed iron chisel being too slow when breaking stump blocks from Sturdy Trees.
++ Updated the mod to Fabric Loader 0.16.7 & Fabric API 0.106.0
 
 # 0.4 Alpha
 
