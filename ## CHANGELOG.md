@@ -6,6 +6,7 @@
 + Fixed iron chisel being too slow when breaking stump blocks from Sturdy Trees.
 + Updated the mod to Fabric Loader 0.16.7 & Fabric API 0.107.0
 
+
 # 0.4 Alpha
 
 + Added 2 new mod menu configuration options:
