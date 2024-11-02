@@ -41,7 +41,7 @@ public class ModBlocks
     public static final Block BASALT_LOOSE = registerBlock("basalt_loose", new LoosePillarBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.BASALT)));
     public static final Block END_STONE_LOOSE = registerBlock("end_stone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
 
-    public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE).nonOpaque()));
+    public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE)));
 
     public static final Block STONE_CONVERTING = registerBlock("stone_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
