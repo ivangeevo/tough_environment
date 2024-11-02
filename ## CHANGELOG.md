@@ -1,3 +1,9 @@
+
+# 0.4.2 Alpha
++ Fixed a bug that turned grass instantly to farmland by hoe breaking (it should go to dirt/loose dirt first)
++ Fixed bug where breaking grass and dirt with hoe dropped dirt piles.
++ Fixed slab blocks from being non-opaque (letting light go through them)
+
 # 0.4.1 Alpha
 + Added BTWR: Core v0.26 as a dependency as it was removed by mistake during one of the last updates.
 + Added another recipe for Furnace made from four loose cobblestone slabs.

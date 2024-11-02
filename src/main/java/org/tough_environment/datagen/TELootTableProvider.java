@@ -168,7 +168,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
                 ItemEntry.builder(dropWithSilkTouch).conditionally(createSilkTouchCondition()),
                 ItemEntry.builder(looseDrop).conditionally(toolCondition),
-                ItemEntry.builder(pileDrop)
+                ItemEntry.builder(pileDrop).conditionally(WITHOUT_HOE)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
                         .conditionally(dropWithSilkTouch == Blocks.GRASS_BLOCK ? WITHOUT_HOE : SurvivesExplosionLootCondition.builder())
         );

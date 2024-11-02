@@ -16,16 +16,16 @@ import org.tough_environment.block.blocks.*;
 public class ModBlocks
 {
 
-    public static final Block SLAB_SAND = registerBlock("slab_sand", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
-    public static final Block SLAB_RED_SAND = registerBlock("slab_red_sand", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
-    public static final Block SLAB_DIRT = registerBlock("slab_dirt", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRASS).nonOpaque()));
-    public static final Block SLAB_GRAVEL = registerBlock("slab_gravel", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND).nonOpaque()));
-    public static final Block SLAB_COBBLESTONE_LOOSE = registerBlock("slab_cobblestone_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block SLAB_COBBLED_DEEPSLATE_LOOSE = registerBlock("slab_cobbled_deepslate_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(1.1F).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block SLAB_GRANITE_LOOSE = registerBlock("slab_granite_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block SLAB_ANDESITE_LOOSE = registerBlock("slab_andesite_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block SLAB_DIORITE_LOOSE = registerBlock("slab_diorite_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE).nonOpaque()));
-    public static final Block SLAB_BRICKS_LOOSE = registerBlock("slab_bricks_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.STONE).nonOpaque()));
+    public static final Block SLAB_SAND = registerBlock("slab_sand", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
+    public static final Block SLAB_RED_SAND = registerBlock("slab_red_sand", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
+    public static final Block SLAB_DIRT = registerBlock("slab_dirt", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRASS)));
+    public static final Block SLAB_GRAVEL = registerBlock("slab_gravel", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
+    public static final Block SLAB_COBBLESTONE_LOOSE = registerBlock("slab_cobblestone_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE)));
+    public static final Block SLAB_COBBLED_DEEPSLATE_LOOSE = registerBlock("slab_cobbled_deepslate_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(1.1F).sounds(BlockSoundGroup.STONE)));
+    public static final Block SLAB_GRANITE_LOOSE = registerBlock("slab_granite_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE)));
+    public static final Block SLAB_ANDESITE_LOOSE = registerBlock("slab_andesite_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE)));
+    public static final Block SLAB_DIORITE_LOOSE = registerBlock("slab_diorite_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE)));
+    public static final Block SLAB_BRICKS_LOOSE = registerBlock("slab_bricks_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.STONE)));
 
 
     public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAggregateBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
