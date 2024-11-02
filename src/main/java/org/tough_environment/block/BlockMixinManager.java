@@ -106,6 +106,14 @@ public class BlockMixinManager
                 setStateForDirt(world, pos, state, tool);
             }
 
+            if (isVanillaDirtBlock(state))
+            {
+                if (tool.isIn(ItemTags.HOES))
+                {
+                    world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
+                }
+            }
+
             if ( state.isIn(BTWRConventionalTags.Blocks.ORES) )
             {
                 setStateForOre(world, pos, state, tool);
@@ -223,30 +231,13 @@ public class BlockMixinManager
     private void setStateForDirt(World world, BlockPos pos, BlockState state, ItemStack tool)
     {
 
-        boolean isAboveDirtAndTwoAboveGrass = state.isOf(Blocks.DIRT)
-                && (world.getBlockState(pos.up()).isOf(Blocks.DIRT)
-                || world.getBlockState(pos.up(1)).isOf(Blocks.GRASS_BLOCK));
-
-        boolean isDirtAbove = world.getBlockState(pos.up()).isOf(Blocks.DIRT);
-        boolean isGrassAbove = world.getBlockState(pos.up()).isOf(Blocks.GRASS_BLOCK);
-
         boolean isFullyBreakingShovel = tool.isIn(BTWRConventionalTags.Items.MODERN_SHOVELS)
                 || tool.isIn(BTWRConventionalTags.Items.ADVANCED_SHOVELS);
-
-        boolean isModernOrAdvancedHoe = tool.isIn(BTWRConventionalTags.Items.MODERN_HOES)
-                || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES);
-
-        if (tool.isIn(ItemTags.HOES))
-        {
-            world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
-            return;
-        }
 
         if ( !isFullyBreakingShovel )
         {
             setAdjacentDirtBlocksOnBreak(world, pos);
         }
-        // TODO: Fix hoes not turning the block to farmland
         else
         {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());

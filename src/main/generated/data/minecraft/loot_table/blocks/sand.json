@@ -44,6 +44,15 @@
               "type": "minecraft:item",
               "conditions": [
                 {
+                  "condition": "minecraft:inverted",
+                  "term": {
+                    "condition": "minecraft:match_tool",
+                    "predicate": {
+                      "items": "#minecraft:hoes"
+                    }
+                  }
+                },
+                {
                   "condition": "minecraft:survives_explosion"
                 }
               ],
