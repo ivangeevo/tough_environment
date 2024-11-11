@@ -87,11 +87,12 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.SLAB_RED_SAND, dropsForLooseSlab(ModBlocks.SLAB_RED_SAND, ModItems.PILE_RED_SAND, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
         addDrop(ModBlocks.SLAB_BRICKS_LOOSE, dropsForLooseSlab(ModBlocks.SLAB_ANDESITE_LOOSE, Items.BRICK, 4, 8, WITH_PICKAXE_FULLY_HARVESTS));
 
-        addDrop(ModBlocks.SLAB_COBBLESTONE_LOOSE);
-        addDrop(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE);
-        addDrop(ModBlocks.SLAB_GRANITE_LOOSE);
-        addDrop(ModBlocks.SLAB_DIORITE_LOOSE);
-        addDrop(ModBlocks.SLAB_ANDESITE_LOOSE);
+
+        addDrop(ModBlocks.SLAB_COBBLESTONE_LOOSE, slabDrops(ModBlocks.SLAB_COBBLESTONE_LOOSE));
+        addDrop(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, slabDrops(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE));
+        addDrop(ModBlocks.SLAB_GRANITE_LOOSE, slabDrops(ModBlocks.SLAB_GRANITE_LOOSE));
+        addDrop(ModBlocks.SLAB_DIORITE_LOOSE, slabDrops(ModBlocks.SLAB_DIORITE_LOOSE));
+        addDrop(ModBlocks.SLAB_ANDESITE_LOOSE, slabDrops(ModBlocks.SLAB_ANDESITE_LOOSE));
 
         // Loose Stair blocks
         addDrop(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
