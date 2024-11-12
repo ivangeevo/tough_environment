@@ -260,6 +260,12 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
         getOrCreateTagBuilder(ModTags.Blocks.MISC_REQUIRING_TOOL)
                 .add(Blocks.SNOW);
+
+        getOrCreateTagBuilder(ModTags.Blocks.VANILLA_DIRT_BLOCKS)
+                .add(Blocks.DIRT)
+                .add(Blocks.COARSE_DIRT)
+                .add(Blocks.DIRT_PATH)
+                .add(Blocks.MYCELIUM);
     }
 
 }

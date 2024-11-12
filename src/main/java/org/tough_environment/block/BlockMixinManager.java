@@ -102,11 +102,11 @@ public class BlockMixinManager
         if (!world.isClient)
         {
 
-            if ( isVanillaDirtBlock(state) || state.isOf(Blocks.GRASS_BLOCK) ) {
+            if ( state.isIn(ModTags.Blocks.VANILLA_DIRT_BLOCKS) || state.isOf(Blocks.GRASS_BLOCK) ) {
                 setStateForDirt(world, pos, state, tool);
             }
 
-            if (isVanillaDirtBlock(state))
+            if (state.isIn(ModTags.Blocks.VANILLA_DIRT_BLOCKS))
             {
                 if (tool.isIn(ItemTags.HOES))
                 {
@@ -287,13 +287,7 @@ public class BlockMixinManager
                 || stack.isIn(BTWRConventionalTags.Items.MODERN_AXES);
     }
 
-    private boolean isVanillaDirtBlock(BlockState state)
-    {
-        return state.isOf(Blocks.DIRT)
-                || state.isOf(Blocks.COARSE_DIRT)
-                || state.isOf(Blocks.DIRT_PATH)
-                || state.isOf(Blocks.MYCELIUM);
-    }
+
 
     private boolean isStrata1StoneBlock(BlockState state)
     {
