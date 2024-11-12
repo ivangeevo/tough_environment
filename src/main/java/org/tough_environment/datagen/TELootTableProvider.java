@@ -59,6 +59,9 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
         addDrop(Blocks.COBBLESTONE_SLAB, customSlabDrop(Blocks.COBBLESTONE_SLAB, ModBlocks.SLAB_COBBLESTONE_LOOSE));
         addDrop(Blocks.COBBLED_DEEPSLATE_SLAB, customSlabDrop(Blocks.COBBLED_DEEPSLATE_SLAB, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE));
+        addDrop(Blocks.ANDESITE_SLAB, customSlabDrop(Blocks.ANDESITE_SLAB, ModBlocks.SLAB_ANDESITE_LOOSE));
+        addDrop(Blocks.GRANITE_SLAB, customSlabDrop(Blocks.GRANITE_SLAB, ModBlocks.SLAB_GRANITE_LOOSE));
+        addDrop(Blocks.DIORITE_SLAB, customSlabDrop(Blocks.DIORITE_SLAB, ModBlocks.SLAB_DIORITE_LOOSE));
 
         // Non-loose blocks that break into loose
         addDrop(Blocks.GRANITE_STAIRS, dropsForBreakingToLooseWithoutSilk(Blocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_GRANITE, 4));
