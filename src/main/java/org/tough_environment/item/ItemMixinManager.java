@@ -4,7 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ToolComponent;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -37,11 +40,36 @@ public class ItemMixinManager
     {
         World world = context.getWorld();
         BlockPos pos = context.getBlockPos();
+        ItemStack stack = context.getStack();
+        PlayerEntity player = context.getPlayer();
 
         makePlaceableAsBlock(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED, world, pos, context, cir);
         makePlaceableAsBlock(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED, world, pos, context, cir);
         makePlaceableAsBlock(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED, world, pos, context, cir);
 
+        /**
+        if (stack.isIn(ModTags.Items.MORTARING_ITEMS))
+        {
+            if ( player != null && player.canPlaceOn( pos, context.getSide(), stack ) )
+            {
+                Block targetBlock = world.getBlockState(pos).getBlock();
+
+                if ( targetBlock != null && targetBlock.onMortarApplied(world, pos) )
+                {
+                    if ( !world.isClient )
+                    {
+                        world.playSound(null, pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
+                    }
+
+                    stack.decrement(1);
+
+                    cir.setReturnValue(ActionResult.SUCCESS);
+                }
+            }
+
+            cir.setReturnValue(ActionResult.FAIL);
+        }
+         **/
     }
 
     public void handleGetMiningSpeed(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir)

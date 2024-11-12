@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.FallingBlockEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -19,6 +20,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.tick.OrderedTick;
 import net.minecraft.world.tick.TickPriority;
+import org.jetbrains.annotations.Nullable;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.BlockMortarMapper;
 
@@ -36,6 +38,30 @@ public class MortarReceiverBlock extends FallingBlock
 
     public MortarReceiverBlock(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify)
+    {
+        if (world.isClient()) return;
+
+        boolean hasMortaredNeighbor = Direction.stream()
+                .map(pos::offset)
+                .map(world::getBlockState)
+                .anyMatch(neighborState -> neighborState.isIn(ModTags.Blocks.MORTARED_BLOCKS));
+
+        if (hasMortaredNeighbor)
+        {
+            // Create an OrderedTick for the block
+            OrderedTick<Block> orderedTick = new OrderedTick<>(state.getBlock(), pos,
+                    world.getTime() + SLOW_FALL_DELAY_TICKS, TickPriority.NORMAL, 0);
+            world.getBlockTickScheduler().scheduleTick(orderedTick);
+        }
+        else
+        {
+            // Schedule the normal fall tick (default for falling blocks)
+            super.onBlockAdded(state, world, pos, oldState, notify);
+        }
     }
 
     @Override
@@ -65,7 +91,7 @@ public class MortarReceiverBlock extends FallingBlock
 
         if (newBlock != null)
         {
-            world.setBlockState(pos, newBlock.getStateWithProperties(state));
+            world.setBlockState(pos, newBlock.getStateWithProperties(state), Block.NOTIFY_ALL);
         }
 
         world.playSound(null,pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
@@ -93,29 +119,7 @@ public class MortarReceiverBlock extends FallingBlock
         return null;
     }
 
-    @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify)
-    {
-        if (world.isClient()) return;
 
-        boolean hasMortaredNeighbor = Direction.stream()
-                .map(pos::offset)
-                .map(world::getBlockState)
-                .anyMatch(neighborState -> neighborState.isIn(ModTags.Blocks.MORTARED_BLOCKS));
-
-        if (hasMortaredNeighbor)
-        {
-            // Create an OrderedTick for the block
-            OrderedTick<Block> orderedTick = new OrderedTick<>(state.getBlock(), pos,
-                    world.getTime() + SLOW_FALL_DELAY_TICKS, TickPriority.NORMAL, 0);
-            world.getBlockTickScheduler().scheduleTick(orderedTick);
-        }
-        else
-        {
-            // Schedule the normal fall tick (default for falling blocks)
-            super.onBlockAdded(state, world, pos, oldState, notify);
-        }
-    }
 
 
 

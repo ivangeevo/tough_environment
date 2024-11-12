@@ -1,5 +1,6 @@
 package org.tough_environment.block.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.enums.SlabType;
@@ -11,6 +12,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -20,6 +22,7 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -31,6 +34,10 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.ModTags;
+import org.tough_environment.util.BlockMortarMapper;
+
+import java.util.Map;
+import java.util.Objects;
 
 public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 {
@@ -49,6 +56,11 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         super(settings);
         this.setDefaultState((this.stateManager.getDefaultState()).with(TYPE, SlabType.BOTTOM)
                 .with(WATERLOGGED, false));
+    }
+
+    @Override
+    protected MapCodec<? extends FallingBlock> getCodec() {
+        return null;
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
@@ -92,11 +104,11 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player)
     {
         SlabType slabType = state.get(TYPE);
-        Block newBlock = getStateReplacementBlock(state.getBlock(), slabType);
+        BlockState newBlock = getReplacementBlockState(state.getBlock(), slabType, this.getDefaultState());
 
         if (newBlock != null)
         {
-            BlockState newState = newBlock.getDefaultState();
+            BlockState newState = newBlock;
 
             // Check if TYPE property exists
             if (newState.getProperties().contains(TYPE))
@@ -112,26 +124,62 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     }
 
 
+    private BlockState getReplacementBlockState(Block originalBlock, SlabType slabType, BlockState originalState) {
+        // Mapping of slab blocks to their corresponding mortared Minecraft variant (top or bottom)
+        Map<Block, Block> slabToSlabMortaredBlock = Map.of(
+                ModBlocks.SLAB_COBBLESTONE_LOOSE, Blocks.COBBLESTONE_SLAB,
+                ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, Blocks.COBBLED_DEEPSLATE_SLAB,
+                ModBlocks.SLAB_ANDESITE_LOOSE, Blocks.ANDESITE_SLAB,
+                ModBlocks.SLAB_GRANITE_LOOSE, Blocks.GRANITE_SLAB,
+                ModBlocks.SLAB_DIORITE_LOOSE, Blocks.DIORITE_SLAB,
+                ModBlocks.SLAB_BRICKS_LOOSE, Blocks.BRICK_SLAB
+        );
 
-    // TODO: Figure out a better and less hardcoded way to manage blocks in here.
-    //  We want to set loose slab blocks to become full loose blocks on double slab type.
-    private Block getStateReplacementBlock(Block originalBlock, SlabType slabType) {
-        if (originalBlock == ModBlocks.SLAB_COBBLESTONE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? ModBlocks.COBBLESTONE_LOOSE : ModBlocks.SLAB_COBBLESTONE_LOOSE;
-        } else if (originalBlock == ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? ModBlocks.COBBLED_DEEPSLATE_LOOSE : ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE;
-        } else if (originalBlock == ModBlocks.SLAB_ANDESITE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? ModBlocks.ANDESITE_LOOSE : ModBlocks.SLAB_ANDESITE_LOOSE;
-        } else if (originalBlock == ModBlocks.SLAB_GRANITE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? ModBlocks.GRANITE_LOOSE : ModBlocks.SLAB_GRANITE_LOOSE;
-        } else if (originalBlock == ModBlocks.SLAB_DIORITE_LOOSE) {
-            return slabType == SlabType.DOUBLE ? ModBlocks.DIORITE_LOOSE : ModBlocks.SLAB_DIORITE_LOOSE;
-        } else if (originalBlock == ModBlocks.SLAB_BRICKS_LOOSE) {
-            return slabType == SlabType.DOUBLE ? ModBlocks.BRICKS_LOOSE: ModBlocks.SLAB_BRICKS_LOOSE;
+        // Mapping of slab blocks to their corresponding full counterpart blocks for DOUBLE slabs
+        Map<Block, Block> slabToFullMortaredBlock = Map.of(
+                ModBlocks.SLAB_COBBLESTONE_LOOSE, Blocks.COBBLESTONE,
+                ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, Blocks.COBBLED_DEEPSLATE,
+                ModBlocks.SLAB_ANDESITE_LOOSE, Blocks.ANDESITE,
+                ModBlocks.SLAB_GRANITE_LOOSE, Blocks.GRANITE,
+                ModBlocks.SLAB_DIORITE_LOOSE, Blocks.DIORITE,
+                ModBlocks.SLAB_BRICKS_LOOSE, Blocks.BRICKS
+        );
+
+        // Handle TOP slabs: Get the mortared variant and set SlabType.TOP if needed
+        if (slabType == SlabType.TOP && slabToSlabMortaredBlock.containsKey(originalBlock)) {
+            Block mortaredBlock = slabToSlabMortaredBlock.get(originalBlock);
+            BlockState mortaredState = mortaredBlock.getDefaultState();
+
+            // Ensure the replacement state has the SlabType.TOP property set
+            if (mortaredState.contains(SlabBlock.TYPE)) {
+                mortaredState = mortaredState.with(SlabBlock.TYPE, SlabType.TOP);
+            }
+
+            return mortaredState;
         }
 
+        // Handle BOTTOM slabs: Get the mortared variant (for SlabType.BOTTOM)
+        if (slabType == SlabType.BOTTOM && slabToSlabMortaredBlock.containsKey(originalBlock)) {
+            Block mortaredBlock = slabToSlabMortaredBlock.get(originalBlock);
+            BlockState mortaredState = mortaredBlock.getDefaultState();
+
+            // Ensure the replacement state has the SlabType.BOTTOM property set
+            if (mortaredState.contains(SlabBlock.TYPE)) {
+                mortaredState = mortaredState.with(SlabBlock.TYPE, SlabType.BOTTOM);
+            }
+
+            return mortaredState;
+        }
+
+        // Handle DOUBLE slabs by mapping to the full block
+        if (slabType == SlabType.DOUBLE && slabToFullMortaredBlock.containsKey(originalBlock)) {
+            return slabToFullMortaredBlock.get(originalBlock).getDefaultState(); // Return the full block
+        }
+
+        // Return null if no match is found
         return null;
     }
+
 
     public boolean hasSidedTransparency(BlockState state) {
         return state.get(TYPE) != SlabType.DOUBLE;
@@ -165,7 +213,7 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 
         if (blockState.isOf(this)) {
             // If the block is the same as the LooseSlabBlock, set it to double slab
-            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
+            return this.getDefaultState().with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
         }
         else
         {
@@ -183,9 +231,6 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
             }
         }
     }
-
-
-
 
     public boolean canReplace(BlockState state, ItemPlacementContext context)
     {
@@ -264,7 +309,6 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         BOTTOM_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
         TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
     }
-
 
 
 
