@@ -65,6 +65,8 @@ dependencies {
 
     modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
 
+    modImplementation files("libs/btwr-core-0.27-1.21.1.jar")
+
 }
 
 processResources {
