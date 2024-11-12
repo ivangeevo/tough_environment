@@ -134,10 +134,6 @@ public class TERecipeProvider extends FabricRecipeProvider
         offerStairs(exporter, ModBlocks.GRANITE_LOOSE_STAIRS, ModBlocks.GRANITE_LOOSE);
         offerStairs(exporter, ModBlocks.ANDESITE_LOOSE_STAIRS, ModBlocks.ANDESITE_LOOSE);
         offerStairs(exporter, ModBlocks.DIORITE_LOOSE_STAIRS, ModBlocks.DIORITE_LOOSE);
-        offerStairs(exporter, ModBlocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE);
-        offerStairs(exporter, ModBlocks.ANDESITE_STAIRS, ModBlocks.ANDESITE_LOOSE);
-        offerStairs(exporter, ModBlocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE);
-
     }
     private void addSlabRecipes(RecipeExporter exporter)
     {

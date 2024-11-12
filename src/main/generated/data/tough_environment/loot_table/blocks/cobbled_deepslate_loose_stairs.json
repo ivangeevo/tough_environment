@@ -3,15 +3,37 @@
   "pools": [
     {
       "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "tough_environment:cobbled_deepslate_loose_stairs"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:pickaxes_harvest_full_block"
+                  }
+                }
+              ],
+              "name": "tough_environment:cobbled_deepslate_loose_stairs"
+            },
+            {
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                },
+                {
+                  "add": false,
+                  "count": 6.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "tough_environment:small_stone_2"
+            }
+          ]
         }
       ],
       "rolls": 1.0

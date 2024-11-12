@@ -85,6 +85,28 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
+                "items": "minecraft:diamond_hoe"
+              }
+            },
+            {
+              "chance": 0.06,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "name": "minecraft:wheat_seeds"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
                 "items": "minecraft:golden_hoe"
               }
             },
@@ -134,28 +156,6 @@
             },
             {
               "chance": 0.11,
-              "condition": "minecraft:random_chance"
-            }
-          ],
-          "name": "minecraft:wheat_seeds"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "minecraft:diamond_hoe"
-              }
-            },
-            {
-              "chance": 0.06,
               "condition": "minecraft:random_chance"
             }
           ],

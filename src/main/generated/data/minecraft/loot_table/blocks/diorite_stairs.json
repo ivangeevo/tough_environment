@@ -26,7 +26,7 @@
                   }
                 }
               ],
-              "name": "tough_environment:diorite_stairs"
+              "name": "minecraft:diorite_stairs"
             },
             {
               "type": "minecraft:item",

@@ -13,27 +13,6 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "predicates": {
-                      "minecraft:enchantments": [
-                        {
-                          "enchantments": "minecraft:silk_touch",
-                          "levels": {
-                            "min": 1
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ],
-              "name": "tough_environment:bricks_loose"
-            },
-            {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
                     "items": "#c:pickaxes_harvest_full_block"
                   }
                 }
@@ -42,21 +21,10 @@
             },
             {
               "type": "minecraft:item",
-              "conditions": [
-                {
-                  "condition": "minecraft:inverted",
-                  "term": {
-                    "condition": "minecraft:match_tool",
-                    "predicate": {
-                      "items": "#minecraft:hoes"
-                    }
-                  }
-                },
-                {
-                  "condition": "minecraft:survives_explosion"
-                }
-              ],
               "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                },
                 {
                   "add": false,
                   "count": 8.0,

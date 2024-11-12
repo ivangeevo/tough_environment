@@ -60,6 +60,11 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.COBBLESTONE_SLAB, customSlabDrop(Blocks.COBBLESTONE_SLAB, ModBlocks.SLAB_COBBLESTONE_LOOSE));
         addDrop(Blocks.COBBLED_DEEPSLATE_SLAB, customSlabDrop(Blocks.COBBLED_DEEPSLATE_SLAB, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE));
 
+        // Non-loose blocks that break into loose
+        addDrop(Blocks.GRANITE_STAIRS, dropsForBreakingToLooseWithoutSilk(Blocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_GRANITE, 4));
+        addDrop(Blocks.ANDESITE_STAIRS, dropsForBreakingToLooseWithoutSilk(Blocks.ANDESITE_STAIRS, ModBlocks.ANDESITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_ANDESITE, 4));
+        addDrop(Blocks.DIORITE_STAIRS, dropsForBreakingToLooseWithoutSilk(Blocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_DIORITE, 4));
+
 
         // TODO: Add stone blocks & others like granite, diorite, etc.
 
@@ -114,7 +119,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.SLAB_GRAVEL, dropsForLooseSlab(ModBlocks.SLAB_GRAVEL, ModItems.PILE_GRAVEL, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
         addDrop(ModBlocks.SLAB_SAND, dropsForLooseSlab(ModBlocks.SLAB_SAND, ModItems.PILE_SAND, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
         addDrop(ModBlocks.SLAB_RED_SAND, dropsForLooseSlab(ModBlocks.SLAB_RED_SAND, ModItems.PILE_RED_SAND, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
-        addDrop(ModBlocks.SLAB_BRICKS_LOOSE, dropsForLooseSlab(ModBlocks.SLAB_ANDESITE_LOOSE, Items.BRICK, 4, 8, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(ModBlocks.SLAB_BRICKS_LOOSE, dropsForLooseSlab(ModBlocks.SLAB_BRICKS_LOOSE, Items.BRICK, 4, 8, WITH_PICKAXE_FULLY_HARVESTS));
 
 
         addDrop(ModBlocks.SLAB_COBBLESTONE_LOOSE, slabDrops(ModBlocks.SLAB_COBBLESTONE_LOOSE));
@@ -124,17 +129,11 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.SLAB_ANDESITE_LOOSE, slabDrops(ModBlocks.SLAB_ANDESITE_LOOSE));
 
         // Loose Stair blocks
-        addDrop(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
-        addDrop(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS);
-        addDrop(ModBlocks.GRANITE_LOOSE_STAIRS);
-        addDrop(ModBlocks.ANDESITE_LOOSE_STAIRS);
-        addDrop(ModBlocks.DIORITE_LOOSE_STAIRS);
-        addDrop(ModBlocks.GRANITE_LOOSE_STAIRS);
-
-        // Non-loose blocks that break into loose
-        addDrop(ModBlocks.GRANITE_STAIRS, dropsForBreakingToLooseWithoutSilk(ModBlocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_GRANITE, 4));
-        addDrop(ModBlocks.ANDESITE_STAIRS, dropsForBreakingToLooseWithoutSilk(ModBlocks.ANDESITE_STAIRS, ModBlocks.ANDESITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_ANDESITE, 4));
-        addDrop(ModBlocks.DIORITE_STAIRS, dropsForBreakingToLooseWithoutSilk(ModBlocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_DIORITE, 4));
+        addDrop(ModBlocks.COBBLESTONE_LOOSE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.COBBLESTONE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SMALL_STONE, 6));
+        addDrop(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SMALL_STONE_2, 6));
+        addDrop(ModBlocks.GRANITE_LOOSE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.GRANITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_GRANITE, 6));
+        addDrop(ModBlocks.ANDESITE_LOOSE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.ANDESITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_ANDESITE, 6));
+        addDrop(ModBlocks.DIORITE_LOOSE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.DIORITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_DIORITE, 6));
 
 
         // Placed Ore block loot tables
@@ -196,19 +195,18 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
     public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
         // Define the main loot pool with conditions
         AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
-                ItemEntry.builder(dropWithSilkTouch).conditionally(createSilkTouchCondition()),
-                ItemEntry.builder(looseDrop).conditionally(toolCondition),
+                this.silkTouchDropEntry(dropWithSilkTouch),
+                this.looseDropEntry(looseDrop, toolCondition),
                 ItemEntry.builder(pileDrop).conditionally(WITHOUT_HOE)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
                         .conditionally(dropWithSilkTouch == Blocks.GRASS_BLOCK ? WITHOUT_HOE : SurvivesExplosionLootCondition.builder())
         );
 
-        LootPool.Builder mainPool = LootPool.builder()
-                .rolls(ConstantLootNumberProvider.create(1.0f))
-                .with(alternativeEntry);
-
-
-        return LootTable.builder().pool(mainPool);
+        return LootTable.builder().pool(
+                LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1.0f))
+                        .with(alternativeEntry)
+        );
     }
 
     public LootTable.Builder dropsForLooseSlab(Block drop, Item pileDrop, int singleSlabPileDropCount, int doubleSlabPileDropCount, LootCondition.Builder toolCondition) {
@@ -245,49 +243,48 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 );
     }
 
-    /** Simple blocks are (usually) loose blocks that break to piles if not mined with the correct tool.  **/
-    public LootTable.Builder dropsForSimpleLooseBlock(Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount)
-    {
-        return LootTable.builder()
-                .pool(LootPool.builder().with(
-                        AlternativeEntry.builder(
-                                this.looseDropEntry(looseDrop, toolCondition),
-                                this.pileDropEntry(pileDrop, pileDropCount))
-                ));
+    // Simple blocks that are usually loose blocks and break to piles if not mined with the correct tool.
+    public LootTable.Builder dropsForSimpleLooseBlock(Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
+        return dropsForLooseOrPileBlock(null, looseDrop, toolCondition, pileDrop, pileDropCount);
     }
 
-    // For blocks that will break to their loose counterpart if the tool doesn't have silkTouch
-    public LootTable.Builder dropsForBreakingToLooseWithoutSilk(Block silkTouchDrop, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount)
-    {
-
-        return LootTable.builder()
-                .pool(LootPool.builder().with(
-                        AlternativeEntry.builder(
-                                this.silkTouchDropEntry(silkTouchDrop),
-                                this.looseDropEntry(looseDrop, toolCondition),
-                                this.pileDropEntry(pileDrop, pileDropCount)))
-                );
+    // For blocks that break to their loose counterpart if the tool doesn't have silkTouch
+    public LootTable.Builder dropsForBreakingToLooseWithoutSilk(Block silkTouchDrop, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
+        return dropsForLooseOrPileBlock(silkTouchDrop, looseDrop, toolCondition, pileDrop, pileDropCount);
     }
 
-    /** The 3 LeafEntry builders below are only used with the  {@link TELootTableProvider#dropsForSimpleLooseBlock} and
-     * the {@link TELootTableProvider#dropsForBreakingToLooseWithoutSilk} methods.
+    // Core method for handling loose or pile drops, with optional silk touch handling
+    private LootTable.Builder dropsForLooseOrPileBlock(Block silkTouchDrop, Block looseDrop, LootCondition.Builder toolCondition,
+                                                       Item pileDrop, int pileDropCount) {
+        AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder();
+
+        if (silkTouchDrop != null) {
+            alternativeEntry.alternatively(silkTouchDropEntry(silkTouchDrop));
+        }
+
+        alternativeEntry.alternatively(looseDropEntry(looseDrop, toolCondition))
+                .alternatively(pileDropEntry(pileDrop, pileDropCount));
+
+        return LootTable.builder()
+                .pool(LootPool.builder().with(alternativeEntry));
+    }
+
+    /** The 3 LeafEntry builders below are only used with the {@link TELootTableProvider#dropsForSimpleLooseBlock} and
+     * {@link TELootTableProvider#dropsForBreakingToLooseWithoutSilk} methods.
      **/
 
-    // Used for blocks that are non-loose and break to loose if the tool condition is present
-    private LeafEntry.Builder<?> silkTouchDropEntry(Block silkTouchDrop)
-    {
+    // Silk touch drop entry for when a block can be silk-touched
+    private LeafEntry.Builder<?> silkTouchDropEntry(Block silkTouchDrop) {
         return ItemEntry.builder(silkTouchDrop).conditionally(this.createSilkTouchCondition());
     }
 
     // Used for blocks that are non-loose and break to loose if the tool condition is present
-    private LeafEntry.Builder<?> looseDropEntry(Block looseDrop, LootCondition.Builder toolCondition)
-    {
+    private LeafEntry.Builder<?> looseDropEntry(Block looseDrop, LootCondition.Builder toolCondition) {
         return ItemEntry.builder(looseDrop).conditionally(toolCondition);
     }
 
     // Pile drop entry used for blocks that break to piles when no tool is used
-    private LeafEntry.Builder<?> pileDropEntry( Item pileDrop, int pileDropCount)
-    {
+    private LeafEntry.Builder<?> pileDropEntry(Item pileDrop, int pileDropCount) {
         return this.applyExplosionDecay(pileDrop, ItemEntry.builder(pileDrop))
                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)));
     }
