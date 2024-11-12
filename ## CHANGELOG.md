@@ -1,5 +1,6 @@
 
-# 0.4.2 Alpha
+# next (if big 0.5) Alpha
++ Fixed cobblestone and cobbled deepslate slabs from being unable to be mortared.
 + Fixed a bug that turned grass instantly to farmland by hoe breaking (it should go to dirt/loose dirt first)
 + Fixed bug where breaking grass and dirt with hoe dropped dirt piles.
 + Fixed loose slab blocks from being non-opaque (letting light go through them)
