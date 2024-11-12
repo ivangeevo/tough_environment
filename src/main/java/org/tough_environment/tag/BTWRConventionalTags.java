@@ -72,6 +72,9 @@ public class BTWRConventionalTags
         public static final TagKey<Item> MODERN_HOES = createTag("modern_hoes");
         public static final TagKey<Item> ADVANCED_HOES = createTag("advanced_hoes");
 
+        public static final TagKey<Item> COBBLESTONE_CRAFTING_MATERIALS = createTag("cobblestone_crafting_materials");
+
+
         /** Tag for items that should do knockback if the config for
          *  knockback restriction is turned on.
          */

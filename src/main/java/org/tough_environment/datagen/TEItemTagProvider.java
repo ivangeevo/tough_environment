@@ -90,6 +90,10 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(BTWRConventionalTags.Items.FULLY_MINES_STRATA_3)
                 .addTag(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.COBBLESTONE_CRAFTING_MATERIALS)
+                .add(Items.COBBLESTONE)
+                .add(ModBlocks.COBBLESTONE_LOOSE.asItem());
+
     }
 
 
