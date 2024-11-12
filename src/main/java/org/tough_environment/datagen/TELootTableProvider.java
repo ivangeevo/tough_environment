@@ -64,9 +64,9 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.DIORITE_SLAB, customSlabDrop(Blocks.DIORITE_SLAB, ModBlocks.SLAB_DIORITE_LOOSE));
 
         // Non-loose blocks that break into loose
-        addDrop(Blocks.GRANITE_STAIRS, dropsForBreakingToLooseWithoutSilk(Blocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_GRANITE, 4));
-        addDrop(Blocks.ANDESITE_STAIRS, dropsForBreakingToLooseWithoutSilk(Blocks.ANDESITE_STAIRS, ModBlocks.ANDESITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_ANDESITE, 4));
-        addDrop(Blocks.DIORITE_STAIRS, dropsForBreakingToLooseWithoutSilk(Blocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_DIORITE, 4));
+        addDrop(Blocks.GRANITE_STAIRS, dropsForBreakingToLooseBlock(Blocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_GRANITE, 4));
+        addDrop(Blocks.ANDESITE_STAIRS, dropsForBreakingToLooseBlock(Blocks.ANDESITE_STAIRS, ModBlocks.ANDESITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_ANDESITE, 4));
+        addDrop(Blocks.DIORITE_STAIRS, dropsForBreakingToLooseBlock(Blocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_DIORITE, 4));
 
 
         // TODO: Add stone blocks & others like granite, diorite, etc.
@@ -252,7 +252,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
     }
 
     // For blocks that break to their loose counterpart if the tool doesn't have silkTouch
-    public LootTable.Builder dropsForBreakingToLooseWithoutSilk(Block silkTouchDrop, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
+    public LootTable.Builder dropsForBreakingToLooseBlock(Block silkTouchDrop, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
         return dropsForLooseOrPileBlock(silkTouchDrop, looseDrop, toolCondition, pileDrop, pileDropCount);
     }
 
@@ -273,7 +273,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
     }
 
     /** The 3 LeafEntry builders below are only used with the {@link TELootTableProvider#dropsForSimpleLooseBlock} and
-     * {@link TELootTableProvider#dropsForBreakingToLooseWithoutSilk} methods.
+     * {@link TELootTableProvider#dropsForBreakingToLooseBlock} methods.
      **/
 
     // Silk touch drop entry for when a block can be silk-touched
