@@ -85,11 +85,6 @@ public class ModItemGroup
                             entries.add(ModBlocks.GRANITE_LOOSE_STAIRS);
                             entries.add(ModBlocks.DIORITE_LOOSE_STAIRS);
 
-                            entries.add(ModBlocks.ANDESITE_STAIRS);
-                            entries.add(ModBlocks.GRANITE_STAIRS);
-                            entries.add(ModBlocks.DIORITE_STAIRS);
-
-
                         }).build());
 
         ToughEnvironmentMod.LOGGER.info("Registering Item Groups for " + ToughEnvironmentMod.MOD_ID);

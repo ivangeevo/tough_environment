@@ -60,11 +60,6 @@ public class ModBlocks
     public static final Block GRANITE_LOOSE_STAIRS = registerBlock("granite_loose_stairs", new LooseStairsBlock(ModBlocks.GRANITE_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block DIORITE_LOOSE_STAIRS = registerBlock("diorite_loose_stairs", new LooseStairsBlock(ModBlocks.DIORITE_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
 
-    public static final Block ANDESITE_STAIRS = registerBlock("andesite_stairs", new StairsBlock(Blocks.ANDESITE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block GRANITE_STAIRS = registerBlock("granite_stairs", new StairsBlock(Blocks.GRANITE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block DIORITE_STAIRS = registerBlock("diorite_stairs", new StairsBlock(Blocks.DIORITE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-
-
     // Depleted(broken) blocks
     public static final Block STONE_BROKEN = registerBlock("stone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_BROKEN = registerBlock("granite_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));

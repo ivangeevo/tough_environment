@@ -5,6 +5,7 @@
 + Fixed bug where breaking grass and dirt with hoe dropped dirt piles.
 + Fixed loose slab blocks from being non-opaque (letting light go through them)
 + Fixed some loose slab block loot tables to drop properly
++ Removed the Andesite, Granite & Diorite stairs blocks added by the mod as they were redundant.
 
 # 0.4.1 Alpha
 + Added BTWR: Core v0.26 as a dependency as it was removed by mistake during one of the last updates.

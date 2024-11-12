@@ -8,7 +8,7 @@
     "ItemEntityMixin",
     "ItemMixin",
     "PlayerEntityMixin",
-    "ToolMaterialsDurabilityMixin",
+    "ToolMaterialsMixin",
     "ToolMaterialsMixin",
     "block.BlockMixin",
     "block.FarmlandBlockMixin",

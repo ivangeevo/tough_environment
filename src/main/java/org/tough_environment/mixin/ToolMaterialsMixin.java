@@ -1,56 +1,28 @@
 package org.tough_environment.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.minecraft.item.ToolMaterials;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArgs;
-import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(ToolMaterials.class)
 public abstract class ToolMaterialsMixin
 {
 
-    // TODO:
-    //  Figure out another way of modifying the durability of vanilla tools
-    //  ( and probably only vanilla tools is a better option) instead of this,
-    //  because this makes the .damage and .maxDamage Item.Settings to not work properly.
-    // Modifying vanilla tool materials durability
-    // Wood and stone are considered primitive, so they have been nerfed.
-    // Iron is tougher to get, but its durability has been increased.
-    // Diamonds also are harder to get because of stratification, so their durability has increased slightly.
-    // Netherite has been buffed up significantly.
-    //@ModifyArgs(method = "<clinit>",
-    // at = @At(value = "INVOKE",
-    // target = "Lnet/minecraft/item/ToolMaterials;<init>(Ljava/lang/String;ILnet/minecraft/registry/tag/TagKey;IFFILjava/util/function/Supplier;)V"))
-    private static void modifyToolMaterialDurability(Args args)
-    {
-        String name = args.get(0);
+    // Modify the return value of getDurability() method for specific tool materials
+    @ModifyReturnValue(method = "getDurability", at = @At("RETURN"))
+    private int modifyToolDurability(int original) {
+        // Directly use the enum ToolMaterials for comparison
+        ToolMaterials self = (ToolMaterials) (Object) this;
 
-        switch (name)
-        {
-            case "WOOD":
-                args.set(3, 10); // Setting durability to 10
-                break;
-            case "STONE":
-                args.set(3, 50); // Setting durability to 50
-                break;
-            case "IRON":
-                args.set(3, 500); // Setting durability to 500
-                break;
-            case "DIAMOND":
-                args.set(3, 1800); // Setting durability to 1800
-                break;
-            case "GOLD":
-                args.set(3, 45); // Setting durability to 45
-                break;
-            case "NETHERITE":
-                args.set(3, 2560); // Setting durability to 2560
-                break;
-            default:
-                // Do nothing for unknown tool materials
-                break;
-        }
+        return switch (self) {
+            case WOOD -> 10;  // Custom durability for wood tools
+            case STONE -> 50;  // Custom durability for stone tools
+            case IRON -> 500;  // Custom durability for iron tools
+            case DIAMOND -> 1800;  // Custom durability for diamond tools
+            case GOLD -> 45;  // Custom durability for gold tools
+            case NETHERITE -> 2560;  // Custom durability for netherite tools
+            default -> original;  // Default behavior for other materials
+        };
     }
-
-
 }
