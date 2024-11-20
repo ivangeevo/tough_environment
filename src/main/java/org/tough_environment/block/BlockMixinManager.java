@@ -25,7 +25,7 @@ import java.util.Map;
 
 import static org.tough_environment.block.blocks.ConvertingBlock.BREAK_LEVEL;
 
-/** A class that is used for managing the behaviour of mixin'd in logic for blocks in the mod.
+/** A class that is used for managing the behavior of mixin'd in logic for existing vanilla blocks.
  *  Different vanilla blocks are affected in more advanced ways with BTWR, so we inject additional logic
  *  that would usually require a dedicated class.
  */
@@ -54,7 +54,7 @@ public class BlockMixinManager
 
     public void handleAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, ItemStack tool) {
 
-        setConvertibleState(world, pos, state, tool);
+        this.setConvertibleState(world, pos, state, tool);
 
         if (!(tool.getItem() instanceof AxeItem) && state.getHardness(world, pos) <= 0)
         {
@@ -110,7 +110,7 @@ public class BlockMixinManager
             {
                 if (tool.isIn(ItemTags.HOES))
                 {
-                    world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
+                    world.setBlockState(pos, Blocks.FARMLAND.getDefaultState(),0,0);
                 }
             }
 
@@ -163,17 +163,17 @@ public class BlockMixinManager
 
         if (tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES) && state.get(BREAK_LEVEL) < 5)
         {
-            world.setBlockState(pos, state.with(BREAK_LEVEL, 5));
+            world.setBlockState(pos, state.with(BREAK_LEVEL, 5),0,0);
             return;
         }
 
         if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS))
         {
-            world.setBlockState(pos, state.with(BREAK_LEVEL, 3));
+            world.setBlockState(pos, state.with(BREAK_LEVEL, 3),0,0);
             return;
         }
 
-        world.setBlockState(pos, state.with(BREAK_LEVEL, 0));
+        world.setBlockState(pos, state.with(BREAK_LEVEL, 0),0,0);
     }
 
     private void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool) {
