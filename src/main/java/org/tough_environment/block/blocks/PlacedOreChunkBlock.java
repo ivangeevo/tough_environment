@@ -80,9 +80,7 @@ public class PlacedOreChunkBlock extends Block
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)
     {
-        BlockState belowBlockState = world.getBlockState(pos.down());
-        // Ensure the block is only placeable on top of a solid block and not on top of itself
-        return belowBlockState.isSolidBlock(world, pos.down());
+        return world.getBlockState(pos.down()).isSolidBlock(world, pos.down());
     }
 
     @Override

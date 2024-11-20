@@ -2,8 +2,6 @@ package org.tough_environment.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.StairsBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -16,10 +14,10 @@ import org.tough_environment.block.blocks.*;
 public class ModBlocks
 {
 
-    public static final Block SLAB_SAND = registerBlock("slab_sand", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
-    public static final Block SLAB_RED_SAND = registerBlock("slab_red_sand", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
-    public static final Block SLAB_DIRT = registerBlock("slab_dirt", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRASS)));
-    public static final Block SLAB_GRAVEL = registerBlock("slab_gravel", new LooseAgregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
+    public static final Block SLAB_SAND = registerBlock("slab_sand", new LooseAggregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
+    public static final Block SLAB_RED_SAND = registerBlock("slab_red_sand", new LooseAggregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
+    public static final Block SLAB_DIRT = registerBlock("slab_dirt", new LooseAggregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRASS)));
+    public static final Block SLAB_GRAVEL = registerBlock("slab_gravel", new LooseAggregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
     public static final Block SLAB_COBBLESTONE_LOOSE = registerBlock("slab_cobblestone_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_COBBLED_DEEPSLATE_LOOSE = registerBlock("slab_cobbled_deepslate_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(1.1F).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_GRANITE_LOOSE = registerBlock("slab_granite_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE)));
@@ -74,9 +72,9 @@ public class ModBlocks
 
 
     // Placeable ore blocks
-    public static final Block RAW_COPPER_PLACED = registerBlockNoItem("raw_copper_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
-    public static final Block RAW_IRON_PLACED = registerBlockNoItem("raw_iron_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
-    public static final Block RAW_GOLD_PLACED = registerBlockNoItem("raw_gold_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
+    public static final Block RAW_COPPER_PLACED = registerBlockWithoutItem("raw_copper_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
+    public static final Block RAW_IRON_PLACED = registerBlockWithoutItem("raw_iron_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
+    public static final Block RAW_GOLD_PLACED = registerBlockWithoutItem("raw_gold_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));
 
 
 
@@ -86,7 +84,7 @@ public class ModBlocks
         return Registry.register(Registries.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name), block);
     }
 
-    private static Block registerBlockNoItem(String name, Block block)
+    private static Block registerBlockWithoutItem(String name, Block block)
     {
         return Registry.register(Registries.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name), block);
     }

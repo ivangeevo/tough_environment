@@ -70,10 +70,12 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_RED_SAND)
                 .add(ModBlocks.DIRT_LOOSE);
 
+        /**
         getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
                 .add(Blocks.GRASS_BLOCK)
                 .add(Blocks.DIRT)
                 .add(ModBlocks.DIRT_LOOSE);
+         **/
 
         getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD)
                 .add(ModBlocks.STONE_CONVERTING)
