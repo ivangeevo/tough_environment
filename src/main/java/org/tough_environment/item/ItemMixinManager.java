@@ -1,11 +1,14 @@
 package org.tough_environment.item;
 
+import btwr.core.block.BTWR_Blocks;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ToolComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -36,40 +39,15 @@ public class ItemMixinManager
         return instance;
     }
 
-    public void handleUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
+    public void handleUseOnBlock(ItemUsageContext context)
     {
         World world = context.getWorld();
         BlockPos pos = context.getBlockPos();
-        ItemStack stack = context.getStack();
-        PlayerEntity player = context.getPlayer();
 
-        makePlaceableAsBlock(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED, world, pos, context, cir);
-        makePlaceableAsBlock(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED, world, pos, context, cir);
-        makePlaceableAsBlock(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED, world, pos, context, cir);
+        makePlaceableAsBlock(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED, world, pos, context);
+        makePlaceableAsBlock(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED, world, pos, context);
+        makePlaceableAsBlock(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED, world, pos, context);
 
-        /**
-        if (stack.isIn(ModTags.Items.MORTARING_ITEMS))
-        {
-            if ( player != null && player.canPlaceOn( pos, context.getSide(), stack ) )
-            {
-                Block targetBlock = world.getBlockState(pos).getBlock();
-
-                if ( targetBlock != null && targetBlock.onMortarApplied(world, pos) )
-                {
-                    if ( !world.isClient )
-                    {
-                        world.playSound(null, pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
-                    }
-
-                    stack.decrement(1);
-
-                    cir.setReturnValue(ActionResult.SUCCESS);
-                }
-            }
-
-            cir.setReturnValue(ActionResult.FAIL);
-        }
-         **/
     }
 
     public void handleGetMiningSpeed(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir)
@@ -90,7 +68,7 @@ public class ItemMixinManager
             } else if (isPrimitiveTool(stack) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
                 cir.setReturnValue(originalSpeed / 6f);
             } else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && stack.isSuitableFor(state)) {
-                cir.setReturnValue(originalSpeed * 12);
+                cir.setReturnValue(originalSpeed * 12f);
             } else {
                 cir.setReturnValue(originalSpeed);
             }
@@ -134,7 +112,7 @@ public class ItemMixinManager
                 || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS);
     }
 
-    private void makePlaceableAsBlock(Item item, Block block, World world, BlockPos pos, ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir )
+    public void makePlaceableAsBlock(Item item, Block block, World world, BlockPos pos, ItemUsageContext context)
     {
         ItemStack heldStack = context.getStack();
 
@@ -145,39 +123,30 @@ public class ItemMixinManager
             {
                 BlockPos placePos = pos.up(); // Position to place the new block
 
-                // Check the block below the target position
-                BlockState belowBlockState = world.getBlockState(pos);
-                if (!belowBlockState.isSolidBlock(world, pos) || belowBlockState.getBlock() instanceof PlacedOreChunkBlock)
+                // Get the Blockstate of the block to place the brick on
+                BlockState blockBelowState = world.getBlockState(pos);
+
+                // Check if the block below can support a block on top of it
+                if (!blockBelowState.isSolidBlock(world, pos))
                 {
-                    // Prevent placing the block on non-solid blocks or on top of itself
-                    cir.setReturnValue(ActionResult.FAIL);
                     return;
                 }
 
                 // Create an ItemPlacementContext for the new block position
-                ItemPlacementContext placementContext =
-                        new ItemPlacementContext(
-                                Objects.requireNonNull(context.getPlayer()),
-                                context.getHand(),
-                                heldStack,
-                                context.getHitResult()
-                        );
+                ItemPlacementContext placementContext = new ItemPlacementContext(Objects.requireNonNull(context.getPlayer()), context.getHand(), heldStack, context.getHitResult());
 
                 // Get the block state using the placement context
-                BlockState placedBlockState = block.getPlacementState(placementContext);
+                BlockState placementState = block.getPlacementState(placementContext);
 
                 // Check if the target position is air or a replaceable block
-                if ((world.isAir(placePos) || world.getBlockState(placePos).canReplace(placementContext)) && placedBlockState != null)
+                if ((world.isAir(placePos) || world.getBlockState(placePos).canReplace(placementContext)) && placementState != null)
                 {
-                    // Replace the block at the target position with the placed block
-                    world.setBlockState(placePos, placedBlockState);
+                    // Replace the block at the target position with the brick block
+                    world.setBlockState(placePos, placementState);
                     heldStack.decrement(1);
 
                     // Trigger block placement events
-                    world.emitGameEvent(context.getPlayer(), GameEvent.BLOCK_PLACE, placePos);
-
-                    // Indicate the interaction was successful
-                    cir.setReturnValue(ActionResult.SUCCESS);
+                    //world.emitGameEvent(context.getPlayer(), GameEvent.BLOCK_PLACE, placePos);
                 }
             }
         }
