@@ -14,15 +14,10 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -33,25 +28,25 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.BTWRConventionalTags;
-import org.tough_environment.tag.ModTags;
 
-public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggable
+public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggable
 {
 
     // Block parameters and constants & Super settings //
-    public static final EnumProperty<SlabType> TYPE;
-    public static final BooleanProperty WATERLOGGED;
+    public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    protected static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
+    protected static final VoxelShape TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
 
-    protected static final VoxelShape BOTTOM_SHAPE;
-    protected static final VoxelShape TOP_SHAPE;
 
-    public static final MapCodec<LooseAgregateSlabBlock> CODEC = LooseAgregateSlabBlock.createCodec(LooseAgregateSlabBlock::new);
+
+    public static final MapCodec<LooseAggregateSlabBlock> CODEC = LooseAggregateSlabBlock.createCodec(LooseAggregateSlabBlock::new);
     @Override
     protected MapCodec<? extends FallingBlock> getCodec() {
         return CODEC;
     }
 
-    public LooseAgregateSlabBlock(Settings settings)
+    public LooseAggregateSlabBlock(Settings settings)
     {
         super(settings);
         this.setDefaultState((this.stateManager.getDefaultState()).with(TYPE, SlabType.BOTTOM)
@@ -72,6 +67,7 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
         if (world.getBlockState(downPos) == this.getDefaultState().with(TYPE, SlabType.BOTTOM))
         {
             world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
+            world.removeBlock(pos, true);
         }
     }
 
@@ -160,9 +156,7 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
         }
     }
 
-
-
-
+    @Override
     public boolean canReplace(BlockState state, ItemPlacementContext context)
     {
         ItemStack itemStack = context.getStack();
@@ -192,13 +186,14 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
             return false;
         }
     }
+
     @Override
     public FluidState getFluidState(BlockState state)
     {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
-    @Override
 
+    @Override
     public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState)
     {
         return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.tryFillWithFluid(world, pos, state, fluidState);
@@ -232,18 +227,4 @@ public class LooseAgregateSlabBlock extends FallingBlock implements Waterloggabl
         };
     }
 
-
-
-    static
-    {
-        TYPE = Properties.SLAB_TYPE;
-        WATERLOGGED = Properties.WATERLOGGED;
-        BOTTOM_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
-        TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
-    }
-
-
-
-
-    // ---------------------------------- //
 }
