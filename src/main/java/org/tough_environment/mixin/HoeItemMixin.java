@@ -24,7 +24,7 @@ public abstract class HoeItemMixin extends MiningToolItem
         super(material, BlockTags.HOE_MINEABLE, settings);
     }
 
-    // Removes right clicking for hoes.
+    // Removes right-clicking for hoes.
     // Instead, farmland is set in the afterBreak method for the specific blocks that a hoe can left-click break,
     // like dirt, coarse dirt, loose dirt, etc...
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)

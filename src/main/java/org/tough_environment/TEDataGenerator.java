@@ -2,16 +2,10 @@ package org.tough_environment;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.util.Identifier;
 import org.tough_environment.datagen.*;
-
-import java.nio.file.Path;
 
 public class TEDataGenerator implements DataGeneratorEntrypoint
 {
-
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator)
