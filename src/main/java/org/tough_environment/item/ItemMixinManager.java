@@ -9,6 +9,7 @@ import net.minecraft.component.type.ToolComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -67,6 +68,8 @@ public class ItemMixinManager
                 cir.setReturnValue(originalSpeed / 80f);
             } else if (isPrimitiveTool(stack) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
                 cir.setReturnValue(originalSpeed / 6f);
+            } else if (stack.isIn(ItemTags.HOES) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
+                cir.setReturnValue(originalSpeed / 4f);
             } else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && stack.isSuitableFor(state)) {
                 cir.setReturnValue(originalSpeed * 12f);
             } else {
