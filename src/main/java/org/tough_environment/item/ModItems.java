@@ -1,9 +1,6 @@
 package org.tough_environment.item;
 
-import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -44,21 +41,21 @@ public class ModItems
     // Tool Items
     public static final Item CHISEL_WOOD = register( "chisel_wood",
             new ChiselItem(ChiselToolMaterials.WOOD, new Item.Settings()
-                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.WOOD, -1f, -0.4f))
+                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.WOOD, 0f, -0.4f))
             ));
     public static final Item CHISEL_STONE = register( "chisel_stone",
             new ChiselItem(ChiselToolMaterials.STONE, new Item.Settings()
-                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.STONE, -2f, -2.2f))
+                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.STONE, -1f, -2.2f))
             ));
 
     public static final Item CHISEL_IRON = register( "chisel_iron",
             new ChiselItem(ChiselToolMaterials.IRON, new Item.Settings()
-                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.IRON, -3f, -2.5f))
+                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.IRON, -2f, -2.5f))
             ));
 
     public static final Item CHISEL_DIAMOND = register("chisel_diamond",
             new ChiselItem(ChiselToolMaterials.DIAMOND, new Item.Settings()
-                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.DIAMOND, -4, -2.8F))
+                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.DIAMOND, -3f, -2.8F))
             ));
 
 
