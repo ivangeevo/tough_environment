@@ -1,14 +1,16 @@
 
 # next Alpha
-+ Improved the logic for hoe tools breaking blocks.
++ Added BTWR Shared Library as dependency + moved the item to block placement logic there
++ + Improved the logic for hoe tools breaking blocks.
 + Fixed loose slab blocks from being non-opaque (letting light go through them) and 
 fixed some of their loot tables to drop properly.
 + Fixed cobblestone and cobbled deepslate slabs from being unable to be mortared.
 + Fixed a bug that turned grass instantly to farmland by hoe breaking (it should go to dirt/loose dirt first)
++ Fixed a bug in breaking clay ore blocks dropped the wrong item.
 + Fixed bug where breaking grass and dirt with hoe dropped dirt piles.
 + Fixed deepslate redstone ore's loot table to properly drop.
 + Temporary fix for a bug that caused a slab placed above another one to turn the bottom block to double slab (a dupe bug)
-+ Rounded the damage of all chisel items to be 0
++ Rounded the damage of all chisel items to be 1
 + Block Tag changes; added new mod tag "VANILLA_DIRT_BLOCKS"
 + Removed the Andesite, Granite & Diorite stairs blocks added by the mod as they were redundant.
 + Updated the mod to require BTWR: Core v0.27
