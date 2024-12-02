@@ -54,6 +54,8 @@ public class ModTags
         public static final TagKey<Block> DEEPSLATE_ORES = register("deepslate_ores");
 
         public static final TagKey<Block> VANILLA_DIRT_BLOCKS = register("vanilla_dirt_blocks");
+        public static final TagKey<Block> SIMPLE_DIRT_BLOCKS = register("simple_dirt_blocks");
+
         private static TagKey<Block> register(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
