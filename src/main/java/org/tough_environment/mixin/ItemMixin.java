@@ -14,15 +14,8 @@ import org.tough_environment.item.ItemMixinManager;
 @Mixin(Item.class)
 public abstract class ItemMixin
 {
-    @Inject(method = "useOnBlock", at = @At("HEAD"))
-    private void injectedUseOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir)
-    {
-        ItemMixinManager.getInstance().handleUseOnBlock(context);
-    }
-
     @Inject(method = "getMiningSpeed(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)F", at = @At("HEAD"), cancellable = true)
-    public void modifyMiningSpeed(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir)
-    {
+    public void modifyMiningSpeed(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
         ItemMixinManager.getInstance().handleGetMiningSpeed(stack, state, cir);
     }
 

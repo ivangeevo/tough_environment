@@ -36,6 +36,7 @@ public class ToughEnvironmentMod implements ModInitializer
         instance = this;
 
         ModBlocks.registerModBlocks();
+        ModBlocks.registerItemsPlaceableAsBlocks();
         ModItems.registerModItems();
         ModItemGroup.registerItemGroups();
         ModFuelItems.register();

@@ -1,15 +1,18 @@
 package org.tough_environment.block;
 
+import btwr.btwrsl.lib.util.PlaceableAsBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.blocks.*;
+import org.tough_environment.item.ModItems;
 
 public class ModBlocks
 {
@@ -99,5 +102,13 @@ public class ModBlocks
     {
         ToughEnvironmentMod.LOGGER.debug("Registering ModBlocks for " + ToughEnvironmentMod.MOD_ID);
     }
+
+    public static void registerItemsPlaceableAsBlocks()
+    {
+        PlaceableAsBlock.getInstance().registerPlaceable(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED);
+        PlaceableAsBlock.getInstance().registerPlaceable(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED);
+        PlaceableAsBlock.getInstance().registerPlaceable(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED);
+    }
+
 
 }

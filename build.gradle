@@ -47,6 +47,7 @@ sourceSets {
 repositories {
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com/releases/" }
+    maven { url "https://ivangeevo.github.io/btwr-shared-lib/" }
 
 }
 
@@ -66,6 +67,8 @@ dependencies {
     modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
 
     modImplementation files("libs/btwr-core-0.27-1.21.1.jar")
+
+    modApi "org.ivangeevo:btwr-shared-lib:${project.btwr_lib_version}"
 
 }
 
