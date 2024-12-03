@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.util.Identifier;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
@@ -68,7 +69,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_GRAVEL)
                 .add(ModBlocks.SLAB_SAND)
                 .add(ModBlocks.SLAB_RED_SAND)
-                .add(ModBlocks.DIRT_LOOSE);
+                .add(ModBlocks.DIRT_LOOSE)
+                .add(ModBlocks.CLAY_BLOCK);
 
         getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
                 .add(Blocks.GRASS_BLOCK)
@@ -185,13 +187,14 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_BRICKS_LOOSE)
 
                 .add(ModBlocks.COBBLESTONE_LOOSE)
+                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.ANDESITE_LOOSE)
                 .add(ModBlocks.GRANITE_LOOSE)
                 .add(ModBlocks.DIORITE_LOOSE)
-                .add(ModBlocks.ANDESITE_LOOSE)
+                .add(ModBlocks.BRICKS_LOOSE)
                 .add(ModBlocks.CALCITE_LOOSE)
                 .add(ModBlocks.TUFF_LOOSE)
                 .add(ModBlocks.BLACKSTONE_LOOSE)
-                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
                 .add(ModBlocks.BASALT_LOOSE)
                 .add(ModBlocks.END_STONE_LOOSE)
 
@@ -206,6 +209,10 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.COBBLED_DEEPSLATE)
                 .add(Blocks.GRANITE)
                 .add(Blocks.ANDESITE)
+                .add(Blocks.DIORITE)
+                .add(Blocks.BRICKS)
+                // the bottom block on a BWT kiln structure turns to kiln block, but looks like bricks
+                .addOptional(Identifier.of("bwt", "kiln"))
                 .add(Blocks.COBBLESTONE_SLAB)
                 .add(Blocks.COBBLED_DEEPSLATE_SLAB)
                 .add(Blocks.ANDESITE_SLAB)

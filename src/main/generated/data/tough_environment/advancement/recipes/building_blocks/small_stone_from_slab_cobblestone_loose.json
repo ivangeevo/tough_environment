@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:small_stone_from_slab_cobblestone_loose"
+        "recipe": "tough_environment:small_stone_from_slab_cobblestone_loose"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:small_stone_from_slab_cobblestone_loose"
+      "tough_environment:small_stone_from_slab_cobblestone_loose"
     ]
   }
 }

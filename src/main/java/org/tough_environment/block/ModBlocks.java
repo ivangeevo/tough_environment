@@ -3,6 +3,9 @@ package org.tough_environment.block;
 import btwr.btwrsl.lib.util.PlaceableAsBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -41,7 +44,6 @@ public class ModBlocks
     public static final Block BLACKSTONE_LOOSE = registerBlock("blackstone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
     public static final Block BASALT_LOOSE = registerBlock("basalt_loose", new LoosePillarBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.BASALT)));
     public static final Block END_STONE_LOOSE = registerBlock("end_stone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
-
     public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE)));
 
     public static final Block STONE_CONVERTING = registerBlock("stone_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
@@ -73,6 +75,7 @@ public class ModBlocks
     public static final Block BASALT_BROKEN = registerBlock("basalt_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block ENDSTONE_BROKEN = registerBlock("endstone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
+    public static final Block CLAY_BLOCK = registerBlock("clay_block", new Block(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE_GRAY).instrument(NoteBlockInstrument.FLUTE).strength(0.6f).sounds(BlockSoundGroup.GRAVEL)));
 
     // Placeable ore blocks
     public static final Block RAW_COPPER_PLACED = registerBlockWithoutItem("raw_copper_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.STONE)));

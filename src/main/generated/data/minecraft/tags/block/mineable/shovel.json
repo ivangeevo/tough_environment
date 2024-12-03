@@ -4,6 +4,7 @@
     "tough_environment:slab_gravel",
     "tough_environment:slab_sand",
     "tough_environment:slab_red_sand",
-    "tough_environment:dirt_loose"
+    "tough_environment:dirt_loose",
+    "tough_environment:clay_block"
   ]
 }

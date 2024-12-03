@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.tough_environment.block.ModBlocks;
@@ -143,6 +144,7 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
     private void addToVanillaTags()
     {
+
         getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
                 .add(ModItems.SMALL_STONE)
                 .add(ModItems.SMALL_STONE_1)
