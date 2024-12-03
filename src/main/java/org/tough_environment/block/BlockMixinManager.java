@@ -21,6 +21,7 @@ import org.tough_environment.block.blocks.ConvertingBlock;
 import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static net.minecraft.block.Block.pushEntitiesUpBeforeBlockChange;
@@ -79,31 +80,69 @@ public class BlockMixinManager
 
         if (state.isIn(ModTags.Blocks.SIMPLE_DIRT_BLOCKS) && tool.isIn(ItemTags.HOES)) {
             setToFarmland(state, world, pos);
-        } else if (state.isIn(BTWRConventionalTags.Blocks.ORES)) {
-            setStateForOre(world, pos, state, tool);
-        } else {
-            convertStoneState(world, pos, state, tool);
         }
+
+        if (state.isIn(BTWRConventionalTags.Blocks.ORES)) {
+            setStateForOre(world, pos, state, tool);
+        }
+
+        convertStoneState(world, pos, state, tool);
     }
 
     private void convertStoneState(World world, BlockPos pos, BlockState state, ItemStack tool) {
-        Map<Block, Block> blockMap = Map.of(
-                Blocks.STONE, ModBlocks.STONE_CONVERTING,
-                Blocks.GRANITE, ModBlocks.GRANITE_CONVERTING,
-                Blocks.ANDESITE, ModBlocks.ANDESITE_CONVERTING,
-                Blocks.DIORITE, ModBlocks.DIORITE_CONVERTING,
-                Blocks.CALCITE, ModBlocks.CALCITE_CONVERTING,
-                Blocks.TUFF, ModBlocks.TUFF_CONVERTING,
-                Blocks.BLACKSTONE, ModBlocks.BLACKSTONE_CONVERTING,
-                Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_CONVERTING,
-                Blocks.BASALT, ModBlocks.BASALT_CONVERTING,
-                Blocks.END_STONE, ModBlocks.END_STONE_CONVERTING
-        );
+        Map<Block, Block> blockMap = new HashMap<>();
 
-        Block convertedBlock = blockMap.get(state.getBlock());
-        if (convertedBlock != null) {
-            setState(world, pos, convertedBlock.getDefaultState(), tool, 4,0);
+        blockMap.put(Blocks.STONE, ModBlocks.STONE_CONVERTING);
+        blockMap.put(Blocks.GRANITE, ModBlocks.GRANITE_CONVERTING);
+        blockMap.put(Blocks.ANDESITE, ModBlocks.ANDESITE_CONVERTING);
+        blockMap.put(Blocks.DIORITE, ModBlocks.DIORITE_CONVERTING);
+        blockMap.put(Blocks.CALCITE, ModBlocks.CALCITE_CONVERTING);
+        blockMap.put(Blocks.TUFF, ModBlocks.TUFF_CONVERTING);
+        blockMap.put(Blocks.BLACKSTONE, ModBlocks.BLACKSTONE_CONVERTING);
+        blockMap.put(Blocks.DEEPSLATE, ModBlocks.DEEPSLATE_CONVERTING);
+        blockMap.put(Blocks.BASALT, ModBlocks.BASALT_CONVERTING);
+        blockMap.put(Blocks.END_STONE, ModBlocks.END_STONE_CONVERTING);
+
+
+        for (Map.Entry<Block, Block> entry : blockMap.entrySet())
+        {
+            Block originalBlock = entry.getKey();
+            Block convertedBlock = entry.getValue();
+
+            if (state.isOf(originalBlock))
+            {
+                setStateForStone(world, pos, tool, convertedBlock);
+                break;
+            }
+
         }
+    }
+
+    private void setStateForStone(World world, BlockPos pos, ItemStack tool, Block block)
+    {
+
+        BlockState state = block.getDefaultState();
+
+        if (tool.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
+                || (tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.STONE_STRATA3)) )
+        {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            return;
+        }
+
+        if (tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES) && state.get(BREAK_LEVEL) < 5)
+        {
+            world.setBlockState(pos, state.with(BREAK_LEVEL, 5),4,0);
+            return;
+        }
+
+        if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS))
+        {
+            world.setBlockState(pos, state.with(BREAK_LEVEL, 3),4,0);
+            return;
+        }
+
+        world.setBlockState(pos, state.with(BREAK_LEVEL, 0),4,0);
     }
 
     private void setStateForDirt(World world, BlockPos pos, ItemStack tool) {
