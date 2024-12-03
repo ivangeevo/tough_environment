@@ -4,6 +4,12 @@
     "minecraft:cobbled_deepslate",
     "minecraft:granite",
     "minecraft:andesite",
+    "minecraft:diorite",
+    "minecraft:bricks",
+    {
+      "id": "bwt:kiln",
+      "required": false
+    },
     "minecraft:cobblestone_slab",
     "minecraft:cobbled_deepslate_slab",
     "minecraft:andesite_slab",

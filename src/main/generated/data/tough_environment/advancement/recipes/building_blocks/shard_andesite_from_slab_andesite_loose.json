@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:shard_andesite_from_slab_andesite_loose"
+        "recipe": "tough_environment:shard_andesite_from_slab_andesite_loose"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:shard_andesite_from_slab_andesite_loose"
+      "tough_environment:shard_andesite_from_slab_andesite_loose"
     ]
   }
 }

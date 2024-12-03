@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "tough_environment:small_stone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tough_environment:chisel_stone"
+  }
+}

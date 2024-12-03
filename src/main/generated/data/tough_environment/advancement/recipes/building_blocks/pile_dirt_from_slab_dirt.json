@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:pile_dirt_from_slab_dirt"
+        "recipe": "tough_environment:pile_dirt_from_slab_dirt"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:pile_dirt_from_slab_dirt"
+      "tough_environment:pile_dirt_from_slab_dirt"
     ]
   }
 }

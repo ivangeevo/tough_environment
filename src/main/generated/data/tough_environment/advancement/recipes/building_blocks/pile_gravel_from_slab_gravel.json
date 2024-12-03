@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:pile_gravel_from_slab_gravel"
+        "recipe": "tough_environment:pile_gravel_from_slab_gravel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:pile_gravel_from_slab_gravel"
+      "tough_environment:pile_gravel_from_slab_gravel"
     ]
   }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pile_sand": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tough_environment:pile_sand"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tough_environment:block_from_pile_sand"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pile_sand"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tough_environment:block_from_pile_sand"
+    ]
+  }
+}

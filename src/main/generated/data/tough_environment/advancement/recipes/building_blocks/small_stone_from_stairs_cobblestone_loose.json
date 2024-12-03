@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cobblestone_loose_stairs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tough_environment:cobblestone_loose_stairs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tough_environment:small_stone_from_stairs_cobblestone_loose"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cobblestone_loose_stairs"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tough_environment:small_stone_from_stairs_cobblestone_loose"
+    ]
+  }
+}

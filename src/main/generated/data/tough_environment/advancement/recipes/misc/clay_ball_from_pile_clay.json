@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pile_clay": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tough_environment:pile_clay"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tough_environment:clay_ball_from_pile_clay"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pile_clay"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tough_environment:clay_ball_from_pile_clay"
+    ]
+  }
+}

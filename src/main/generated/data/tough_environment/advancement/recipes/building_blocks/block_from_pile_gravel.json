@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pile_gravel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tough_environment:pile_gravel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tough_environment:block_from_pile_gravel"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pile_gravel"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tough_environment:block_from_pile_gravel"
+    ]
+  }
+}

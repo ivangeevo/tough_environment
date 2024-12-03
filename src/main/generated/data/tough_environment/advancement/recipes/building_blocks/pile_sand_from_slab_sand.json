@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:pile_sand_from_slab_sand"
+        "recipe": "tough_environment:pile_sand_from_slab_sand"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:pile_sand_from_slab_sand"
+      "tough_environment:pile_sand_from_slab_sand"
     ]
   }
 }
