@@ -3,6 +3,7 @@
 + Added BTWR Shared Library as dependency + moved the item to block placement logic there
 + Added missing blocks to their appropriate tags.
 + Added Clay Block (made out of 8 clay balls)
++ Added a block tag TURNED_FALLING_BLOCKS that makes blocks in it falling! 
 + Improved the logic for hoe tools breaking blocks.
 + Fixed loose slab blocks from being non-opaque (letting light go through them);
 + Fixed multiple block loot tables to drop properly.

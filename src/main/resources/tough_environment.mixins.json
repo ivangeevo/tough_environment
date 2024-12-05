@@ -9,7 +9,7 @@
     "ItemMixin",
     "PlayerEntityMixin",
     "ToolMaterialsMixin",
-    "ToolMaterialsMixin",
+    "block.AbstractBlockMixin",
     "block.BlockMixin",
     "block.FarmlandBlockMixin",
     "block.SpreadableBlockMixin"
