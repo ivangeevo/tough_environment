@@ -56,6 +56,8 @@ public class ModTags
         public static final TagKey<Block> VANILLA_DIRT_BLOCKS = register("vanilla_dirt_blocks");
         public static final TagKey<Block> SIMPLE_DIRT_BLOCKS = register("simple_dirt_blocks");
 
+        public static final TagKey<Block> TURNED_TO_FALLING_BLOCKS = register("turned_to_falling_blocks");
+
         private static TagKey<Block> register(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
