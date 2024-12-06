@@ -1,5 +1,6 @@
 package org.tough_environment.item;
 
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import net.minecraft.block.Block;
@@ -9,17 +10,16 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
-import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 import java.util.List;
 
 public enum ChiselToolMaterials implements ToolMaterial
 {
-    WOOD(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL, 2, 1.2F, 0.0F, 15, () -> Ingredient.fromTag(ItemTags.PLANKS)),
+    WOOD(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL, 2, 1.2F, 0.0F, 1, () -> Ingredient.ofItems(Items.STICK)),
     STONE(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL, 8, 2.0F, 1.0F, 5, () -> Ingredient.fromTag(ItemTags.STONE_TOOL_MATERIALS)),
-    IRON(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL, 238, 3.0F, 2.0F, 14, () -> Ingredient.ofItems(Items.IRON_NUGGET)),
-    DIAMOND(ModTags.Blocks.INCORRECT_FOR_DIAMOND_CHISEL, 500, 4.0F, 3.0F, 10, () -> Ingredient.ofItems(Items.DIAMOND));
+    IRON(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL, 238, 3.0F, 2.0F, 21, () -> Ingredient.ofItems(Items.IRON_NUGGET)),
+    DIAMOND(ModTags.Blocks.INCORRECT_FOR_DIAMOND_CHISEL, 500, 4.0F, 3.0F, 14, () -> Ingredient.ofItems(Items.DIAMOND));
 
     private final TagKey<Block> inverseTag;
     private final int itemDurability;
@@ -84,10 +84,9 @@ public enum ChiselToolMaterials implements ToolMaterial
                 List.of(
                         ToolComponent.Rule.ofNeverDropping(this.getInverseTag()),
                         ToolComponent.Rule.ofAlwaysDropping(tag, this.getMiningSpeedMultiplier()),
-                        ToolComponent.Rule.of(BTWRConventionalTags.Blocks.STUMP_BLOCKS, 55F)  // Handle STUMP_BLOCKS specifically
-                ),
-                1.0F, 1
-        );
+                        ToolComponent.Rule.of(BTWRConventionalTags.Blocks.STUMP_BLOCKS, 55F),
+                        ToolComponent.Rule.of(BTWRConventionalTags.Blocks.WEB_BLOCKS, 25F)
+                ), 1.0F, 1);
     }
 
 }

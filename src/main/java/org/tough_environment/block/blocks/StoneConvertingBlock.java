@@ -1,12 +1,12 @@
 package org.tough_environment.block.blocks;
 
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.tough_environment.block.ModBlocks;
-import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class StoneConvertingBlock extends ConvertingBlock

@@ -1,6 +1,6 @@
 package org.tough_environment.datagen;
 
-import com.terraformersmc.modmenu.util.mod.Mod;
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
@@ -8,7 +8,6 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import org.tough_environment.block.ModBlocks;
-import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -114,6 +113,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
                 .addOptionalTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
                 .addOptionalTag(BTWRConventionalTags.Blocks.ORES)
+                .addOptionalTag(BTWRConventionalTags.Blocks.WEB_BLOCKS)
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.STONE_STRATA3)
@@ -122,6 +122,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.CALCITE)
                 .add(Blocks.END_STONE)
                 .add(Blocks.COBBLESTONE);
+
 
         getOrCreateTagBuilder(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK)
                 .add(Blocks.DIRT)
@@ -277,6 +278,11 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
         getOrCreateTagBuilder(ModTags.Blocks.SIMPLE_DIRT_BLOCKS)
                 .add(Blocks.DIRT)
                 .add(ModBlocks.DIRT_LOOSE);
+
+        getOrCreateTagBuilder(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS)
+                .add(Blocks.RAW_COPPER_BLOCK)
+                .add(Blocks.RAW_IRON_BLOCK)
+                .add(Blocks.RAW_GOLD_BLOCK);
     }
 
 }

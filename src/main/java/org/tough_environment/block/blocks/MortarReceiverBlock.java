@@ -4,9 +4,6 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -20,7 +17,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.tick.OrderedTick;
 import net.minecraft.world.tick.TickPriority;
-import org.jetbrains.annotations.Nullable;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.BlockMortarMapper;
 
@@ -28,7 +24,7 @@ import java.util.Map;
 
 public class MortarReceiverBlock extends FallingBlock
 {
-    private static final int SLOW_FALL_DELAY_TICKS = 40;
+    private static final int TACKY_FALLING_BLOCK_TICK_RATE = 40;
     public static final MapCodec<MortarReceiverBlock> CODEC = MortarReceiverBlock.createCodec(MortarReceiverBlock::new);
 
     @Override
@@ -54,7 +50,7 @@ public class MortarReceiverBlock extends FallingBlock
         {
             // Create an OrderedTick for the block
             OrderedTick<Block> orderedTick = new OrderedTick<>(state.getBlock(), pos,
-                    world.getTime() + SLOW_FALL_DELAY_TICKS, TickPriority.NORMAL, 0);
+                    world.getTime() + TACKY_FALLING_BLOCK_TICK_RATE, TickPriority.NORMAL, 0);
             world.getBlockTickScheduler().scheduleTick(orderedTick);
         }
         else
@@ -67,15 +63,17 @@ public class MortarReceiverBlock extends FallingBlock
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
     {
-        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS))
-        {
+        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS)) {
 
             // Mortar the block
             this.applyMortar(state, world, pos, player);
 
             // Reduce item stack size
             ItemStack handStack = player.getStackInHand(player.getActiveHand());
-            handStack.decrement(1);
+            if (!player.isCreative())
+            {
+                handStack.decrement(1);
+            }
 
             return ActionResult.SUCCESS;
         }

@@ -1,5 +1,6 @@
 package org.tough_environment.block.blocks;
 
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -12,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
-import org.tough_environment.tag.BTWRConventionalTags;
 
 public class LooseAggregateBlock extends FallingBlock
 {

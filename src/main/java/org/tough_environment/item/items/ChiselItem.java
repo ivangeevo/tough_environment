@@ -1,5 +1,6 @@
 package org.tough_environment.item.items;
 
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -13,7 +14,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.tough_environment.item.ModItems;
-import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class ChiselItem extends MiningToolItem
@@ -22,43 +22,6 @@ public class ChiselItem extends MiningToolItem
     {
         super(toolMaterial, ModTags.Mineable.CHISEL, settings);
     }
-
-
-    /**
-    // Create tool component dynamically based on the chiselType
-    public static List<ToolComponent.Rule> chiselConditionsList()
-    {
-        List<ToolComponent.Rule> rules = new ArrayList<>();
-        //ChiselItem.Type chiselType = this.getType();
-
-        // Adjust speed for mining stump blocks
-        if (chiselType == Type.DIAMOND)
-        {
-            rules.add(ToolComponent.Rule.of(BTWRConventionalTags.Blocks.STUMP_BLOCKS, 60f));
-        }
-        else
-        {
-            rules.add(ToolComponent.Rule.of(BTWRConventionalTags.Blocks.STUMP_BLOCKS,2f));
-        }
-
-        // Adjust speed for stone chisels
-        if (chiselType == Type.IRON || chiselType == Type.STONE)
-        {
-            rules.add(ToolComponent.Rule.of(ModTags.Blocks.STONE_CONVERTING_STRATA3, 1 / 80f));
-            rules.add(ToolComponent.Rule.of(ModTags.Blocks.STONE_CONVERTING_STRATA2, 1 / 80f));
-        }
-
-        // Make primitive chisels slower when mining higher tier ores
-        if (chiselType == Type.STONE || chiselType == Type.WOOD)
-        {
-            rules.add(ToolComponent.Rule.of(ModTags.Blocks.ORES_LVL2, 1 / 8000f));
-            rules.add(ToolComponent.Rule.of(ModTags.Blocks.ORES_LVL3, 1 / 8000f));
-
-        }
-
-        return rules;
-    }
-     **/
 
 
     @Override

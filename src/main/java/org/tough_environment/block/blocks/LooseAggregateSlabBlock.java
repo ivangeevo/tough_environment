@@ -1,5 +1,6 @@
 package org.tough_environment.block.blocks;
 
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -27,7 +28,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
-import org.tough_environment.tag.BTWRConventionalTags;
 
 public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggable
 {
