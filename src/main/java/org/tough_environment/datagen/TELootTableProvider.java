@@ -1,5 +1,6 @@
 package org.tough_environment.datagen;
 
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
@@ -23,7 +24,6 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.state.property.Properties;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
-import org.tough_environment.tag.BTWRConventionalTags;
 
 import java.util.List;
 import java.util.Map;
@@ -119,6 +119,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.BLACKSTONE_LOOSE);
         addDrop(ModBlocks.BASALT_LOOSE);
         addDrop(ModBlocks.END_STONE_LOOSE);
+        addDrop(ModBlocks.WHITE_STONE, (Block block) -> drops(block, ModBlocks.WHITE_STONE));
 
         // Loose Slab blocks
         addDrop(ModBlocks.SLAB_DIRT, dropsForLooseSlab(ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));

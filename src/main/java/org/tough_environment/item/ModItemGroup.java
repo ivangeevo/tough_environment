@@ -86,6 +86,8 @@ public class ModItemGroup
                             entries.add(ModBlocks.DIORITE_LOOSE_STAIRS);
 
                             entries.add(ModBlocks.CLAY_BLOCK);
+                            entries.add(ModBlocks.WHITE_STONE);
+                            entries.add(ModBlocks.WHITE_COBBLESTONE);
 
                         }).build());
 
