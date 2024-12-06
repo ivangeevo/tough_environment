@@ -1,5 +1,6 @@
 package org.tough_environment.item;
 
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ToolComponent;
@@ -9,7 +10,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.config.TESettings;
-import org.tough_environment.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class ItemMixinManager
@@ -41,7 +41,7 @@ public class ItemMixinManager
                 cir.setReturnValue(originalSpeed / 8000f);
             } else if (isProblemToBreak(state, stack)) {
                 cir.setReturnValue(originalSpeed / 80f);
-            } else if (isPrimitiveTool(stack) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
+            } else if ((!isValidToolRequiringBlock(state) && isPrimitiveTool(stack)) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
                 cir.setReturnValue(originalSpeed / 6f);
             } else if (stack.isIn(ItemTags.HOES) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
                 cir.setReturnValue(originalSpeed / 4f);
@@ -88,6 +88,11 @@ public class ItemMixinManager
                 || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_SHOVELS)
                 || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_HOES)
                 || stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS);
+    }
+
+    private boolean isValidToolRequiringBlock(BlockState state) {
+        boolean isTough = state.isIn(BTWRConventionalTags.Blocks.WEB_BLOCKS) || (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS));
+        return state.isToolRequired() && isTough;
     }
 
 }

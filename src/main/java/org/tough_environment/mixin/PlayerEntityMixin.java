@@ -1,5 +1,6 @@
 package org.tough_environment.mixin;
 
+import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
@@ -70,7 +71,9 @@ public abstract class PlayerEntityMixin extends LivingEntity
                 }
             }
 
-            if (configChecker.isHardcorePlayerMiningSpeedEnabled())
+            // TODO: Probably could be modified to work better
+            // Dont apply the HC mining speed to blocks that require tools so they can be mined faster
+            if (!isValidToolRequiringBlock(state) && configChecker.isHardcorePlayerMiningSpeedEnabled())
             {
                 // 6x times slower speed for all other blocks
                 f /= 6F;
@@ -108,6 +111,11 @@ public abstract class PlayerEntityMixin extends LivingEntity
         }
 
         cir.setReturnValue(f);
+    }
+
+    private boolean isValidToolRequiringBlock(BlockState state) {
+        boolean isTough = state.isIn(BTWRConventionalTags.Blocks.WEB_BLOCKS) || (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS));
+        return state.isToolRequired() && isTough;
     }
 
 }
