@@ -4,6 +4,7 @@
 + Added missing blocks to their appropriate tags.
 + Added Clay Block (made out of 8 clay balls)
 + Added a block tag TURNED_FALLING_BLOCKS that makes blocks in it falling! 
++ Changed Primitive tools like stone axe, chisel, shovel, etc. to be slightly faster when mining blocks
 + Improved the logic for hoe tools breaking blocks.
 + Fixed loose slab blocks from being non-opaque (letting light go through them);
 + Fixed multiple block loot tables to drop properly.
@@ -16,6 +17,7 @@
 + Rounded the damage of all chisel items to be 1
 + Block Tag changes; added new mod tag "SIMPLE_DIRT_BLOCKS"
 + Removed the Andesite, Granite & Diorite stairs blocks added by the mod as they were redundant.
++ Removed the collision of raw ore placed items, so entities like players and mobs won't collide with them.
 + Updated the mod to require Fabric API 0.110.0 & Fabric Loader 0.16.9
 
 
