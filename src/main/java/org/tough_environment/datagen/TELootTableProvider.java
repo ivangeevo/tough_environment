@@ -40,14 +40,12 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
     }
 
     @Override
-    public void generate()
-    {
+    public void generate() {
         this.forVanilla();
         this.forMod();
     }
 
-    private void forVanilla()
-    {
+    private void forVanilla() {
         // Blocks that require a tool to drop fully
         addDrop(Blocks.DIRT, dropsForLooseAggregate(ModBlocks.DIRT_LOOSE, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6));
         addDrop(Blocks.SAND, dropsForLooseAggregate(Blocks.SAND, Blocks.SAND, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_SAND, 6));
@@ -102,8 +100,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
     }
 
 
-    private void forMod()
-    {
+    private void forMod() {
 
         // Loose blocks
         addDrop(ModBlocks.DIRT_LOOSE, dropsForLooseAggregate(ModBlocks.DIRT_LOOSE, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6));
@@ -119,7 +116,8 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.BLACKSTONE_LOOSE);
         addDrop(ModBlocks.BASALT_LOOSE);
         addDrop(ModBlocks.END_STONE_LOOSE);
-        addDrop(ModBlocks.WHITE_STONE, (Block block) -> drops(block, ModBlocks.WHITE_STONE));
+        addDrop(ModBlocks.WHITE_STONE, (Block block) -> drops(block, ModBlocks.WHITE_COBBLESTONE));
+        addDrop(ModBlocks.WHITE_COBBLESTONE);
 
         // Loose Slab blocks
         addDrop(ModBlocks.SLAB_DIRT, dropsForLooseSlab(ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));

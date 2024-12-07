@@ -1,6 +1,7 @@
 package org.tough_environment.datagen;
 
 import btwr.btwrsl.tag.BTWRConventionalTags;
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
@@ -55,12 +56,17 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                // tags
                 .addTag(ModTags.Blocks.STONE_STRATA1)
                 //.addTag(ModTags.Blocks.STONE_STRATA2)
                 .addTag(ModTags.Blocks.STONE_STRATA3)
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
-                .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS);
+                .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS)
+
+                // blocks
+                .add(ModBlocks.WHITE_STONE)
+                .add(ModBlocks.WHITE_COBBLESTONE);
 
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)

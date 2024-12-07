@@ -224,8 +224,15 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
     }
 
     private void addCookingRecipes(RecipeExporter exporter) {
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Blocks.END_STONE), RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.WHITE_COBBLESTONE, 0.10f, 200).criterion("has_end_stone", conditionsFromItem(Blocks.END_STONE)).offerTo(exporter);
+
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Blocks.END_STONE), RecipeCategory.BUILDING_BLOCKS,
+                ModBlocks.WHITE_COBBLESTONE, 0.15f, 100).criterion("has_end_stone", conditionsFromItem(Blocks.END_STONE)).offerTo(exporter, ID.ofTE("white_stone_from_blasting"));
+
         CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(ModBlocks.WHITE_COBBLESTONE), RecipeCategory.BUILDING_BLOCKS,
-                ModBlocks.WHITE_STONE, 0.15f, 100);
+                ModBlocks.WHITE_STONE, 0.15f, 100).criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE)).offerTo(exporter);
+
     }
     // LESSER DROP METHODS
     private static void offerLesserDropsFromSlab(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id)

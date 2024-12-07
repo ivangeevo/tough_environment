@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.15,
+  "ingredient": {
+    "item": "minecraft:end_stone"
+  },
+  "result": {
+    "id": "tough_environment:white_cobblestone"
+  }
+}
