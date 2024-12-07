@@ -5,6 +5,7 @@
 + Added Clay Block (made out of 8 clay balls)
 + Added a block tag TURNED_FALLING_BLOCKS that makes blocks in it falling! 
 + Changed Primitive tools like stone axe, chisel, shovel, etc. to be slightly faster when mining blocks
++ Changed the exhaustion caused by breaking blocks to half of what it was.
 + Improved the logic for hoe tools breaking blocks.
 + Fixed loose slab blocks from being non-opaque (letting light go through them);
 + Fixed multiple block loot tables to drop properly.

@@ -9,10 +9,8 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.ParticleUtil;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import org.tough_environment.tag.ModTags;
 
 public class MakeAsFallingBlock
@@ -37,12 +35,12 @@ public class MakeAsFallingBlock
 
     public void onRandomDisplayTick(BlockState state, World world, BlockPos pos, Random random)
     {
-        if (state.isIn(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS))
-        {
-            BlockPos blockPos;
-            if (random.nextInt(16) == 0 && FallingBlock.canFallThrough(world.getBlockState(blockPos = pos.down()))) {
+        if (state.isIn(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS)) {
+
+            if (random.nextInt(16) == 0 && FallingBlock.canFallThrough(world.getBlockState(pos.down()))) {
                 ParticleUtil.spawnParticle(world, pos, random, new BlockStateParticleEffect(ParticleTypes.FALLING_DUST, state));
             }
+
         }
     }
 
