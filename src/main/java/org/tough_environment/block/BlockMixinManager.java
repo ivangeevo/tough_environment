@@ -157,7 +157,7 @@ public class BlockMixinManager
             return;
         }
 
-        setState(world, pos, ModBlocks.STONE_CONVERTING.getDefaultState().with(BREAK_LEVEL, 5), tool, 0,0);
+        setState(world, pos, ModBlocks.STONE_CONVERTING.getDefaultState().with(BREAK_LEVEL, 5), tool, 4,0);
     }
 
     private boolean shouldConvertOre(BlockState state, ItemStack tool) {
