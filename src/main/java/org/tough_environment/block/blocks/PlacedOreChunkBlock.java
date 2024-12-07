@@ -37,8 +37,7 @@ public class PlacedOreChunkBlock extends Block
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
-    public PlacedOreChunkBlock(Settings settings)
-    {
+    public PlacedOreChunkBlock(Settings settings) {
         super(settings);
     }
 
@@ -50,9 +49,13 @@ public class PlacedOreChunkBlock extends Block
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return VoxelShapes.empty();
     }
 
     @Override
@@ -78,8 +81,7 @@ public class PlacedOreChunkBlock extends Block
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)
-    {
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         return world.getBlockState(pos.down()).isSolidBlock(world, pos.down());
     }
 
@@ -88,27 +90,22 @@ public class PlacedOreChunkBlock extends Block
         return false;
     }
 
-    private void dropBlockAsItem(World world, BlockPos pos)
-    {
+    private void dropBlockAsItem(World world, BlockPos pos) {
         BlockState stateAtPos = world.getBlockState(pos);
         ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), Objects.requireNonNull(getDropItemForBlock(stateAtPos)).getDefaultStack());
     }
 
-    private Item getDropItemForBlock(BlockState state)
-    {
+    private Item getDropItemForBlock(BlockState state) {
 
-        if (state.isOf(ModBlocks.RAW_COPPER_PLACED))
-        {
+        if (state.isOf(ModBlocks.RAW_COPPER_PLACED)) {
             return Items.RAW_COPPER;
         }
 
-        if (state.isOf(ModBlocks.RAW_IRON_PLACED))
-        {
+        if (state.isOf(ModBlocks.RAW_IRON_PLACED)) {
             return Items.RAW_IRON;
         }
 
-        if (state.isOf(ModBlocks.RAW_GOLD_PLACED))
-        {
+        if (state.isOf(ModBlocks.RAW_GOLD_PLACED)) {
             return Items.RAW_GOLD;
         }
 

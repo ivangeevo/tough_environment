@@ -42,7 +42,7 @@ public class ItemMixinManager
             } else if (isProblemToBreak(state, stack)) {
                 cir.setReturnValue(originalSpeed / 80f);
             } else if ((!isValidToolRequiringBlock(state) && isPrimitiveTool(stack)) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
-                cir.setReturnValue(originalSpeed / 6f);
+                cir.setReturnValue(originalSpeed / 5f);
             } else if (stack.isIn(ItemTags.HOES) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
                 cir.setReturnValue(originalSpeed / 4f);
             } else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && stack.isSuitableFor(state)) {
