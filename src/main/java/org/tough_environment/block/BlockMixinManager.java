@@ -48,7 +48,7 @@ public class BlockMixinManager
         setConvertibleState(world, pos, state, tool);
 
         if (!(tool.getItem() instanceof AxeItem) && state.getHardness(world, pos) <= 0) {
-            player.addExhaustion(0.2f);
+            player.addExhaustion(0.1f);
         }
 
         if (shouldPlayDing(state, tool) && !player.isCreative()) {
