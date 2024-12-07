@@ -107,11 +107,11 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "minecraft:diamond_hoe"
+                "items": "minecraft:netherite_hoe"
               }
             },
             {
-              "chance": 0.06,
+              "chance": 0.11,
               "condition": "minecraft:random_chance"
             }
           ],
@@ -151,11 +151,11 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "minecraft:netherite_hoe"
+                "items": "minecraft:diamond_hoe"
               }
             },
             {
-              "chance": 0.11,
+              "chance": 0.06,
               "condition": "minecraft:random_chance"
             }
           ],
