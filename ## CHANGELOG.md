@@ -1,25 +1,26 @@
 
 # 0.5 Alpha
 + Added BTWR Shared Library as dependency + moved the item to block placement logic there
-+ Added missing blocks to their appropriate tags.
++ Added missing blocks to their appropriate tags
 + Added Clay Block (made out of 8 clay balls)
 + Added a block tag TURNED_FALLING_BLOCKS that makes blocks in it falling! 
 + Changed Primitive tools like stone axe, chisel, shovel, etc. to be slightly faster when mining blocks
-+ Changed the exhaustion caused by breaking blocks to half of what it was.
-+ Changed most converting blocks to instantly change their blockstate in the world. This prevents the slight phasing/falling through them. Also improved other technical stuff related logic, like game events and neighbour notification.
-+ Improved the logic for hoe tools breaking blocks.
++ Changed the exhaustion caused by breaking blocks to half of what it was
++ Changed most converting blocks to instantly change their blockstate in the world. This prevents the slight phasing/falling through them. Also improved other technical stuff related logic, like game events and neighbour notification
++ Changed the mod logo with a more high quality one
++ Improved the logic for hoe tools breaking blocks
 + Fixed loose slab blocks from being non-opaque (letting light go through them);
-+ Fixed multiple block loot tables to drop properly.
-+ Fixed blocks to instantly change state without redrawing of the block to prevent phasing through converting blocks.
-+ Fixed cobblestone and cobbled deepslate slabs from being unable to be mortared.
++ Fixed multiple block loot tables to drop properly
++ Fixed blocks to instantly change state without redrawing of the block to prevent phasing through converting blocks
++ Fixed cobblestone and cobbled deepslate slabs from being unable to be mortared
 + Fixed a bug that turned grass instantly to farmland by hoe breaking (it should go to dirt/loose dirt first)
-+ Fixed a bug in breaking clay ore blocks dropped the wrong item.
-+ Fixed bug where breaking grass and dirt with hoe dropped dirt piles.
++ Fixed a bug in breaking clay ore blocks dropped the wrong item
++ Fixed bug where breaking grass and dirt with hoe dropped dirt piles
 + Temporary fix for a bug that caused a slab placed above another one to turn the bottom block to double slab (a duplication bug)
 + Rounded the damage of all chisel items to be 1
 + Block Tag changes; added new mod tag "SIMPLE_DIRT_BLOCKS"
-+ Removed the Andesite, Granite & Diorite stairs blocks added by the mod as they were redundant.
-+ Removed the collision of raw ore placed items, so entities like players and mobs won't collide with them.
++ Removed the Andesite, Granite & Diorite stairs blocks added by the mod as they were redundant
++ Removed the collision of raw ore placed items, so entities like players and mobs won't collide with them
 + Updated the mod to require Fabric API 0.110.0 & Fabric Loader 0.16.9
 
 
