@@ -189,11 +189,12 @@ public class BlockMixinManager
         for (Direction direction : Direction.Type.HORIZONTAL) {
             mutablePos.set(pos).move(direction);
             BlockState neighborState = world.getBlockState(mutablePos);
+            boolean isLooseningNeighbour = neighborState.isIn(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK);
 
             // Check if the neighbor is dirt and not already loose dirt
             if (neighborState.getBlock() == Blocks.DIRT && neighborState.getBlock() != ModBlocks.DIRT_LOOSE)
             {
-                world.setBlockState(mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState(),1,0);
+                world.setBlockState(mutablePos, looseBlock.getDefaultState(),0,0);
             }
         }
 
@@ -201,10 +202,11 @@ public class BlockMixinManager
         for (Direction direction : Direction.Type.VERTICAL) {
             mutablePos.set(pos).move(direction);
             BlockState neighborState = world.getBlockState(mutablePos);
+            boolean isLooseningNeighbour = neighborState.isIn(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK);
 
             // Check if the neighbor is dirt and not already loose dirt
-            if (neighborState.isIn(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK) && neighborState.getBlock() != ModBlocks.DIRT_LOOSE) {
-                world.setBlockState(mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState(),1,0);
+            if (isLooseningNeighbour && neighborState.getBlock() != looseBlock) {
+                world.setBlockState(mutablePos, looseBlock.getDefaultState(),0,0);
             }
         }
 
