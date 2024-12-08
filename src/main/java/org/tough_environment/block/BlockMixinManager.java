@@ -15,8 +15,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import net.minecraft.world.event.GameEvent;
 import org.tough_environment.block.blocks.ConvertingBlock;
 import org.tough_environment.tag.ModTags;
 
@@ -131,24 +129,24 @@ public class BlockMixinManager
 
         if (tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES) && state.get(BREAK_LEVEL) < 5)
         {
-            world.setBlockState(pos, state.with(BREAK_LEVEL, 5),0);
+            setState(world, pos, state.with(BREAK_LEVEL, 5));
             return;
         }
 
         if (tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS))
         {
-            world.setBlockState(pos, state.with(BREAK_LEVEL, 3),0);
+            setState(world, pos, state.with(BREAK_LEVEL, 3));
             return;
         }
 
-        world.setBlockState(pos, state.with(BREAK_LEVEL, 0),0);
+        setState(world, pos, state.with(BREAK_LEVEL, 0));
     }
 
     private void setStateForDirt(World world, BlockPos pos, ItemStack tool) {
         if (isFullyBreakingTool(tool)) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         } else {
-            setAdjacentStateToLoose(world, pos, Blocks.DIRT, ModBlocks.DIRT_LOOSE);
+            setAdjacentStateToLooseDirt(world, pos);
         }
     }
 
@@ -169,20 +167,16 @@ public class BlockMixinManager
     private void setState(World world, BlockPos pos, BlockState newState, ItemStack tool) {
         BlockState oldState = world.getBlockState(pos);
         BlockState updatedState = pushEntitiesUpBeforeBlockChange(oldState, newState, world, pos);
-        world.setBlockState(pos, updatedState,2);
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(tool.getHolder(), updatedState));
-        world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(oldState));
+        world.setBlockState(pos, updatedState,0,0);
     }
 
     private void setState(World world, BlockPos pos, BlockState newState) {
         BlockState oldState = world.getBlockState(pos);
         BlockState updatedState = pushEntitiesUpBeforeBlockChange(oldState, newState, world, pos);
-        world.setBlockState(pos, updatedState,2);
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(updatedState));
-        world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(oldState));
+        world.setBlockState(pos, updatedState,0,0);
     }
 
-    private void setAdjacentStateToLoose(World world, BlockPos pos, Block targetBlock, Block looseBlock) {
+    private void setAdjacentStateToLooseDirt(World world, BlockPos pos) {
         BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
         // Check the four cardinal directions
@@ -192,9 +186,8 @@ public class BlockMixinManager
             boolean isLooseningNeighbour = neighborState.isIn(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK);
 
             // Check if the neighbor is dirt and not already loose dirt
-            if (neighborState.getBlock() == Blocks.DIRT && neighborState.getBlock() != ModBlocks.DIRT_LOOSE)
-            {
-                world.setBlockState(mutablePos, looseBlock.getDefaultState(),0,0);
+            if (neighborState.getBlock() == Blocks.DIRT && neighborState.getBlock() != ModBlocks.DIRT_LOOSE) {
+                world.setBlockState(mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState(),0,0);
             }
         }
 
@@ -205,15 +198,15 @@ public class BlockMixinManager
             boolean isLooseningNeighbour = neighborState.isIn(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK);
 
             // Check if the neighbor is dirt and not already loose dirt
-            if (isLooseningNeighbour && neighborState.getBlock() != looseBlock) {
-                world.setBlockState(mutablePos, looseBlock.getDefaultState(),0,0);
+            if (isLooseningNeighbour && neighborState.getBlock() != ModBlocks.DIRT_LOOSE) {
+                setState(world, mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState());
             }
         }
 
     }
 
     private void setToFarmland(BlockState state, World world, BlockPos pos) {
-        world.setBlockState(pos, Blocks.FARMLAND.getDefaultState(), 0);
+        setState(world, pos, Blocks.FARMLAND.getDefaultState());
         setState(world, pos, Blocks.FARMLAND.getDefaultState(), new ItemStack(state.getBlock()));
     }
 
