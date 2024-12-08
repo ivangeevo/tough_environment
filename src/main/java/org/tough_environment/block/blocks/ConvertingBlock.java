@@ -40,9 +40,8 @@ public class ConvertingBlock extends Block
 
     public void convert(World world, BlockPos pos, BlockState state, ItemStack stack)
     {
-        if (!world.isClient)
-        {
-            world.setBlockState(pos, state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1));
+        if (!world.isClient) {
+            world.setBlockState(pos, state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1),2 | 4);
         }
     }
 
