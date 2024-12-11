@@ -135,7 +135,6 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.QUARTZ)
                 .add(Items.ANCIENT_DEBRIS);
 
-
     }
 
     private void addToVanillaTags()

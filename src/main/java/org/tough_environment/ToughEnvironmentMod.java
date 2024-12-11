@@ -18,8 +18,8 @@ import java.io.IOException;
 
 public class ToughEnvironmentMod implements ModInitializer
 {
-    public  static final String MOD_ID = "tough_environment";
-    public  static final Logger LOGGER = LoggerFactory.getLogger("tough_environment");
+    public static final String MOD_ID = "tough_environment";
+    public static final Logger LOGGER = LoggerFactory.getLogger("tough_environment");
 
     public TESettings settings;
     private static ToughEnvironmentMod instance;
