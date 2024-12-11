@@ -31,10 +31,14 @@ public class ModItems
     public static final Item SHARD_ANDESITE = register( "shard_andesite", new Item(new Item.Settings()));
     public static final Item SHARD_DIORITE = register( "shard_diorite", new Item(new Item.Settings()));
 
+    public static final Item COPPER_NUGGET =  register( "copper_nugget", new Item (new Item.Settings()));
+    public static final Item NETHERITE_NUGGET =  register( "netherite_nugget", new Item (new Item.Settings()));
+
     public static final Item DUST_COAL = register( "dust_coal", new Item (new Item.Settings()));
     public static final Item DUST_IRON = register( "dust_iron", new Item (new Item.Settings()));
     public static final Item DUST_GOLD = register( "dust_gold", new Item (new Item.Settings()));
     public static final Item DUST_COPPER = register( "dust_copper", new Item (new Item.Settings()));
+
 
 
 

@@ -1,7 +1,9 @@
 package org.tough_environment.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -50,6 +52,11 @@ public class ModItemGroup
                             entries.add(ModItems.CHISEL_IRON);
                             entries.add(ModItems.CHISEL_DIAMOND);
 
+                            // Nuggets
+                            entries.add(ModItems.COPPER_NUGGET);
+                            entries.add(ModItems.NETHERITE_NUGGET);
+
+
 
                             /** Blocks **/
 
@@ -91,6 +98,22 @@ public class ModItemGroup
 
                         }).build());
 
+        addToGroups();
+
+
+        // log message into console
         ToughEnvironmentMod.LOGGER.info("Registering Item Groups for " + ToughEnvironmentMod.MOD_ID);
     }
+
+
+    public static void addToGroups() {
+        // add items to item groups
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->
+        {
+            entries.add(ModItems.COPPER_NUGGET);
+            entries.add(ModItems.NETHERITE_NUGGET);
+
+        });
+    }
+
 }

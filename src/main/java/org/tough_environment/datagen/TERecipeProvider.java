@@ -37,6 +37,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
         // for mod
         this.addBlockRecipes(exporter);
+        this.addItemRecipes(exporter);
         this.addLesserDropRecipes(exporter);
         this.addSlabRecipes(exporter);
         this.addMiscRecipes(exporter);
@@ -197,8 +198,38 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
     }
 
+    private void addItemRecipes(RecipeExporter exporter) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.COPPER_INGOT)
+                .input('N', ModItems.COPPER_NUGGET)
+                .pattern("NNN")
+                .pattern("NNN")
+                .pattern("NNN")
+                .criterion("has_copper_nugget", conditionsFromItem(ModItems.COPPER_NUGGET))
+                .offerTo(exporter, ID.ofTE("copper_ingot_from_copper_nugget"));
 
-    private void addSlabRecipes(RecipeExporter exporter) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.NETHERITE_INGOT)
+                .input('N', ModItems.NETHERITE_NUGGET)
+                .pattern("NNN")
+                .pattern("NNN")
+                .pattern("NNN")
+                .criterion("has_netherite_nugget", conditionsFromItem(ModItems.NETHERITE_NUGGET))
+                .offerTo(exporter, ID.ofTE("netherite_ingot_from_netherite_nugget"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.COPPER_NUGGET, 9)
+                .input(Items.COPPER_INGOT)
+                .criterion("has_copper_ingot", conditionsFromItem(Items.COPPER_INGOT))
+                .offerTo(exporter, ID.ofTE("copper_nugget_from_copper_ingot"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHERITE_NUGGET, 9)
+                .input(Items.NETHERITE_INGOT)
+                .criterion("has_netherite_ingot", conditionsFromItem(Items.NETHERITE_INGOT))
+                .offerTo(exporter, ID.ofTE("netherite_nugget_from_netherite_ingot"));
+
+
+    }
+
+
+        private void addSlabRecipes(RecipeExporter exporter) {
         // From lesser drops/items (stones/piles/dust)
         offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT, ID.ofTE("slab_dirt"));
         offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_SAND, ModItems.PILE_SAND, ID.ofTE("slab_sand"));
