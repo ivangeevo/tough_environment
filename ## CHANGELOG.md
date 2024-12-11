@@ -5,6 +5,7 @@
 + Added Clay Block (made out of 8 clay balls)
 + Added a block tag TURNED_FALLING_BLOCKS that makes blocks in it falling ones
 + Added Copper Nugget & Netherite Nugget items
++ Added Stone Brick item -> (moved from BTWR: Core)
 + Changed Primitive tools like stone axe, chisel, shovel, etc. to be slightly faster when mining blocks
 + Changed the exhaustion caused by breaking blocks to half of what it was
 + Changed the mod logo with a more high quality one
