@@ -20,8 +20,7 @@ public class ModItemGroup
                 FabricItemGroup.builder()
                         .displayName(Text.translatable("itemgroup.group_te"))
                         .icon(() -> new ItemStack(ModItems.GROUP_TE))
-                        .entries(
-                                (displayContext, entries) -> {
+                        .entries((displayContext, entries) -> {
 
                             /** Items **/
 
@@ -55,6 +54,11 @@ public class ModItemGroup
                             // Nuggets
                             entries.add(ModItems.COPPER_NUGGET);
                             entries.add(ModItems.NETHERITE_NUGGET);
+
+                            // Bricks
+                            entries.add(ModItems.STONE_BRICK);
+                            //entries.add(ModItems.STONE_BRICK_1); add later when 2nd strata is available in any mod( mine or primetoxinz's)
+                            entries.add(ModItems.STONE_BRICK_2);
 
 
 

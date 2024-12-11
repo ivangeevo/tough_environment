@@ -76,7 +76,7 @@ public class BlockMixinManager
         }
 
         if (state.isIn(ModTags.Blocks.SIMPLE_DIRT_BLOCKS) && tool.isIn(ItemTags.HOES)) {
-            setToFarmland(state, world, pos);
+            setToFarmland(world, pos);
         }
 
         if (state.isIn(BTWRConventionalTags.Blocks.ORES)) {
@@ -205,9 +205,8 @@ public class BlockMixinManager
 
     }
 
-    private void setToFarmland(BlockState state, World world, BlockPos pos) {
+    private void setToFarmland(World world, BlockPos pos) {
         setState(world, pos, Blocks.FARMLAND.getDefaultState());
-        setState(world, pos, Blocks.FARMLAND.getDefaultState(), new ItemStack(state.getBlock()));
     }
 
     private boolean isFullyBreakingTool(ItemStack tool) {

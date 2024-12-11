@@ -70,8 +70,7 @@ public class ItemUtils {
     }
 
     static public void dropStackAsIfBlockHarvested(World world, BlockPos pos, ItemStack stack) {
-        if (!world.isClient && !stack.isEmpty() && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS))
-        {
+        if (!world.isClient && !stack.isEmpty() && world.getGameRules().getBoolean(GameRules.DO_TILE_DROPS)) {
             double d = 0.5D;
             double d1 = world.random.nextFloat() * 0.8F + 0.1F;
             double d2 = world.random.nextFloat() * 0.8F + 0.1F;

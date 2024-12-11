@@ -2,7 +2,6 @@ package org.tough_environment.mixin;
 
 import btwr.btwrsl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -10,12 +9,12 @@ import net.minecraft.entity.effect.StatusEffectUtil;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -28,53 +27,37 @@ import java.util.Objects;
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity
 {
-    @Shadow
-    @Final
-    PlayerInventory inventory;
+    @Shadow @Final PlayerInventory inventory;
 
-    private TESettings configChecker = ToughEnvironmentMod.getInstance().settings;
+    @Unique private TESettings configChecker = ToughEnvironmentMod.getInstance().settings;
 
-    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world)
-    {
+    protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
-
-    /**
-    @Inject(method = "getBlockBreakingSpeed", at = @At("RETURN"))
-    private void custom(BlockState block, CallbackInfoReturnable<Float> cir)
-    {
-
-    }
-     **/
 
     // TODO: Find a better way to mix in the custom logic added by the inject below.
     //  It might be better to do so at the RETURN, try it.
     @Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
-    private void customBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir)
-    {
+    private void customBreakingSpeed(BlockState state, CallbackInfoReturnable<Float> cir) {
 
         float f = this.inventory.getBlockBreakingSpeed(state);
 
         // Tough Environment: Added
         // conditions for restricting breaking blocks without the correct item
-        if ( !this.getMainHandStack().isSuitableFor(state) && configChecker.isBlockBreakingRestrictionsEnabled() )
-        {
-            // if the block is requiring a tool, that means its a tough block.
-            if ( state.isToolRequired() )
-            {
+        if ( !this.getMainHandStack().isSuitableFor(state) && configChecker.isBlockBreakingRestrictionsEnabled() ) {
+            // if the block is requiring a tool, that means it's a tough block.
+            if ( state.isToolRequired() ) {
                 // and if it's not a special case block (like snow) which can still be broken by hand (but requires a tool)
                 // then make it super tough to break
                 // this additional check could probably be evaded by getting better conditions.
-                if (!state.isIn(ModTags.Blocks.MISC_REQUIRING_TOOL))
-                {
+                if (!state.isIn(ModTags.Blocks.MISC_REQUIRING_TOOL)) {
                     f /= 8000F;
                 }
             }
 
             // TODO: Probably could be modified to work better
             // Dont apply the HC mining speed to blocks that require tools so they can be mined faster
-            if (!isValidToolRequiringBlock(state) && configChecker.isHardcorePlayerMiningSpeedEnabled())
-            {
+            if (!isValidToolRequiringBlock(state) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
                 // 6x times slower speed for all other blocks
                 f /= 6F;
             }

@@ -17,8 +17,7 @@ import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.blocks.*;
 import org.tough_environment.item.ModItems;
 
-public class ModBlocks
-{
+public class ModBlocks {
 
     public static final Block SLAB_SAND = registerBlock("slab_sand", new LooseAggregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
     public static final Block SLAB_RED_SAND = registerBlock("slab_red_sand", new LooseAggregateSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.SAND)));
@@ -106,9 +105,11 @@ public class ModBlocks
     }
 
     public static void registerItemsPlaceableAsBlocks() {
-        PlaceableAsBlock.getInstance().registerPlaceable(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED);
-        PlaceableAsBlock.getInstance().registerPlaceable(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED);
-        PlaceableAsBlock.getInstance().registerPlaceable(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED);
+        PlaceableAsBlock placeable = PlaceableAsBlock.getInstance();
+
+        placeable.registerPlaceable(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED);
+        placeable.registerPlaceable(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED);
+        placeable.registerPlaceable(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED);
     }
 
 

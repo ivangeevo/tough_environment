@@ -25,8 +25,7 @@ public class SettingsGUI
 
         ConfigCategory general = builder.getOrCreateCategory(Text.translatable("config.tough_environment.category.general"));
 
-        /** General Category**/
-
+        /** General Category **/
         general.addEntry(entryBuilder
                 .startBooleanToggle(Text.translatable("config.tough_environment.hcPlayerMiningSpeed"), settingsCommon.hcPlayerMiningSpeed)
                 .setDefaultValue(true)

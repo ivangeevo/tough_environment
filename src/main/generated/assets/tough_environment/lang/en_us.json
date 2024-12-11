@@ -59,6 +59,9 @@
   "item.tough_environment.small_stone": "Small Stone",
   "item.tough_environment.small_stone_1": "Mantle Small Stone",
   "item.tough_environment.small_stone_2": "Deepslate Small Stone",
+  "item.tough_environment.stone_brick": "Stone Brick",
+  "item.tough_environment.stone_brick_1": "Mantlestone Brick",
+  "item.tough_environment.stone_brick_2": "Deepslate Brick",
   "itemgroup.group_te": "Tough Environment!",
   "title.tough_environment.config": "Tough Environment Configuration Menu"
 }
