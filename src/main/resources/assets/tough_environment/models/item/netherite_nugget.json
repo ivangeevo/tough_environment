@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "tough_environment:item/copper_nugget"
+    "layer0": "tough_environment:item/netherite_nugget"
   }
 }
