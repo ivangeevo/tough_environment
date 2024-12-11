@@ -25,8 +25,7 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
     }
 
     @Inject(method = "randomDisplayTick", at = @At("HEAD"))
-    private void onRandomDisplayTick(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci)
-    {
+    private void onRandomDisplayTick(BlockState state, World world, BlockPos pos, Random random, CallbackInfo ci) {
         MakeAsFallingBlock.getInstance().onRandomDisplayTick(state, world, pos, random);
     }
 
