@@ -3,7 +3,8 @@
 + Added BTWR Shared Library as dependency + moved the item to block placement logic there
 + Added missing blocks to their appropriate tags
 + Added Clay Block (made out of 8 clay balls)
-+ Added a block tag TURNED_FALLING_BLOCKS that makes blocks in it falling! 
++ Added a block tag TURNED_FALLING_BLOCKS that makes blocks in it falling ones
++ Added Copper Nugget & Netherite Nugget items
 + Changed Primitive tools like stone axe, chisel, shovel, etc. to be slightly faster when mining blocks
 + Changed the exhaustion caused by breaking blocks to half of what it was
 + Changed most converting blocks to instantly change their blockstate in the world. This prevents the slight phasing/falling through them. Also improved other technical stuff related logic, like game events and neighbour notification
