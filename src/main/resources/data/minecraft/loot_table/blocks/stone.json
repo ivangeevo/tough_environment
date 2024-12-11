@@ -103,7 +103,24 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "#c:primitive_chisels"
+                "items": "#c:modern_chisels"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "tough_environment:stone_brick"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "#c:advanced_chisels"
               }
             }
           ]
