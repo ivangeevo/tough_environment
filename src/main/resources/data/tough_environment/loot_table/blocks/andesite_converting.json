@@ -74,7 +74,7 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "tag": "c:primitive_chisels"
+            "items": "#c:primitive_chisels"
           }
         }
       ]
@@ -100,7 +100,33 @@
         {
           "condition": "minecraft:match_tool",
           "predicate": {
-            "tag": "c:modern_chisels"
+            "items": "#c:modern_chisels"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tough_environment:stone_brick",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:andesite_converting",
+              "properties": {
+                "break_level": "3"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "c:advanced_chisels"
           }
         }
       ]
