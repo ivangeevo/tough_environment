@@ -21,13 +21,10 @@ public class TELangGenerator extends FabricLanguageProvider {
 
         // ItemGroup
         this.addItemGroup("group_te","Tough Environment!", tb);
-
         this.addBlocks(tb);
-
         this.addItems(tb);
 
         this.addConfigMenuTitle("Tough Environment Configuration Menu", tb);
-
         this.addConfigCategory("general", "General", tb);
 
         this.addConfig("hcMaterialDurability", "Hardcore tool material durability", tb);
@@ -105,6 +102,11 @@ public class TELangGenerator extends FabricLanguageProvider {
 
         tb.add(ModItems.COPPER_NUGGET, "Copper Nugget");
         tb.add(ModItems.NETHERITE_NUGGET, "Netherite Nugget");
+
+        tb.add(ModItems.STONE_BRICK, "Stone Brick");
+        tb.add(ModItems.STONE_BRICK_1, "Mantlestone Brick");
+        tb.add(ModItems.STONE_BRICK_2, "Deepslate Brick");
+
 
     }
 

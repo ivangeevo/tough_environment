@@ -39,6 +39,9 @@ public class ModItems
     public static final Item DUST_GOLD = register( "dust_gold", new Item (new Item.Settings()));
     public static final Item DUST_COPPER = register( "dust_copper", new Item (new Item.Settings()));
 
+    public static final Item STONE_BRICK = register( "stone_brick", new Item (new Item.Settings()));
+    public static final Item STONE_BRICK_1 = register( "stone_brick_1", new Item (new Item.Settings()));
+    public static final Item STONE_BRICK_2 = register( "stone_brick_2", new Item (new Item.Settings()));
 
 
 
@@ -63,13 +66,11 @@ public class ModItems
             ));
 
 
-    private static Item register(String name, Item item)
-    {
+    private static Item register(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(ToughEnvironmentMod.MOD_ID, name), item);
     }
 
-    public static void registerModItems()
-    {
+    public static void registerModItems() {
         ToughEnvironmentMod.LOGGER.info("Registering Mod Items for " + ToughEnvironmentMod.MOD_ID);
 
         //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(BTWR_Items::addItemsToIngredientItemGroup);

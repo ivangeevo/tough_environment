@@ -104,7 +104,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "btwr:stone_brick"
+              "name": "tough_environment:stone_brick_2"
             }
           ],
           "conditions": [
