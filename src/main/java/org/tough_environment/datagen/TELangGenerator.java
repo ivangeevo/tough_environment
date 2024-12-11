@@ -1,0 +1,137 @@
+package org.tough_environment.datagen;
+
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Identifier;
+import org.tough_environment.ToughEnvironmentMod;
+import org.tough_environment.block.ModBlocks;
+import org.tough_environment.item.ModItems;
+
+import java.util.concurrent.CompletableFuture;
+
+public class TELangGenerator extends FabricLanguageProvider {
+
+    public TELangGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, registryLookup);
+    }
+
+    @Override
+    public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder tb) {
+
+        // ItemGroup
+        this.addItemGroup("group_te","Tough Environment!", tb);
+
+        this.addBlocks(tb);
+
+        this.addItems(tb);
+
+        this.addConfigMenuTitle("Tough Environment Configuration Menu", tb);
+
+        this.addConfigCategory("general", "General", tb);
+
+        this.addConfig("hcMaterialDurability", "Hardcore tool material durability", tb);
+        this.addConfig("hcPlayerMiningSpeed", "Hardcore mining speed", tb);
+        this.addConfig("stratificationToughness", "Stratification Toughness", tb);
+        this.addConfig("blockBreakingRestrictions", "Block Breaking Restrictions", tb);
+
+        this.addConfigTooltip("hcMaterialDurability", "null", tb);
+        this.addConfigTooltip("hcPlayerMiningSpeed", "Makes most blocks take longer to break overall (with or without tool)", tb);
+        this.addConfigTooltip("stratificationToughness", "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb);
+        this.addConfigTooltip("blockBreakingRestrictions", "This restricts breaking blocks without the correct tool", tb);
+
+    }
+
+    private void addBlocks(TranslationBuilder tb) {
+        tb.add(ModBlocks.SLAB_SAND, "Sand Slab");
+        tb.add(ModBlocks.SLAB_RED_SAND, "Red Sand Slab");
+        tb.add(ModBlocks.SLAB_DIRT, "Pile of Dirt");
+        tb.add(ModBlocks.SLAB_GRAVEL, "Gravel Slab");
+        tb.add(ModBlocks.SLAB_COBBLESTONE_LOOSE, "Loose Cobblestone Slab");
+        tb.add(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, "Loose Cobbled Deepslate Slab");
+        tb.add(ModBlocks.SLAB_GRANITE_LOOSE, "Loose Granite Slab");
+        tb.add(ModBlocks.SLAB_ANDESITE_LOOSE, "Loose Andesite Slab");
+        tb.add(ModBlocks.SLAB_DIORITE_LOOSE, "Loose Diorite Slab");
+        tb.add(ModBlocks.SLAB_BRICKS_LOOSE, "Loose Bricks Slab");
+
+        tb.add(ModBlocks.DIRT_LOOSE, "Loose Dirt");
+        tb.add(ModBlocks.COBBLESTONE_LOOSE, "Loose Cobbled Mantlestone");
+        tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE, "Loose Cobbled Deepslate");
+        tb.add(ModBlocks.GRANITE_LOOSE, "Loose Granite");
+        tb.add(ModBlocks.ANDESITE_LOOSE, "Loose Andesite");
+        tb.add(ModBlocks.DIORITE_LOOSE, "Loose Granite");
+        tb.add(ModBlocks.CALCITE_LOOSE, "Pile of Dirt");
+        tb.add(ModBlocks.TUFF_LOOSE, "Loose Tuff");
+        tb.add(ModBlocks.BLACKSTONE_LOOSE, "Loose Blackstone");
+        tb.add(ModBlocks.BASALT_LOOSE, "Loose Basalt");
+        tb.add(ModBlocks.END_STONE_LOOSE, "Loose End Stone");
+        tb.add(ModBlocks.BRICKS_LOOSE, "Loose Bricks");
+
+        tb.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS, "Loose Cobblestone Stairs");
+        tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, "Loose Cobbled Deepslate Stairs");
+        tb.add(ModBlocks.ANDESITE_LOOSE_STAIRS, "Loose Andesite Stairs");
+        tb.add(ModBlocks.GRANITE_LOOSE_STAIRS, "Loose Granite Stairs");
+        tb.add(ModBlocks.DIORITE_LOOSE_STAIRS, "Loose Diorite Stairs");
+
+        tb.add(ModBlocks.CLAY_BLOCK, "Block of Clay");
+        tb.add(ModBlocks.WHITE_STONE, "White Stone");
+        tb.add(ModBlocks.WHITE_COBBLESTONE, "White Cobblestone");
+
+    }
+
+    private void addItems(TranslationBuilder tb) {
+        tb.add(ModItems.PILE_DIRT, "Pile of Dirt");
+        tb.add(ModItems.PILE_GRAVEL, "Pile of Gravel");
+        tb.add(ModItems.PILE_SAND, "Pile of Sand");
+        tb.add(ModItems.PILE_RED_SAND, "Pile of Red Sand");
+        tb.add(ModItems.PILE_CLAY, "Pile of Clay");
+
+        tb.add(ModItems.SMALL_STONE, "Small Stone");
+        tb.add(ModItems.SMALL_STONE_1, "Mantle Small Stone");
+        tb.add(ModItems.SMALL_STONE_2, "Deepslate Small Stone");
+        tb.add(ModItems.SHARD_GRANITE, "Granite Shard");
+        tb.add(ModItems.SHARD_ANDESITE, "Andesite Shard");
+        tb.add(ModItems.SHARD_DIORITE, "Diorite Shard");
+
+        tb.add(ModItems.DUST_COAL, "Pile of Coal Dust");
+        tb.add(ModItems.DUST_IRON, "Pile of Iron Dust");
+        tb.add(ModItems.DUST_GOLD, "Pile of Gold Dust");
+        tb.add(ModItems.DUST_COPPER, "Pile of Copper Dust");
+
+        tb.add(ModItems.CHISEL_WOOD, "Wooden Chisel");
+        tb.add(ModItems.CHISEL_STONE, "Stone Chisel");
+        tb.add(ModItems.CHISEL_IRON, "Iron Chisel");
+        tb.add(ModItems.CHISEL_DIAMOND, "Diamond Chisel");
+
+        tb.add(ModItems.COPPER_NUGGET, "Copper Nugget");
+        tb.add(ModItems.NETHERITE_NUGGET, "Netherite Nugget");
+
+    }
+
+
+    private void addItemGroup(String entryPath, String translation, TranslationBuilder tb) {
+        tb.add("itemgroup." + entryPath, translation);
+    }
+
+    private void addConfigMenuTitle(String translation, TranslationBuilder tb) {
+        tb.add("title." + ToughEnvironmentMod.MOD_ID + ".config", translation);
+    }
+
+    private void addConfigCategory(String categoryPath, String translation, TranslationBuilder tb) {
+        tb.add("config." + ToughEnvironmentMod.MOD_ID + ".category." + categoryPath, translation);
+    }
+
+    private void addConfig(String configPath, String translation, TranslationBuilder tb) {
+        tb.add("config." + ToughEnvironmentMod.MOD_ID + "." + configPath, translation);
+    }
+
+    private void addConfigTooltip(String configPath, String translation, TranslationBuilder tb) {
+        tb.add("config." + ToughEnvironmentMod.MOD_ID + ".tooltip." + configPath, translation);
+    }
+
+
+
+
+
+
+}

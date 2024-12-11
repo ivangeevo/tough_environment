@@ -16,6 +16,7 @@ public class TEDataGenerator implements DataGeneratorEntrypoint
         pack.addProvider(TEItemTagProvider::new);
         pack.addProvider(TEBlockTagProvider::new);
         pack.addProvider(TERecipeProvider::new);
+        pack.addProvider(TELangGenerator::new);
 
         // Save for later attempts
         /**
