@@ -17,10 +17,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "tough_environment:chisel_iron",
-                  "tough_environment:chisel_diamond"
-                ]
+                "items": "#c:modern_chisels"
               }
             }
           ]
@@ -36,6 +33,11 @@
                   "function": "minecraft:set_count",
                   "count": 3
                 }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
               ]
             }
           ],
@@ -43,10 +45,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:wooden_pickaxe",
-                  "minecraft:stone_pickaxe"
-                ]
+                "items": "#c:primitive_pickaxes"
               }
             }
           ]
@@ -81,10 +80,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "tough_environment:chisel_wood",
-                  "tough_environment:chisel_stone"
-                ]
+                "items": "#c:primitive_chisels"
               }
             }
           ]
@@ -141,10 +137,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:wooden_pickaxe",
-                  "minecraft:stone_pickaxe"
-                ]
+                "items": "#c:primitive_pickaxes"
               }
             }
           ]
@@ -167,12 +160,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:golden_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "items": "#c:pickaxes_harvest_full_block"
               }
             }
           ]
@@ -189,12 +177,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": [
-                  "minecraft:iron_pickaxe",
-                  "minecraft:diamond_pickaxe",
-                  "minecraft:golden_pickaxe",
-                  "minecraft:netherite_pickaxe"
-                ]
+                "items": "#c:pickaxes_harvest_full_block"
               }
             }
           ]

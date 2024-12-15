@@ -17,7 +17,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "#c:primitive_chisels"
+                "items": "#c:modern_chisels"
               }
             }
           ]
@@ -32,6 +32,11 @@
                 {
                   "function": "minecraft:set_count",
                   "count": 3
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
                 }
               ]
             }
@@ -98,9 +103,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "predicate": {
-                  "items": "#c:modern_chisels"
-                }
+                "items": "#c:modern_chisels"
               }
             }
           ]
@@ -117,9 +120,7 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "predicate": {
-                  "items": "#c:advanced_chisels"
-                }
+                "items": "#c:advanced_chisels"
               }
             }
           ]

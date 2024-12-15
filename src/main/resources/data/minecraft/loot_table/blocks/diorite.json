@@ -27,28 +27,16 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "tough_environment:pile_gravel"
-            }
-          ],
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "#c:advanced_chisels"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:item",
               "name": "tough_environment:shard_diorite",
               "functions": [
                 {
                   "function": "minecraft:set_count",
                   "count": 3
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
                 }
               ]
             }
