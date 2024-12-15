@@ -29,6 +29,8 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
 
+import java.util.Map;
+
 public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggable
 {
 
@@ -64,8 +66,7 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
         BlockPos downPos = pos.down();
         BlockState downState = world.getBlockState(downPos);
 
-        if (world.getBlockState(downPos) == this.getDefaultState().with(TYPE, SlabType.BOTTOM))
-        {
+        if (world.getBlockState(downPos) == this.getDefaultState().with(TYPE, SlabType.BOTTOM)) {
             world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
             world.removeBlock(pos, true);
         }
@@ -141,7 +142,9 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
 
         if (blockState.isOf(this)) {
             // If the block is the same as the LooseSlabBlock, set it to double slab
-            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
+            //return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
+
+            return getReplacementBlockState(blockState.getBlock());
         } else {
             // Otherwise, handle placement based on the direction and hit position
             boolean isTopHalf = ctx.getHitPos().y - blockPos.getY() > 0.5;
@@ -225,6 +228,25 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
             case AIR -> false;
             default -> false;
         };
+    }
+
+    private BlockState getReplacementBlockState(Block originalBlock) {
+        // Mapping of slab blocks to their corresponding mortared Minecraft variant (top or bottom)
+        Map<Block, Block> replacementMap = Map.of(
+                ModBlocks.SLAB_DIRT, ModBlocks.DIRT_LOOSE,
+                ModBlocks.SLAB_GRAVEL, Blocks.GRAVEL,
+                ModBlocks.SLAB_SAND, Blocks.SAND,
+                ModBlocks.SLAB_RED_SAND, Blocks.RED_SAND
+        );
+
+
+        // Handle DOUBLE slabs by mapping to the full block
+        if (replacementMap.containsKey(originalBlock)) {
+            return replacementMap.get(originalBlock).getDefaultState(); // Return the full block
+        }
+
+        // Return null if no match is found
+        return null;
     }
 
 }
