@@ -29,8 +29,7 @@ public class ToughEnvironmentMod implements ModInitializer
     }
 
     @Override
-    public void onInitialize()
-    {
+    public void onInitialize() {
         LOGGER.info("Initializing Tough Environment.");
         loadSettings();
         instance = this;
