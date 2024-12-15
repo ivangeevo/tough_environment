@@ -24,6 +24,7 @@ public class StoneConvertingBlock extends ConvertingBlock {
 
         int breakLevel = state.get(BREAK_LEVEL);
         boolean isModernChisel = stack.isIn(BTWRConventionalTags.Items.MODERN_CHISELS);
+        boolean isAdvancedChisel = stack.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS);
         boolean isPrimitivePickaxe = stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES);
         boolean isModernPickaxe = stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES);
         boolean isAdvancedPickaxe = stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
@@ -40,8 +41,8 @@ public class StoneConvertingBlock extends ConvertingBlock {
                 return;
             }
 
-            if (isModernChisel) {
-                this.handleModernChiselBreak(world, pos, state);
+            if (isModernChisel || isAdvancedChisel) {
+                this.handleModernOrAdvancedChiselBreak(world, pos, state);
                 return;
             }
 
@@ -62,7 +63,7 @@ public class StoneConvertingBlock extends ConvertingBlock {
     }
 
 
-    private void handleModernChiselBreak(World world, BlockPos pos, BlockState state) {
+    private void handleModernOrAdvancedChiselBreak(World world, BlockPos pos, BlockState state) {
         int breakLevel = state.get(BREAK_LEVEL);
 
         // Calculate the new break level
@@ -74,7 +75,6 @@ public class StoneConvertingBlock extends ConvertingBlock {
             world.setBlockState(pos, ModBlocks.STONE_BROKEN.getDefaultState(),0);
         } else {
             setState(world, pos, state.with(BREAK_LEVEL, newBreakLevel));
-            world.setBlockState(pos, state.with(BREAK_LEVEL, newBreakLevel),0);
         }
     }
 
