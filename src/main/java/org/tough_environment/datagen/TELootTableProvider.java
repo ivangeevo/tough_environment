@@ -100,6 +100,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
     }
 
 
+    // TODO: Fix andesite dropping stone brick sometimes when mined with pickaxe
     private void forMod() {
 
         // Loose blocks
@@ -142,7 +143,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
 
         // Placed Ore block loot tables
-        addDrop(ModBlocks.RAW_IRON_PLACED, Items.RAW_IRON);
+        addDrop(ModBlocks.RAW_IRON_PLACED,  Items.RAW_IRON);
         addDrop(ModBlocks.RAW_COPPER_PLACED, Items.RAW_COPPER);
         addDrop(ModBlocks.RAW_GOLD_PLACED, Items.RAW_GOLD);
 
