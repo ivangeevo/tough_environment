@@ -154,6 +154,8 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerLesserDropsFromBlock(exporter, ModItems.SHARD_ANDESITE,8, ModBlocks.ANDESITE_LOOSE, ID.ofTE("shard_andesite_from_block_andesite_loose"));
         offerLesserDropsFromBlock(exporter, ModItems.SHARD_GRANITE,8, ModBlocks.GRANITE_LOOSE, ID.ofTE("shard_granite_from_block_granite_loose"));
         offerLesserDropsFromBlock(exporter, ModItems.SHARD_DIORITE,8, ModBlocks.DIORITE_LOOSE, ID.ofTE("shard_diorite_from_block_diorite_loose"));
+        offerLesserDropsFromBlock(exporter, Items.BRICK, 8, ModBlocks.BRICKS_LOOSE, ID.ofTE("brick_from_block_bricks_loose"));
+
         offerLesserDropsFromBlock(exporter, Items.CLAY_BALL,9, ModBlocks.CLAY_BLOCK, ID.ofTE("clay_ball_from_clay_block"));
 
         // Piles, Stones & Shards from Stair Blocks
