@@ -42,7 +42,7 @@ public class TELangGenerator extends FabricLanguageProvider {
     private void addBlocks(TranslationBuilder tb) {
         tb.add(ModBlocks.SLAB_SAND, "Sand Slab");
         tb.add(ModBlocks.SLAB_RED_SAND, "Red Sand Slab");
-        tb.add(ModBlocks.SLAB_DIRT, "Pile of Dirt");
+        tb.add(ModBlocks.SLAB_DIRT, "Loose Dirt Slab");
         tb.add(ModBlocks.SLAB_GRAVEL, "Gravel Slab");
         tb.add(ModBlocks.SLAB_COBBLESTONE_LOOSE, "Loose Cobblestone Slab");
         tb.add(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, "Loose Cobbled Deepslate Slab");
@@ -52,12 +52,12 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.SLAB_BRICKS_LOOSE, "Loose Bricks Slab");
 
         tb.add(ModBlocks.DIRT_LOOSE, "Loose Dirt");
-        tb.add(ModBlocks.COBBLESTONE_LOOSE, "Loose Cobbled Mantlestone");
+        tb.add(ModBlocks.COBBLESTONE_LOOSE, "Loose Cobblestone");
         tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE, "Loose Cobbled Deepslate");
         tb.add(ModBlocks.GRANITE_LOOSE, "Loose Granite");
         tb.add(ModBlocks.ANDESITE_LOOSE, "Loose Andesite");
         tb.add(ModBlocks.DIORITE_LOOSE, "Loose Granite");
-        tb.add(ModBlocks.CALCITE_LOOSE, "Pile of Dirt");
+        tb.add(ModBlocks.CALCITE_LOOSE, "Loose Calcite");
         tb.add(ModBlocks.TUFF_LOOSE, "Loose Tuff");
         tb.add(ModBlocks.BLACKSTONE_LOOSE, "Loose Blackstone");
         tb.add(ModBlocks.BASALT_LOOSE, "Loose Basalt");
