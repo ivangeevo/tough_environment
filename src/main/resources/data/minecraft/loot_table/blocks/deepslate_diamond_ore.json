@@ -41,7 +41,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": "#c:pickaxes_harvest_full_block"
+                    "items": "#minecraft:pickaxes"
                   }
                 }
               ]
