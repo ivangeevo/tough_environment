@@ -1,3 +1,12 @@
+# 0.5.1 Alpha
++ Added a missing recipe for converting loose bricks block to 8 bricks
++ Fixed deepslate ores loot tables to drop ore with any pickaxe
++ Fixed deepslate ores turning to regular converting stone on partial break
++ Fixed the name of "Loose Cobblestone" block to display properly
++ Fixed wrong "Loose Dirt Slab" & "Loose Calcite" names 
++ Fixed loose aggregate slabs to turn to their full counterparts instead of becoming "double slab"
++ Fixed a bug that caused andesite/granite/diorite blocks to drop stone brick on a pickaxe break (should drop only with chisel)
++ Fixed a bug where diamond chisel broke stone type blocks one by one stage instead of incrementing by 2 break levels.
 
 # 0.5 Alpha
 + Added BTWR Shared Library as dependency + moved the item to block placement logic there
