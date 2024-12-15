@@ -79,8 +79,12 @@ public class BlockMixinManager
             setToFarmland(world, pos);
         }
 
-        if (state.isIn(BTWRConventionalTags.Blocks.ORES)) {
-            setStateForOre(world, pos, state, tool);
+        if (state.isIn(ModTags.Blocks.STONE_ORES)) {
+            setStateForOre(world, pos, state, tool, ModBlocks.STONE_CONVERTING);
+        }
+
+        if (state.isIn(ModTags.Blocks.DEEPSLATE_ORES)) {
+            setStateForOre(world, pos, state, tool, ModBlocks.DEEPSLATE_CONVERTING);
         }
 
         convertStoneState(world, pos, state, tool);
@@ -150,13 +154,13 @@ public class BlockMixinManager
         }
     }
 
-    private void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool) {
+    private void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool, Block blockToSet) {
         if (!shouldConvertOre(state, tool)) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
         }
 
-        setState(world, pos, ModBlocks.STONE_CONVERTING.getDefaultState().with(BREAK_LEVEL, 5), tool);
+        setState(world, pos, blockToSet.getDefaultState().with(BREAK_LEVEL, 5), tool);
     }
 
     private boolean shouldConvertOre(BlockState state, ItemStack tool) {
