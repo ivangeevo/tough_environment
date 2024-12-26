@@ -23,14 +23,6 @@ import org.tough_environment.util.MakeAsFallingBlock;
 public abstract class AbstractBlockMixin implements LandingBlock
 {
 
-    // remove the outline in order to make it unbreakable by hand
-    @Inject(method = "getOutlineShape", at = @At("HEAD"), cancellable = true)
-    private void removeOutline(BlockState state, BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        if (state.isIn(BlockTags.FIRE)) {
-            cir.setReturnValue(VoxelShapes.empty());
-        }
-    }
-
     @Inject(method = "onBlockAdded", at = @At("HEAD"))
     private void onOnBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci)
     {
