@@ -12,7 +12,6 @@
     "block.AbstractBlockMixin",
     "block.BlockMixin",
     "block.FarmlandBlockMixin",
-    "block.FireBlockMixin",
     "block.SpreadableBlockMixin"
   ],
   "client": [

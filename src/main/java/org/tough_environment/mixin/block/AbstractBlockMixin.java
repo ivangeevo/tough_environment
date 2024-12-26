@@ -1,10 +1,14 @@
 package org.tough_environment.mixin.block;
 
 import net.minecraft.block.*;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,6 +22,14 @@ import org.tough_environment.util.MakeAsFallingBlock;
 @Mixin(AbstractBlock.class)
 public abstract class AbstractBlockMixin implements LandingBlock
 {
+
+    // remove the outline in order to make it unbreakable by hand
+    @Inject(method = "getOutlineShape", at = @At("HEAD"), cancellable = true)
+    private void removeOutline(BlockState state, BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
+        if (state.isIn(BlockTags.FIRE)) {
+            cir.setReturnValue(VoxelShapes.empty());
+        }
+    }
 
     @Inject(method = "onBlockAdded", at = @At("HEAD"))
     private void onOnBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci)

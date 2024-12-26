@@ -1,3 +1,7 @@
+# 0.6.1 Alpha
++ Fixed the fire inextinguishable to apply to all blocks in the
+BlockTags.FIRE block tag, instead of only for the default Fire Block. (this change might get re(moved) later in development)
++ 
 # 0.6 Alpha
 + Added Nether Sludge item. It's sludge time!
 + Added Loose Stone Bricks and Loose Cobbled Deepslate Bricks blocks & all of their variants.
