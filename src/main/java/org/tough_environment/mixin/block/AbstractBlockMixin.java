@@ -1,12 +1,6 @@
 package org.tough_environment.mixin.block;
 
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -18,9 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.tough_environment.block.BlockMixinManager;
-import org.tough_environment.block.interfaces.DirectionalDroppingBlock;
-import org.tough_environment.datagen.TEBlockTagProvider;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.MakeAsFallingBlock;
 
