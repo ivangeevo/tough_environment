@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-version = project.mod_version
+version = project.mod_version + "-" + project.minecraft_version
 group = project.maven_group
 
 base {
@@ -112,9 +112,8 @@ tasks.register('checkCommentInClass') {
         def fileContent = classFile.text
         if (!fileContent.contains(requiredComment)) {
             throw new GradleException("Required comment '$requiredComment' not found in $classFilePath")
-        } else {
-            println "Required comment found in $classFilePath"
         }
+        //else { println "Required comment found in $classFilePath" }
     }
 }
 

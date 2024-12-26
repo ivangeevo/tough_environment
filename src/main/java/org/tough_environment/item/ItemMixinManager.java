@@ -43,13 +43,36 @@ public class ItemMixinManager
                 cir.setReturnValue(originalSpeed / 80f);
             } else if ((!isValidToolRequiringBlock(state) && isPrimitiveTool(stack)) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
                 cir.setReturnValue(originalSpeed / 5f);
-            } else if (stack.isIn(ItemTags.HOES) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
-                cir.setReturnValue(originalSpeed / 4f);
+            } else if (isHoeWithCustomSpeed(stack)) {
+                cir.setReturnValue(originalSpeed / getHoeSpeedModifier(stack));
             } else if (state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS) && stack.isSuitableFor(state)) {
                 cir.setReturnValue(originalSpeed * 12f);
             } else {
                 cir.setReturnValue(originalSpeed);
             }
+        }
+    }
+
+    // Separate method to determine if the stack is a hoe with custom speed
+    private boolean isHoeWithCustomSpeed(ItemStack stack) {
+        return stack.isIn(ItemTags.HOES) && configChecker.isHardcorePlayerMiningSpeedEnabled();
+    }
+
+    // Method to determine the speed modifier for specific hoe items
+    private float getHoeSpeedModifier(ItemStack stack) {
+        // Add logic for different hoe items
+        if (stack.isOf(Items.WOODEN_HOE)) {
+            return 12f;
+        } else if (stack.isOf(Items.STONE_HOE)) {
+            return 10f;
+        } else if (stack.isOf(Items.IRON_HOE)) {
+            return 7.5f;
+        } else if (stack.isOf(Items.DIAMOND_HOE)) {
+            return 2f;
+        } else if (stack.isOf(Items.NETHERITE_HOE)) {
+            return 1.5f;
+        } else {
+            return 1.0f;
         }
     }
 

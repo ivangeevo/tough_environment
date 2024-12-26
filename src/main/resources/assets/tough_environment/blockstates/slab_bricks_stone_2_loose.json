@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "tough_environment:block/slab_bricks_stone_2_loose" },
+    "type=double": { "model": "tough_environment:block/bricks_stone_2_loose" },
+    "type=top": { "model": "tough_environment:block/slab_bricks_stone_2_loose_top" }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "tough_environment:block/bricks_loose"
+    "all": "tough_environment:block/bricks_stone_2_loose"
   }
 }
