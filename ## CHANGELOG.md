@@ -1,3 +1,16 @@
+# 0.6 Alpha
+
++ Added Nether Sludge item. It's sludge time!
++ Added Loose Stone Bricks and Loose Cobbled Deepslate Bricks blocks & all of their variants.
++ Added some missing stairs and loose slab blocks variants for some blocks.
++ Added some extra block tags for loose blocks
++ Made Fire block inextinguishable by hand
++ Made hoe items have different breaking speeds when HC breaking speed is enabled
++ Changed (rebalanced) the strength and blast resistance values for some loose stone blocks slightly
++ Fixed Loose Bricks block & slab texture to be more "loosy". lol
+
+
+
 # 0.5.1 Alpha
 + Added a missing recipe for converting loose bricks block to 8 bricks
 + Fixed deepslate ores loot tables to drop ore with any pickaxe
