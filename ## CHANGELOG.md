@@ -1,10 +1,10 @@
 # 0.6.1 Alpha
 + !!!Block/Item breaking update -> Rewrote the names of some stone/stone brick blocks items which will cause them to 
-dissapear from the world/inventories. Please back up your worlds if you don't want to lose them. With all of that being
-said keep in mind the project is still in alpha.
-+ Fixed the fire inextinguishable modification to apply to all blocks in the
-BlockTags.FIRE block tag, instead of only for the default Fire Block. (this change might get re(moved) later in development)
-
+disappear from the world/inventories. Please back up your worlds if you don't want to lose them. With all of that being
+said, keep in mind the project is still in alpha.
++ Added recipe for making stone brick items from crafting smooth stone blocks together with a modern/advanced chisel in a crafting bench.
++ Added White stone & cobblestone slabs & stairs.
++ Removed (brought back) the ability to break fire blocks by hand (no outline)
 
 # 0.6 Alpha
 + Added Nether Sludge item. It's sludge time!
