@@ -96,7 +96,7 @@ public class MortarReceiverBlock extends FallingBlock
 
     }
 
-
+    //TODO: Fix the replacement logic to work better. Right now it doesn't make sense and I have no clue where blocks map is actually saved
     private Block getReplacementBlock(Block looseBlock)
     {
 

@@ -275,10 +275,39 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 .pool(LootPool.builder().with(alternativeEntry));
     }
 
+    // temporary code for when the loot table builders for converting blocks will be added. this code is just copy-pasted from above method
+    public LootTable.Builder dropsForConverting(Block drop, Item pileDrop, int singleSlabPileDropCount, int doubleSlabPileDropCount, LootCondition.Builder toolCondition) {
+        return LootTable.builder()
+                .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0F))
+                                .with(
+                                        // An alternative entry that drops piles if the tool condition is not met
+                                        AlternativeEntry.builder(
+                                                // Case 1: Drop slab itself if tool condition is met
+                                                ItemEntry.builder(drop)
+                                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F))
+                                                                .conditionally(isDoubleSlab(drop))) // Drop 2 slabs for double slab
+                                                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1.0F))
+                                                                .conditionally(isDoubleSlab(drop).invert())) // Drop 1 slab for bottom/top slab
+                                                        .conditionally(toolCondition),
+
+                                                // Case 2: Drop pile items for DOUBLE slab
+                                                this.applyExplosionDecay(pileDrop,
+                                                                ItemEntry.builder(pileDrop)
+                                                                        .apply(SetCountLootFunction.builder(
+                                                                                ConstantLootNumberProvider.create(singleSlabPileDropCount))))
+                                                        .apply(SetCountLootFunction.builder(
+                                                                        ConstantLootNumberProvider.create(doubleSlabPileDropCount))
+                                                                .conditionally(isDoubleSlab(drop)))
+                                        )
+                                )
+                );
+    }
+
     /** The 3 LeafEntry builders below are only used with the {@link TELootTableProvider#dropsForSimpleLooseBlock} and
      * {@link TELootTableProvider#dropsForBreakingToLooseBlock} methods.
      **/
-
     // Silk touch drop entry for when a block can be silk-touched
     private LeafEntry.Builder<?> silkTouchDropEntry(Block silkTouchDrop) {
         return ItemEntry.builder(silkTouchDrop).conditionally(this.createSilkTouchCondition());
