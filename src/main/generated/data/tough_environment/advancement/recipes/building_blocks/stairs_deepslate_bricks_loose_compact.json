@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepslate_bricks_loose": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tough_environment:deepslate_bricks_loose"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tough_environment:stairs_deepslate_bricks_loose_compact"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_deepslate_bricks_loose"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tough_environment:stairs_deepslate_bricks_loose_compact"
+    ]
+  }
+}

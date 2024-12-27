@@ -75,6 +75,8 @@ public class ModItemGroup
                             entries.add(ModBlocks.SLAB_ANDESITE_LOOSE);
                             entries.add(ModBlocks.SLAB_DIORITE_LOOSE);
                             entries.add(ModBlocks.SLAB_BRICKS_LOOSE);
+                            entries.add(ModBlocks.SLAB_STONE_BRICKS_LOOSE);
+                            entries.add(ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE);
 
                             // Full blocks
                             entries.add(ModBlocks.DIRT_LOOSE);
@@ -89,12 +91,17 @@ public class ModItemGroup
                             entries.add(ModBlocks.BASALT_LOOSE);
                             entries.add(ModBlocks.END_STONE_LOOSE);
                             entries.add(ModBlocks.BRICKS_LOOSE);
+                            entries.add(ModBlocks.STONE_BRICKS_LOOSE);
+                            entries.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE);
 
                             entries.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
                             entries.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS);
                             entries.add(ModBlocks.ANDESITE_LOOSE_STAIRS);
                             entries.add(ModBlocks.GRANITE_LOOSE_STAIRS);
                             entries.add(ModBlocks.DIORITE_LOOSE_STAIRS);
+                            entries.add(ModBlocks.BRICKS_LOOSE_STAIRS);
+                            entries.add(ModBlocks.STONE_BRICKS_LOOSE_STAIRS);
+                            entries.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS);
 
                             entries.add(ModBlocks.CLAY_BLOCK);
                             entries.add(ModBlocks.WHITE_STONE);

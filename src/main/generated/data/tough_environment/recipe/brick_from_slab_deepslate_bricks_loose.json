@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:slab_deepslate_bricks_loose"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "tough_environment:stone_brick_2"
+  }
+}

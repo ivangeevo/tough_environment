@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:deepslate"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "tough_environment:stone_brick_2"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:stone_brick_2"
+    },
+    {
+      "item": "tough_environment:stone_brick_2"
+    },
+    {
+      "item": "tough_environment:stone_brick_2"
+    },
+    {
+      "item": "tough_environment:stone_brick_2"
+    },
+    {
+      "item": "tough_environment:stone_brick_2"
+    },
+    {
+      "item": "tough_environment:stone_brick_2"
+    },
+    {
+      "item": "tough_environment:stone_brick_2"
+    },
+    {
+      "item": "tough_environment:stone_brick_2"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tough_environment:deepslate_bricks_loose"
+  }
+}

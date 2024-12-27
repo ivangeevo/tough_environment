@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "tough_environment:block/bricks_stone_2_loose",
-    "side": "tough_environment:block/bricks_stone_2_loose",
-    "top": "tough_environment:block/bricks_stone_2_loose"
-  }
-}
