@@ -6,6 +6,10 @@
     "#tough_environment:loose_stone_blocks",
     "#tough_environment:broken_stone_blocks",
     "tough_environment:white_stone",
-    "tough_environment:white_cobblestone"
+    "tough_environment:white_cobblestone",
+    "tough_environment:slab_white_stone",
+    "tough_environment:slab_white_cobblestone",
+    "tough_environment:white_stone_stairs",
+    "tough_environment:white_cobblestone_stairs"
   ]
 }

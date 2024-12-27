@@ -53,6 +53,10 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.SLAB_STONE_BRICKS_LOOSE, "Loose Stone Bricks Slab");
         tb.add(ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, "Loose Deepslate Bricks Slab");
 
+        tb.add(ModBlocks.SLAB_WHITE_STONE, "White Stone Slab");
+        tb.add(ModBlocks.SLAB_WHITE_COBBLESTONE, "White Cobblestone Slab");
+
+
         tb.add(ModBlocks.DIRT_LOOSE, "Loose Dirt");
         tb.add(ModBlocks.COBBLESTONE_LOOSE, "Loose Cobblestone");
         tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE, "Loose Cobbled Deepslate");
@@ -68,6 +72,12 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.STONE_BRICKS_LOOSE, "Loose Stone Bricks");
         tb.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE, "Loose Deepslate Bricks");
 
+        tb.add(ModBlocks.WHITE_STONE, "White Stone");
+        tb.add(ModBlocks.WHITE_COBBLESTONE, "White Cobblestone");
+
+        tb.add(ModBlocks.CLAY_BLOCK, "Block of Clay");
+
+
         tb.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS, "Loose Cobblestone Stairs");
         tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, "Loose Cobbled Deepslate Stairs");
         tb.add(ModBlocks.ANDESITE_LOOSE_STAIRS, "Loose Andesite Stairs");
@@ -77,9 +87,8 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.STONE_BRICKS_LOOSE_STAIRS, "Loose Stone Bricks Stairs");
         tb.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, "Loose Deepslate Bricks Stairs");
 
-        tb.add(ModBlocks.CLAY_BLOCK, "Block of Clay");
-        tb.add(ModBlocks.WHITE_STONE, "White Stone");
-        tb.add(ModBlocks.WHITE_COBBLESTONE, "White Cobblestone");
+        tb.add(ModBlocks.WHITE_STONE_STAIRS, "White Stone Stairs");
+        tb.add(ModBlocks.WHITE_COBBLESTONE_STAIRS, "White Cobblestone Stairs");
 
     }
 

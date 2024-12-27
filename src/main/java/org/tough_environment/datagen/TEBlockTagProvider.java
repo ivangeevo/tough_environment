@@ -43,7 +43,13 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.END_STONE_CONVERTING);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STONE)
-                .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS);
+                .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
+                .add(ModBlocks.WHITE_STONE)
+                .add(ModBlocks.WHITE_COBBLESTONE)
+                .add(ModBlocks.SLAB_WHITE_STONE)
+                .add(ModBlocks.SLAB_WHITE_COBBLESTONE)
+                .add(ModBlocks.WHITE_STONE_STAIRS)
+                .add(ModBlocks.WHITE_COBBLESTONE_STAIRS);
 
     }
 
@@ -66,7 +72,11 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
                 // blocks
                 .add(ModBlocks.WHITE_STONE)
-                .add(ModBlocks.WHITE_COBBLESTONE);
+                .add(ModBlocks.WHITE_COBBLESTONE)
+                .add(ModBlocks.SLAB_WHITE_STONE)
+                .add(ModBlocks.SLAB_WHITE_COBBLESTONE)
+                .add(ModBlocks.WHITE_STONE_STAIRS)
+                .add(ModBlocks.WHITE_COBBLESTONE_STAIRS);
 
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
@@ -95,7 +105,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_DIRT);
 
         getOrCreateTagBuilder(BlockTags.STAIRS)
-                .forceAddTag(ModTags.Blocks.LOOSE_STAIRS);
+                .forceAddTag(ModTags.Blocks.LOOSE_STAIRS)
+                .add(ModBlocks.WHITE_STONE_STAIRS)
+                .add(ModBlocks.WHITE_COBBLESTONE_STAIRS);
 
     }
 
@@ -213,7 +225,10 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS)
                 .add(ModBlocks.ANDESITE_LOOSE_STAIRS)
                 .add(ModBlocks.GRANITE_LOOSE_STAIRS)
-                .add(ModBlocks.DIORITE_LOOSE_STAIRS);
+                .add(ModBlocks.DIORITE_LOOSE_STAIRS)
+                .add(ModBlocks.BRICKS_LOOSE_STAIRS)
+                .add(ModBlocks.STONE_BRICKS_LOOSE_STAIRS)
+                .add(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS);
 
         getOrCreateTagBuilder(ModTags.Blocks.MORTARED_BLOCKS)
                 .add(Blocks.COBBLESTONE)

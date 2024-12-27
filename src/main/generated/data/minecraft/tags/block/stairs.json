@@ -1,5 +1,7 @@
 {
   "values": [
-    "#tough_environment:loose_stairs"
+    "#tough_environment:loose_stairs",
+    "tough_environment:white_stone_stairs",
+    "tough_environment:white_cobblestone_stairs"
   ]
 }

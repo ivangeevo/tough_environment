@@ -100,7 +100,6 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
     }
 
 
-    // TODO: Fix andesite dropping stone brick sometimes when mined with pickaxe
     private void forMod() {
 
         // Loose blocks
@@ -117,8 +116,16 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.BLACKSTONE_LOOSE);
         addDrop(ModBlocks.BASALT_LOOSE);
         addDrop(ModBlocks.END_STONE_LOOSE);
+
         addDrop(ModBlocks.WHITE_STONE, (Block block) -> drops(block, ModBlocks.WHITE_COBBLESTONE));
         addDrop(ModBlocks.WHITE_COBBLESTONE);
+
+        addDrop(ModBlocks.SLAB_WHITE_STONE, (Block block) -> drops(block, ModBlocks.SLAB_WHITE_COBBLESTONE));
+        addDrop(ModBlocks.SLAB_WHITE_COBBLESTONE);
+
+        addDrop(ModBlocks.WHITE_STONE_STAIRS, (Block block) -> drops(block, ModBlocks.WHITE_COBBLESTONE_STAIRS));
+        addDrop(ModBlocks.WHITE_COBBLESTONE_STAIRS);
+
 
         // Loose Slab blocks
         addDrop(ModBlocks.SLAB_DIRT, dropsForLooseSlab(ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT, 3, 6, WITH_SHOVEL_FULLY_HARVESTS));
@@ -275,7 +282,8 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 .pool(LootPool.builder().with(alternativeEntry));
     }
 
-    // temporary code for when the loot table builders for converting blocks will be added. this code is just copy-pasted from above method
+    // temporary code for when the loot table builders for converting blocks will be added.
+    // this code is just copy-pasted from above method and is not correct at all
     public LootTable.Builder dropsForConverting(Block drop, Item pileDrop, int singleSlabPileDropCount, int doubleSlabPileDropCount, LootCondition.Builder toolCondition) {
         return LootTable.builder()
                 .pool(

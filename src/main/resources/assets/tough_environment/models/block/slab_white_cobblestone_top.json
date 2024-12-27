@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "tough_environment:block/white_cobblestone",
+    "side": "tough_environment:block/white_cobblestone",
+    "top": "tough_environment:block/white_cobblestone"
+  }
+}
+

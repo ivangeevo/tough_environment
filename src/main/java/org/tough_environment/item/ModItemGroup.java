@@ -81,6 +81,10 @@ public class ModItemGroup
                             entries.add(ModBlocks.SLAB_STONE_BRICKS_LOOSE);
                             entries.add(ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE);
 
+                            entries.add(ModBlocks.SLAB_WHITE_STONE);
+                            entries.add(ModBlocks.SLAB_WHITE_COBBLESTONE);
+
+
                             // Full blocks
                             entries.add(ModBlocks.DIRT_LOOSE);
                             entries.add(ModBlocks.COBBLESTONE_LOOSE);
@@ -97,6 +101,11 @@ public class ModItemGroup
                             entries.add(ModBlocks.STONE_BRICKS_LOOSE);
                             entries.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE);
 
+                            entries.add(ModBlocks.CLAY_BLOCK);
+                            entries.add(ModBlocks.WHITE_STONE);
+                            entries.add(ModBlocks.WHITE_COBBLESTONE);
+
+
                             entries.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
                             entries.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS);
                             entries.add(ModBlocks.ANDESITE_LOOSE_STAIRS);
@@ -106,9 +115,9 @@ public class ModItemGroup
                             entries.add(ModBlocks.STONE_BRICKS_LOOSE_STAIRS);
                             entries.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS);
 
-                            entries.add(ModBlocks.CLAY_BLOCK);
-                            entries.add(ModBlocks.WHITE_STONE);
-                            entries.add(ModBlocks.WHITE_COBBLESTONE);
+                            entries.add(ModBlocks.WHITE_STONE_STAIRS);
+                            entries.add(ModBlocks.WHITE_COBBLESTONE_STAIRS);
+
 
                         }).build());
 

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "tough_environment:block/white_cobblestone",
+    "side": "tough_environment:block/white_cobblestone",
+    "top": "tough_environment:block/white_cobblestone"
+  }
+}
