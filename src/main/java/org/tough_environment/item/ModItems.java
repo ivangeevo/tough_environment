@@ -22,6 +22,7 @@ public class ModItems
     public static final Item PILE_RED_SAND = register( "pile_red_sand", new Item(new Item.Settings()));
     public static final Item PILE_CLAY = register( "pile_clay", new Item(new Item.Settings()));
 
+    public static final Item NETHER_SLUDGE = register( "nether_sludge", new Item(new Item.Settings()));
 
     public static final Item SMALL_STONE = register( "small_stone", new Item(new Item.Settings()));
     public static final Item SMALL_STONE_1 = register( "small_stone_1", new Item(new Item.Settings()));

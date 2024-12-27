@@ -60,6 +60,9 @@ public class ModItemGroup
                             //entries.add(ModItems.STONE_BRICK_1); add later when 2nd strata is available in any mod( mine or primetoxinz's)
                             entries.add(ModItems.STONE_BRICK_2);
 
+                            entries.add(ModItems.NETHER_SLUDGE);
+
+
 
 
                             /** Blocks **/

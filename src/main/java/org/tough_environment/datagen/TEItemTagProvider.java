@@ -108,6 +108,7 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
         getOrCreateTagBuilder(ModTags.Items.MORTARING_ITEMS)
                 .add(Items.CLAY_BALL)
+                .add(ModItems.NETHER_SLUDGE)
                 .add(Items.SLIME_BALL);
 
         getOrCreateTagBuilder(ModTags.Items.SHOULD_NOT_MERGE)

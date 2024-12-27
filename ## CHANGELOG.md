@@ -1,5 +1,8 @@
 # 0.6.1 Alpha
-+ Fixed the fire inextinguishable to apply to all blocks in the
++ !!!Block/Item breaking update -> Rewrote the names of some stone/stone brick blocks items which will cause them to 
+dissapear from the world/inventories. Please back up your worlds if you don't want to lose them. With all of that being
+said keep in mind the project is still in alpha.
++ Fixed the fire inextinguishable modification to apply to all blocks in the
 BlockTags.FIRE block tag, instead of only for the default Fire Block. (this change might get re(moved) later in development)
 
 

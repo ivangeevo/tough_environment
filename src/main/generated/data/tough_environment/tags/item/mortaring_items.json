@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:clay_ball",
+    "tough_environment:nether_sludge",
     "minecraft:slime_ball"
   ]
 }

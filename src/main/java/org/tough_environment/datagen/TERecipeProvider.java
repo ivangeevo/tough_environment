@@ -118,6 +118,15 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .criterion("has_pile_clay", RecipeProvider.conditionsFromItem(ModItems.PILE_CLAY))
                 .offerTo(exporter, ID.ofTE("clay_ball_from_pile_clay"));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_SLUDGE,4)
+                .input('N', Items.NETHERRACK)
+                .input('C', Items.CLAY_BALL)
+                .pattern("NN")
+                .pattern("CN")
+                .criterion("has_netherrack", conditionsFromItem(Items.NETHERRACK))
+                .offerTo(exporter, ID.ofTE("nether_sludge"));
+
+
 
 
     }

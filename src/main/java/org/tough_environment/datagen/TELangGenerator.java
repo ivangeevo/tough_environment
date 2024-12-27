@@ -114,7 +114,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModItems.STONE_BRICK_1, "Mantlestone Brick");
         tb.add(ModItems.STONE_BRICK_2, "Deepslate Brick");
 
-
+        tb.add(ModItems.NETHER_SLUDGE, "Nether Sludge");
     }
 
 
