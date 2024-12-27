@@ -29,13 +29,6 @@ public class LooseAggregateBlock extends FallingBlock
         return CODEC;
     }
 
-    @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        super.onPlaced(world, pos, state, placer, itemStack);
-    }
-
-
-
     // Block specific logic //
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state,
