@@ -1,7 +1,7 @@
 {
   "variants":
   {
-    "": [{"model": "tough_environment:block/bricks_stone_loose"}]
+    "": [{"model": "tough_environment:block/stone_bricks_loose"}]
 
   }
 }
