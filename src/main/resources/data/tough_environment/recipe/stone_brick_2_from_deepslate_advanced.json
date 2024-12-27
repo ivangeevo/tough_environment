@@ -4,10 +4,19 @@
   "ingredients": [
     {
       "item": "minecraft:deepslate"
+    },
+    {
+      "tag": "c:advanced_chisels"
     }
   ],
   "result": {
     "count": 4,
     "id": "tough_environment:stone_brick_2"
-  }
+  },
+  "additionalDrops": [
+    {
+      "id": "tough_environment:pile_gravel",
+      "count": 1
+    }
+  ]
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "tag": "c:advanced_chisels"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "tough_environment:stone_brick"
+  },
+  "additionalDrops": [
+    {
+      "id": "tough_environment:pile_gravel",
+      "count": 1
+    }
+  ]
+}
