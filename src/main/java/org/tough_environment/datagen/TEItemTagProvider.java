@@ -90,6 +90,10 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.COBBLESTONE)
                 .add(ModBlocks.COBBLESTONE_LOOSE.asItem());
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_METALLIC_TOOL_SOUND)
+                .add(ModItems.CHISEL_IRON)
+                .add(ModItems.CHISEL_DIAMOND);
+
     }
 
 

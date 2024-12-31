@@ -1,6 +1,6 @@
 package org.tough_environment.item.items;
 
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -13,28 +13,22 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.tough_environment.item.ModItems;
+import org.tough_environment.item.ChiselToolMaterials;
 import org.tough_environment.tag.ModTags;
 
 public class ChiselItem extends MiningToolItem
 {
-    public ChiselItem(ToolMaterial toolMaterial, Settings settings)
-    {
+    public ChiselItem(ToolMaterial toolMaterial, Settings settings) {
         super(toolMaterial, ModTags.Mineable.CHISEL, settings);
     }
 
 
     @Override
-    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner)
-    {
-        if (!world.isClient && state.getHardness(world, pos) != 0.0f)
-        {
-            if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS))
-            {
+    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
+        if (!world.isClient && state.getHardness(world, pos) != 0.0f) {
+            if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS)) {
                 stack.damage(5, miner, EquipmentSlot.MAINHAND);
-            }
-            else
-            {
+            } else {
                 stack.damage(1, miner, EquipmentSlot.MAINHAND);
             }
         }
@@ -42,27 +36,29 @@ public class ChiselItem extends MiningToolItem
     }
 
     @Override
-    public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player)
-    {
+    public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player) {
         BlockPos thisPos = player.getBlockPos();
         SoundEvent craftingSound;
+        float volume;
+        float pitch;
 
-        // Different crafting sounds based on the chisel type
-        if ( stack.isOf(ModItems.CHISEL_WOOD) )
-        {
-            craftingSound = SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR;
-        }
-        else if ( stack.isOf(ModItems.CHISEL_STONE) )
-        {
-            craftingSound = SoundEvents.BLOCK_ANVIL_LAND;
-        }
-        else
-        {
-            craftingSound = SoundEvents.BLOCK_ANVIL_USE;
-        }
+        if (player.timesCraftedThisTick() == 0 && world.isClient) {
 
-        world.playSound(player, thisPos, craftingSound, SoundCategory.BLOCKS, 0.2f, 1.2f);
-        player.tick();
+            // Different crafting sounds based on the chisel type
+            if (this.getMaterial() == ChiselToolMaterials.WOOD) {
+                craftingSound = SoundEvents.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR;
+                volume = 0.1f;
+                pitch = 1.25f + (world.random.nextFloat() * 0.25f);
+                world.playSound(player, thisPos, craftingSound, SoundCategory.BLOCKS, volume, pitch);
+            } else if (this.getMaterial() == ChiselToolMaterials.STONE) {
+                craftingSound = SoundEvents.BLOCK_ANVIL_LAND;
+                volume = 0.1f;
+                pitch = world.random.nextFloat() * 0.25f + 1.75f;
+                world.playSound(player, thisPos, craftingSound, SoundCategory.BLOCKS, volume, pitch);
+            }
+
+            player.tick();
+        }
     }
 
     @Override
