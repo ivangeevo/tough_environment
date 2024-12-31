@@ -1,6 +1,6 @@
 package org.tough_environment.block.blocks;
 
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

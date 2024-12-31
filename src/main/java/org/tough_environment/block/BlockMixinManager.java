@@ -1,6 +1,6 @@
 package org.tough_environment.block;
 
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,7 +15,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.tough_environment.block.blocks.ConvertingBlock;
+import org.tough_environment.block.blocks.StoneConvertingBlock;
 import org.tough_environment.tag.ModTags;
 
 import java.util.HashMap;
@@ -56,9 +56,10 @@ public class BlockMixinManager
     }
 
     private boolean shouldPlayDing(BlockState state, ItemStack tool) {
-        if (state.getBlock() instanceof ConvertingBlock && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)) {
+        if (state.getBlock() instanceof StoneConvertingBlock && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)) {
             int breakLevel = state.get(BREAK_LEVEL);
-            return (breakLevel % 2 == 0) && !isFullyBreakingTool(tool);
+
+            return ((breakLevel % 2 == 0) && !isFullyBreakingTool(tool)) || ((breakLevel == 3) && isChisel(tool));
         }
 
         if (state.getBlock() instanceof ExperienceDroppingBlock) {

@@ -1,7 +1,6 @@
 package org.tough_environment.datagen;
 
-import btwr.btwrsl.lib.util.utils.RecipeProviderUtils;
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;

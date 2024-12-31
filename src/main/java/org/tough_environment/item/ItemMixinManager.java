@@ -1,7 +1,8 @@
 package org.tough_environment.item;
 
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ToolComponent;
 import net.minecraft.item.*;
@@ -41,7 +42,8 @@ public class ItemMixinManager
                 cir.setReturnValue(originalSpeed / 8000f);
             } else if (isProblemToBreak(state, stack)) {
                 cir.setReturnValue(originalSpeed / 80f);
-            } else if ((!isValidToolRequiringBlock(state) && isPrimitiveTool(stack)) && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
+            } else if ((!isValidToolRequiringBlock(state) && isPrimitiveTool(stack))
+                    && !state.isReplaceable() && configChecker.isHardcorePlayerMiningSpeedEnabled()) {
                 cir.setReturnValue(originalSpeed / 5f);
             } else if (isHoeWithCustomSpeed(stack)) {
                 cir.setReturnValue(originalSpeed / getHoeSpeedModifier(stack));
@@ -114,8 +116,18 @@ public class ItemMixinManager
     }
 
     private boolean isValidToolRequiringBlock(BlockState state) {
-        boolean isTough = state.isIn(BTWRConventionalTags.Blocks.WEB_BLOCKS) || (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS));
-        return state.isToolRequired() && isTough;
+        return state.isToolRequired() && isToughBlock(state);
+    }
+
+    // keep this 'very incompatible' method until we figure out what the blocks in here need to be done so that they can be broken normally.
+    // its quite possible the whole modification of the speed as is - is wrong.
+    private boolean isToughBlock(BlockState state) {
+
+        return state.isIn(BTWRConventionalTags.Blocks.WEB_BLOCKS)
+                || state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
+                || state.isOf(Blocks.SNOW)
+
+                ;
     }
 
 }

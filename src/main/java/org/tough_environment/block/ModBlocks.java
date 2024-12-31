@@ -1,6 +1,6 @@
 package org.tough_environment.block;
 
-import btwr.btwrsl.lib.util.PlaceableAsBlock;
+import btwr.btwr_sl.lib.util.PlaceableAsBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
@@ -12,7 +12,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.blocks.*;
-import org.tough_environment.item.ModItems;
 
 public class ModBlocks {
 
@@ -58,7 +57,7 @@ public class ModBlocks {
     public static final Block CALCITE_CONVERTING = registerBlock("calcite_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block TUFF_CONVERTING = registerBlock("tuff_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block BLACKSTONE_CONVERTING = registerBlock("blackstone_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
-    public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(3.0f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
+    public static final Block DEEPSLATE_CONVERTING = registerBlock("deepslate_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(3.0f, 6.0f).requiresTool().sounds(BlockSoundGroup.DEEPSLATE)));
     public static final Block BASALT_CONVERTING = registerBlock("basalt_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block END_STONE_CONVERTING = registerBlock("end_stone_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 

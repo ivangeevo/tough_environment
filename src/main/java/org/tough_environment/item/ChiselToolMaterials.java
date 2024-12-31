@@ -1,6 +1,6 @@
 package org.tough_environment.item;
 
-import btwr.btwrsl.tag.BTWRConventionalTags;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
 import net.minecraft.block.Block;
