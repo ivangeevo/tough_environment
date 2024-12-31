@@ -1,9 +1,14 @@
 # 0.6.1 Alpha
 + !!!Block/Item breaking update -> Rewrote the names of some stone/stone brick blocks items which will cause them to 
 disappear from the world/inventories. Please back up your worlds if you don't want to lose them. With all of that being
-said, keep in mind the project is still in alpha.
+said, keep in mind the project is still in alpha. The mod will likely get a solid rewrite once
+both before beta & release, then everything should remain relatively untouched to not mess up already existing worlds of players.
+
 + Added recipe for making stone brick items from crafting smooth stone blocks together with a modern/advanced chisel in a crafting bench.
 + Added White stone & cobblestone slabs & stairs.
++ Improved the conditions for breaking blocks that have their speed modified (still, we probably need a better modification for those...)
++ Improved logic for playing sound when crafting chisel tool items.
++ Fixed the breaking block sound group for deepslate (stone) converting block
 + Removed (brought back) the ability to break fire blocks by hand (no outline)
 
 # 0.6 Alpha
