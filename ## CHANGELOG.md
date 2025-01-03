@@ -1,4 +1,4 @@
-# 0.6.1 Alpha
+# 0.7 Alpha
 + !!!Block/Item breaking update -> Rewrote the names of some stone/stone brick blocks items which will cause them to 
 disappear from the world/inventories. Please back up your worlds if you don't want to lose them. With all of that being
 said, keep in mind the project is still in alpha. The mod will likely get a solid rewrite once
@@ -6,9 +6,18 @@ both before beta & release, then everything should remain relatively untouched t
 
 + Added recipe for making stone brick items from crafting smooth stone blocks together with a modern/advanced chisel in a crafting bench.
 + Added White stone & cobblestone slabs & stairs.
++ Added Nether bricks, stairs and slab blocks.
++ Added Unfired Nether Brick item and it's placeable block counterpart.
++ Added "very compact" loose stair recipes for all stone brick type blocks. (3 items in L shape to singular stair recipe)
 + Improved the conditions for breaking blocks that have their speed modified (still, we probably need a better modification for those...)
 + Improved logic for playing sound when crafting chisel tool items.
++ Improved code for mortaring blocks. It should work slightly better now.
 + Fixed the breaking block sound group for deepslate (stone) converting block
++ Fixed recipes for stone brick blocks to give the proper amount of bricks on conversion recipes (block-item recipes)
+
++ Fixed bricks slab vanilla loot table to drop its loose counterpart
++ Fixed some missing recipes & loot tables for the stone/deepslate stone brick blocks.
++ Changed the mod block tag "Loose Stone Blocks" to "Loose Full Blocks"
 + Removed (brought back) the ability to break fire blocks by hand (no outline)
 
 # 0.6 Alpha
