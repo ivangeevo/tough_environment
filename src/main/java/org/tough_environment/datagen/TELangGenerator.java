@@ -3,7 +3,6 @@ package org.tough_environment.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.Identifier;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
@@ -52,6 +51,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.SLAB_BRICKS_LOOSE, "Loose Bricks Slab");
         tb.add(ModBlocks.SLAB_STONE_BRICKS_LOOSE, "Loose Stone Bricks Slab");
         tb.add(ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, "Loose Deepslate Bricks Slab");
+        tb.add(ModBlocks.SLAB_NETHER_BRICKS_LOOSE, "Loose Nether Bricks Slab");
 
         tb.add(ModBlocks.SLAB_WHITE_STONE, "White Stone Slab");
         tb.add(ModBlocks.SLAB_WHITE_COBBLESTONE, "White Cobblestone Slab");
@@ -71,6 +71,8 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.BRICKS_LOOSE, "Loose Bricks");
         tb.add(ModBlocks.STONE_BRICKS_LOOSE, "Loose Stone Bricks");
         tb.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE, "Loose Deepslate Bricks");
+        tb.add(ModBlocks.NETHER_BRICKS_LOOSE, "Loose Nether Bricks");
+
 
         tb.add(ModBlocks.WHITE_STONE, "White Stone");
         tb.add(ModBlocks.WHITE_COBBLESTONE, "White Cobblestone");
@@ -86,6 +88,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.BRICKS_LOOSE_STAIRS, "Loose Bricks Stairs");
         tb.add(ModBlocks.STONE_BRICKS_LOOSE_STAIRS, "Loose Stone Bricks Stairs");
         tb.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, "Loose Deepslate Bricks Stairs");
+        tb.add(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, "Loose Nether Bricks Stairs");
 
         tb.add(ModBlocks.WHITE_STONE_STAIRS, "White Stone Stairs");
         tb.add(ModBlocks.WHITE_COBBLESTONE_STAIRS, "White Cobblestone Stairs");
@@ -122,6 +125,8 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModItems.STONE_BRICK, "Stone Brick");
         tb.add(ModItems.STONE_BRICK_1, "Mantlestone Brick");
         tb.add(ModItems.STONE_BRICK_2, "Deepslate Brick");
+
+        tb.add(ModItems.NETHER_BRICK_UNFIRED, "Wet Nether Brick");
 
         tb.add(ModItems.NETHER_SLUDGE, "Nether Sludge");
     }

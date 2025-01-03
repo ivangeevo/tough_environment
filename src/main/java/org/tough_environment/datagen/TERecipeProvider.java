@@ -48,6 +48,9 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
     private void addDisabledRecipes(RecipeExporter exporter) {
         disableVanilla(exporter, "clay");
         disableVanilla(exporter, "bricks");
+        disableVanilla(exporter, "nether_brick");
+        disableVanilla(exporter, "nether_bricks");
+
     }
 
     // We add recipes for some existing vanilla blocks.
@@ -127,24 +130,14 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .criterion("has_netherrack", conditionsFromItem(Items.NETHERRACK))
                 .offerTo(exporter, ID.ofTE("nether_sludge"));
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.NETHER_BRICK_UNFIRED)
+                .input(ModItems.NETHER_SLUDGE)
+                .criterion("has_nether_sludge", conditionsFromItem(ModItems.NETHER_SLUDGE))
+                .offerTo(exporter, ID.ofTE("nether_brick_unfired"));
+
     }
 
     private void addLesserDropRecipes(RecipeExporter exporter) {
-        // Piles, Stones & Shards from Slabs
-        offerLesserDropsFromSlab(exporter, ModItems.PILE_DIRT, 4, ModBlocks.SLAB_DIRT, ID.ofTE("pile_dirt_from_slab_dirt"));
-        offerLesserDropsFromSlab(exporter, ModItems.PILE_SAND, 4, ModBlocks.SLAB_SAND, ID.ofTE("pile_sand_from_slab_sand"));
-        offerLesserDropsFromSlab(exporter, ModItems.PILE_RED_SAND, 4, ModBlocks.SLAB_RED_SAND, ID.ofTE("pile_red_sand_from_slab_red_sand"));
-        offerLesserDropsFromSlab(exporter, ModItems.PILE_GRAVEL, 4, ModBlocks.SLAB_GRAVEL, ID.ofTE("pile_gravel_from_slab_gravel"));
-        offerLesserDropsFromSlab(exporter, ModItems.SMALL_STONE, 4, ModBlocks.SLAB_COBBLESTONE_LOOSE, ID.ofTE("small_stone_from_slab_cobblestone_loose"));
-        // TODO: insert level 1 (mantle) here when added!
-        offerLesserDropsFromSlab(exporter, ModItems.SMALL_STONE_2, 4, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, ID.ofTE("small_stone_2_from_slab_cobbled_deepslate_loose"));
-        offerLesserDropsFromSlab(exporter, ModItems.SHARD_ANDESITE, 4, ModBlocks.SLAB_ANDESITE_LOOSE, ID.ofTE("shard_andesite_from_slab_andesite_loose"));
-        offerLesserDropsFromSlab(exporter, ModItems.SHARD_GRANITE,4, ModBlocks.SLAB_GRANITE_LOOSE, ID.ofTE("shard_granite_from_slab_granite_loose"));
-        offerLesserDropsFromSlab(exporter, ModItems.SHARD_DIORITE, 4, ModBlocks.SLAB_DIORITE_LOOSE, ID.ofTE("shard_diorite_from_slab_diorite_loose"));
-        offerLesserDropsFromSlab(exporter, Items.BRICK, 4, ModBlocks.SLAB_BRICKS_LOOSE, ID.ofTE("brick_from_slab_bricks_loose"));
-        offerLesserDropsFromSlab(exporter, ModItems.STONE_BRICK, 2, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ID.ofTE("brick_from_slab_stone_bricks_loose"));
-        offerLesserDropsFromSlab(exporter, ModItems.STONE_BRICK_2, 2, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ID.ofTE("brick_from_slab_deepslate_bricks_loose"));
-
         // Piles, Stones & Shards from Full Blocks
         offerLesserDropsFromBlock(exporter, ModItems.PILE_DIRT,8, ModBlocks.DIRT_LOOSE, ID.ofTE("pile_dirt_from_block_dirt_loose"));
         offerLesserDropsFromBlock(exporter, ModItems.PILE_SAND,8, Blocks.SAND, ID.ofTE("pile_sand_from_block_sand"));
@@ -157,6 +150,8 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerLesserDropsFromBlock(exporter, ModItems.SHARD_GRANITE,8, ModBlocks.GRANITE_LOOSE, ID.ofTE("shard_granite_from_block_granite_loose"));
         offerLesserDropsFromBlock(exporter, ModItems.SHARD_DIORITE,8, ModBlocks.DIORITE_LOOSE, ID.ofTE("shard_diorite_from_block_diorite_loose"));
         offerLesserDropsFromBlock(exporter, Items.BRICK, 8, ModBlocks.BRICKS_LOOSE, ID.ofTE("brick_from_block_bricks_loose"));
+        offerLesserDropsFromBlock(exporter, Items.NETHER_BRICK, 8, ModBlocks.NETHER_BRICKS_LOOSE, ID.ofTE("nether_brick_from_block_nether_bricks_loose"));
+
         offerLesserDropsFromBlock(exporter, ModItems.STONE_BRICK, 4, ModBlocks.STONE_BRICKS_LOOSE, ID.ofTE("stone_brick_from_block_stone_bricks_loose"));
         offerLesserDropsFromBlock(exporter, ModItems.STONE_BRICK_2, 4, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ID.ofTE("stone_brick_2_from_block_deepslate_bricks_loose"));
 
@@ -169,8 +164,29 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerLesserDropsFromStairs(exporter, ModItems.SHARD_ANDESITE, 6, ModBlocks.ANDESITE_LOOSE_STAIRS, ID.ofTE("shard_andesite_from_stairs_andesite_loose"));
         offerLesserDropsFromStairs(exporter, ModItems.SHARD_ANDESITE, 6, ModBlocks.GRANITE_LOOSE_STAIRS, ID.ofTE("shard_andesite_from_stairs_granite_loose"));
         offerLesserDropsFromStairs(exporter, ModItems.SHARD_DIORITE, 6, ModBlocks.DIORITE_LOOSE_STAIRS, ID.ofTE("shard_diorite_from_stairs_diorite_loose"));
+        offerLesserDropsFromStairs(exporter, Items.BRICK, 6, ModBlocks.BRICKS_LOOSE_STAIRS, ID.ofTE("brick_from_stairs_bricks_loose"));
+        offerLesserDropsFromStairs(exporter, Items.NETHER_BRICK, 6, ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, ID.ofTE("nether_brick_from_stairs_nether_bricks_loose"));
+
         offerLesserDropsFromStairs(exporter, ModItems.STONE_BRICK, 3, ModBlocks.STONE_BRICKS_LOOSE_STAIRS, ID.ofTE("stone_brick_from_stairs_stone_bricks_loose"));
         offerLesserDropsFromStairs(exporter, ModItems.STONE_BRICK_2, 3, ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, ID.ofTE("stone_brick_2_from_stairs_deepslate_bricks_loose"));
+
+
+        // Piles, Stones & Shards from Slabs
+        offerLesserDropsFromSlab(exporter, ModItems.PILE_DIRT, 4, ModBlocks.SLAB_DIRT, ID.ofTE("pile_dirt_from_slab_dirt"));
+        offerLesserDropsFromSlab(exporter, ModItems.PILE_SAND, 4, ModBlocks.SLAB_SAND, ID.ofTE("pile_sand_from_slab_sand"));
+        offerLesserDropsFromSlab(exporter, ModItems.PILE_RED_SAND, 4, ModBlocks.SLAB_RED_SAND, ID.ofTE("pile_red_sand_from_slab_red_sand"));
+        offerLesserDropsFromSlab(exporter, ModItems.PILE_GRAVEL, 4, ModBlocks.SLAB_GRAVEL, ID.ofTE("pile_gravel_from_slab_gravel"));
+        offerLesserDropsFromSlab(exporter, ModItems.SMALL_STONE, 4, ModBlocks.SLAB_COBBLESTONE_LOOSE, ID.ofTE("small_stone_from_slab_cobblestone_loose"));
+        // TODO: insert level 1 (mantle) here when added!
+        offerLesserDropsFromSlab(exporter, ModItems.SMALL_STONE_2, 4, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, ID.ofTE("small_stone_2_from_slab_cobbled_deepslate_loose"));
+        offerLesserDropsFromSlab(exporter, ModItems.SHARD_ANDESITE, 4, ModBlocks.SLAB_ANDESITE_LOOSE, ID.ofTE("shard_andesite_from_slab_andesite_loose"));
+        offerLesserDropsFromSlab(exporter, ModItems.SHARD_GRANITE,4, ModBlocks.SLAB_GRANITE_LOOSE, ID.ofTE("shard_granite_from_slab_granite_loose"));
+        offerLesserDropsFromSlab(exporter, ModItems.SHARD_DIORITE, 4, ModBlocks.SLAB_DIORITE_LOOSE, ID.ofTE("shard_diorite_from_slab_diorite_loose"));
+        offerLesserDropsFromSlab(exporter, Items.BRICK, 4, ModBlocks.SLAB_BRICKS_LOOSE, ID.ofTE("brick_from_slab_bricks_loose"));
+        offerLesserDropsFromSlab(exporter, Items.NETHER_BRICK, 4, ModBlocks.SLAB_NETHER_BRICKS_LOOSE, ID.ofTE("nether_brick_from_slab_nether_bricks_loose"));
+
+        offerLesserDropsFromSlab(exporter, ModItems.STONE_BRICK, 2, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ID.ofTE("brick_from_slab_stone_bricks_loose"));
+        offerLesserDropsFromSlab(exporter, ModItems.STONE_BRICK_2, 2, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ID.ofTE("brick_from_slab_deepslate_bricks_loose"));
 
     }
 
@@ -188,7 +204,9 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerBlockFromSlabs(exporter, ModBlocks.DIORITE_LOOSE, ModBlocks.SLAB_DIORITE_LOOSE, ID.ofTE("block_from_slab_diorite_loose"));
         offerBlockFromSlabs(exporter, ModBlocks.BRICKS_LOOSE, ModBlocks.SLAB_BRICKS_LOOSE, ID.ofTE("block_from_slab_bricks_loose"));
         offerBlockFromSlabs(exporter, ModBlocks.STONE_BRICKS_LOOSE, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ID.ofTE("block_from_slab_stone_bricks_loose"));
+
         offerBlockFromSlabs(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ID.ofTE("block_from_slab_deepslate_bricks_loose"));
+        offerBlockFromSlabs(exporter, ModBlocks.NETHER_BRICKS_LOOSE, ModBlocks.SLAB_NETHER_BRICKS_LOOSE, ID.ofTE("block_from_slab_nether_bricks_loose"));
 
         // From piles, small stones/shards
         offerBlockFromLesserDrops(exporter, Blocks.SAND, ModItems.PILE_SAND, ID.ofTE("block_from_pile_sand"));
@@ -201,8 +219,11 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerBlockFromLesserDrops(exporter, ModBlocks.ANDESITE_LOOSE, ModItems.SHARD_ANDESITE, ID.ofTE("block_from_shard_andesite"));
         offerBlockFromLesserDrops(exporter, ModBlocks.DIORITE_LOOSE, ModItems.SHARD_DIORITE, ID.ofTE("block_from_shard_diorite"));
         offerBlockFromLesserDrops(exporter, ModBlocks.BRICKS_LOOSE, Items.BRICK, ID.ofTE("block_from_brick"));
-        offerBlockFromLesserDrops(exporter, ModBlocks.STONE_BRICKS_LOOSE, ModItems.STONE_BRICK, ID.ofTE("block_from_stone_brick"));
-        offerBlockFromLesserDrops(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModItems.STONE_BRICK_2, ID.ofTE("block_from_stone_brick_"));
+        offerBlockFromLesserDrops(exporter, ModBlocks.NETHER_BRICKS_LOOSE, Items.NETHER_BRICK, ID.ofTE("block_from_nether_brick"));
+
+        offerStoneBricksBlockFromLesserDrops(exporter, ModBlocks.STONE_BRICKS_LOOSE, ModItems.STONE_BRICK, ID.ofTE("block_from_stone_brick"));
+        offerStoneBricksBlockFromLesserDrops(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModItems.STONE_BRICK_2, ID.ofTE("deepslate_from_stone_brick"));
+
 
         offerFullBlockFromLesserDrops(exporter, ModBlocks.CLAY_BLOCK, Items.CLAY_BALL, ID.ofTE("block_from_clay_ball"));
 
@@ -214,15 +235,18 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerSimpleStairs(exporter, ModBlocks.WHITE_COBBLESTONE_STAIRS, ModBlocks.WHITE_COBBLESTONE, ID.ofTE("white_cobblestone_stairs"));
 
         // 2x2 and 3x3 stair recipes in one method.
-        offerCombinedStairs(exporter, ModBlocks.COBBLESTONE_LOOSE_STAIRS, ModBlocks.COBBLESTONE_LOOSE, ID.ofTE("stairs_cobblestone_loose"));
-        offerCombinedStairs(exporter, ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, ModBlocks.COBBLED_DEEPSLATE_LOOSE, ID.ofTE("stairs_cobbled_deepslate_loose"));
-        offerCombinedStairs(exporter, ModBlocks.GRANITE_LOOSE_STAIRS, ModBlocks.GRANITE_LOOSE, ID.ofTE("stairs_granite_loose"));
-        offerCombinedStairs(exporter, ModBlocks.ANDESITE_LOOSE_STAIRS, ModBlocks.ANDESITE_LOOSE, ID.ofTE("stairs_andesite_loose"));
-        offerCombinedStairs(exporter, ModBlocks.DIORITE_LOOSE_STAIRS, ModBlocks.DIORITE_LOOSE, ID.ofTE("stairs_diorite_loose"));
-        offerCombinedStairs(exporter, ModBlocks.BRICKS_LOOSE_STAIRS, ModBlocks.BRICKS_LOOSE, ID.ofTE("stairs_bricks_loose"));
-        offerCombinedStairs(exporter, ModBlocks.STONE_BRICKS_LOOSE_STAIRS, ModBlocks.STONE_BRICKS_LOOSE, ID.ofTE("stairs_stone_bricks_loose"));
-        offerCombinedStairs(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ID.ofTE("stairs_deepslate_bricks_loose"));
+        offerCombinedStairs(exporter, ModBlocks.COBBLESTONE_LOOSE_STAIRS, ModBlocks.COBBLESTONE_LOOSE, ModItems.SMALL_STONE, ID.ofTE("stairs_cobblestone_loose"));
+        offerCombinedStairs(exporter, ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, ModBlocks.COBBLED_DEEPSLATE_LOOSE, ModItems.SMALL_STONE_2, ID.ofTE("stairs_cobbled_deepslate_loose"));
+        offerCombinedStairs(exporter, ModBlocks.GRANITE_LOOSE_STAIRS, ModBlocks.GRANITE_LOOSE, ModItems.SHARD_GRANITE, ID.ofTE("stairs_granite_loose"));
+        offerCombinedStairs(exporter, ModBlocks.ANDESITE_LOOSE_STAIRS, ModBlocks.ANDESITE_LOOSE, ModItems.SHARD_ANDESITE, ID.ofTE("stairs_andesite_loose"));
+        offerCombinedStairs(exporter, ModBlocks.DIORITE_LOOSE_STAIRS, ModBlocks.DIORITE_LOOSE, ModItems.SHARD_DIORITE, ID.ofTE("stairs_diorite_loose"));
+        offerCombinedStairs(exporter, ModBlocks.BRICKS_LOOSE_STAIRS, ModBlocks.BRICKS_LOOSE, Items.BRICK, ID.ofTE("stairs_bricks_loose"));
+        offerCombinedStairs(exporter, ModBlocks.STONE_BRICKS_LOOSE_STAIRS, ModBlocks.STONE_BRICKS_LOOSE, ModItems.STONE_BRICK, ID.ofTE("stairs_stone_bricks_loose"));
+        offerCombinedStairs(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModItems.STONE_BRICK_2, ID.ofTE("stairs_deepslate_bricks_loose"));
+        offerCombinedStairs(exporter, ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, ModBlocks.NETHER_BRICKS_LOOSE, Items.NETHER_BRICK, ID.ofTE("stairs_nether_bricks_loose"));
 
+        offerVeryCompactStairs(exporter, ModBlocks.STONE_BRICKS_LOOSE_STAIRS, ModItems.STONE_BRICK, ID.ofTE("stairs_stone_bricks_loose"));
+        offerVeryCompactStairs(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, ModItems.STONE_BRICK_2, ID.ofTE("stairs_deepslate_bricks_loose"));
     }
 
     private void addSlabRecipes(RecipeExporter exporter) {
@@ -240,8 +264,10 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_ANDESITE_LOOSE, ModItems.SHARD_ANDESITE, ID.ofTE("slab_andesite_loose"));
         offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_DIORITE_LOOSE, ModItems.SHARD_DIORITE, ID.ofTE("slab_diorite_loose"));
         offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_BRICKS_LOOSE, Items.BRICK, ID.ofTE("slab_bricks_loose"));
-        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ModItems.STONE_BRICK, ID.ofTE("slab_stone_bricks_loose"));
-        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ModItems.STONE_BRICK_2, ID.ofTE("slab_deepslate_bricks_loose"));
+        offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_NETHER_BRICKS_LOOSE, Items.NETHER_BRICK, ID.ofTE("slab_nether_bricks_loose"));
+
+        offerStoneBrickSlabFromLesserDrops(exporter, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ModItems.STONE_BRICK, ID.ofTE("slab_stone_bricks_loose"));
+        offerStoneBrickSlabFromLesserDrops(exporter, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ModItems.STONE_BRICK_2, ID.ofTE("slab_deepslate_bricks_loose"));
 
         // From full loose blocks
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_DIRT, ModBlocks.DIRT_LOOSE, ID.ofTE("slab_dirt_from_block"));
@@ -254,6 +280,8 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_ANDESITE_LOOSE, ModBlocks.ANDESITE_LOOSE, ID.ofTE("slab_andesite_loose_from_block"));
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_DIORITE_LOOSE, ModBlocks.DIORITE_LOOSE, ID.ofTE("slab_diorite_loose_from_block"));
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_BRICKS_LOOSE, ModBlocks.BRICKS_LOOSE, ID.ofTE("slab_bricks_loose_from_block"));
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_NETHER_BRICKS_LOOSE, ModBlocks.NETHER_BRICKS_LOOSE, ID.ofTE("slab_nether_bricks_loose_from_block"));
+
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ModBlocks.STONE_BRICKS_LOOSE, ID.ofTE("slab_stone_bricks_loose_from_block"));
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ID.ofTE("slab_deepslate_bricks_loose_from_block"));
 
@@ -286,35 +314,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .criterion("has_netherite_ingot", conditionsFromItem(Items.NETHERITE_INGOT))
                 .offerTo(exporter, ID.ofTE("netherite_nugget_from_netherite_ingot"));
 
-        /**
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.STONE_BRICK, 4)
-                .input(Items.STONE)
-                .input(BTWRConventionalTags.Items.MODERN_CHISELS)
-                .criterion("has_stone", conditionsFromItem(Items.STONE))
-                .offerTo(exporter, ID.ofTE("stone_brick_from_stone"));
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.STONE_BRICK, 4)
-                .input(Items.STONE)
-                .input(BTWRConventionalTags.Items.ADVANCED_CHISELS)
-                .criterion("has_stone", conditionsFromItem(Items.STONE))
-                .offerTo(exporter, ID.ofTE("stone_brick_from_stone_advanced"));
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.STONE_BRICK_2, 4)
-                .input(Items.DEEPSLATE)
-                .input(BTWRConventionalTags.Items.MODERN_CHISELS)
-                .criterion("has_deepslate", conditionsFromItem(Items.DEEPSLATE))
-                .offerTo(exporter, ID.ofTE("stone_brick_2_from_deepslate"));
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.STONE_BRICK_2, 4)
-                .input(Items.DEEPSLATE)
-                .input(BTWRConventionalTags.Items.ADVANCED_CHISELS)
-                .criterion("has_deepslate", conditionsFromItem(Items.DEEPSLATE))
-                .offerTo(exporter, ID.ofTE("stone_brick_2_from_deepslate_advanced"));
-         **/
-
-
-
-
     }
 
     private void addCookingRecipes(RecipeExporter exporter) {
@@ -326,6 +325,13 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
         CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(ModBlocks.WHITE_COBBLESTONE), RecipeCategory.BUILDING_BLOCKS,
                 ModBlocks.WHITE_STONE, 0.15f, 100).criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE)).offerTo(exporter);
+
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.NETHER_BRICK), RecipeCategory.MISC,
+                ModItems.NETHER_BRICK_UNFIRED, 0.10f, 200).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, ID.ofTE("nether_brick_from_smelting"));
+
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.NETHER_BRICK), RecipeCategory.MISC,
+                ModItems.NETHER_BRICK_UNFIRED, 0.15f, 100).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, ID.ofTE("nether_brick_from_blasting"));
+
 
     }
     // LESSER DROP METHODS
@@ -377,6 +383,15 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .offerTo(exporter, id);
     }
 
+    private static void offerStoneBrickSlabFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .input('#', input)
+                .pattern("##")
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, id);
+    }
+
     // BLOCK METHODS
     private static void offerBlockFromSlabs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
@@ -389,6 +404,16 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
     }
 
+    private static void offerStoneBricksBlockFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .input('S', input)
+                .pattern("SS")
+                .pattern("SS")
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, id);
+    }
+
     // an 8 input block
     private static void offerBlockFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
@@ -397,6 +422,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter, id);
     }
+
 
     // a 9 input block
     private static void offerFullBlockFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
@@ -408,7 +434,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
     }
 
     /** Combined stairs method used for loose blocks only **/
-    private static void offerCombinedStairs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
+    private static void offerCombinedStairs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, ItemConvertible pileInput, Identifier id) {
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
                 .input('#', input)
                 .pattern("# ")
@@ -426,6 +452,16 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .criterion(hasItem(input), conditionsFromItem(input))
                 .offerTo(exporter, id);
 
+    }
+
+    private static void offerVeryCompactStairs(RecipeExporter exporter, ItemConvertible output, ItemConvertible pileInput, Identifier id) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output)
+                .input('#', pileInput)
+                .pattern("# ")
+                .pattern("##")
+                .group("group_te")
+                .criterion(hasItem(pileInput), conditionsFromItem(pileInput))
+                .offerTo(exporter, id + "_very_compact");
     }
 
     /** Simple stairs method usually used for non-loose blocks that create their stairs the regular way only **/

@@ -2,7 +2,6 @@ package org.tough_environment.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -60,6 +59,8 @@ public class ModItemGroup
                             //entries.add(ModItems.STONE_BRICK_1); add later when 2nd strata is available in any mod( mine or primetoxinz's)
                             entries.add(ModItems.STONE_BRICK_2);
 
+                            entries.add(ModItems.NETHER_BRICK_UNFIRED);
+
                             entries.add(ModItems.NETHER_SLUDGE);
 
 
@@ -80,6 +81,7 @@ public class ModItemGroup
                             entries.add(ModBlocks.SLAB_BRICKS_LOOSE);
                             entries.add(ModBlocks.SLAB_STONE_BRICKS_LOOSE);
                             entries.add(ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE);
+                            entries.add(ModBlocks.SLAB_NETHER_BRICKS_LOOSE);
 
                             entries.add(ModBlocks.SLAB_WHITE_STONE);
                             entries.add(ModBlocks.SLAB_WHITE_COBBLESTONE);
@@ -100,6 +102,7 @@ public class ModItemGroup
                             entries.add(ModBlocks.BRICKS_LOOSE);
                             entries.add(ModBlocks.STONE_BRICKS_LOOSE);
                             entries.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE);
+                            entries.add(ModBlocks.NETHER_BRICKS_LOOSE);
 
                             entries.add(ModBlocks.CLAY_BLOCK);
                             entries.add(ModBlocks.WHITE_STONE);
@@ -114,6 +117,7 @@ public class ModItemGroup
                             entries.add(ModBlocks.BRICKS_LOOSE_STAIRS);
                             entries.add(ModBlocks.STONE_BRICKS_LOOSE_STAIRS);
                             entries.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS);
+                            entries.add(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS);
 
                             entries.add(ModBlocks.WHITE_STONE_STAIRS);
                             entries.add(ModBlocks.WHITE_COBBLESTONE_STAIRS);

@@ -48,7 +48,7 @@
                 },
                 {
                   "add": false,
-                  "count": 4.0,
+                  "count": 3.0,
                   "function": "minecraft:set_count"
                 }
               ],

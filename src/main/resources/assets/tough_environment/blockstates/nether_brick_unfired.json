@@ -1,0 +1,10 @@
+{
+  "variants":
+  {
+    "facing=east": { "model": "tough_environment:block/nether_brick_unfired",  "y": 270 },
+    "facing=north": { "model": "tough_environment:block/nether_brick_unfired", "y": 180 },
+    "facing=south": { "model": "tough_environment:block/nether_brick_unfired" },
+    "facing=west": { "model": "tough_environment:block/nether_brick_unfired", "y": 90 }
+
+  }
+}

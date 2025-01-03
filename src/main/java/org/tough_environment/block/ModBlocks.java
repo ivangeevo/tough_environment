@@ -27,28 +27,30 @@ public class ModBlocks {
     public static final Block SLAB_DIORITE_LOOSE = registerBlock("slab_diorite_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_BRICKS_LOOSE = registerBlock("slab_bricks_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_STONE_BRICKS_LOOSE = registerBlock("slab_stone_bricks_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.STONE)));
-    public static final Block SLAB_DEEPSLATE_BRICKS_LOOSE = registerBlock("slab_deepslate_bricks_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.DEEPSLATE)));
+    public static final Block SLAB_DEEPSLATE_BRICKS_LOOSE = registerBlock("slab_deepslate_bricks_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.DEEPSLATE_BRICKS)));
+    public static final Block SLAB_NETHER_BRICKS_LOOSE = registerBlock("slab_nether_bricks_loose", new LooseSlabBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.NETHER_BRICKS)));
 
     public static final Block SLAB_WHITE_STONE = registerBlock("slab_white_stone", new SlabBlock(AbstractBlock.Settings.create().strength(1f).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_WHITE_COBBLESTONE = registerBlock("slab_white_cobblestone", new SlabBlock(AbstractBlock.Settings.create().strength(1f).sounds(BlockSoundGroup.STONE)));
 
 
     // Full Blocks
-    public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new Block(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block COBBLESTONE_LOOSE = registerBlock("cobblestone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block COBBLED_DEEPSLATE_LOOSE = registerBlock("cobbled_deepslate_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.1F).sounds(BlockSoundGroup.DEEPSLATE)));
     public static final Block GRANITE_LOOSE = registerBlock("granite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block ANDESITE_LOOSE = registerBlock("andesite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block DIORITE_LOOSE = registerBlock("diorite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE)));
+    public static final Block STONE_BRICKS_LOOSE = registerBlock("stone_bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE)));
+    public static final Block DEEPSLATE_BRICKS_LOOSE = registerBlock("deepslate_bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.DEEPSLATE_BRICKS)));
+    public static final Block NETHER_BRICKS_LOOSE = registerBlock("nether_bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.NETHER_BRICKS)));
 
     public static final Block CALCITE_LOOSE = registerBlock("calcite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.CALCITE)));
     public static final Block TUFF_LOOSE = registerBlock("tuff_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).requiresTool().sounds(BlockSoundGroup.TUFF)));
     public static final Block BLACKSTONE_LOOSE = registerBlock("blackstone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
     public static final Block BASALT_LOOSE = registerBlock("basalt_loose", new LoosePillarBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.BASALT)));
     public static final Block END_STONE_LOOSE = registerBlock("end_stone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));
-    public static final Block BRICKS_LOOSE = registerBlock("bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE)));
-    public static final Block STONE_BRICKS_LOOSE = registerBlock("stone_bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.STONE)));
-    public static final Block DEEPSLATE_BRICKS_LOOSE = registerBlock("deepslate_bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.DEEPSLATE)));
 
     public static final Block STONE_CONVERTING = registerBlock("stone_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block GRANITE_CONVERTING = registerBlock("granite_converting", new StoneConvertingBlock(AbstractBlock.Settings.create().strength(1.5f, 6.0f).requiresTool().sounds(BlockSoundGroup.STONE)));
@@ -83,16 +85,19 @@ public class ModBlocks {
     public static final Block GRANITE_LOOSE_STAIRS = registerBlock("granite_loose_stairs", new LooseStairsBlock(ModBlocks.GRANITE_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block DIORITE_LOOSE_STAIRS = registerBlock("diorite_loose_stairs", new LooseStairsBlock(ModBlocks.DIORITE_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block BRICKS_LOOSE_STAIRS = registerBlock("bricks_loose_stairs", new LooseStairsBlock(ModBlocks.BRICKS_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block STONE_BRICKS_LOOSE_STAIRS = registerBlock("stone_bricks_loose_stairs", new LooseStairsBlock(ModBlocks.SLAB_STONE_BRICKS_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
-    public static final Block DEEPSLATE_BRICKS_LOOSE_STAIRS = registerBlock("deepslate_bricks_loose_stairs", new LooseStairsBlock(ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.DEEPSLATE)));
+    public static final Block STONE_BRICKS_LOOSE_STAIRS = registerBlock("stone_bricks_loose_stairs", new LooseStairsBlock(ModBlocks.STONE_BRICKS_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
+    public static final Block DEEPSLATE_BRICKS_LOOSE_STAIRS = registerBlock("deepslate_bricks_loose_stairs", new LooseStairsBlock(ModBlocks.DEEPSLATE_BRICKS_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.DEEPSLATE_BRICKS)));
+    public static final Block NETHER_BRICKS_LOOSE_STAIRS = registerBlock("nether_bricks_loose_stairs", new LooseStairsBlock(ModBlocks.NETHER_BRICKS_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.NETHER_BRICKS)));
 
     public static final Block WHITE_STONE_STAIRS = registerBlock("white_stone_stairs", new StairsBlock(ModBlocks.WHITE_STONE.getDefaultState(), AbstractBlock.Settings.create().strength(1f).sounds(BlockSoundGroup.STONE)));
     public static final Block WHITE_COBBLESTONE_STAIRS = registerBlock("white_cobblestone_stairs", new StairsBlock(ModBlocks.WHITE_COBBLESTONE.getDefaultState(), AbstractBlock.Settings.create().strength(1f).sounds(BlockSoundGroup.STONE)));
 
-    // Placeable ore blocks
+    // Special placeable blocks
     public static final Block RAW_COPPER_PLACED = registerBlockWithoutItem("raw_copper_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().noCollision().sounds(BlockSoundGroup.STONE)));
     public static final Block RAW_IRON_PLACED = registerBlockWithoutItem("raw_iron_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().noCollision().sounds(BlockSoundGroup.STONE)));
     public static final Block RAW_GOLD_PLACED = registerBlockWithoutItem("raw_gold_placed", new PlacedOreChunkBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().noCollision().sounds(BlockSoundGroup.STONE)));
+
+    public static final Block NETHER_BRICK_UNFIRED = registerBlockWithoutItem("nether_brick_unfired", new UnfiredNetherBrickBlock(AbstractBlock.Settings.create().breakInstantly().nonOpaque().sounds(BlockSoundGroup.SLIME)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

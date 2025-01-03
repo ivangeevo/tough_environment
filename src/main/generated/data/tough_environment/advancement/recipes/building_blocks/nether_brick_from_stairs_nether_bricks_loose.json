@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nether_bricks_loose_stairs": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tough_environment:nether_bricks_loose_stairs"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tough_environment:nether_brick_from_stairs_nether_bricks_loose"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_nether_bricks_loose_stairs"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tough_environment:nether_brick_from_stairs_nether_bricks_loose"
+    ]
+  }
+}

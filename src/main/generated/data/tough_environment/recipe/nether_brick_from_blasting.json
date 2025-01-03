@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.15,
+  "ingredient": {
+    "item": "minecraft:nether_brick"
+  },
+  "result": {
+    "id": "tough_environment:nether_brick_unfired"
+  }
+}

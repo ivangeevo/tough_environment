@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_stone_brick_2": {
+    "has_slab_nether_bricks_loose": {
       "conditions": {
         "items": [
           {
-            "items": "tough_environment:stone_brick_2"
+            "items": "tough_environment:slab_nether_bricks_loose"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tough_environment:block_from_stone_brick_"
+        "recipe": "tough_environment:block_from_slab_nether_bricks_loose"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_stone_brick_2"
+      "has_slab_nether_bricks_loose"
     ]
   ],
   "rewards": {
     "recipes": [
-      "tough_environment:block_from_stone_brick_"
+      "tough_environment:block_from_slab_nether_bricks_loose"
     ]
   }
 }
