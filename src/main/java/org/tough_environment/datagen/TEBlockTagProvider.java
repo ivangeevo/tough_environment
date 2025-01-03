@@ -42,7 +42,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.END_STONE_CONVERTING);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STONE)
-                .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
+                .addTag(ModTags.Blocks.LOOSE_FULL_BLOCKS)
                 .add(ModBlocks.WHITE_STONE)
                 .add(ModBlocks.WHITE_COBBLESTONE)
                 .add(ModBlocks.SLAB_WHITE_STONE)
@@ -66,10 +66,10 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 //.addTag(ModTags.Blocks.STONE_STRATA2)
                 .addTag(ModTags.Blocks.STONE_STRATA3)
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
-                .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
+                .addTag(ModTags.Blocks.LOOSE_FULL_BLOCKS)
                 .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS)
 
-                // blocks
+                // exclusive (non-tag) blocks
                 .add(ModBlocks.WHITE_STONE)
                 .add(ModBlocks.WHITE_COBBLESTONE)
                 .add(ModBlocks.SLAB_WHITE_STONE)
@@ -200,13 +200,16 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BASALT_CONVERTING)
                 .add(ModBlocks.END_STONE_CONVERTING);
 
-        this.getOrCreateTagBuilder(ModTags.Blocks.LOOSE_STONE_BLOCKS)
+        this.getOrCreateTagBuilder(ModTags.Blocks.LOOSE_FULL_BLOCKS)
                 .add(ModBlocks.SLAB_COBBLESTONE_LOOSE)
                 .add(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE)
                 .add(ModBlocks.SLAB_ANDESITE_LOOSE)
                 .add(ModBlocks.SLAB_GRANITE_LOOSE)
                 .add(ModBlocks.SLAB_DIORITE_LOOSE)
                 .add(ModBlocks.SLAB_BRICKS_LOOSE)
+                .add(ModBlocks.SLAB_STONE_BRICKS_LOOSE)
+                .add(ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE)
+                .add(ModBlocks.SLAB_NETHER_BRICKS_LOOSE)
 
                 .add(ModBlocks.COBBLESTONE_LOOSE)
                 .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
@@ -227,7 +230,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.DIORITE_LOOSE_STAIRS)
                 .add(ModBlocks.BRICKS_LOOSE_STAIRS)
                 .add(ModBlocks.STONE_BRICKS_LOOSE_STAIRS)
-                .add(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS);
+                .add(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS)
+                .add(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS);
 
         this.getOrCreateTagBuilder(ModTags.Blocks.MORTARED_BLOCKS)
                 .add(Blocks.COBBLESTONE)
