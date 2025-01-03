@@ -6,11 +6,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -82,40 +80,30 @@ public class MortarReceiverBlock extends FallingBlock
     }
 
 
-    public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player)
-    {
 
-        Block newBlock = getReplacementBlock(state.getBlock());
-
-        if (newBlock != null)
-        {
+    public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player) {
+        Block newBlock = this.getReplacementBlock(state.getBlock());
+        if (newBlock != null) {
             world.setBlockState(pos, newBlock.getStateWithProperties(state), Block.NOTIFY_ALL);
         }
 
         world.playSound(null,pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
-
     }
 
     //TODO: Fix the replacement logic to work better. Right now it doesn't make sense and I have no clue where blocks map is actually saved
-    private Block getReplacementBlock(Block looseBlock)
-    {
-
+    private Block getReplacementBlock(Block looseBlock) {
         // Load the block replacement map
-        Map<String, String> blockReplacementMap = BlockMortarMapper.loadMap();
+        Map<Block, Block> blockReplacementMap = BlockMortarMapper.loadMap();
 
-        // Get the identifier of the loose block
-        Identifier looseBlockId = Registries.BLOCK.getId(looseBlock);
-
-        // Check if the map contains the loose block key
-        String replacementKey = looseBlockId.toString();
-        if (blockReplacementMap != null && blockReplacementMap.containsKey(replacementKey))
-        {
-            String replacementValue = blockReplacementMap.get(replacementKey);
-            return Registries.BLOCK.get(Identifier.of(replacementValue));
+        // Check if the map contains the loose block
+        if (blockReplacementMap.containsKey(looseBlock)) {
+            return blockReplacementMap.get(looseBlock);
         }
 
-        return null;
+        // Return null or a default block if no replacement is found
+        return null; // Or Blocks.AIR for an explicit default
     }
+
 
 
 
