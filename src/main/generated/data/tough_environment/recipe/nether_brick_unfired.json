@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "tough_environment:nether_sludge"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tough_environment:nether_brick_unfired"
+  }
+}
