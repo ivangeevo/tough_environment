@@ -21,7 +21,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Fixed bricks slab vanilla loot table to drop its loose counterpart
 + Fixed some missing recipes & loot tables for the stone/deepslate stone brick blocks.
 + Changed the mod block tag "Loose Stone Blocks" to "Loose Full Blocks"
-+ Removed (brought back) the ability to break fire blocks by hand (no outline)
++ Removed (brought back) the ability to break fire blocks by hand
 
 # 0.6 Alpha
 + Added Nether Sludge item. It's sludge time!
