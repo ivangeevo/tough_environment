@@ -12,6 +12,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.blocks.*;
+import org.tough_environment.util.MakeAsFallingBlock;
 
 public class ModBlocks {
 
@@ -123,6 +124,7 @@ public class ModBlocks {
         placeable.registerPlaceable(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED);
         placeable.registerPlaceable(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED);
         placeable.registerPlaceable(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED);
+
     }
 
 

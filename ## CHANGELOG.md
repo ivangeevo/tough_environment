@@ -5,6 +5,9 @@ said, keep in mind the project is still in alpha. The mod will likely get a soli
 both before beta & release, then everything should remain relatively untouched to not mess up already existing worlds of players.
 
 + Added recipe for making stone brick items from crafting smooth stone blocks together with a modern/advanced chisel in a crafting bench.
++ Changed "turned falling blocks" so that now the dimensions they can fall in has to be defined
+with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_FALLING_BLOCKS" block tag.
++ Netherrack is now a falling block in the overworld by default.
 + Added White stone & cobblestone slabs & stairs.
 + Added Nether bricks, stairs and slab blocks.
 + Added Unfired Nether Brick item and it's placeable block counterpart.

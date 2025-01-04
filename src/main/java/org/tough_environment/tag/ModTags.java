@@ -60,6 +60,10 @@ public class ModTags
 
         public static final TagKey<Block> TURNED_TO_FALLING_BLOCKS = register("turned_to_falling_blocks");
 
+        public static final TagKey<Block> CAN_FALL_IN_OVERWORLD = register("can_fall_in_overworld");
+        public static final TagKey<Block> CAN_FALL_IN_THE_NETHER = register("can_fall_in_the_nether");
+        public static final TagKey<Block> CAN_FALL_IN_THE_END = register("can_fall_in_the_end");
+
         private static TagKey<Block> register(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
