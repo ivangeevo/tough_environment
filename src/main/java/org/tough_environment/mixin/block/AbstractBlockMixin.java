@@ -20,8 +20,7 @@ import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.MakeAsFallingBlock;
 
 @Mixin(AbstractBlock.class)
-public abstract class AbstractBlockMixin implements LandingBlock
-{
+public abstract class AbstractBlockMixin implements LandingBlock {
 
     @Inject(method = "onBlockAdded", at = @At("HEAD"))
     private void onOnBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify, CallbackInfo ci)
@@ -38,11 +37,7 @@ public abstract class AbstractBlockMixin implements LandingBlock
     @Inject(method = "getStateForNeighborUpdate", at = @At("HEAD"), cancellable = true)
     private void onGetStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir)
     {
-        if (state.isIn(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS))
-        {
-            world.scheduleBlockTick(pos, state.getBlock(), 2);
-            cir.setReturnValue(state);
-        }
+        MakeAsFallingBlock.getInstance().onGetStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos, cir);
     }
 
 }
