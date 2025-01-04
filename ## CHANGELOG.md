@@ -22,6 +22,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Fixed some missing recipes & loot tables for the stone/deepslate stone brick blocks.
 + Changed the mod block tag "Loose Stone Blocks" to "Loose Full Blocks"
 + Removed (brought back) the ability to break fire blocks by hand
++ Updated the mod to Fabric API 0.114.0 & BTWR-SL 0.40
 
 # 0.6 Alpha
 + Added Nether Sludge item. It's sludge time!
