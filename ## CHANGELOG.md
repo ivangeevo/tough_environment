@@ -1,3 +1,7 @@
+# 0.7.2 Alpha
++ Fixed a bug where netherrack was still a falling block, but lacked proper block updates and that's why I didn't notice it earlier.
+
+
 # 0.7.1 Alpha
 + Fixed a critical bug and removed the ability to make blocks falling per dimension & removed falling netherrack.
 This will be pushed back for a later update.

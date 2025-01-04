@@ -311,10 +311,12 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.RAW_COPPER_BLOCK)
                 .add(Blocks.RAW_IRON_BLOCK)
                 .add(Blocks.RAW_GOLD_BLOCK)
-                .add(Blocks.NETHERRACK);
+                //.add(Blocks.NETHERRACK)
+        ;
 
         this.getOrCreateTagBuilder(ModTags.Blocks.CAN_FALL_IN_OVERWORLD)
-                .add(Blocks.NETHERRACK);
+                //.add(Blocks.NETHERRACK)
+        ;
     }
 
 }
