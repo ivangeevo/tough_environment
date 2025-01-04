@@ -1,3 +1,7 @@
+# 0.7.1 Alpha
++ Fixed a critical bug and removed the ability to make blocks falling per dimension & removed falling netherrack.
+This will be pushed back for a later update.
+
 # 0.7 Alpha
 + !!!Block/Item breaking update -> Rewrote the names of some stone/stone brick blocks items which will cause them to 
 disappear from the world/inventories. Please back up your worlds if you don't want to lose them. With all of that being

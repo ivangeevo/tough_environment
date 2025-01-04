@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.MakeAsFallingBlock;
 
 @Mixin(AbstractBlock.class)
@@ -32,7 +33,11 @@ public abstract class AbstractBlockMixin implements LandingBlock {
     @Inject(method = "getStateForNeighborUpdate", at = @At("HEAD"), cancellable = true)
     private void onGetStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir)
     {
-        MakeAsFallingBlock.getInstance().onGetStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos, cir);
+        if (state.isIn(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS) /**&& MakeAsFallingBlock.canFallInCurrentDimension((World) world, state)**/)
+        {
+            world.scheduleBlockTick(pos, state.getBlock(), 2);
+            cir.setReturnValue(state);
+        }
     }
 
 }
