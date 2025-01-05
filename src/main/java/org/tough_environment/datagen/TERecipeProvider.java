@@ -215,6 +215,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerBlockFromSlabs(exporter, ModBlocks.DIORITE_LOOSE, ModBlocks.SLAB_DIORITE_LOOSE, ID.ofTE("block_from_slab_diorite_loose"));
         offerBlockFromSlabs(exporter, ModBlocks.BRICKS_LOOSE, ModBlocks.SLAB_BRICKS_LOOSE, ID.ofTE("block_from_slab_bricks_loose"));
         offerBlockFromSlabs(exporter, ModBlocks.STONE_BRICKS_LOOSE, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ID.ofTE("block_from_slab_stone_bricks_loose"));
+        offerBlockFromSlabs(exporter, ModBlocks.DIRT_PACKED, ModBlocks.SLAB_DIRT_PACKED, ID.ofTE("block_from_slab_packed_dirt"));
 
         offerBlockFromSlabs(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ID.ofTE("block_from_slab_deepslate_bricks_loose"));
         offerBlockFromSlabs(exporter, ModBlocks.NETHER_BRICKS_LOOSE, ModBlocks.SLAB_NETHER_BRICKS_LOOSE, ID.ofTE("block_from_slab_nether_bricks_loose"));
@@ -237,6 +238,12 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
 
         offerFullBlockFromLesserDrops(exporter, ModBlocks.CLAY_BLOCK, Items.CLAY_BALL, ID.ofTE("block_from_clay_ball"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE, 2)
+                .input(ModBlocks.DIRT_PACKED)
+                .criterion("has_dirt_packed", conditionsFromItem(ModBlocks.DIRT_PACKED))
+                .offerTo(exporter, ID.ofTE("dirt_loose_from_dirt_packed"));
+
 
     }
 
@@ -261,8 +268,9 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
     }
 
     private void addSlabRecipes(RecipeExporter exporter) {
-        offerSimpleSlabs(exporter, ModBlocks.SLAB_WHITE_STONE, ModBlocks.WHITE_STONE, ID.ofTE("white_stone_slab"));
-        offerSimpleSlabs(exporter, ModBlocks.SLAB_WHITE_COBBLESTONE, ModBlocks.WHITE_COBBLESTONE, ID.ofTE("white_cobblestone_slab"));
+        offerSimpleSlabs(exporter, ModBlocks.SLAB_WHITE_STONE, ModBlocks.WHITE_STONE, ID.ofTE("slab_white_stone"));
+        offerSimpleSlabs(exporter, ModBlocks.SLAB_WHITE_COBBLESTONE, ModBlocks.WHITE_COBBLESTONE, ID.ofTE("slab_white_cobblestone"));
+        offerSimpleSlabs(exporter, ModBlocks.SLAB_DIRT_PACKED, ModBlocks.SLAB_DIRT_PACKED, ID.ofTE("slab_dirt_packed"));
 
         // From lesser drops/items (stones/piles/dust)
         offerSlabFromLesserDrops(exporter, ModBlocks.SLAB_DIRT, ModItems.PILE_DIRT, ID.ofTE("slab_dirt"));
@@ -292,9 +300,15 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_DIORITE_LOOSE, ModBlocks.DIORITE_LOOSE, ID.ofTE("slab_diorite_loose_from_block"));
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_BRICKS_LOOSE, ModBlocks.BRICKS_LOOSE, ID.ofTE("slab_bricks_loose_from_block"));
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_NETHER_BRICKS_LOOSE, ModBlocks.NETHER_BRICKS_LOOSE, ID.ofTE("slab_nether_bricks_loose_from_block"));
+        offerSlabsFromBlock(exporter, ModBlocks.SLAB_DIRT_PACKED, ModBlocks.DIRT_PACKED, ID.ofTE("slab_dirt_packed_from_block"));
 
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ModBlocks.STONE_BRICKS_LOOSE, ID.ofTE("slab_stone_bricks_loose_from_block"));
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ID.ofTE("slab_deepslate_bricks_loose_from_block"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE)
+                .input(ModBlocks.SLAB_DIRT_PACKED)
+                .criterion("has_slab_dirt_packed", conditionsFromItem(ModBlocks.SLAB_DIRT_PACKED))
+                .offerTo(exporter, ID.ofTE("dirt_loose_from_slab_dirt_packed"));
 
     }
 

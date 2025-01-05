@@ -33,6 +33,7 @@ public class ModBlocks {
 
     public static final Block SLAB_WHITE_STONE = registerBlock("slab_white_stone", new SlabBlock(AbstractBlock.Settings.create().strength(1f).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_WHITE_COBBLESTONE = registerBlock("slab_white_cobblestone", new SlabBlock(AbstractBlock.Settings.create().strength(1f).sounds(BlockSoundGroup.STONE)));
+    public static final Block SLAB_DIRT_PACKED = registerBlock("slab_dirt_packed", new SlabBlock(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN).strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
 
 
     // Full Blocks
@@ -78,6 +79,8 @@ public class ModBlocks {
     public static final Block CLAY_BLOCK = registerBlock("clay_block", new Block(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE_GRAY).instrument(NoteBlockInstrument.FLUTE).strength(0.6f).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block WHITE_STONE = registerBlock("white_stone", new Block(AbstractBlock.Settings.create().mapColor(MapColor.WHITE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.5f)));
     public static final Block WHITE_COBBLESTONE = registerBlock("white_cobblestone", new Block(AbstractBlock.Settings.create().mapColor(MapColor.WHITE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0f)));
+
+    public static final Block DIRT_PACKED = registerBlock("dirt_packed", new Block(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN).strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
 
     // Stairs
     public static final Block COBBLESTONE_LOOSE_STAIRS = registerBlock("cobblestone_loose_stairs", new LooseStairsBlock(ModBlocks.COBBLESTONE_LOOSE.getDefaultState(), AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));

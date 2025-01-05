@@ -108,6 +108,7 @@ public class ModItemGroup
                             entries.add(ModBlocks.WHITE_STONE);
                             entries.add(ModBlocks.WHITE_COBBLESTONE);
 
+                            entries.add(ModBlocks.DIRT_PACKED);
 
                             entries.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS);
                             entries.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS);

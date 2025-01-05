@@ -79,6 +79,7 @@ public class TELangGenerator extends FabricLanguageProvider {
 
         tb.add(ModBlocks.CLAY_BLOCK, "Block of Clay");
 
+        tb.add(ModBlocks.DIRT_PACKED, "Packed Earth");
 
         tb.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS, "Loose Cobblestone Stairs");
         tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, "Loose Cobbled Deepslate Stairs");

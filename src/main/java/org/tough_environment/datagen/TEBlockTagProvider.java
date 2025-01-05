@@ -1,6 +1,7 @@
 package org.tough_environment.datagen;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
@@ -83,6 +84,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_GRAVEL)
                 .add(ModBlocks.SLAB_SAND)
                 .add(ModBlocks.SLAB_RED_SAND)
+                .add(ModBlocks.SLAB_DIRT_PACKED)
                 .add(ModBlocks.DIRT_LOOSE)
                 .add(ModBlocks.CLAY_BLOCK);
 
@@ -101,7 +103,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
         getOrCreateTagBuilder(BlockTags.DIRT)
                 .add(ModBlocks.DIRT_LOOSE)
-                .add(ModBlocks.SLAB_DIRT);
+                .add(ModBlocks.DIRT_PACKED)
+                .add(ModBlocks.SLAB_DIRT)
+                .add(ModBlocks.SLAB_DIRT_PACKED);
 
         getOrCreateTagBuilder(BlockTags.STAIRS)
                 .forceAddTag(ModTags.Blocks.LOOSE_STAIRS)

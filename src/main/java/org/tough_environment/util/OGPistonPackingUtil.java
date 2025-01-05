@@ -4,13 +4,11 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.PistonBlock;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -18,6 +16,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.tough_environment.block.ModBlocks;
+import org.tough_environment.item.ModItems;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,12 +27,52 @@ public class OGPistonPackingUtil
 
     private static final Map<ItemConvertible, PackingRecipe> PACKING_RECIPES = new HashMap<>();
 
-    static {
-        // Define recipes: Input item -> Output block + required count
+    public static void registerPackables() {
+        initItemsPacking();
+        initLooseBlocksPacking();
+    }
+
+    private static void initItemsPacking() {
+
+        PACKING_RECIPES.put(ModItems.PILE_DIRT, new PackingRecipe(ModBlocks.DIRT_LOOSE, 8));
+        PACKING_RECIPES.put(ModItems.PILE_GRAVEL, new PackingRecipe(Blocks.GRAVEL, 8));
+        PACKING_RECIPES.put(ModItems.PILE_SAND, new PackingRecipe(Blocks.SAND, 8));
+        PACKING_RECIPES.put(ModItems.PILE_RED_SAND, new PackingRecipe(Blocks.RED_SAND, 8));
+        PACKING_RECIPES.put(ModItems.PILE_CLAY, new PackingRecipe(ModBlocks.CLAY_BLOCK, 18));
+
+        PACKING_RECIPES.put(ModItems.SMALL_STONE, new PackingRecipe(ModBlocks.COBBLESTONE_LOOSE, 8));
+        //PACKING_RECIPES.put(ModItems.SMALL_STONE_1, new PackingRecipe(ModBlocks.MANTLESTONE_LOOSE, 8));
+        PACKING_RECIPES.put(ModItems.SMALL_STONE_2, new PackingRecipe(ModBlocks.COBBLED_DEEPSLATE_LOOSE, 8));
+
+        PACKING_RECIPES.put(ModItems.STONE_BRICK, new PackingRecipe(ModBlocks.STONE_BRICKS_LOOSE, 4));
+        //PACKING_RECIPES.put(ModItems.STONE_BRICK_1, new PackingRecipe(ModBlocks.MANTLESTONE_BRICKS_LOOSE, 4));
+        PACKING_RECIPES.put(ModItems.STONE_BRICK_2, new PackingRecipe(ModBlocks.DEEPSLATE_BRICKS_LOOSE, 4));
+
         PACKING_RECIPES.put(Items.CLAY_BALL, new PackingRecipe(ModBlocks.CLAY_BLOCK, 9));
-        PACKING_RECIPES.put(Items.SNOWBALL, new PackingRecipe(Blocks.SNOW_BLOCK, 4));
-        PACKING_RECIPES.put(Items.FLINT, new PackingRecipe(Blocks.GRAVEL, 9));
-        // Add more recipes as needed
+
+
+        //PACKING_RECIPES.put(Items.BONE, new PackingRecipe(ModBlocks.BONE_BLOCK, 9));
+        //PACKING_RECIPES.put(Items.ROTTEN_FLESH, new PackingRecipe(ModBlocks.ROTTEN_FLESH_BLOCK, 9));
+        PACKING_RECIPES.put(Items.RAW_GOLD, new PackingRecipe(Blocks.RAW_GOLD_BLOCK, 9));
+        PACKING_RECIPES.put(Items.RAW_IRON, new PackingRecipe(Blocks.RAW_IRON_BLOCK, 9));
+        PACKING_RECIPES.put(Items.RAW_COPPER, new PackingRecipe(Blocks.RAW_COPPER_BLOCK, 9));
+        //PACKING_RECIPES.put(BTWR_Items.CREEPER_OYSTERS, new PackingRecipe(BTWR_Blocks.CREEPER_OYSTERS_BLOCK, 16));
+        //PACKING_RECIPES.put(Items.SPIDER_EYE, new PackingRecipe(BTWR_Blocks.SPIDER_EYES_BLOCK, 16));
+        //PACKING_RECIPES.put(Items.ENDER_PEARL, new PackingRecipe(BTWR_Blocks.ENDER_BLOCK, 9));
+
+        PACKING_RECIPES.put(Items.BRICK, new PackingRecipe(ModBlocks.BRICKS_LOOSE, 8));
+        PACKING_RECIPES.put(Items.NETHER_BRICK, new PackingRecipe(ModBlocks.NETHER_BRICKS_LOOSE, 8));
+        //PACKING_RECIPES.put(BwtItems.dungItem, new PackingRecipe(BTWR_Blocks.DUNG_BLOCK, 8));
+        //PACKING_RECIPES.put(Items.FLINT, new PackingRecipe(BTWR_Blocks.DUNG_BLOCK, 8));
+        //PACKING_RECIPES.put(BwtItems.soapItem, new PackingRecipe(BTWR_Blocks.SOAP_BLOCK, 8));
+
+    }
+
+
+    private static void initLooseBlocksPacking() {
+        PACKING_RECIPES.put(ModBlocks.DIRT_LOOSE.asItem(), new PackingRecipe(ModBlocks.DIRT_PACKED, 2));
+        PACKING_RECIPES.put(Blocks.SAND.asItem(), new PackingRecipe(Blocks.SANDSTONE, 2));
+
     }
 
     public static void attemptToPackItems(World world, BlockPos pos, Direction direction) {
