@@ -8,10 +8,8 @@ import org.tough_environment.block.ModBlocks;
 import org.tough_environment.config.TESettings;
 import org.tough_environment.item.ModItemGroup;
 import org.tough_environment.item.ModItems;
-import org.tough_environment.recipe.ModRecipes;
 import org.tough_environment.registry.ModFuelItems;
 import org.tough_environment.util.BlockMortarMapper;
-import org.tough_environment.util.OGPistonPackingUtil;
 
 import java.io.File;
 import java.io.FileReader;
@@ -41,7 +39,6 @@ public class ToughEnvironmentMod implements ModInitializer
         ModItems.registerModItems();
         ModItemGroup.registerItemGroups();
         ModFuelItems.register();
-        ModRecipes.registerRecipes();
         // Initialize or load the block replacement map
         BlockMortarMapper.init();
 

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dirt_packed": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tough_environment:dirt_packed"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tough_environment:slab_dirt_packed_from_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dirt_packed"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tough_environment:slab_dirt_packed_from_block"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "group_te",
+  "ingredients": [
+    {
+      "item": "tough_environment:slab_dirt_packed"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "tough_environment:dirt_loose"
+  }
+}

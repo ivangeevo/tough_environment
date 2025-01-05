@@ -12,8 +12,7 @@
     "block.AbstractBlockMixin",
     "block.BlockMixin",
     "block.FarmlandBlockMixin",
-    "block.SpreadableBlockMixin",
-    "block.entity.PistonBlockEntityMixin"
+    "block.SpreadableBlockMixin"
   ],
   "client": [
   ],

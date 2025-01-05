@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "group_te",
+  "key": {
+    "#": {
+      "item": "tough_environment:dirt_packed"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "tough_environment:slab_dirt_packed"
+  }
+}
