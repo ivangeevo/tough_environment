@@ -1,5 +1,7 @@
-# 0.7.2 Alpha
+# 0.7.3 Alpha
 + Added Packed Earth and Packed Earth Slab blocks!
+
+# 0.7.2 Alpha
 + Fixed a bug where netherrack was still a falling block, but lacked proper block updates and that's why I didn't notice it earlier.
 
 # 0.7.1 Alpha
