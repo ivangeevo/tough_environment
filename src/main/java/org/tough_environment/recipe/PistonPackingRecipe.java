@@ -1,6 +1,7 @@
 package org.tough_environment.recipe;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancement.Advancement;
@@ -12,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.CraftingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
@@ -22,34 +24,27 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
-import net.minecraft.recipe.input.RecipeInput;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Unique;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Function;
 
 public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
     protected final String group;
     protected final CraftingRecipeCategory category;
-    final Ingredient ingredient;
-    final int count;
-    final Block output;
-    protected final DefaultedList<ItemStack> drops;
+    final DefaultedList<Ingredient> ingredients;
+    protected final Ingredient result;
 
-    public PistonPackingRecipe(String group, CraftingRecipeCategory category, Ingredient ingredient, int count, Block output, List<ItemStack> drops) {
+    public PistonPackingRecipe(String group, CraftingRecipeCategory category, DefaultedList<Ingredient> ingredients, Ingredient result) {
         this.group = group;
         this.category = category;
-        this.ingredient = ingredient;
-        this.count = count;
-        this.output = output;
-        this.drops = DefaultedList.copyOf(ItemStack.EMPTY, drops.toArray(new ItemStack[0]));
+        this.ingredients = ingredients;
+        this.result = Ingredient.EMPTY;
     }
 
     @Override
@@ -64,8 +59,20 @@ public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
 
     @Override
     public boolean matches(PackingRecipeInput input, World world) {
-        return this.ingredient.test(input.item().asItem().getDefaultStack().copyWithCount(count));
+        // Iterate over the ingredients in the recipe
+        for (Ingredient ingredient : ingredients) {
+            // Check if the input contains at least one matching ingredient
+            boolean ingredientMatched = input.items().stream()
+                    .anyMatch(ingredient); // Check if any item in the input matches the ingredient
+
+            // If no matching ingredient is found in the input, return false
+            if (!ingredientMatched) {
+                return false;
+            }
+        }
+        return true; // All ingredients match
     }
+
 
 
     @Override
@@ -73,14 +80,14 @@ public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
         return true;
     }
 
-
-
-    public Block getOutput() {
-        return output;
+    @Override
+    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
+        return this.result.getMatchingStacks()[0];
     }
 
-    public DefaultedList<ItemStack> getDrops() {
-        return DefaultedList.copyOf(ItemStack.EMPTY, drops.stream().map(ItemStack::copy).toList().toArray(new ItemStack[0]));
+    @Override
+    public DefaultedList<Ingredient> getIngredients() {
+        return ingredients;
     }
 
     @Override
@@ -97,7 +104,6 @@ public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
         return this.category;
     }
 
-
     @Override
     public boolean isIgnoredInRecipeBook() {
         return Recipe.super.isIgnoredInRecipeBook();
@@ -113,9 +119,8 @@ public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
         return getResult(lookup);
     }
 
-    @Override
-    public ItemStack getResult(RegistryWrapper.WrapperLookup registriesLookup) {
-        return output.asItem().getDefaultStack();
+    public Ingredient getBlockResult() {
+        return result;
     }
 
     public static class Type implements RecipeType<PistonPackingRecipe>
@@ -127,35 +132,45 @@ public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
     public static class Serializer implements RecipeSerializer<PistonPackingRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "piston_packing";
-
+        @Unique
+        private static final Function<List<Ingredient>, DataResult<DefaultedList<Ingredient>>>
+                INGREDIENTS_VALIDATOR = ingredients -> {
+            Ingredient[] ingredientsArray = ingredients.stream().filter(ingredient -> !ingredient.isEmpty()).toArray(Ingredient[]::new);
+            if (ingredientsArray.length == 0) {
+                return DataResult.error(() -> "No ingredients for piston packing recipe");
+            } else {
+                return ingredientsArray.length > 64
+                        ? DataResult.error(() -> "Too many ingredients for piston packing recipe")
+                        : DataResult.success(DefaultedList.copyOf(Ingredient.EMPTY, ingredientsArray));
+            }
+        };
 
         protected static final MapCodec<PistonPackingRecipe> CODEC = RecordCodecBuilder.mapCodec(
-                instance->instance.group(
+                instance -> instance.group(
                         Codec.STRING.optionalFieldOf("group", "")
                                 .forGetter(recipe -> recipe.group),
                         CraftingRecipeCategory.CODEC.fieldOf("category")
                                 .orElse(CraftingRecipeCategory.MISC)
                                 .forGetter(recipe -> recipe.category),
                         Ingredient.DISALLOW_EMPTY_CODEC
-                                .fieldOf("ingredient")
-                                .forGetter(recipe -> recipe.ingredient),
-                        Codec.INT
-                                .fieldOf("count")
-                                .forGetter(recipe -> recipe.count),
-                        Identifier.CODEC
-                                .fieldOf("output")
-                                .forGetter(recipe -> Registries.BLOCK.getId(recipe.output)),
-                        ItemStack.VALIDATED_CODEC
                                 .listOf()
-                                .fieldOf("drops")
-                                .forGetter(PistonPackingRecipe::getDrops)
-                ).apply(instance, (group, category, ingredient, count, outputId, drops) -> new PistonPackingRecipe(group, category, ingredient, count, Registries.BLOCK.get(outputId), drops))
+                                .fieldOf("ingredients")
+                                .flatXmap(INGREDIENTS_VALIDATOR, DataResult::success)
+                                .forGetter(recipe -> recipe.ingredients),
+                        Ingredient.DISALLOW_EMPTY_CODEC
+                                .fieldOf("result")
+                                .forGetter(PistonPackingRecipe::getBlockResult)
+                ).apply(instance, PistonPackingRecipe::new)
         );
+
         public static final PacketCodec<RegistryByteBuf, PistonPackingRecipe> PACKET_CODEC = PacketCodec.ofStatic(
                 Serializer::write, Serializer::read
         );
 
-        public Serializer() {}
+
+
+        public Serializer() {
+        }
 
         @Override
         public MapCodec<PistonPackingRecipe> codec() {
@@ -170,50 +185,34 @@ public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
         public static PistonPackingRecipe read(RegistryByteBuf buf) {
             String group = buf.readString();
             CraftingRecipeCategory category = buf.readEnumConstant(CraftingRecipeCategory.class);
-            Ingredient ingredient = Ingredient.PACKET_CODEC.decode(buf);
-            int count = buf.readInt();
-            Block output = Registries.BLOCK.get(buf.readIdentifier());
-            List<ItemStack> drops = ItemStack.LIST_PACKET_CODEC.decode(buf);
-            return new PistonPackingRecipe(group, category, ingredient, count, output, drops);
+            int ingredientsSize = buf.readVarInt();
+            DefaultedList<Ingredient> ingredients = DefaultedList.ofSize(ingredientsSize, Ingredient.EMPTY);
+            ingredients.replaceAll(ignored -> Ingredient.PACKET_CODEC.decode(buf));
+            Ingredient result = Ingredient.PACKET_CODEC.decode(buf);
+            return new PistonPackingRecipe(group, category, ingredients, result);
         }
 
         public static void write(RegistryByteBuf buf, PistonPackingRecipe recipe) {
             buf.writeString(recipe.group);
             buf.writeEnumConstant(recipe.category);
-            Ingredient.PACKET_CODEC.encode(buf, recipe.ingredient);
-            buf.writeInt(recipe.count);
-            buf.writeIdentifier(Registries.BLOCK.getId(recipe.output));
-            ItemStack.LIST_PACKET_CODEC.encode(buf, recipe.getDrops());
+            buf.writeVarInt(recipe.ingredients.size());
+            for (Ingredient ingredient : recipe.ingredients) {
+                Ingredient.PACKET_CODEC.encode(buf, ingredient);
+            }
+            Ingredient.PACKET_CODEC.encode(buf, recipe.result);
         }
     }
 
     public static class JsonBuilder implements CraftingRecipeJsonBuilder {
         protected CraftingRecipeCategory category = CraftingRecipeCategory.MISC;
-        protected Ingredient ingredient;
-        protected int count;
-        protected Block output;
-        protected String fromBlockName;
-        protected DefaultedList<ItemStack> drops = DefaultedList.of();
+        protected DefaultedList<Ingredient> ingredients = DefaultedList.of();  // Initialize DefaultedList
+        protected Ingredient result = Ingredient.EMPTY;
+        protected final Map<String, AdvancementCriterion<?>> criteria = new LinkedHashMap<>();
         @Nullable
         protected String group;
 
-        public static JsonBuilder create(ItemConvertible input, int count, Block output) {
-            JsonBuilder obj = new JsonBuilder();
-            obj.ingredient = Ingredient.ofItems(input);
-            obj.count = count;
-            obj.fromBlockName = Registries.BLOCK.getId(output).getPath();
-            obj.output = output;
-            return obj;
-        }
-
-        public static JsonBuilder create(TagKey<Item> inputTag, int count, Block output) {
-            JsonBuilder obj = new JsonBuilder();
-            obj.ingredient = Ingredient.fromTag(inputTag);
-            obj.count = count;
-            obj.fromBlockName = inputTag.id().getPath();
-
-            obj.output = output;
-            return obj;
+        public static JsonBuilder create() {
+            return new JsonBuilder();
         }
 
         public JsonBuilder category(CraftingRecipeCategory category) {
@@ -221,35 +220,42 @@ public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
             return this;
         }
 
-        public JsonBuilder drops(ItemStack... itemStacks) {
-            this.drops.addAll(Arrays.asList(itemStacks));
+        public JsonBuilder ingredients(Ingredient... ingredients) {
+            for (Ingredient ingredient : ingredients) {
+                this.ingredient(ingredient);
+            }
             return this;
         }
 
-        public JsonBuilder drops(Item item, int count) {
-            return this.drops(new ItemStack(item, count));
-        }
-
-        public JsonBuilder drops(Item item) {
-            return this.drops(item, 1);
-        }
-
-        public JsonBuilder result(ItemStack itemStack) {
-            this.drops.add(itemStack);
+        public JsonBuilder ingredient(Ingredient ingredient) {
+            this.ingredients.add(ingredient);  // Add to ingredients list
             return this;
         }
 
-        public JsonBuilder result(Item item, int count) {
-            this.drops.add(new ItemStack(item, count));
-            return this;
+        public JsonBuilder ingredient(ItemStack itemStack) {
+            this.criterion(RecipeProvider.hasItem(itemStack.getItem()), RecipeProvider.conditionsFromItem(itemStack.getItem()));
+            return this.ingredient(Ingredient.ofStacks(itemStack));
         }
 
-        public JsonBuilder result(Item item) {
-            return this.result(item, 1);
+        public JsonBuilder ingredient(Item item, int count) {
+            return this.ingredient(new ItemStack(item, count));
+        }
+
+        public JsonBuilder ingredient(Item item) {
+            return this.ingredient(item, 1);
+        }
+
+        public JsonBuilder result(Block block) {
+            if (block == null) {
+                throw new IllegalStateException("Block result cannot be null");
+            }
+            this.result = Ingredient.ofStacks(block.asItem().getDefaultStack());
+            return this;
         }
 
         @Override
         public JsonBuilder criterion(String string, AdvancementCriterion<?> advancementCriterion) {
+            this.criteria.put(string, advancementCriterion);
             return this;
         }
 
@@ -267,27 +273,41 @@ public class PistonPackingRecipe implements Recipe<PackingRecipeInput> {
 
         @Override
         public Item getOutputItem() {
-            return output.asItem();
+            return result.getMatchingStacks()[0].getItem();
         }
 
         @Override
         public void offerTo(RecipeExporter exporter) {
-            this.offerTo(exporter, "tough_environment:piston_packing_" + fromBlockName);
+            this.offerTo(exporter,
+                    RecipeProvider.getItemPath(getOutputItem())
+                            + "_from_piston_packing_"
+                            + RecipeProvider.getItemPath(this.ingredients.getFirst().getMatchingStacks()[0].getItem()));
         }
 
-        @Override
         public void offerTo(RecipeExporter exporter, Identifier recipeId) {
+            this.validate(recipeId);
+            // Ensure that ingredients and result are valid
+            if (this.ingredients.isEmpty() || this.result.isEmpty()) {
+                throw new IllegalStateException("Ingredients or result cannot be empty");
+            }
+
             Advancement.Builder advancementBuilder = exporter.getAdvancementBuilder().criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId)).rewards(AdvancementRewards.Builder.recipe(recipeId)).criteriaMerger(AdvancementRequirements.CriterionMerger.OR);
-            PistonPackingRecipe turntableRecipe = new PistonPackingRecipe(
+            this.criteria.forEach(advancementBuilder::criterion);
+
+            PistonPackingRecipe pistonPackingRecipe = new PistonPackingRecipe(
                     Objects.requireNonNullElse(this.group, ""),
                     this.category,
-                    this.ingredient,
-                    this.count,
-                    this.output,
-                    this.drops
+                    this.ingredients,
+                    this.result
             );
 
-            exporter.accept(recipeId, turntableRecipe, advancementBuilder.build(recipeId.withPrefixedPath("recipes/" + this.category.asString() + "/")));
+            exporter.accept(recipeId, pistonPackingRecipe, advancementBuilder.build(recipeId.withPrefixedPath("recipes/" + this.category.asString() + "/")));
+        }
+
+        private void validate(Identifier recipeId) {
+            if (this.criteria.isEmpty()) {
+                throw new IllegalStateException("No way of obtaining recipe " + recipeId);
+            }
         }
     }
 }

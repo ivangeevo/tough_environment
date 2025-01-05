@@ -4,57 +4,53 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.PistonBlock;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeEntry;
-import net.minecraft.recipe.RecipeManager;
+import net.minecraft.item.Items;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.tough_environment.recipe.PackingRecipeInput;
-import org.tough_environment.recipe.PistonPackingRecipe;
+import org.tough_environment.block.ModBlocks;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class PistonPackingUtil
+public class OGPistonPackingUtil
 {
-    private static final PistonPackingUtil instance = new PistonPackingUtil();
-    private PistonPackingUtil() {}
-    public static PistonPackingUtil getInstance() {
-        return instance;
+
+    private static final Map<ItemConvertible, PackingRecipe> PACKING_RECIPES = new HashMap<>();
+
+    static {
+        // Define recipes: Input item -> Output block + required count
+        PACKING_RECIPES.put(Items.CLAY_BALL, new PackingRecipe(ModBlocks.CLAY_BLOCK, 9));
+        PACKING_RECIPES.put(Items.SNOWBALL, new PackingRecipe(Blocks.SNOW_BLOCK, 4));
+        PACKING_RECIPES.put(Items.FLINT, new PackingRecipe(Blocks.GRAVEL, 9));
+        // Add more recipes as needed
     }
 
-    final RecipeManager.MatchGetter<PackingRecipeInput, PistonPackingRecipe> matchGetter =
-            RecipeManager.createCachedMatchGetter(PistonPackingRecipe.Type.INSTANCE);
-
-    public void attemptToPackItems(World world, BlockPos pos, Direction direction) {
+    public static void attemptToPackItems(World world, BlockPos pos, Direction direction) {
         if (isLocationSuitableForPacking(world, pos)) {
             // Define bounding box around the target position
             Box targetBox = new Box(pos).expand(0.5); // Adjust box size slightly
             List<ItemEntity> itemsWithinBox = world.getEntitiesByClass(ItemEntity.class, targetBox, itemEntity -> true);
 
             if (!itemsWithinBox.isEmpty()) {
-                PistonPackingRecipe recipe = getValidRecipeFromItemList(itemsWithinBox, world);
+                PackingRecipe recipe = getValidRecipeFromItemList(itemsWithinBox);
 
                 if (recipe != null) {
                     // Remove required items
                     removeItemsOfTypeFromList(recipe, itemsWithinBox);
 
-                    Optional<BlockState> blockStateOptional = BlockStateUtil.getBlockStateFromIngredient(recipe.getBlockResult());
-
-                    if (blockStateOptional.isPresent()) {
-                        BlockState blockStateResult = blockStateOptional.get();
-                        // Use blockStateResult
-                        createPackedBlockOfTypeAtLocation(world, blockStateResult, pos);
-                    }
-
                     // Create the packed block at the target position
+                    createPackedBlockOfTypeAtLocation(world, recipe.block.getDefaultState(), pos);
                 }
             }
         }
@@ -89,6 +85,7 @@ public class PistonPackingUtil
 
         // Special case: treat transparent blocks like glass as suitable for packing
         return block.getDefaultState().isIn(ConventionalBlockTags.GLASS_BLOCKS);
+
     }
 
 
@@ -99,13 +96,13 @@ public class PistonPackingUtil
         }
     }
 
-    private static void removeItemsOfTypeFromList(PistonPackingRecipe recipe, List<ItemEntity> itemsWithinBox) {
-        int countRequired = recipe.getIngredients().size();
+    private static void removeItemsOfTypeFromList(PackingRecipe recipe, List<ItemEntity> itemsWithinBox) {
+        int countRequired = recipe.count;
 
         for (ItemEntity itemEntity : itemsWithinBox) {
             ItemStack stack = itemEntity.getStack();
 
-            if (recipe.getIngredients().getFirst().test(stack)) {
+            if (stack.getItem() == recipe.input) {
                 int stackCount = stack.getCount();
 
                 if (countRequired <= stackCount) {
@@ -123,26 +120,37 @@ public class PistonPackingUtil
         }
     }
 
-    private  PistonPackingRecipe getValidRecipeFromItemList(List<ItemEntity> itemsWithinBox, World world) {
-        DefaultedList<ItemStack> stack = createIngredientFromItems(itemsWithinBox);
-        Optional<RecipeEntry<PistonPackingRecipe>> optionalRecipe = getRecipeFor(world, stack);
+    private static PackingRecipe getValidRecipeFromItemList(List<ItemEntity> itemsWithinBox) {
+        for (Map.Entry<ItemConvertible, PackingRecipe> entry : PACKING_RECIPES.entrySet()) {
+            Item item = (Item) entry.getKey();
+            PackingRecipe recipe = entry.getValue();
 
-        return optionalRecipe.map(RecipeEntry::value).orElse(null);
-    }
-
-    private static DefaultedList<ItemStack> createIngredientFromItems(List<ItemEntity> itemsWithinBox) {
-        return DefaultedList.copyOf(ItemStack.EMPTY, itemsWithinBox.stream().map(ItemEntity::getStack).toArray(ItemStack[]::new));
-
-    }
-
-    public Optional<RecipeEntry<PistonPackingRecipe>> getRecipeFor(World world, DefaultedList<ItemStack> ingredient) {
-        if (ingredient.isEmpty()) {
-            return Optional.empty();
+            int count = 0;
+            for (ItemEntity itemEntity : itemsWithinBox) {
+                if (itemEntity.getStack().getItem() == item) {
+                    count += itemEntity.getStack().getCount();
+                    if (count >= recipe.count) {
+                        return recipe;
+                    }
+                }
+            }
         }
-        // Now you have the matching items as ItemConvertible (Item[])
-        return world.getRecipeManager().getFirstMatch(PistonPackingRecipe.Type.INSTANCE,
-                new PackingRecipeInput(ingredient), world);
+        return null;
     }
 
+    public static class PackingRecipe {
+        final Block block;
+        final int count;
+        final Item input;
 
+        PackingRecipe(Block block, int count) {
+            this.block = block;
+            this.count = count;
+            this.input = block.asItem(); // Default input is the block's item representation
+        }
+
+        public BlockState getOutput() {
+            return block.getDefaultState();
+        }
+    }
 }

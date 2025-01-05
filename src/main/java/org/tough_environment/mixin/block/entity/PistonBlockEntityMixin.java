@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.tough_environment.util.PistonPackingUtil;
+import org.tough_environment.util.OGPistonPackingUtil;
 
 @Mixin(PistonBlockEntity.class)
 public class PistonBlockEntityMixin {
@@ -26,7 +26,9 @@ public class PistonBlockEntityMixin {
                 targetPos = pos.offset(movementDirection.getOpposite());
 
             }
-            PistonPackingUtil.attemptToPackItems(world, targetPos, movementDirection);
+            OGPistonPackingUtil.attemptToPackItems(world, targetPos, movementDirection);
+            //PistonPackingUtil.getInstance().attemptToPackItems(world, targetPos, movementDirection);
+
         }
     }
 

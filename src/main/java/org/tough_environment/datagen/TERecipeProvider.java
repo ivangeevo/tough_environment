@@ -5,14 +5,17 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
+import org.tough_environment.recipe.PistonPackingRecipe;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -43,6 +46,14 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         this.addSlabRecipes(exporter);
         this.addMiscRecipes(exporter);
         this.addCookingRecipes(exporter);
+
+        /**
+        PistonPackingRecipe.JsonBuilder.create().result(Blocks.GRAVEL)
+                .category(CraftingRecipeCategory.MISC)
+                .ingredient(Items.FLINT)
+                .criterion("has_flint", conditionsFromItem(Items.FLINT))
+                .offerTo(exporter);
+         **/
     }
 
     private void addDisabledRecipes(RecipeExporter exporter) {
