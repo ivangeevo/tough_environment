@@ -56,6 +56,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.SLAB_WHITE_STONE, "White Stone Slab");
         tb.add(ModBlocks.SLAB_WHITE_COBBLESTONE, "White Cobblestone Slab");
 
+        tb.add(ModBlocks.SLAB_DIRT_PACKED, "Packed Earth Slab");
 
         tb.add(ModBlocks.DIRT_LOOSE, "Loose Dirt");
         tb.add(ModBlocks.COBBLESTONE_LOOSE, "Loose Cobblestone");

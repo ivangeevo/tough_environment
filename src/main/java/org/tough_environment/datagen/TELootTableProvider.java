@@ -70,8 +70,6 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.DEEPSLATE_BRICKS, dropsForBreakingToLooseBlock(Blocks.DEEPSLATE_BRICKS, ModBlocks.DEEPSLATE_BRICKS_LOOSE, WITH_PICKAXE_FULLY_HARVESTS, ModItems.STONE_BRICK_2, 8));
         addDrop(Blocks.NETHER_BRICKS, dropsForBreakingToLooseBlock(Blocks.NETHER_BRICKS, ModBlocks.NETHER_BRICKS_LOOSE, WITH_PICKAXE_FULLY_HARVESTS, Items.NETHER_BRICK, 8));
 
-        addDrop(ModBlocks.CLAY_BLOCK, dropsForBreakingToLooseBlock(ModBlocks.CLAY_BLOCK, ModBlocks.CLAY_BLOCK, WITH_SHOVEL_FULLY_HARVESTS, Items.CLAY_BALL, 8));
-
         // slabs
         addDrop(Blocks.BRICK_SLAB, dropsForBreakingToLooseBlock(Blocks.BRICK_SLAB, ModBlocks.SLAB_BRICKS_LOOSE, WITH_PICKAXE_FULLY_HARVESTS, Items.BRICK, 4));
         addDrop(Blocks.STONE_BRICK_SLAB, dropsForBreakingToLooseBlock(Blocks.STONE_BRICK_SLAB, ModBlocks.SLAB_STONE_BRICKS_LOOSE, WITH_PICKAXE_FULLY_HARVESTS, ModItems.STONE_BRICK, 4));
@@ -176,12 +174,17 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.BRICKS_LOOSE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.BRICKS_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, Items.BRICK, 6));
         addDrop(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, Items.NETHER_BRICK, 6));
 
+        // Non-loose full blocks
+        addDrop(ModBlocks.CLAY_BLOCK, dropsForBreakingToLooseBlock(ModBlocks.CLAY_BLOCK, ModBlocks.CLAY_BLOCK, WITH_SHOVEL_FULLY_HARVESTS, Items.CLAY_BALL, 8));
+        addDrop(ModBlocks.DIRT_PACKED, dropsForSimpleLooseBlock(ModBlocks.DIRT_PACKED, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 12));
 
-        // Placed block loot tables
+        // Non-loose slab blocks
+        addDrop(ModBlocks.SLAB_DIRT_PACKED, dropsForSimpleLooseBlock(ModBlocks.SLAB_DIRT_PACKED, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6));
+
+        // Exclusive placed as items blocks
         addDrop(ModBlocks.RAW_IRON_PLACED,  Items.RAW_IRON);
         addDrop(ModBlocks.RAW_COPPER_PLACED, Items.RAW_COPPER);
         addDrop(ModBlocks.RAW_GOLD_PLACED, Items.RAW_GOLD);
-
         addDrop(ModBlocks.NETHER_BRICK_UNFIRED, ModItems.NETHER_SLUDGE);
 
         // TODO: Add loot tables for Broken stone blocks, converting stone blocks, slab blocks and the stair blocks.
@@ -286,7 +289,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 );
     }
 
-    // Simple blocks that are usually loose blocks and break to piles if not mined with the correct tool.
+    // Simple blocks that are (usually, but not necessarily) loose blocks and break to piles if not mined with the correct tool.
     public LootTable.Builder dropsForSimpleLooseBlock(Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
         return dropsForLooseOrPileBlock(null, looseDrop, toolCondition, pileDrop, pileDropCount);
     }

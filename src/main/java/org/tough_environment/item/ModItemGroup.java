@@ -86,6 +86,8 @@ public class ModItemGroup
                             entries.add(ModBlocks.SLAB_WHITE_STONE);
                             entries.add(ModBlocks.SLAB_WHITE_COBBLESTONE);
 
+                            entries.add(ModBlocks.SLAB_DIRT_PACKED);
+
 
                             // Full blocks
                             entries.add(ModBlocks.DIRT_LOOSE);

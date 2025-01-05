@@ -9,13 +9,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
-import org.tough_environment.recipe.PistonPackingRecipe;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -203,6 +201,23 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
 
     private void addFullBlockRecipes(RecipeExporter exporter) {
+        // Exclusive recipes
+
+        // we give 2 packed earth in this recipe that uses 4 loose dirt
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_PACKED, 2)
+                .input('D', ModBlocks.DIRT_LOOSE)
+                .pattern("DD")
+                .pattern("DD")
+                .criterion("has_dirt_loose", conditionsFromItem(ModBlocks.DIRT_LOOSE))
+                .offerTo(exporter, ID.ofTE("dirt_packed_from_loose_dirt"));
+
+        // and we convert each packed earth back to 2 loose dirt blocks each
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE, 2)
+                .input(ModBlocks.DIRT_PACKED)
+                .criterion("has_dirt_packed", conditionsFromItem(ModBlocks.DIRT_PACKED))
+                .offerTo(exporter, ID.ofTE("dirt_loose_from_dirt_packed"));
+
+
         // From slabs
         offerBlockFromSlabs(exporter, ModBlocks.DIRT_LOOSE, ModBlocks.SLAB_DIRT, ID.ofTE("block_from_slab_dirt"));
         offerBlockFromSlabs(exporter, Blocks.SAND, ModBlocks.SLAB_SAND, ID.ofTE("block_from_slab_sand"));
@@ -216,6 +231,8 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerBlockFromSlabs(exporter, ModBlocks.BRICKS_LOOSE, ModBlocks.SLAB_BRICKS_LOOSE, ID.ofTE("block_from_slab_bricks_loose"));
         offerBlockFromSlabs(exporter, ModBlocks.STONE_BRICKS_LOOSE, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ID.ofTE("block_from_slab_stone_bricks_loose"));
         offerBlockFromSlabs(exporter, ModBlocks.DIRT_PACKED, ModBlocks.SLAB_DIRT_PACKED, ID.ofTE("block_from_slab_packed_dirt"));
+
+        offerSimpleConverting(exporter, ModBlocks.DIRT_LOOSE, ModBlocks.SLAB_DIRT_PACKED, ID.ofTE("dirt_loose_from_slab_dirt_packed"));
 
         offerBlockFromSlabs(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ID.ofTE("block_from_slab_deepslate_bricks_loose"));
         offerBlockFromSlabs(exporter, ModBlocks.NETHER_BRICKS_LOOSE, ModBlocks.SLAB_NETHER_BRICKS_LOOSE, ID.ofTE("block_from_slab_nether_bricks_loose"));
@@ -238,12 +255,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
 
         offerFullBlockFromLesserDrops(exporter, ModBlocks.CLAY_BLOCK, Items.CLAY_BALL, ID.ofTE("block_from_clay_ball"));
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE, 2)
-                .input(ModBlocks.DIRT_PACKED)
-                .criterion("has_dirt_packed", conditionsFromItem(ModBlocks.DIRT_PACKED))
-                .offerTo(exporter, ID.ofTE("dirt_loose_from_dirt_packed"));
-
 
     }
 
@@ -305,11 +316,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ModBlocks.STONE_BRICKS_LOOSE, ID.ofTE("slab_stone_bricks_loose_from_block"));
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ID.ofTE("slab_deepslate_bricks_loose_from_block"));
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DIRT_LOOSE)
-                .input(ModBlocks.SLAB_DIRT_PACKED)
-                .criterion("has_slab_dirt_packed", conditionsFromItem(ModBlocks.SLAB_DIRT_PACKED))
-                .offerTo(exporter, ID.ofTE("dirt_loose_from_slab_dirt_packed"));
-
     }
 
     private void addItemRecipes(RecipeExporter exporter) {
@@ -369,8 +375,14 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .offerTo(exporter, id);
     }
 
-
-
+    // simple recipe for converting one item to another
+    private static void offerSimpleConverting(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                .input(input)
+                .group("group_te")
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, id);
+    }
 
     private static void offerLesserDropsFromBlock(RecipeExporter exporter, ItemConvertible output, int count, ItemConvertible input, Identifier id) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, count)
