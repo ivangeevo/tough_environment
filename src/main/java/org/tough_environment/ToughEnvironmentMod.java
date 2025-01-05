@@ -42,7 +42,6 @@ public class ToughEnvironmentMod implements ModInitializer
         ModItemGroup.registerItemGroups();
         ModFuelItems.register();
         ModRecipes.registerRecipes();
-        OGPistonPackingUtil.registerPackables();
         // Initialize or load the block replacement map
         BlockMortarMapper.init();
 
