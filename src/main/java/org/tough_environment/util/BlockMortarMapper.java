@@ -30,7 +30,6 @@ public class BlockMortarMapper {
         }
     }
 
-
     /**
      * Populate the blockReplacementMap with direct references.
      */
