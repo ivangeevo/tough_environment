@@ -1,0 +1,13 @@
+{
+  "values": [
+    "tough_environment:cobblestone_loose_stairs",
+    "tough_environment:cobbled_deepslate_loose_stairs",
+    "tough_environment:andesite_loose_stairs",
+    "tough_environment:granite_loose_stairs",
+    "tough_environment:diorite_loose_stairs",
+    "tough_environment:bricks_loose_stairs",
+    "tough_environment:stone_bricks_loose_stairs",
+    "tough_environment:deepslate_bricks_loose_stairs",
+    "tough_environment:nether_bricks_loose_stairs"
+  ]
+}

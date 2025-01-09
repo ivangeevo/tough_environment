@@ -34,9 +34,9 @@ public class ModTags
 
 
 
-        public static final TagKey<Block> LOOSE_FULL_BLOCKS = register("loose_full_blocks");
-        public static final TagKey<Block> LOOSE_SLABS = register("loose_slabs");
-        public static final TagKey<Block> LOOSE_STAIRS = register("loose_stairs");
+        public static final TagKey<Block> LOOSE_STONE_BLOCKS = register("loose_full_blocks");
+        public static final TagKey<Block> LOOSE_STONE_SLABS = register("loose_slabs");
+        public static final TagKey<Block> LOOSE_STONE_STAIRS = register("loose_stairs");
 
         public static final TagKey<Block> STONE_STRATA1 = register("stone_strata1");
         public static final TagKey<Block> STONE_STRATA2 = register("stone_strata2");
