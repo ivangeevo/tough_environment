@@ -37,7 +37,7 @@ public class ModBlocks {
 
 
     // Full Blocks
-    public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAggregateBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block COBBLESTONE_LOOSE = registerBlock("cobblestone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
     public static final Block COBBLED_DEEPSLATE_LOOSE = registerBlock("cobbled_deepslate_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.1F).sounds(BlockSoundGroup.DEEPSLATE)));
     public static final Block GRANITE_LOOSE = registerBlock("granite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).sounds(BlockSoundGroup.STONE)));
