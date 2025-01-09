@@ -93,6 +93,7 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND)
                 .add(ModItems.NETHER_SLUDGE);
 
+        //TODO: Should we move these entries to the IRON_TOOLS & DIAMOND_TOOLS item tags by BTWRConventionalTags instead?
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_METALLIC_TOOL_SOUND)
                 .add(ModItems.CHISEL_IRON)
                 .add(ModItems.CHISEL_DIAMOND);

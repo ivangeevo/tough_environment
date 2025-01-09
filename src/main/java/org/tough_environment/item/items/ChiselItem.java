@@ -35,6 +35,7 @@ public class ChiselItem extends MiningToolItem
         return true;
     }
 
+    /**
     @Override
     public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player) {
         BlockPos thisPos = player.getBlockPos();
@@ -60,6 +61,7 @@ public class ChiselItem extends MiningToolItem
             player.tick();
         }
     }
+     **/
 
     @Override
     public ItemStack getRecipeRemainder(ItemStack stack) {

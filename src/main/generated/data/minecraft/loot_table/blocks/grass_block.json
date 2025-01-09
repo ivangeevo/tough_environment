@@ -85,28 +85,6 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "minecraft:iron_hoe"
-              }
-            },
-            {
-              "chance": 0.03,
-              "condition": "minecraft:random_chance"
-            }
-          ],
-          "name": "minecraft:wheat_seeds"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
                 "items": "minecraft:diamond_hoe"
               }
             },
@@ -129,11 +107,11 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "minecraft:golden_hoe"
+                "items": "minecraft:netherite_hoe"
               }
             },
             {
-              "chance": 0.04,
+              "chance": 0.11,
               "condition": "minecraft:random_chance"
             }
           ],
@@ -151,11 +129,33 @@
             {
               "condition": "minecraft:match_tool",
               "predicate": {
-                "items": "minecraft:netherite_hoe"
+                "items": "minecraft:iron_hoe"
               }
             },
             {
-              "chance": 0.11,
+              "chance": 0.03,
+              "condition": "minecraft:random_chance"
+            }
+          ],
+          "name": "minecraft:wheat_seeds"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "minecraft:golden_hoe"
+              }
+            },
+            {
+              "chance": 0.04,
               "condition": "minecraft:random_chance"
             }
           ],
