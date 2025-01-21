@@ -10,7 +10,6 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:coal_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -18,7 +17,7 @@
                     "predicates": {
                       "minecraft:enchantments": [
                         {
-                          "enchantment": "minecraft:silk_touch",
+                          "enchantments": "minecraft:silk_touch",
                           "levels": {
                             "min": 1
                           }
@@ -27,7 +26,8 @@
                     }
                   }
                 }
-              ]
+              ],
+              "name": "minecraft:coal_ore"
             },
             {
               "type": "minecraft:item",

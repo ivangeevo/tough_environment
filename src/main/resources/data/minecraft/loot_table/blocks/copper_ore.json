@@ -10,7 +10,6 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "minecraft:copper_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -18,7 +17,7 @@
                     "predicates": {
                       "minecraft:enchantments": [
                         {
-                          "enchantment": "minecraft:silk_touch",
+                          "enchantments": "minecraft:silk_touch",
                           "levels": {
                             "min": 1
                           }
@@ -27,7 +26,8 @@
                     }
                   }
                 }
-              ]
+              ],
+              "name": "minecraft:copper_ore"
             },
             {
               "type": "minecraft:item",
@@ -84,6 +84,24 @@
               "condition": "minecraft:match_tool",
               "predicate": {
                 "items": "#c:pickaxes_harvest_full_block"
+              }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "predicates": {
+                    "minecraft:enchantments": [
+                      {
+                        "enchantments": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
               }
             }
           ]
