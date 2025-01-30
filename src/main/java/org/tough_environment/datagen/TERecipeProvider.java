@@ -357,14 +357,15 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(ModBlocks.WHITE_COBBLESTONE), RecipeCategory.BUILDING_BLOCKS,
                 ModBlocks.WHITE_STONE, 0.15f, 100).criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE)).offerTo(exporter);
 
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Items.NETHER_BRICK), RecipeCategory.MISC,
-                ModItems.NETHER_BRICK_UNFIRED, 0.10f, 200).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, ID.ofTE("nether_brick_from_smelting"));
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModItems.NETHER_BRICK_UNFIRED), RecipeCategory.MISC,
+                Items.NETHER_BRICK, 0.10f, 200).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, ID.ofTE("nether_brick_from_smelting"));
 
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Items.NETHER_BRICK), RecipeCategory.MISC,
-                ModItems.NETHER_BRICK_UNFIRED, 0.15f, 100).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, ID.ofTE("nether_brick_from_blasting"));
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(ModItems.NETHER_BRICK_UNFIRED), RecipeCategory.MISC,
+                Items.NETHER_BRICK, 0.15f, 100).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, ID.ofTE("nether_brick_from_blasting"));
 
 
     }
+
     // LESSER DROP METHODS
     private static void offerLesserDropsFromSlab(RecipeExporter exporter, ItemConvertible output, int count, ItemConvertible input, Identifier id)
     {

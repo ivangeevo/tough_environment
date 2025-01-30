@@ -1,12 +1,12 @@
 {
   "type": "minecraft:smelting",
-  "category": "blocks",
+  "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
   "ingredient": {
-    "item": "minecraft:nether_brick"
+    "item": "tough_environment:nether_brick_unfired"
   },
   "result": {
-    "id": "tough_environment:nether_brick_unfired"
+    "id": "minecraft:nether_brick"
   }
 }
