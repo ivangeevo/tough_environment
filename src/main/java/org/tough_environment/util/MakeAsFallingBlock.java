@@ -32,13 +32,13 @@ public class MakeAsFallingBlock {
     public void onOnBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         Block block = world.getBlockState(pos).getBlock();
 
-        if (state.isIn(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS) /**&& canFallInCurrentDimension(world, state)**/) {
+        if (isCustomFallingBlockInDimension(world, state)) {
             world.scheduleBlockTick(pos, block, this.getFallDelay());
         }
     }
 
     public void onRandomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (state.isIn(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS) /**&& canFallInCurrentDimension(world, state)**/) {
+        if (isCustomFallingBlockInDimension(world, state)) {
             if (random.nextInt(16) == 0 && FallingBlock.canFallThrough(world.getBlockState(pos.down()))) {
                 ParticleUtil.spawnParticle(world, pos, random, new BlockStateParticleEffect(ParticleTypes.FALLING_DUST, state));
             }
@@ -46,7 +46,7 @@ public class MakeAsFallingBlock {
     }
 
     public void onScheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (state.isIn(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS) /**&& canFallInCurrentDimension(world, state)**/) {
+        if (isCustomFallingBlockInDimension(world, state)) {
             if (!FallingBlock.canFallThrough(world.getBlockState(pos.down())) || pos.getY() < world.getBottomY()) {
                 return;
             }
@@ -56,8 +56,9 @@ public class MakeAsFallingBlock {
         }
     }
 
-    public void onGetStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos, CallbackInfoReturnable<BlockState> cir) {
-
+    // uncomment the dimension check when we figure out the bug later on that caused a crash earlier when testing this.
+    private static boolean isCustomFallingBlockInDimension(World world, BlockState state) {
+        return state.isIn(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS) /**&& canFallInCurrentDimension(world, state)**/;
     }
 
     protected void configureFallingBlockEntity(FallingBlockEntity entity) {}

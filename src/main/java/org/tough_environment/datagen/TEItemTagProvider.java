@@ -87,7 +87,6 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .addTag(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.COBBLESTONE_CRAFTING_MATERIALS)
-                .add(Items.COBBLESTONE)
                 .add(ModBlocks.COBBLESTONE_LOOSE.asItem());
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_SLIME_SOUND)

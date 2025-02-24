@@ -1,3 +1,14 @@
+
+# 0.8 Alpha (next)
++ Added compatibility with "Better With Time" Battle Axe item to not consume hunger when breaking grass blocks
++ Fixed a bug where loose dirt was acting like a block that can be mortared.
++ Fixed a bug where all ore blocks broken with any enchanted pickaxe would drop as if they were mined by Silk Touch
++ Fixed nether brick cooking recipes being reverted
++ Changed/fixed the COBBLESTONE_CRAFTING_MATERIALS tag from adding Cobblestone as material and moved it to the BTWR-SL mod.
++ Added missing block tags to newly added nether brick blocks which made them take too long to break.
++ Removed Fortune enchantment working on Diamond & Emerald ores. It will only work on metalic and non-gemstone ores like Redstone/Lapis
++ Updated the mod to Fabric API 0.115.0, Fabric Loader 0.16.0 & BTWR Shared Library 0.47
+
 # 0.7.3 Alpha
 + Added Packed Earth and Packed Earth Slab blocks!
 

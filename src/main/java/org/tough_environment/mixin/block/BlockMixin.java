@@ -17,8 +17,7 @@ import org.tough_environment.block.interfaces.DirectionalDroppingBlock;
 import org.tough_environment.util.MakeAsFallingBlock;
 
 @Mixin(Block.class)
-public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock
-{
+public abstract class BlockMixin extends AbstractBlock implements DirectionalDroppingBlock {
     public BlockMixin(Settings settings) {
         super(settings);
     }

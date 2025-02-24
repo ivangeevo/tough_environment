@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.MiningToolItem;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -46,7 +47,11 @@ public class BlockMixinManager
     public void handleAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, ItemStack tool) {
         setConvertibleState(world, pos, state, tool);
 
-        if (!(tool.getItem() instanceof AxeItem) && state.getHardness(world, pos) <= 0) {
+        // TODO: Fix this, so that it actually only applies to grass like blocks and not all block,
+        //  though this doesn't matter that much (I think); The best solution would be to make a separate check for grass-like blocks,
+        //  and leave the generic exhaustion check for breaking other blocks to itself
+        // Add increased exhaustion for breaking blocks
+        if (!isValidAxeItem(tool) && state.getHardness(world, pos) <= 0) {
             player.addExhaustion(0.1f);
         }
 
@@ -229,5 +234,14 @@ public class BlockMixinManager
 
     private boolean isStrata1StoneBlock(BlockState state) {
         return state.isOf(Blocks.STONE) || state.isOf(Blocks.GRANITE) || state.isOf(Blocks.ANDESITE) || state.isOf(Blocks.DIORITE);
+    }
+
+    private boolean isValidAxeItem(ItemStack stack) {
+        return stack.getItem() instanceof AxeItem || isBWTAxe(stack);
+    }
+
+    private boolean isBWTAxe(ItemStack stack) {
+        // special case added originally for BWT's BattleAxe because it's a mining tool and it should be in this tag
+        return (stack.getItem() instanceof MiningToolItem && stack.isIn(BTWRConventionalTags.Items.AXES_MAKE_PLANKS));
     }
 }
