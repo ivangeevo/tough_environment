@@ -16,8 +16,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ToughEnvironmentMod implements ModInitializer
-{
+public class ToughEnvironmentMod implements ModInitializer {
+
     public static final String MOD_ID = "tough_environment";
     public static final Logger LOGGER = LoggerFactory.getLogger("tough_environment");
 
