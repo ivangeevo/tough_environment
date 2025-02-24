@@ -1,5 +1,5 @@
 
-# 0.8 Alpha (next)
+# 0.8 Alpha
 + Added compatibility with "Better With Time" Battle Axe item to not consume hunger when breaking grass blocks
 + Fixed a bug where loose dirt was acting like a block that can be mortared.
 + Fixed a bug where all ore blocks broken with any enchanted pickaxe would drop as if they were mined by Silk Touch
