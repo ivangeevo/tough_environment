@@ -236,7 +236,6 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         return builder;
     }
 
-
     // Handles only basic loose aggregate drops
     public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
         // Define the main loot pool with conditions

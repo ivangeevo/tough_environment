@@ -1,3 +1,5 @@
+# 0.8.1 Alpha
++ Fixed dirt path to drop dirt piles when broken with a lesser shovel/hand
 
 # 0.8 Alpha
 + Added compatibility with "Better With Time" Battle Axe item to not consume hunger when breaking grass blocks

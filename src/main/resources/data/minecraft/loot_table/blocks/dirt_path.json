@@ -23,14 +23,13 @@
             {
               "type": "minecraft:item",
               "name": "tough_environment:pile_dirt",
-              "conditions": [
+              "functions": [
                 {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "#minecraft:hoes"
-                  }
+                  "function": "minecraft:set_count",
+                  "count": 6
                 }
-              ]
+              ],
+              "conditions": []
             }
           ]
         }
