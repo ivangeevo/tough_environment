@@ -1,4 +1,7 @@
-# 0.9 Alpha(next) 
+# 0.9 Alpha(next)
++ Added a new block for the "Clay Ore" and made it replace normal Clay blocks in world generation. This allows for regular clay blocks to be crafted as normal and fixes incompatibility with mods that might use the clay block in whatever way.
++ Removed the "Block of Clay" block added by the mod in previous updates as it's no longer needed.
++ Changed the original clay block recipe to be made out of 9 clay ball instead of 4
 
 # 0.8.1 Alpha
 + Fixed dirt path to drop dirt piles when broken with a lesser shovel/hand

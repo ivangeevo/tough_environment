@@ -4,11 +4,11 @@
   "package": "org.tough_environment.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ChunkSectionMixin",
     "HoeItemMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "PlayerEntityMixin",
+    "ProtoChunkMixin",
     "ToolMaterialsMixin",
     "block.AbstractBlockMixin",
     "block.BlockMixin",

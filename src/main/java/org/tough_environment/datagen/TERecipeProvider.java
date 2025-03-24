@@ -76,7 +76,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
         // change clay block recipes
         offerLesserDropsFromBlock(exporter, Items.CLAY_BALL,9, Blocks.CLAY, ID.ofMC("clay_ball_from_clay_block"));
-        offerFullBlockFromLesserDrops(exporter, Blocks.CLAY, Items.CLAY_BALL, ID.ofMC("block_from_clay_ball"));
+        offerFullBlockFromLesserDrops(exporter, Blocks.CLAY, Items.CLAY_BALL, ID.ofMC("clay"));
 
     }
 

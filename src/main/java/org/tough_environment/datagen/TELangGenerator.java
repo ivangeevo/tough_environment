@@ -74,6 +74,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE, "Loose Deepslate Bricks");
         tb.add(ModBlocks.NETHER_BRICKS_LOOSE, "Loose Nether Bricks");
 
+        tb.add(ModBlocks.CLAY_ORE, "Clay Ore");
 
         tb.add(ModBlocks.WHITE_STONE, "White Stone");
         tb.add(ModBlocks.WHITE_COBBLESTONE, "White Cobblestone");

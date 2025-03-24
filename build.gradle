@@ -49,9 +49,6 @@ repositories {
     maven { url "https://maven.terraformersmc.com/releases/" }
     maven { url "https://ivangeevo.github.io/btwr-shared-lib/" }
 
-    maven { url "https://maven.jt-dev.tech/releases" }
-    maven { url "https://maven.jt-dev.tech/snapshots" }
-
 }
 
 dependencies {
@@ -71,11 +68,9 @@ dependencies {
 
     modImplementation("org.ivangeevo:btwr-shared-lib:${project.btwr_lib_version}")
 
-    //modImplementation "maven.modrinth:better-with-time:${project.bwt_version}"
-
-    modApi("dev.corgitaco:Data_Anchor-fabric-${project.minecraft_version}:2.0.0.4")
-    //modImplementation("dev.corgitaco:Block_Swap-fabric-${project.minecraft_version}:2.0.0.4")
-
+    // EMI
+    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+    modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 
 }
 

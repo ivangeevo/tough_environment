@@ -15,8 +15,7 @@ public class OGBlockMortarMapper
 
     public static void init() {
         Map<String, String> blockReplacementMap = OGBlockMortarMapper.loadMap();
-        if (blockReplacementMap == null)
-        {
+        if (blockReplacementMap == null) {
             OGBlockMortarMapper.saveMap();
             OGBlockMortarMapper.loadMap();
         }

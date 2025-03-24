@@ -54,11 +54,32 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     private void addToVanillaTags()
     {
-
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
 
+        getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE)
+                .add(ModBlocks.CLAY_ORE);
 
+        getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE_WORLD_GEN)
+                .add(ModBlocks.CLAY_ORE);
+
+        getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE)
+                .add(ModBlocks.CLAY_ORE);
+
+        getOrCreateTagBuilder(BlockTags.AZALEA_ROOT_REPLACEABLE)
+                .add(ModBlocks.CLAY_ORE);
+
+        getOrCreateTagBuilder(BlockTags.BIG_DRIPLEAF_PLACEABLE)
+                .add(ModBlocks.CLAY_ORE);
+
+        getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
+                .add(ModBlocks.CLAY_ORE);
+
+        getOrCreateTagBuilder(BlockTags.AXOLOTLS_SPAWNABLE_ON)
+                .add(ModBlocks.CLAY_ORE);
+
+        getOrCreateTagBuilder(BlockTags.SMALL_DRIPLEAF_PLACEABLE)
+                .add(ModBlocks.CLAY_ORE);
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 // tags
