@@ -75,8 +75,14 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .offerTo(exporter, ID.ofMC("furnace"));
 
         // change clay block recipes
-        offerLesserDropsFromBlock(exporter, Items.CLAY_BALL,9, Blocks.CLAY, ID.ofMC("clay_ball_from_clay_block"));
-        offerFullBlockFromLesserDrops(exporter, Blocks.CLAY, Items.CLAY_BALL, ID.ofMC("clay"));
+        offerLesserDropsFromBlock(exporter, Items.CLAY_BALL,4, Blocks.CLAY, ID.ofMC("clay_ball_from_clay_block"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.CLAY)
+                .input('#', Items.CLAY_BALL)
+                .pattern("##")
+                .pattern("##")
+                .criterion(hasItem(Items.CLAY_BALL), conditionsFromItem(Items.CLAY_BALL))
+                .offerTo(exporter, ID.ofMC("clay"));
 
     }
 

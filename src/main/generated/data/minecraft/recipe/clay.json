@@ -1,35 +1,14 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "building",
-  "group": "group_te",
-  "ingredients": [
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
-      "item": "minecraft:clay_ball"
-    },
-    {
+  "key": {
+    "#": {
       "item": "minecraft:clay_ball"
     }
+  },
+  "pattern": [
+    "##",
+    "##"
   ],
   "result": {
     "count": 1,
