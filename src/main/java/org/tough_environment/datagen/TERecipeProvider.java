@@ -55,7 +55,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
     }
 
     private void addDisabledRecipes(RecipeExporter exporter) {
-        disableVanilla(exporter, "clay");
+        //disableVanilla(exporter, "clay");
         disableVanilla(exporter, "bricks");
         disableVanilla(exporter, "nether_brick");
         disableVanilla(exporter, "nether_bricks");
@@ -66,11 +66,18 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
     // In this case, we need a new recipe for Furnace because the one with making it out of
     // 8 loose cobblestone is too hard to acquire with just stone chisel.
     private void addVanillaBlockRecipes(RecipeExporter exporter) {
+        // change furnace recipe
         ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Items.FURNACE)
                 .input('#', ModBlocks.SLAB_COBBLESTONE_LOOSE)
-                .pattern("##").pattern("##")
+                .pattern("##")
+                .pattern("##")
                 .criterion("has_slab_cobblestone_loose", conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE))
                 .offerTo(exporter, ID.ofMC("furnace"));
+
+        // change clay block recipes
+        offerLesserDropsFromBlock(exporter, Items.CLAY_BALL,9, Blocks.CLAY, ID.ofMC("clay_ball_from_clay_block"));
+        offerFullBlockFromLesserDrops(exporter, Blocks.CLAY, Items.CLAY_BALL, ID.ofMC("block_from_clay_ball"));
+
     }
 
     private void addMiscRecipes(RecipeExporter exporter) {
@@ -164,7 +171,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         offerLesserDropsFromBlock(exporter, ModItems.STONE_BRICK, 4, ModBlocks.STONE_BRICKS_LOOSE, ID.ofTE("stone_brick_from_block_stone_bricks_loose"));
         offerLesserDropsFromBlock(exporter, ModItems.STONE_BRICK_2, 4, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ID.ofTE("stone_brick_2_from_block_deepslate_bricks_loose"));
 
-        offerLesserDropsFromBlock(exporter, Items.CLAY_BALL,9, ModBlocks.CLAY_BLOCK, ID.ofTE("clay_ball_from_clay_block"));
 
         // Piles, Stones & Shards from Stair Blocks
         offerLesserDropsFromStairs(exporter, ModItems.SMALL_STONE, 6, ModBlocks.COBBLESTONE_LOOSE_STAIRS, ID.ofTE("small_stone_from_stairs_cobblestone_loose"));
@@ -252,9 +258,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
 
         offerStoneBricksBlockFromLesserDrops(exporter, ModBlocks.STONE_BRICKS_LOOSE, ModItems.STONE_BRICK, ID.ofTE("block_from_stone_brick"));
         offerStoneBricksBlockFromLesserDrops(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModItems.STONE_BRICK_2, ID.ofTE("deepslate_from_stone_brick"));
-
-
-        offerFullBlockFromLesserDrops(exporter, ModBlocks.CLAY_BLOCK, Items.CLAY_BALL, ID.ofTE("block_from_clay_ball"));
 
     }
 

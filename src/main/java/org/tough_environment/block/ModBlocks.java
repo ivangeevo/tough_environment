@@ -76,7 +76,7 @@ public class ModBlocks {
     public static final Block BASALT_BROKEN = registerBlock("basalt_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(1.25f, 4.2f).requiresTool().sounds(BlockSoundGroup.STONE)));
     public static final Block ENDSTONE_BROKEN = registerBlock("endstone_broken", new DepletedStoneBlock(AbstractBlock.Settings.create().strength(3f, 9f).requiresTool().sounds(BlockSoundGroup.STONE)));
 
-    public static final Block CLAY_BLOCK = registerBlock("clay_block", new Block(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE_GRAY).instrument(NoteBlockInstrument.FLUTE).strength(0.6f).sounds(BlockSoundGroup.GRAVEL)));
+    public static final Block CLAY_ORE = registerBlock("clay_ore", new Block(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE_GRAY).instrument(NoteBlockInstrument.FLUTE).strength(0.6f).sounds(BlockSoundGroup.GRAVEL)));
     public static final Block WHITE_STONE = registerBlock("white_stone", new Block(AbstractBlock.Settings.create().mapColor(MapColor.WHITE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.5f)));
     public static final Block WHITE_COBBLESTONE = registerBlock("white_cobblestone", new Block(AbstractBlock.Settings.create().mapColor(MapColor.WHITE_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(2.0f)));
 

@@ -55,6 +55,9 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.GRASS_BLOCK, dropsForLooseAggregate(Blocks.GRASS_BLOCK, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6,
                 null, Map.of(Items.IRON_HOE, 0.03f, Items.GOLDEN_HOE, 0.04f, Items.DIAMOND_HOE, 0.06f, Items.NETHERITE_HOE, 0.11f), Items.WHEAT_SEEDS));
 
+        addDrop(Blocks.CLAY, dropsForBreakingToLooseBlock(Blocks.CLAY, Blocks.CLAY, WITH_SHOVEL_FULLY_HARVESTS, Items.CLAY_BALL, 9));
+
+
         addDrop(Blocks.COBBLESTONE_SLAB, customSlabDrop(Blocks.COBBLESTONE_SLAB, ModBlocks.SLAB_COBBLESTONE_LOOSE));
         addDrop(Blocks.COBBLED_DEEPSLATE_SLAB, customSlabDrop(Blocks.COBBLED_DEEPSLATE_SLAB, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE));
         addDrop(Blocks.ANDESITE_SLAB, customSlabDrop(Blocks.ANDESITE_SLAB, ModBlocks.SLAB_ANDESITE_LOOSE));
@@ -175,7 +178,6 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, dropsForSimpleLooseBlock(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, Items.NETHER_BRICK, 6));
 
         // Non-loose full blocks
-        addDrop(ModBlocks.CLAY_BLOCK, dropsForBreakingToLooseBlock(ModBlocks.CLAY_BLOCK, ModBlocks.CLAY_BLOCK, WITH_SHOVEL_FULLY_HARVESTS, Items.CLAY_BALL, 8));
         addDrop(ModBlocks.DIRT_PACKED, dropsForSimpleLooseBlock(ModBlocks.DIRT_PACKED, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 12));
 
         // Non-loose slab blocks

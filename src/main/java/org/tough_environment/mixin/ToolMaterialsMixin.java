@@ -6,8 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ToolMaterials.class)
-public abstract class ToolMaterialsMixin
-{
+public abstract class ToolMaterialsMixin {
 
     // Modify the return value of getDurability() method for specific tool materials
     @ModifyReturnValue(method = "getDurability", at = @At("RETURN"))
