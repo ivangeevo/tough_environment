@@ -37,22 +37,17 @@ public class MortarReceiverBlock extends FallingBlock
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify)
     {
-        if (world.isClient()) return;
-
         boolean hasMortaredNeighbor = Direction.stream()
                 .map(pos::offset)
                 .map(world::getBlockState)
                 .anyMatch(neighborState -> neighborState.isIn(ModTags.Blocks.MORTARED_BLOCKS));
 
-        if (hasMortaredNeighbor)
-        {
+        if (hasMortaredNeighbor) {
             // Create an OrderedTick for the block
             OrderedTick<Block> orderedTick = new OrderedTick<>(state.getBlock(), pos,
                     world.getTime() + TACKY_FALLING_BLOCK_TICK_RATE, TickPriority.NORMAL, 0);
             world.getBlockTickScheduler().scheduleTick(orderedTick);
-        }
-        else
-        {
+        } else {
             // Schedule the normal fall tick (default for falling blocks)
             super.onBlockAdded(state, world, pos, oldState, notify);
         }
@@ -68,8 +63,7 @@ public class MortarReceiverBlock extends FallingBlock
 
             // Reduce item stack size
             ItemStack handStack = player.getStackInHand(player.getActiveHand());
-            if (!player.isCreative())
-            {
+            if (!player.isCreative()) {
                 handStack.decrement(1);
             }
 
