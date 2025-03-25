@@ -8,7 +8,6 @@
     "ItemEntityMixin",
     "ItemMixin",
     "PlayerEntityMixin",
-    "ProtoChunkMixin",
     "ToolMaterialsMixin",
     "block.AbstractBlockMixin",
     "block.BlockMixin",

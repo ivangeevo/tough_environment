@@ -1,8 +1,9 @@
 package org.tough_environment;
 
+import btwr.btwr_sl.lib.util.BlockReplacementRegistry;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.profiling.jfr.event.ChunkRegionWriteEvent;
+import net.minecraft.block.Blocks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tough_environment.block.ModBlocks;
@@ -42,6 +43,9 @@ public class ToughEnvironmentMod implements ModInitializer {
         ModFuelItems.register();
         // Initialize or load the block replacement map
         BlockMortarMapper.init();
+
+        BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
+        //BlockReplacementRegistry.registerReplacement(Blocks.GRASS_BLOCK, Blocks.GREEN_STAINED_GLASS);
 
 
         /** save for later attempts // trying to make a custom vanilla resourcepack with datagen.
