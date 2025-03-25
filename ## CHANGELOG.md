@@ -1,10 +1,10 @@
 # 0.9 Alpha
 ### ! World breaking update - This update will replace some blocks in your world/ make some items disappear from your inventory. 
 + Added a new block for the "Clay Ore" and made it replace normal Clay blocks in world generation. This allows for regular clay blocks to be crafted as normal and fixes incompatibility with mods that might use the clay block in whatever way.
-+ Improved the mortarting logic for blocks to be more responsive and not fixed a bug with it bugging out when having a shield equipped when trying to mortar blocks
++ Improved the mortaring logic for blocks to be more responsive and not fixed a bug with it bugging out when having a shield equipped when trying to mortar blocks
++ Fixed dirt path to drop dirt piles when broken with a lesser shovel/hand
 + Removed the "Block of Clay" block added by the mod in previous updates as it's no longer needed.
 + Reverted the clay block recipe to be made out of 4 clay ball instead of 9 (as originally planned - this will be a specific change in the BTWR modpack instead)
-+ Fixed dirt path to drop dirt piles when broken with a lesser shovel/hand
 + Updated the mod to Fabric API 0.115.3 & BTWR: Shared Library 0.49
 
 # 0.8 Alpha
