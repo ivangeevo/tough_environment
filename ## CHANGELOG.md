@@ -1,9 +1,11 @@
-# 0.9 Alpha(next)
+# 0.9 Alpha
 ### ! World breaking update - This update will replace some blocks in your world/ make some items disappear from your inventory. 
 + Added a new block for the "Clay Ore" and made it replace normal Clay blocks in world generation. This allows for regular clay blocks to be crafted as normal and fixes incompatibility with mods that might use the clay block in whatever way.
++ Improved the mortarting logic for blocks to be more responsive and not fixed a bug with it bugging out when having a shield equipped when trying to mortar blocks
 + Removed the "Block of Clay" block added by the mod in previous updates as it's no longer needed.
 + Reverted the clay block recipe to be made out of 4 clay ball instead of 9 (as originally planned - this will be a specific change in the BTWR modpack instead)
 + Fixed dirt path to drop dirt piles when broken with a lesser shovel/hand
++ Updated the mod to Fabric API 0.115.3 & BTWR: Shared Library 0.49
 
 # 0.8 Alpha
 + Added compatibility with "Better With Time" Battle Axe item to not consume hunger when breaking grass blocks
@@ -13,7 +15,7 @@
 + Changed/fixed the COBBLESTONE_CRAFTING_MATERIALS tag from adding Cobblestone as material and moved it to the BTWR-SL mod.
 + Added missing block tags to newly added nether brick blocks which made them take too long to break.
 + Removed Fortune enchantment working on Diamond & Emerald ores. It will only work on metalic and non-gemstone ores like Redstone/Lapis
-+ Updated the mod to Fabric API 0.115.0, Fabric Loader 0.16.0 & BTWR Shared Library 0.47
++ Updated the mod to Fabric API 0.115.0, Fabric Loader 0.16.10 & BTWR Shared Library 0.47
 
 # 0.7.3 Alpha
 + Added Packed Earth and Packed Earth Slab blocks!

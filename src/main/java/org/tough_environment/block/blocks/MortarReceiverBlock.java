@@ -1,5 +1,6 @@
 package org.tough_environment.block.blocks;
 
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -9,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -54,26 +56,34 @@ public class MortarReceiverBlock extends FallingBlock
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
-    {
-        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS)) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient) {
+            // Check both hands to avoid shield interference
+            ItemStack mainHandStack = player.getStackInHand(Hand.MAIN_HAND);
+            ItemStack offHandStack = player.getStackInHand(Hand.OFF_HAND);
 
-            // Mortar the block
-            this.applyMortar(state, world, pos, player);
-
-            // Reduce item stack size
-            ItemStack handStack = player.getStackInHand(player.getActiveHand());
-            if (!player.isCreative()) {
-                handStack.decrement(1);
+            if (mainHandStack.isIn(ModTags.Items.MORTARING_ITEMS)) {
+                return applyMortarWithHand(state, world, pos, player, Hand.MAIN_HAND);
             }
-
-            return ActionResult.SUCCESS;
+            else if (offHandStack.isIn(ModTags.Items.MORTARING_ITEMS)) {
+                return applyMortarWithHand(state, world, pos, player, Hand.OFF_HAND);
+            }
         }
 
         return ActionResult.PASS;
     }
 
+    // Helper method to apply the mortar logic for a specific hand
+    private ActionResult applyMortarWithHand(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        this.applyMortar(state, world, pos, player);
 
+        // Reduce item stack size if not in creative mode
+        if (!player.isCreative()) {
+            player.getStackInHand(hand).decrement(1);
+        }
+
+        return ActionResult.SUCCESS;
+    }
 
     public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         Block newBlock = this.getReplacementBlock(state.getBlock());
