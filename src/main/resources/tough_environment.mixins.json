@@ -4,7 +4,6 @@
   "package": "org.tough_environment.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "HoeItemMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "PlayerEntityMixin",

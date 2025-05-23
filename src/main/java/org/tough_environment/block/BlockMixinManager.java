@@ -166,7 +166,7 @@ public class BlockMixinManager
             return;
         }
 
-        setState(world, pos, blockToSet.getDefaultState().with(BREAK_LEVEL, 5), tool);
+        setState(world, pos, blockToSet.getDefaultState().with(BREAK_LEVEL, 5));
     }
 
     private boolean shouldConvertOre(BlockState state, ItemStack tool) {
@@ -174,16 +174,10 @@ public class BlockMixinManager
                 tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.DEEPSLATE_ORES));
     }
 
-    private void setState(World world, BlockPos pos, BlockState newState, ItemStack tool) {
-        BlockState oldState = world.getBlockState(pos);
-        BlockState updatedState = pushEntitiesUpBeforeBlockChange(oldState, newState, world, pos);
-        world.setBlockState(pos, updatedState,0,0);
-    }
-
     private void setState(World world, BlockPos pos, BlockState newState) {
         BlockState oldState = world.getBlockState(pos);
         BlockState updatedState = pushEntitiesUpBeforeBlockChange(oldState, newState, world, pos);
-        world.setBlockState(pos, updatedState,0,0);
+        world.setBlockState(pos, updatedState);
     }
 
     private void setAdjacentStateToLooseDirt(World world, BlockPos pos) {
@@ -197,7 +191,7 @@ public class BlockMixinManager
 
             // Check if the neighbor is dirt and not already loose dirt
             if (neighborState.getBlock() == Blocks.DIRT && neighborState.getBlock() != ModBlocks.DIRT_LOOSE) {
-                world.setBlockState(mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState(),0,0);
+                world.setBlockState(mutablePos, ModBlocks.DIRT_LOOSE.getDefaultState());
             }
         }
 

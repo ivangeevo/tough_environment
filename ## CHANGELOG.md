@@ -1,3 +1,8 @@
+# 0.10 Alpha(dev)
++ Fixed a bug that made dirt & grass blocks not update neighbouring blocks to make them loose dirt on the client side
++ Removed the code that made hoes not work via right click and moved that functionality to BTWR: Core 
++ Updated the mod to Fabric API 0.116.0, Fabric Loader 0.16.14 & BTWR: Shared Library 0.53
+
 # 0.9 Alpha
 ### ! World breaking update - This update will replace some blocks in your world/ make some items disappear from your inventory. 
 + Added a new block for the "Clay Ore" and made it replace normal Clay blocks in world generation. This allows for regular clay blocks to be crafted as normal and fixes incompatibility with mods that might use the clay block in whatever way.

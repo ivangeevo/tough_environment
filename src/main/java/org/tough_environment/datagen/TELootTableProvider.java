@@ -52,8 +52,10 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.RED_SAND, dropsForLooseAggregate(Blocks.RED_SAND, Blocks.RED_SAND, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_RED_SAND, 6));
         addDrop(Blocks.GRAVEL, dropsForLooseAggregate(Blocks.GRAVEL, Blocks.GRAVEL, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_GRAVEL, 6,
                 List.of(new AdditionalDrop(Items.FLINT, 1, 0.1f))));
+        //addDrop(Blocks.GRASS_BLOCK, dropsForLooseAggregate(Blocks.GRASS_BLOCK, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6,
+                //null, Map.of(Items.IRON_HOE, 0.03f, Items.GOLDEN_HOE, 0.04f, Items.DIAMOND_HOE, 0.06f, Items.NETHERITE_HOE, 0.11f), Items.WHEAT_SEEDS));
         addDrop(Blocks.GRASS_BLOCK, dropsForLooseAggregate(Blocks.GRASS_BLOCK, ModBlocks.DIRT_LOOSE, WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6,
-                null, Map.of(Items.IRON_HOE, 0.03f, Items.GOLDEN_HOE, 0.04f, Items.DIAMOND_HOE, 0.06f, Items.NETHERITE_HOE, 0.11f), Items.WHEAT_SEEDS));
+                null));
 
         addDrop(Blocks.CLAY, dropsForBreakingToLooseBlock(Blocks.CLAY, Blocks.CLAY, WITH_SHOVEL_FULLY_HARVESTS, Items.CLAY_BALL, 4));
 
