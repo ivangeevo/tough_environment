@@ -1,4 +1,4 @@
-# 0.10 Alpha(dev)
+# 0.10 Alpha
 + Fixed a bug that made dirt & grass blocks not update neighbouring blocks to make them loose dirt on the client side
 + Removed the code that made hoes not work via right click and moved that functionality to BTWR: Core 
 + Updated the mod to Fabric API 0.116.0, Fabric Loader 0.16.14 & BTWR: Shared Library 0.53
