@@ -15,6 +15,7 @@ import net.minecraft.loot.condition.*;
 import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
+import net.minecraft.loot.function.ExplosionDecayLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
@@ -239,6 +240,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         return builder;
     }
 
+    /**
     // Handles only basic loose aggregate drops
     public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
         // Define the main loot pool with conditions
@@ -248,6 +250,26 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 ItemEntry.builder(pileDrop).conditionally(WITHOUT_HOE)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
                         .conditionally(dropWithSilkTouch == Blocks.GRASS_BLOCK ? WITHOUT_HOE : SurvivesExplosionLootCondition.builder())
+        );
+
+        return LootTable.builder().pool(
+                LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1.0f))
+                        .with(alternativeEntry)
+        );
+    }
+     **/
+
+    // Handles only basic loose aggregate drops
+    public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
+        // Define the main loot pool with conditions
+        AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
+                this.silkTouchDropEntry(dropWithSilkTouch),
+                this.looseDropEntry(looseDrop, toolCondition),
+                ItemEntry.builder(pileDrop)
+                        .apply(ExplosionDecayLootFunction.builder())
+                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
+                        .conditionally(SurvivesExplosionLootCondition.builder())
         );
 
         return LootTable.builder().pool(

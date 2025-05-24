@@ -1,3 +1,7 @@
+# 0.10.1 Alpha
++ Fixed a bug where aggregate blocks like dirt, grass, sand, etc weren't dropping when broken with a hoe tool (leftover functionality from previous versions)
++ Fixed all aggregate blocks to drop the proper amount of pile items for each block (applied explosion decay to the loot tables)
+
 # 0.10 Alpha
 + Fixed a bug that made dirt & grass blocks not update neighbouring blocks to make them loose dirt on the client side
 + Removed the code that made hoes not work via right click and moved that functionality to BTWR: Core 
