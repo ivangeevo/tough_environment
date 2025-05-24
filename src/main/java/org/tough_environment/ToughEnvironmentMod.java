@@ -6,6 +6,8 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Blocks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.tough_environment.block.BlockBreakHandler;
+import org.tough_environment.block.OGBlockBreakHandler;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.config.TESettings;
 import org.tough_environment.item.ModItemGroup;
@@ -46,6 +48,7 @@ public class ToughEnvironmentMod implements ModInitializer {
 
         BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
         //BlockReplacementRegistry.registerReplacement(Blocks.GRASS_BLOCK, Blocks.GREEN_STAINED_GLASS);
+        //BlockBreakHandler.registerBreakEvent();
 
 
         /** save for later attempts // trying to make a custom vanilla resourcepack with datagen.

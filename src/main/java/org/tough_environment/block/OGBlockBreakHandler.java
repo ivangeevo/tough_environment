@@ -1,11 +1,12 @@
 package org.tough_environment.block;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ExperienceDroppingBlock;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
@@ -16,41 +17,27 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.blocks.StoneConvertingBlock;
 import org.tough_environment.tag.ModTags;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static net.minecraft.block.Block.*;
+import static net.minecraft.block.Block.pushEntitiesUpBeforeBlockChange;
 import static org.tough_environment.block.blocks.ConvertingBlock.BREAK_LEVEL;
 
-/** Manages mixin'd logic for vanilla blocks affected by BTWR mechanics. */
-public class BlockMixinManager
+public class OGBlockBreakHandler
 {
 
-    private static final BlockMixinManager instance = new BlockMixinManager();
-
-    private BlockMixinManager() {}
-
-    public static BlockMixinManager getInstance() {
-        return instance;
+    public static void registerBreakEvent() {
+        PlayerBlockBreakEvents.BEFORE.register(OGBlockBreakHandler::onBlockDestroyed);
     }
 
-    // Exhaustion when placing blocks
-    public void handleOnPlaced(LivingEntity placer) {
-        if (placer instanceof PlayerEntity player) {
-            player.getHungerManager().addExhaustion(0.005f);
-        }
-    }
-
-    public void handleAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, ItemStack tool) {
+    private static boolean onBlockDestroyed(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
+        ItemStack tool = player.getMainHandStack();
         setConvertibleState(world, pos, state, tool);
 
-        // TODO: Fix this, so that it actually only applies to grass like blocks and not all block,
-        //  though this doesn't matter that much (I think); The best solution would be to make a separate check for grass-like blocks,
-        //  and leave the generic exhaustion check for breaking other blocks to itself
-        // Add increased exhaustion for breaking blocks
         if (!isValidAxeItem(tool) && state.getHardness(world, pos) <= 0) {
             player.addExhaustion(0.1f);
         }
@@ -58,10 +45,13 @@ public class BlockMixinManager
         if (shouldPlayDing(state, tool) && !player.isCreative()) {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.BLOCKS, 0.5F, 1.75F + world.random.nextFloat() * 0.25F);
         }
+
+        // Let the block break proceed
+        return true;
     }
 
 
-    private boolean shouldPlayDing(BlockState state, ItemStack tool) {
+    private static boolean shouldPlayDing(BlockState state, ItemStack tool) {
         if (state.getBlock() instanceof StoneConvertingBlock && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)) {
             int breakLevel = state.get(BREAK_LEVEL);
 
@@ -75,7 +65,7 @@ public class BlockMixinManager
         return isStrata1StoneBlock(state) && (isChisel(tool) || tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES));
     }
 
-    private void setConvertibleState(World world, BlockPos pos, BlockState state, ItemStack tool) {
+    private static void setConvertibleState(World world, BlockPos pos, BlockState state, ItemStack tool) {
         if (world.isClient) return;
 
         if (state.isIn(ModTags.Blocks.VANILLA_DIRT_BLOCKS) || state.isOf(Blocks.GRASS_BLOCK)) {
@@ -97,7 +87,7 @@ public class BlockMixinManager
         convertStoneState(world, pos, state, tool);
     }
 
-    private void convertStoneState(World world, BlockPos pos, BlockState state, ItemStack tool) {
+    private static void convertStoneState(World world, BlockPos pos, BlockState state, ItemStack tool) {
         Map<Block, Block> blockMap = new HashMap<>();
 
         blockMap.put(Blocks.STONE, ModBlocks.STONE_CONVERTING);
@@ -126,7 +116,7 @@ public class BlockMixinManager
         }
     }
 
-    private void setStateForStone(World world, BlockPos pos, ItemStack tool, Block block)
+    private static void setStateForStone(World world, BlockPos pos, ItemStack tool, Block block)
     {
 
         BlockState state = block.getDefaultState();
@@ -153,7 +143,7 @@ public class BlockMixinManager
         setState(world, pos, state.with(BREAK_LEVEL, 0));
     }
 
-    private void setStateForDirt(World world, BlockPos pos, ItemStack tool) {
+    private static void setStateForDirt(World world, BlockPos pos, ItemStack tool) {
         if (isFullyBreakingTool(tool)) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
         } else {
@@ -161,7 +151,7 @@ public class BlockMixinManager
         }
     }
 
-    private void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool, Block blockToSet) {
+    private static void setStateForOre(World world, BlockPos pos, BlockState state, ItemStack tool, Block blockToSet) {
         if (!shouldConvertOre(state, tool)) {
             world.setBlockState(pos, Blocks.AIR.getDefaultState());
             return;
@@ -170,18 +160,18 @@ public class BlockMixinManager
         setState(world, pos, blockToSet.getDefaultState().with(BREAK_LEVEL, 5));
     }
 
-    private boolean shouldConvertOre(BlockState state, ItemStack tool) {
+    private static boolean shouldConvertOre(BlockState state, ItemStack tool) {
         return !(tool.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES) ||
                 tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.DEEPSLATE_ORES));
     }
 
-    private void setState(World world, BlockPos pos, BlockState newState) {
+    private static void setState(World world, BlockPos pos, BlockState newState) {
         BlockState oldState = world.getBlockState(pos);
         BlockState updatedState = pushEntitiesUpBeforeBlockChange(oldState, newState, world, pos);
         world.setBlockState(pos, updatedState);
     }
 
-    private void setAdjacentStateToLooseDirt(World world, BlockPos pos) {
+    private static void setAdjacentStateToLooseDirt(World world, BlockPos pos) {
         BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
         // Check the four cardinal directions
@@ -210,11 +200,11 @@ public class BlockMixinManager
 
     }
 
-    private void setToFarmland(World world, BlockPos pos) {
+    private static void setToFarmland(World world, BlockPos pos) {
         setState(world, pos, Blocks.FARMLAND.getDefaultState());
     }
 
-    private boolean isFullyBreakingTool(ItemStack tool) {
+    private static boolean isFullyBreakingTool(ItemStack tool) {
         return tool.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES) ||
                 tool.isIn(BTWRConventionalTags.Items.ADVANCED_SHOVELS) ||
                 tool.isIn(BTWRConventionalTags.Items.ADVANCED_AXES) ||
@@ -223,20 +213,22 @@ public class BlockMixinManager
                 tool.isIn(BTWRConventionalTags.Items.MODERN_AXES);
     }
 
-    private boolean isChisel(ItemStack tool) {
+    private static boolean isChisel(ItemStack tool) {
         return tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS);
     }
 
-    private boolean isStrata1StoneBlock(BlockState state) {
+    private static boolean isStrata1StoneBlock(BlockState state) {
         return state.isOf(Blocks.STONE) || state.isOf(Blocks.GRANITE) || state.isOf(Blocks.ANDESITE) || state.isOf(Blocks.DIORITE);
     }
 
-    private boolean isValidAxeItem(ItemStack stack) {
+    private static boolean isValidAxeItem(ItemStack stack) {
         return stack.getItem() instanceof AxeItem || isBWTAxe(stack);
     }
 
-    private boolean isBWTAxe(ItemStack stack) {
+    private static boolean isBWTAxe(ItemStack stack) {
         // special case added originally for BWT's BattleAxe because it's a mining tool and it should be in this tag
         return (stack.getItem() instanceof MiningToolItem && stack.isIn(BTWRConventionalTags.Items.AXES_MAKE_PLANKS));
     }
+
+
 }

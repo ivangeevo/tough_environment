@@ -1,3 +1,6 @@
+# 0.11 (next)
+
+
 # 0.10.1 Alpha
 + Fixed a bug where aggregate blocks like dirt, grass, sand, etc weren't dropping when broken with a hoe tool (leftover functionality from previous versions)
 + Fixed all aggregate blocks to drop the proper amount of pile items for each block (applied explosion decay to the loot tables)
