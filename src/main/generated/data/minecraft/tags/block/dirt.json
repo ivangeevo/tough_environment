@@ -1,8 +1,5 @@
 {
   "values": [
-    "tough_environment:dirt_loose",
-    "tough_environment:dirt_packed",
-    "tough_environment:slab_dirt",
-    "tough_environment:slab_dirt_packed"
+    "tough_environment:dirt_loose"
   ]
 }

@@ -1,5 +1,5 @@
 # 0.11 (next)
-
++ Fixed (removed)Packed Earth, Dirt and Packed Earth slabs from the DIRT Block tags which caused some problems with planting sugar cane from Vegehenna
 
 # 0.10.1 Alpha
 + Fixed a bug where aggregate blocks like dirt, grass, sand, etc weren't dropping when broken with a hoe tool (leftover functionality from previous versions)

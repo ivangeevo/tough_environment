@@ -125,10 +125,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.TUFF_CONVERTING);
 
         getOrCreateTagBuilder(BlockTags.DIRT)
-                .add(ModBlocks.DIRT_LOOSE)
-                .add(ModBlocks.DIRT_PACKED)
-                .add(ModBlocks.SLAB_DIRT)
-                .add(ModBlocks.SLAB_DIRT_PACKED);
+                .add(ModBlocks.DIRT_LOOSE);
 
         getOrCreateTagBuilder(BlockTags.STAIRS)
                 .forceAddTag(ModTags.Blocks.LOOSE_STONE_STAIRS)
