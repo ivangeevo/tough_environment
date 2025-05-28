@@ -3,7 +3,10 @@ package org.tough_environment;
 import btwr.btwr_sl.lib.util.BlockReplacementRegistry;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.item.HoeItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tough_environment.block.BlockBreakHandler;
@@ -49,6 +52,14 @@ public class ToughEnvironmentMod implements ModInitializer {
         BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
         //BlockReplacementRegistry.registerReplacement(Blocks.GRASS_BLOCK, Blocks.GREEN_STAINED_GLASS);
         //BlockBreakHandler.registerBreakEvent();
+
+        TillableBlockRegistry.register(
+                ModBlocks.DIRT_LOOSE,
+                HoeItem::canTillFarmland,
+                context -> {
+                    BlockState result = Blocks.FARMLAND.getDefaultState();
+                    HoeItem.createTillAction(result).accept(context);
+                });
 
 
         /** save for later attempts // trying to make a custom vanilla resourcepack with datagen.
