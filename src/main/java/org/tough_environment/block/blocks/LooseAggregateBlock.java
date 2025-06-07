@@ -28,24 +28,6 @@ public class LooseAggregateBlock extends FallingBlock
         return CODEC;
     }
 
-    // Block specific logic //
-    @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state,
-                           @Nullable BlockEntity blockEntity, ItemStack tool)
-    {
-
-
-        // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
-        if (tool.isIn(BTWRConventionalTags.Items.MODERN_HOES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES)) {
-
-            if (state.isOf(ModBlocks.DIRT_LOOSE)) {
-                world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
-            }
-
-        }
-
-        super.afterBreak(world, player, pos, state, blockEntity, tool);
-    }
 
     // ---------------------------------- //
 }

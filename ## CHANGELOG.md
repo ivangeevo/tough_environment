@@ -1,6 +1,7 @@
 # 0.11 (next)
 + Fixed (removed)Packed Earth, Dirt and Packed Earth slabs from the DIRT Block tags which caused some problems with planting sugar cane from Vegehenna
 + Fixed Loose Dirt to be a valid tillable block when right-clicked with a hoe 
++ Fixed/removed old code that turned loose dirt to farmland when broken with a hoe
 
 # 0.10.1 Alpha
 + Fixed a bug where aggregate blocks like dirt, grass, sand, etc weren't dropping when broken with a hoe tool (leftover functionality from previous versions)
