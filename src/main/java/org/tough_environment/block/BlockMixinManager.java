@@ -51,8 +51,9 @@ public class BlockMixinManager
         //  though this doesn't matter that much (I think); The best solution would be to make a separate check for grass-like blocks,
         //  and leave the generic exhaustion check for breaking other blocks to itself
         // Add increased exhaustion for breaking blocks
-        if (!isValidAxeItem(tool) && state.getHardness(world, pos) <= 0) {
-            player.addExhaustion(0.1f);
+        if (!isValidAxeItem(tool) && !state.isReplaceable()) {
+            // add 0.02 exhaustion and vanilla adds 0.005 which adds to 0.025 which matches the value from retail BTW
+            player.addExhaustion(0.02f);
         }
 
         if (shouldPlayDing(state, tool) && !player.isCreative()) {
