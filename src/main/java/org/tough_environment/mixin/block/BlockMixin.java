@@ -28,12 +28,6 @@ public abstract class BlockMixin extends AbstractBlock implements DirectionalDro
         MakeAsFallingBlock.getInstance().onRandomDisplayTick(state, world, pos, random);
     }
 
-    @Inject(method = "onPlaced", at = @At("HEAD"))
-    private void injectedOnPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack, CallbackInfo ci)
-    {
-        BlockMixinManager.getInstance().handleOnPlaced(placer);
-    }
-
     @Inject(method = "afterBreak", at = @At("HEAD"))
     private void onAfterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci)
     {
