@@ -11,6 +11,7 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
@@ -35,6 +36,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
         // for vanilla
         this.addDisabledRecipes(exporter);
         this.addVanillaBlockRecipes(exporter);
+        this.addVanillaItemRecipes(exporter);
 
         // for mod
         this.addFullBlockRecipes(exporter);
@@ -84,6 +86,18 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .criterion(hasItem(Items.CLAY_BALL), conditionsFromItem(Items.CLAY_BALL))
                 .offerTo(exporter, ID.ofMC("clay"));
 
+    }
+
+    private void addVanillaItemRecipes(RecipeExporter exporter) {
+        // change shield recipe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD)
+                .input('P', ItemTags.PLANKS)
+                .input('N', Items.IRON_NUGGET)
+                .pattern(" N ")
+                .pattern("NPN")
+                .pattern(" N ")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("shield"));
     }
 
     private void addMiscRecipes(RecipeExporter exporter) {

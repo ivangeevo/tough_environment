@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "N": {
+      "item": "minecraft:iron_nugget"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    " N ",
+    "NPN",
+    " N "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:shield"
+  }
+}
