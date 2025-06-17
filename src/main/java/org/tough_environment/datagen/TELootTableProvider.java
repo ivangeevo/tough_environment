@@ -82,6 +82,8 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         addDrop(Blocks.NETHER_BRICK_SLAB, dropsForBreakingToLooseBlock(Blocks.NETHER_BRICK_SLAB, ModBlocks.SLAB_NETHER_BRICKS_LOOSE, WITH_PICKAXE_FULLY_HARVESTS, Items.NETHER_BRICK, 4));
 
         // stairs
+        addDrop(Blocks.COBBLESTONE_STAIRS, dropsForBreakingToLooseBlock(Blocks.COBBLESTONE_STAIRS, ModBlocks.COBBLESTONE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SMALL_STONE, 3));
+        addDrop(Blocks.COBBLED_DEEPSLATE_STAIRS, dropsForBreakingToLooseBlock(Blocks.COBBLED_DEEPSLATE_STAIRS, ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SMALL_STONE_2, 3));
         addDrop(Blocks.GRANITE_STAIRS, dropsForBreakingToLooseBlock(Blocks.GRANITE_STAIRS, ModBlocks.GRANITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_GRANITE, 3));
         addDrop(Blocks.ANDESITE_STAIRS, dropsForBreakingToLooseBlock(Blocks.ANDESITE_STAIRS, ModBlocks.ANDESITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_ANDESITE, 3));
         addDrop(Blocks.DIORITE_STAIRS, dropsForBreakingToLooseBlock(Blocks.DIORITE_STAIRS, ModBlocks.DIORITE_LOOSE_STAIRS, WITH_PICKAXE_FULLY_HARVESTS, ModItems.SHARD_DIORITE, 3));
