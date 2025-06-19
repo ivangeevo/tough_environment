@@ -5,7 +5,9 @@
 + Fixed (removed)Packed Earth, Dirt and Packed Earth slabs from the DIRT Block tags which caused some problems with planting sugar cane from Vegehenna
 + Fixed Loose Dirt to be a valid tillable block when right-clicked with a hoe 
 + Fixed/removed old code that turned loose dirt to farmland when broken with a hoe and removed it's associated efficient blocks
++ Fixed clock to actually require quartz as the original intention was.
 + Removed the logic that added extra exhaustion on breaking/placing blocks and axes not taking damage on replaceable blocks and moved it to be a mod pack change only.
++ Updated the mod to Fabric API 0.116.2, Fabric Loader 0.16.14 & BTWR: Shared Library 0.55
 
 # 0.10.1 Alpha
 + Fixed a bug where aggregate blocks like dirt, grass, sand, etc weren't dropping when broken with a hoe tool (leftover functionality from previous versions)

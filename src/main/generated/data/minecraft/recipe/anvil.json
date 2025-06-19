@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "equipment",
   "key": {
-    "i": {
+    "I": {
       "item": "minecraft:iron_ingot"
     }
   },
   "pattern": [
-    "iii",
-    " i ",
-    "iii"
+    "III",
+    " I ",
+    "III"
   ],
   "result": {
+    "count": 1,
     "id": "minecraft:anvil"
-  },
-  "show_notification": true
+  }
 }

@@ -2,17 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
+    "N": {
       "item": "minecraft:iron_nugget"
     }
   },
   "pattern": [
-    "# #",
-    "# #",
-    "###"
+    "N N",
+    "N N",
+    "NNN"
   ],
   "result": {
+    "count": 1,
     "id": "minecraft:bucket"
-  },
-  "show_notification": true
+  }
 }

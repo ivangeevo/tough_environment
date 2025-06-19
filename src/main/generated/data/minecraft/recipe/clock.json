@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": {
+    "N": {
       "item": "minecraft:gold_nugget"
     },
-    "X": {
-      "item": "minecraft:redstone"
+    "R": {
+      "item": "minecraft:quartz"
     }
   },
   "pattern": [
-    " # ",
-    "#X#",
-    " # "
+    " N ",
+    "NRN",
+    " N "
   ],
   "result": {
+    "count": 1,
     "id": "minecraft:clock"
-  },
-  "show_notification": true
+  }
 }

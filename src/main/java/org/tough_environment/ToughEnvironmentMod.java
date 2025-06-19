@@ -46,7 +46,8 @@ public class ToughEnvironmentMod implements ModInitializer {
         ModItems.registerModItems();
         ModItemGroup.registerItemGroups();
         ModFuelItems.register();
-        // Initialize or load the block replacement map
+
+        // Initialize or load the block replacement map for mortaring
         BlockMortarMapper.init();
 
         BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);

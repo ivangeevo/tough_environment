@@ -89,7 +89,15 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
     }
 
     private void addVanillaItemRecipes(RecipeExporter exporter) {
-        // change shield recipe
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.ANVIL)
+                .input('I', Items.IRON_INGOT)
+                .pattern("III")
+                .pattern(" I ")
+                .pattern("III")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("anvil"));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD)
                 .input('P', ItemTags.PLANKS)
                 .input('N', Items.IRON_NUGGET)
@@ -98,6 +106,40 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .pattern(" N ")
                 .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
                 .offerTo(exporter, ID.ofMC("shield"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.COMPASS)
+                .input('R', Items.REDSTONE)
+                .input('N', Items.IRON_NUGGET)
+                .pattern(" N ")
+                .pattern("NRN")
+                .pattern(" N ")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("compass"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.CLOCK)
+                .input('R', Items.QUARTZ)
+                .input('N', Items.GOLD_NUGGET)
+                .pattern(" N ")
+                .pattern("NRN")
+                .pattern(" N ")
+                .criterion("has_gold_nugget", conditionsFromItem(Items.GOLD_NUGGET))
+                .offerTo(exporter, ID.ofMC("clock"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BUCKET)
+                .input('N', Items.IRON_NUGGET)
+                .pattern("N N")
+                .pattern("N N")
+                .pattern("NNN")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, ID.ofMC("bucket"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.FLINT_AND_STEEL)
+                .input(Items.FLINT)
+                .input(Items.IRON_NUGGET)
+                .criterion("has_flint", conditionsFromItem(Items.FLINT))
+                .offerTo(exporter, ID.ofMC("flint_and_steel"));
+
+
     }
 
     private void addMiscRecipes(RecipeExporter exporter) {
