@@ -39,6 +39,7 @@ public class TELangGenerator extends FabricLanguageProvider {
     }
 
     private void addBlocks(TranslationBuilder tb) {
+        // Non-loose blocks
         tb.add(ModBlocks.SLAB_SAND, "Sand Slab");
         tb.add(ModBlocks.SLAB_RED_SAND, "Red Sand Slab");
         tb.add(ModBlocks.SLAB_DIRT, "Loose Dirt Slab");
@@ -55,9 +56,14 @@ public class TELangGenerator extends FabricLanguageProvider {
 
         tb.add(ModBlocks.SLAB_WHITE_STONE, "White Stone Slab");
         tb.add(ModBlocks.SLAB_WHITE_COBBLESTONE, "White Cobblestone Slab");
-
         tb.add(ModBlocks.SLAB_DIRT_PACKED, "Packed Earth Slab");
 
+        tb.add(ModBlocks.CLAY_ORE, "Clay Ore");
+        tb.add(ModBlocks.WHITE_STONE, "White Stone");
+        tb.add(ModBlocks.WHITE_COBBLESTONE, "White Cobblestone");
+        tb.add(ModBlocks.DIRT_PACKED, "Packed Earth");
+
+        // Loose blocks
         tb.add(ModBlocks.DIRT_LOOSE, "Loose Dirt");
         tb.add(ModBlocks.COBBLESTONE_LOOSE, "Loose Cobblestone");
         tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE, "Loose Cobbled Deepslate");
@@ -74,13 +80,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE, "Loose Deepslate Bricks");
         tb.add(ModBlocks.NETHER_BRICKS_LOOSE, "Loose Nether Bricks");
 
-        tb.add(ModBlocks.CLAY_ORE, "Clay Ore");
-
-        tb.add(ModBlocks.WHITE_STONE, "White Stone");
-        tb.add(ModBlocks.WHITE_COBBLESTONE, "White Cobblestone");
-
-        tb.add(ModBlocks.DIRT_PACKED, "Packed Earth");
-
+        // Stairs blocks
         tb.add(ModBlocks.COBBLESTONE_LOOSE_STAIRS, "Loose Cobblestone Stairs");
         tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, "Loose Cobbled Deepslate Stairs");
         tb.add(ModBlocks.ANDESITE_LOOSE_STAIRS, "Loose Andesite Stairs");
@@ -94,7 +94,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.WHITE_STONE_STAIRS, "White Stone Stairs");
         tb.add(ModBlocks.WHITE_COBBLESTONE_STAIRS, "White Cobblestone Stairs");
 
-        // non-item blocks (blocks that aren't usually accessible by the player, but still need names)
+        // Non-item blocks (blocks that aren't usually accessible by the player, but still need names)
         tb.add(ModBlocks.STONE_CONVERTING, "Cracked Stone");
         tb.add(ModBlocks.DEEPSLATE_CONVERTING, "Cracked Deepslate");
         tb.add(ModBlocks.ANDESITE_CONVERTING, "Cracked Andesite");
@@ -145,7 +145,6 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModItems.NETHER_SLUDGE, "Nether Sludge");
     }
 
-
     private void addItemGroup(String entryPath, String translation, TranslationBuilder tb) {
         tb.add("itemgroup." + entryPath, translation);
     }
@@ -165,10 +164,5 @@ public class TELangGenerator extends FabricLanguageProvider {
     private void addConfigTooltip(String configPath, String translation, TranslationBuilder tb) {
         tb.add("config." + ToughEnvironmentMod.MOD_ID + ".tooltip." + configPath, translation);
     }
-
-
-
-
-
 
 }
