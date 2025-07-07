@@ -1,4 +1,4 @@
-# 0.11 (next)
+# 0.11
 + Changed(and hopefully fixed) some clay blocks in the world generation that weren't getting properly replaced with Tough Environment's "Dirt Clay" block.
 + Changed the shield recipe to require 4 nuggets and only one plank, so it's more easily accessible.
 + Reworked all loot tables for stone type blocks to flow better and be more readable, but also fixed them to work with silk touch tools.
