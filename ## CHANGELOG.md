@@ -1,6 +1,7 @@
 # 0.11 (next)
 + Changed(and hopefully fixed) some clay blocks in the world generation that weren't getting properly replaced with Tough Environment's "Dirt Clay" block.
 + Changed the shield recipe to require 4 nuggets and only one plank, so it's more easily accessible.
++ Reworked all loot tables for stone type blocks to flow better and be more readable, but also fixed them to work with silk touch tools.
 + Fixed cobblestone and cobbled deepslate stairs to properly drop their loose block counterparts when broken.
 + Fixed (removed)Packed Earth, Dirt and Packed Earth slabs from the DIRT Block tags which caused some problems with planting sugar cane from Vegehenna
 + Fixed Loose Dirt to be a valid tillable block when right-clicked with a hoe 
@@ -8,7 +9,7 @@
 + Fixed clock to actually require quartz as the original intention was.
 + Fixed names & item models for inaccessible blocks like depleted & converting stone types to properly display, mainly for proper name to show up when looked with mods like WAILA.
 + Removed the logic that added extra exhaustion on breaking/placing blocks and axes not taking damage on replaceable blocks and moved it to be a mod pack change only.
-+ Updated the mod to Fabric API 0.116.2, Fabric Loader 0.16.14 & BTWR: Shared Library 0.55
++ Updated the mod to Fabric API 0.116.4, Fabric Loader 0.16.14 & BTWR: Shared Library 0.55
 
 # 0.10.1 Alpha
 + Fixed a bug where aggregate blocks like dirt, grass, sand, etc weren't dropping when broken with a hoe tool (leftover functionality from previous versions)

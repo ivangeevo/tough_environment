@@ -18,7 +18,9 @@ import net.minecraft.loot.entry.LeafEntry;
 import net.minecraft.loot.function.ExplosionDecayLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
@@ -33,7 +35,18 @@ import java.util.concurrent.CompletableFuture;
 public class TELootTableProvider extends FabricBlockLootTableProvider
 {
     public static final LootCondition.Builder WITH_PICKAXE_FULLY_HARVESTS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.PICKAXES_HARVEST_FULL_BLOCK));
+    public static final LootCondition.Builder WITH_ADVANCED_PICKAXES = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.ADVANCED_PICKAXES));
+    public static final LootCondition.Builder WITH_MODERN_PICKAXES = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.MODERN_PICKAXES));
+    public static final LootCondition.Builder WITH_PRIMITIVE_PICKAXES = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES ));
+
     public static final LootCondition.Builder WITH_SHOVEL_FULLY_HARVESTS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK));
+    public static final LootCondition.Builder WITH_ADVANCED_SHOVELS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.ADVANCED_SHOVELS));
+    public static final LootCondition.Builder WITH_MODERN_SHOVELS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.MODERN_SHOVELS));
+
+    public static final LootCondition.Builder WITH_ADVANCED_CHISELS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.ADVANCED_CHISELS));
+    public static final LootCondition.Builder WITH_MODERN_CHISELS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.MODERN_CHISELS));
+    public static final LootCondition.Builder WITH_PRIMITIVE_CHISELS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.PRIMITIVE_CHISELS));
+
     public static final LootCondition.Builder WITHOUT_HOE = MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.HOES)).invert();
 
     public TELootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
@@ -59,6 +72,12 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 null));
 
         addDrop(Blocks.CLAY, dropsForBreakingToLooseBlock(Blocks.CLAY, Blocks.CLAY, WITH_SHOVEL_FULLY_HARVESTS, Items.CLAY_BALL, 4));
+
+        addDrop(Blocks.STONE, dropsForStoneLike(Blocks.STONE, ModBlocks.COBBLESTONE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SMALL_STONE, ModItems.STONE_BRICK));
+        addDrop(Blocks.DEEPSLATE, dropsForStoneLike(Blocks.DEEPSLATE, ModBlocks.COBBLED_DEEPSLATE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SMALL_STONE_2, ModItems.STONE_BRICK_2));
+        addDrop(Blocks.ANDESITE, dropsForAlternateStoneLike(Blocks.ANDESITE, ModBlocks.ANDESITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_ANDESITE));
+        addDrop(Blocks.GRANITE, dropsForAlternateStoneLike(Blocks.GRANITE, ModBlocks.GRANITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_GRANITE));
+        addDrop(Blocks.DIORITE, dropsForAlternateStoneLike(Blocks.DIORITE, ModBlocks.DIORITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_DIORITE));
 
         addDrop(Blocks.COBBLESTONE_SLAB, customSlabDrop(Blocks.COBBLESTONE_SLAB, ModBlocks.SLAB_COBBLESTONE_LOOSE));
         addDrop(Blocks.COBBLED_DEEPSLATE_SLAB, customSlabDrop(Blocks.COBBLED_DEEPSLATE_SLAB, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE));
@@ -244,14 +263,14 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
     /**
     // Handles only basic loose aggregate drops
-    public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
+    public LootTable.Builder dropsForLooseAggregate(Block silkTouchDrop, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
         // Define the main loot pool with conditions
         AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
-                this.silkTouchDropEntry(dropWithSilkTouch),
+                this.silkTouchDropEntry(silkTouchDrop),
                 this.looseDropEntry(looseDrop, toolCondition),
                 ItemEntry.builder(pileDrop).conditionally(WITHOUT_HOE)
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
-                        .conditionally(dropWithSilkTouch == Blocks.GRASS_BLOCK ? WITHOUT_HOE : SurvivesExplosionLootCondition.builder())
+                        .conditionally(silkTouchDrop == Blocks.GRASS_BLOCK ? WITHOUT_HOE : SurvivesExplosionLootCondition.builder())
         );
 
         return LootTable.builder().pool(
@@ -261,6 +280,102 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         );
     }
      **/
+
+    public LootTable.Builder dropsForStoneLike(Block silkTouchDrop, Block looseDrop, Item pileDrop, Item partialDrop, Item brickDrop){
+        // All main drops that happen with each different tool
+        LootPool.Builder alternativeEntries =  new LootPool.Builder().with(
+                AlternativeEntry.builder(
+                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_ADVANCED_PICKAXES),
+                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_MODERN_PICKAXES),
+                        this.simpleDropEntry(pileDrop,1).conditionally(WITH_PRIMITIVE_CHISELS),
+                        this.simpleDropEntry(brickDrop, 1).conditionally(WITH_ADVANCED_CHISELS),
+                        this.simpleDropEntry(brickDrop, 1).conditionally(WITH_MODERN_CHISELS),
+                        this.simpleDropEntry(partialDrop, 3).conditionally(WITH_PRIMITIVE_PICKAXES),
+                        this.simpleDropEntry(looseDrop.asItem(), 1).conditionally(WITH_PICKAXE_FULLY_HARVESTS)
+                )
+        );
+
+        // The next 2 pools are for the full harvest of a stone block additional drops
+        // 1 pile gravel
+        LootPool.Builder pileEntries =  new LootPool.Builder().with(
+                AlternativeEntry.builder(
+                        this.simpleDropEntry(ModItems.PILE_GRAVEL,1)
+                                .conditionally(WITH_PRIMITIVE_PICKAXES)
+                                .conditionally(InvertedLootCondition.builder(this.createSilkTouchCondition()))
+                )
+        );
+
+        // 1 partial drop (small stone/shard)
+        LootPool.Builder partialEntries = new LootPool.Builder().with(
+                AlternativeEntry.builder(
+                        this.simpleDropEntry(ModItems.PILE_GRAVEL,1)
+                                .conditionally(WITH_PRIMITIVE_PICKAXES)
+                                .conditionally(InvertedLootCondition.builder(this.createSilkTouchCondition()))
+                )
+        );
+
+        // Special pool to handle loot on explosion break exclusively
+        LootPool.Builder explosionEntries = new LootPool.Builder()
+                .with(this.simpleDropEntry(partialDrop, 5))
+                .with(this.simpleDropEntry(pileDrop, 3))
+                .conditionally(SurvivesExplosionLootCondition.builder());
+
+        return LootTable.builder()
+                .pool(alternativeEntries)
+                .pool(pileEntries)
+                .pool(partialEntries)
+                .pool(explosionEntries);
+    }
+
+    private LootCondition.Builder belowY32Condition() {
+        return LocationCheckLootCondition.builder(
+                LocationPredicate.Builder.createY(NumberRange.DoubleRange.atMost(32))
+        );
+    }
+
+    public LootTable.Builder dropsForAlternateStoneLike(Block silkTouchDrop, Block looseDrop, Item pileDrop, Item partialDrop){
+        // All main drops that happen with each different tool
+        LootPool.Builder alternativeEntries = new LootPool.Builder().with(
+                AlternativeEntry.builder(
+                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_ADVANCED_PICKAXES),
+                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_MODERN_PICKAXES),
+                        this.simpleDropEntry(pileDrop,1).conditionally(WITH_PRIMITIVE_CHISELS),
+                        this.simpleDropEntry(partialDrop, 3).conditionally(WITH_PRIMITIVE_PICKAXES),
+                        this.simpleDropEntry(looseDrop.asItem(), 1).conditionally(WITH_PICKAXE_FULLY_HARVESTS)
+                )
+        );
+
+        // The next 2 pools are for the full harvest of a stone block additional drops
+        // 1 pile gravel
+        LootPool.Builder pileEntries = new LootPool.Builder().with(
+                AlternativeEntry.builder(
+                        this.simpleDropEntry(ModItems.PILE_GRAVEL,1)
+                                .conditionally(WITH_PRIMITIVE_PICKAXES)
+                                .conditionally(InvertedLootCondition.builder(this.createSilkTouchCondition()))
+                )
+        );
+
+        // 1 partial drop (small stone/shard)
+        LootPool.Builder partialEntries = new LootPool.Builder().with(
+                AlternativeEntry.builder(
+                        this.simpleDropEntry(ModItems.PILE_GRAVEL,1)
+                                .conditionally(WITH_PRIMITIVE_PICKAXES)
+                                .conditionally(InvertedLootCondition.builder(this.createSilkTouchCondition()))
+                )
+        );
+
+        // Special pool to handle loot on explosion break exclusively
+        LootPool.Builder explosionEntries = new LootPool.Builder()
+                .with(this.simpleDropEntry(partialDrop, 5))
+                .with(this.simpleDropEntry(pileDrop, 3))
+                .conditionally(SurvivesExplosionLootCondition.builder());
+
+        return LootTable.builder()
+                .pool(alternativeEntries)
+                .pool(pileEntries)
+                .pool(partialEntries)
+                .pool(explosionEntries);
+    }
 
     // Handles only basic loose aggregate drops
     public LootTable.Builder dropsForLooseAggregate(Block dropWithSilkTouch, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
@@ -388,6 +503,24 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
     // Pile drop entry used for blocks that break to piles when no tool is used
     private LeafEntry.Builder<?> pileDropEntry(Item pileDrop, int pileDropCount) {
         return this.applyExplosionDecay(pileDrop, ItemEntry.builder(pileDrop))
+                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)));
+    }
+
+    /** The 4 LeafEntry builders below are only used with the {@link TELootTableProvider#dropsForStoneLike(Block, Block, Item, Item, Item)}
+     **/
+    // Silk touch drop entry for when a stone type block can be silk-touched
+    private LeafEntry.Builder<?> stoneSilkTouchDropEntry(Block silkTouchDrop) {
+        return ItemEntry.builder(silkTouchDrop).conditionally(this.createSilkTouchCondition());
+    }
+
+    // Used for non-loose stone blocks that break to loose if the tool condition is present
+    private LeafEntry.Builder<?> stoneLooseDropEntry(Block looseDrop, LootCondition.Builder toolCondition) {
+        return ItemEntry.builder(looseDrop).conditionally(toolCondition);
+    }
+
+    // Pile drop entry used for stone blocks
+    private LeafEntry.Builder<?> simpleDropEntry(Item pileDrop, int pileDropCount) {
+        return ItemEntry.builder(pileDrop)
                 .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)));
     }
 

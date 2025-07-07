@@ -9,8 +9,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.HoeItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tough_environment.block.BlockBreakHandler;
-import org.tough_environment.block.OGBlockBreakHandler;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.config.TESettings;
 import org.tough_environment.item.ModItemGroup;

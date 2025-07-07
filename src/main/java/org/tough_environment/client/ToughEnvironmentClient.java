@@ -12,6 +12,21 @@ public class ToughEnvironmentClient implements ClientModInitializer
     @Override
     public void onInitializeClient()
     {
+
+        // Modifies a block model with another one to always look different
+        /**
+        ModelLoadingPlugin.register(pluginContext -> {
+            pluginContext.modifyModelAfterBake().register(ModelModifier.OVERRIDE_PHASE, (bakedModel, context) -> {
+                Identifier id = context.resourceId();
+                if (id != null && id.toString().contains("stone")) {
+                    return new Strata2StoneModel(bakedModel);
+                }
+                return bakedModel;
+            });
+        });
+         **/
+
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLAB_DIRT, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLAB_GRAVEL, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SLAB_SAND, RenderLayer.getCutout());
