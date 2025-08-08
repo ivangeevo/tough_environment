@@ -18,7 +18,7 @@ fabricApi {
 repositories {
     maven { url "https://maven.shedaniel.me/" }
     maven { url "https://maven.terraformersmc.com/releases/" }
-    maven { url "https://ivangeevo.github.io/btwr-shared-lib/" }
+    maven { url "https://api.modrinth.com/maven" }
 
 }
 
@@ -37,7 +37,7 @@ dependencies {
 
     modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
 
-    modImplementation("org.ivangeevo:btwr-shared-lib:${project.btwr_lib_version}")
+    modImplementation("maven.modrinth:btwr-shared-library:${project.btwr_sl_version}")
 
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
@@ -49,7 +49,7 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
-    inputs.property "btwr_lib_version", project.btwr_lib_version
+    inputs.property "btwr_sl_version", project.btwr_sl_version
 
     filteringCharset "UTF-8"
 
@@ -57,7 +57,7 @@ processResources {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version,
-                "btwr_lib_version": project.btwr_lib_version
+                btwr_sl_version: project.btwr_sl_version
 
     }
 }
