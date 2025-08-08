@@ -1,4 +1,4 @@
-# 0.11.1 (dev)
+# 0.11.1
 + Added a new LootConditionType "DESTROYED_BY_EXPLOSION" that explicitly checks whether a block was destroyed by an explosion.
 + Fixed loot tables for all stone block types to properly drop loot for primitive chisels since the bug from last update's loot table code refactoring.
 
