@@ -1,3 +1,7 @@
+# 0.11.1 (dev)
++ Added a new LootConditionType "DESTROYED_BY_EXPLOSION" that explicitly checks whether a block was destroyed by an explosion.
++ Fixed loot tables for all stone block types to properly drop loot for primitive chisels since the bug from last update's loot table code refactoring.
+
 # 0.11
 + Changed(and hopefully fixed) some clay blocks in the world generation that weren't getting properly replaced with Tough Environment's "Dirt Clay" block.
 + Changed the shield recipe to require 4 nuggets and only one plank, so it's more easily accessible.

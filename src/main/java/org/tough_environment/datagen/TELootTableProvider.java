@@ -27,6 +27,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.state.property.Properties;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.ModItems;
+import org.tough_environment.loot.conditions.DestroyedByExplosionCondition;
 
 import java.util.List;
 import java.util.Map;
@@ -75,9 +76,9 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
         addDrop(Blocks.STONE, dropsForStoneLike(Blocks.STONE, ModBlocks.COBBLESTONE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SMALL_STONE, ModItems.STONE_BRICK));
         addDrop(Blocks.DEEPSLATE, dropsForStoneLike(Blocks.DEEPSLATE, ModBlocks.COBBLED_DEEPSLATE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SMALL_STONE_2, ModItems.STONE_BRICK_2));
-        addDrop(Blocks.ANDESITE, dropsForAlternateStoneLike(Blocks.ANDESITE, ModBlocks.ANDESITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_ANDESITE));
-        addDrop(Blocks.GRANITE, dropsForAlternateStoneLike(Blocks.GRANITE, ModBlocks.GRANITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_GRANITE));
-        addDrop(Blocks.DIORITE, dropsForAlternateStoneLike(Blocks.DIORITE, ModBlocks.DIORITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_DIORITE));
+        addDrop(Blocks.ANDESITE, dropsForAlternativeStoneLike(Blocks.ANDESITE, ModBlocks.ANDESITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_ANDESITE));
+        addDrop(Blocks.GRANITE, dropsForAlternativeStoneLike(Blocks.GRANITE, ModBlocks.GRANITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_GRANITE));
+        addDrop(Blocks.DIORITE, dropsForAlternativeStoneLike(Blocks.DIORITE, ModBlocks.DIORITE_LOOSE, ModItems.PILE_GRAVEL, ModItems.SHARD_DIORITE));
 
         addDrop(Blocks.COBBLESTONE_SLAB, customSlabDrop(Blocks.COBBLESTONE_SLAB, ModBlocks.SLAB_COBBLESTONE_LOOSE));
         addDrop(Blocks.COBBLED_DEEPSLATE_SLAB, customSlabDrop(Blocks.COBBLED_DEEPSLATE_SLAB, ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE));
@@ -261,27 +262,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
         return builder;
     }
 
-    /**
-    // Handles only basic loose aggregate drops
-    public LootTable.Builder dropsForLooseAggregate(Block silkTouchDrop, Block looseDrop, LootCondition.Builder toolCondition, Item pileDrop, int pileDropCount) {
-        // Define the main loot pool with conditions
-        AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
-                this.silkTouchDropEntry(silkTouchDrop),
-                this.looseDropEntry(looseDrop, toolCondition),
-                ItemEntry.builder(pileDrop).conditionally(WITHOUT_HOE)
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
-                        .conditionally(silkTouchDrop == Blocks.GRASS_BLOCK ? WITHOUT_HOE : SurvivesExplosionLootCondition.builder())
-        );
-
-        return LootTable.builder().pool(
-                LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1.0f))
-                        .with(alternativeEntry)
-        );
-    }
-     **/
-
-    public LootTable.Builder dropsForStoneLike(Block silkTouchDrop, Block looseDrop, Item pileDrop, Item partialDrop, Item brickDrop){
+    public LootTable.Builder dropsForStoneLike(Block silkTouchDrop, Block looseDrop, Item pileDrop, Item partialDrop, Item brickDrop) {
         // All main drops that happen with each different tool
         LootPool.Builder alternativeEntries =  new LootPool.Builder().with(
                 AlternativeEntry.builder(
@@ -314,11 +295,12 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 )
         );
 
-        // Special pool to handle loot on explosion break exclusively
+        // Pool to handle loot on explosion break exclusively
         LootPool.Builder explosionEntries = new LootPool.Builder()
                 .with(this.simpleDropEntry(partialDrop, 5))
                 .with(this.simpleDropEntry(pileDrop, 3))
-                .conditionally(SurvivesExplosionLootCondition.builder());
+                .apply(ExplosionDecayLootFunction.builder())
+                .conditionally(DestroyedByExplosionCondition.builder());
 
         return LootTable.builder()
                 .pool(alternativeEntries)
@@ -327,15 +309,10 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 .pool(explosionEntries);
     }
 
-    private LootCondition.Builder belowY32Condition() {
-        return LocationCheckLootCondition.builder(
-                LocationPredicate.Builder.createY(NumberRange.DoubleRange.atMost(32))
-        );
-    }
-
-    public LootTable.Builder dropsForAlternateStoneLike(Block silkTouchDrop, Block looseDrop, Item pileDrop, Item partialDrop){
+    /** For blocks like andesite, diorite and granite **/
+    public LootTable.Builder dropsForAlternativeStoneLike(Block silkTouchDrop, Block looseDrop, Item pileDrop, Item partialDrop) {
         // All main drops that happen with each different tool
-        LootPool.Builder alternativeEntries = new LootPool.Builder().with(
+        LootPool.Builder alternativeEntries =  new LootPool.Builder().with(
                 AlternativeEntry.builder(
                         this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_ADVANCED_PICKAXES),
                         this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_MODERN_PICKAXES),
@@ -347,7 +324,7 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
 
         // The next 2 pools are for the full harvest of a stone block additional drops
         // 1 pile gravel
-        LootPool.Builder pileEntries = new LootPool.Builder().with(
+        LootPool.Builder pileEntries =  new LootPool.Builder().with(
                 AlternativeEntry.builder(
                         this.simpleDropEntry(ModItems.PILE_GRAVEL,1)
                                 .conditionally(WITH_PRIMITIVE_PICKAXES)
@@ -364,17 +341,25 @@ public class TELootTableProvider extends FabricBlockLootTableProvider
                 )
         );
 
-        // Special pool to handle loot on explosion break exclusively
+        // Pool to handle loot on explosion break exclusively
         LootPool.Builder explosionEntries = new LootPool.Builder()
                 .with(this.simpleDropEntry(partialDrop, 5))
                 .with(this.simpleDropEntry(pileDrop, 3))
-                .conditionally(SurvivesExplosionLootCondition.builder());
+                .apply(ExplosionDecayLootFunction.builder())
+                .conditionally(DestroyedByExplosionCondition.builder());
 
         return LootTable.builder()
                 .pool(alternativeEntries)
                 .pool(pileEntries)
                 .pool(partialEntries)
                 .pool(explosionEntries);
+    }
+
+
+    private LootCondition.Builder belowY32Condition() {
+        return LocationCheckLootCondition.builder(
+                LocationPredicate.Builder.createY(NumberRange.DoubleRange.atMost(32))
+        );
     }
 
     // Handles only basic loose aggregate drops

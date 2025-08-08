@@ -261,7 +261,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "condition": "tough_environment:destroyed_by_explosion"
         }
       ],
       "entries": [
@@ -286,6 +286,11 @@
             }
           ],
           "name": "tough_environment:pile_gravel"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:explosion_decay"
         }
       ],
       "rolls": 1.0
