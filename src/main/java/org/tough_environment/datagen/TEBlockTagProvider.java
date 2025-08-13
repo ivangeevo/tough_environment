@@ -1,6 +1,7 @@
 package org.tough_environment.datagen;
 
 import btwr.btwr_sl.tag.BTWRConventionalTags;
+import com.bwt.blocks.BwtBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
@@ -49,6 +50,12 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.SLAB_WHITE_COBBLESTONE)
                 .add(ModBlocks.WHITE_STONE_STAIRS)
                 .add(ModBlocks.WHITE_COBBLESTONE_STAIRS);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK_SLABS)
+                .addOptional(Identifier.of("bwt", "dirt_slab"))
+                .addOptional(Identifier.of("bwt", "grass_slab"))
+                .addOptional(Identifier.of("bwt", "mycelium_slab"))
+                .addOptional(Identifier.of("bwt", "podzol_slab"));
 
     }
 
@@ -163,12 +170,6 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.END_STONE)
                 .add(Blocks.COBBLESTONE);
 
-
-        this.getOrCreateTagBuilder(ModTags.Blocks.LOOSEN_ON_IMPROPER_BREAK)
-                .add(Blocks.DIRT)
-                .add(Blocks.GRASS_BLOCK)
-                .add(Blocks.PODZOL)
-                .add(Blocks.COARSE_DIRT);
 
         this.getOrCreateTagBuilder(ModTags.Blocks.STONE_ORES)
                 .add(Blocks.COAL_ORE)
