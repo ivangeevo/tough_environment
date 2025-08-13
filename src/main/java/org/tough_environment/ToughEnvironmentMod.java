@@ -9,6 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.HoeItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.tough_environment.event.ModEvents;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.config.TESettings;
 import org.tough_environment.item.ModItemGroup;
@@ -51,8 +52,9 @@ public class ToughEnvironmentMod implements ModInitializer {
         BlockMortarMapper.init();
 
         BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
-        //BlockReplacementRegistry.registerReplacement(Blocks.GRASS_BLOCK, Blocks.GREEN_STAINED_GLASS);
-        //BlockBreakHandler.registerBreakEvent();
+
+        ModEvents.register();
+
 
         TillableBlockRegistry.register(
                 ModBlocks.DIRT_LOOSE,
