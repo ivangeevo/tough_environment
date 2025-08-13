@@ -13,7 +13,6 @@ public class ModTags
     public static class Blocks
     {
 
-        public static final TagKey<Block> LOOSEN_ON_IMPROPER_BREAK = register("loosen_on_improper_break");
         public static final TagKey<Block> CONVERTED_STONE_BLOCKS = register("converted_stone_blocks");
         public static final TagKey<Block> BROKEN_STONE_BLOCKS = register("broken_stone_blocks");
 

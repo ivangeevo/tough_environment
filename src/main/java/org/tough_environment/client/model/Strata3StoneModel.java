@@ -1,4 +1,4 @@
-package org.tough_environment.client;
+package org.tough_environment.client.model;
 
 import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
 import net.fabricmc.fabric.api.renderer.v1.material.RenderMaterial;

@@ -173,7 +173,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": "#c:primitive_pickaxes"
+                    "items": "#c:pickaxes_harvest_full_block"
                   }
                 },
                 {
@@ -221,7 +221,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "items": "#c:primitive_pickaxes"
+                    "items": "#c:pickaxes_harvest_full_block"
                   }
                 },
                 {
@@ -250,7 +250,7 @@
                   "function": "minecraft:set_count"
                 }
               ],
-              "name": "tough_environment:pile_gravel"
+              "name": "tough_environment:small_stone"
             }
           ]
         }
