@@ -6,14 +6,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ExperienceDroppingBlock;
 import net.minecraft.block.enums.SlabType;
-import net.minecraft.item.AxeItem;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.MiningToolItem;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.tough_environment.block.blocks.DepletedStoneBlock;
 import org.tough_environment.block.blocks.StoneConvertingBlock;
 import org.tough_environment.tag.ModTags;
 
@@ -35,21 +34,27 @@ public class BlockBreakHandler {
         return instance;
     }
 
-    public boolean setConvertibleState(World world, BlockPos pos, BlockState state, ItemStack tool) {
-        BlockState converted = getConvertedState(state, tool);
-        if (converted == null) return false;
-        return world.setBlockState(pos, converted);
+    public void setStateForStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        BlockState converted = getNextStateForVanillaStone(state, player.getMainHandStack());
+        if (converted == null) return;
+        world.setBlockState(pos, converted);
     }
 
-    public boolean setStateForDirt(World world, BlockPos pos, BlockState state, ItemStack tool) {
-        if (tool.isIn(SHOVELS_HARVEST_FULL_BLOCK)) {
-            return world.setBlockState(pos, Blocks.AIR.getDefaultState());
+    public void setStateForConvertedStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        BlockState converted = getNextStateForModdedStone(state, player.getMainHandStack());
+        if (converted == null) return;
+        world.setBlockState(pos, converted);
+    }
+
+    public void setStateForDirt(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        ItemStack tool = player.getMainHandStack();
+        if (tool.isIn(SHOVELS_HARVEST_FULL_BLOCK) || player.isCreative()) {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
         } else {
             boolean isUpsideDown = state.isIn(LOOSEN_ON_IMPROPER_BREAK_SLABS) && state.get(Properties.SLAB_TYPE) == SlabType.TOP;
-            if (state.getBlock() == ModBlocks.DIRT_LOOSE) return false;
+            if (state.getBlock() == ModBlocks.DIRT_LOOSE) return;
             onDirtDugWithImproperTool(world, pos);
             onDirtSlabDugWithImproperTool(world, pos, isUpsideDown);
-            return true;
         }
     }
 
@@ -97,11 +102,11 @@ public class BlockBreakHandler {
     }
 
     private void setToLooseDirt(World world, BlockPos neighborPos) {
-        world.setBlockState(neighborPos, ModBlocks.DIRT_LOOSE.getDefaultState());
+        world.setBlockState(neighborPos, ModBlocks.DIRT_LOOSE.getDefaultState(), Block.NOTIFY_LISTENERS);
     }
 
-    // Returns the converted state or null if no conversion
-    public BlockState getConvertedState(BlockState state, ItemStack tool) {
+    // Returns the next converted state from vanilla blocks or null if no conversion
+    public BlockState getNextStateForVanillaStone(BlockState state, ItemStack tool) {
         if (state.isIn(ModTags.Blocks.STONE_ORES)) {
             return getConvertedOreState(state, tool, ModBlocks.STONE_CONVERTING);
         }
@@ -112,20 +117,67 @@ public class BlockBreakHandler {
 
         return getConvertedStoneState(state, tool);
     }
+    
+    public BlockState getNextStateForModdedStone(BlockState state, ItemStack tool) {
+
+        int breakLevel = state.get(BREAK_LEVEL);
+        boolean isModernChisel = tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS);
+        boolean isAdvancedChisel = tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS);
+        boolean isPrimitivePickaxe = tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES);
+        boolean isModernPickaxe = tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES);
+        boolean isAdvancedPickaxe = tool.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
+
+        if ((isAdvancedPickaxe || isModernPickaxe) || (isPrimitivePickaxe && breakLevel >= 5)) {
+            return Blocks.AIR.getDefaultState();
+        }
+
+        if (isPrimitivePickaxe) {
+            return state.with(BREAK_LEVEL, 5);
+        }
+
+        if (isModernChisel || isAdvancedChisel) {
+            // Calculate the new break level
+            int nextBreakLevel = Math.min(breakLevel + 2, 8);
+
+            // If break level is greater or equal to 7, set to broken state;
+            // otherwise, update the block state
+            if (breakLevel >= 7) {
+                return ModBlocks.STONE_BROKEN.getDefaultState();
+            } else {
+                return state.with(BREAK_LEVEL, nextBreakLevel);
+            }
+        }
+
+        if (breakLevel >= 8 && !(state.getBlock() instanceof DepletedStoneBlock)) {
+
+            if (state.isIn(ModTags.Blocks.CONVERTED_STONE_BLOCKS)) {
+                return ModBlocks.STONE_BROKEN.getDefaultState();
+            }
+        }
+
+        return this.getNextStateForConvertedBlocks(state, tool);
+    }
+
+    // Returns the next converted state from general converted blocks or null if no conversion
+    private BlockState getNextStateForConvertedBlocks(BlockState state, ItemStack tool) {
+        // Simply increment to the next break level
+        return state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1);
+    }
+
 
     public boolean shouldPlayCrackingSound(BlockState state, ItemStack tool) {
         boolean isFullyBreakingPickaxe = tool.isIn(PICKAXES_HARVEST_FULL_BLOCK);
         if (state.getBlock() instanceof StoneConvertingBlock && !state.isIn(ModTags.Blocks.BROKEN_STONE_BLOCKS)) {
             int breakLevel = state.get(BREAK_LEVEL);
 
-            return ((breakLevel % 2 == 0) && !isFullyBreakingPickaxe) || ((breakLevel == 3) && isChisel(tool));
+            return ((breakLevel % 2 == 0) && !isFullyBreakingPickaxe) || ((breakLevel == 3) && isModernOrAdvancedChisel(tool));
         }
 
         if (state.getBlock() instanceof ExperienceDroppingBlock) {
             return !isFullyBreakingPickaxe;
         }
 
-        return isStrata1StoneBlock(state) && (isChisel(tool) || tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES));
+        return state.isIn(ModTags.Blocks.STONE_STRATA1) && (isModernOrAdvancedChisel(tool) || tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES));
     }
 
     // --- Conversion helper methods returning BlockState or null ---
@@ -189,21 +241,8 @@ public class BlockBreakHandler {
                 || (tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.DEEPSLATE_ORES)));
     }
 
-
-    private boolean isChisel(ItemStack tool) {
+    private boolean isModernOrAdvancedChisel(ItemStack tool) {
         return tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS);
     }
 
-    private boolean isStrata1StoneBlock(BlockState state) {
-        return state.isOf(Blocks.STONE) || state.isOf(Blocks.GRANITE) || state.isOf(Blocks.ANDESITE) || state.isOf(Blocks.DIORITE);
-    }
-
-    private boolean isValidAxeItem(ItemStack stack) {
-        return stack.getItem() instanceof AxeItem || isBWTAxe(stack);
-    }
-
-    private boolean isBWTAxe(ItemStack stack) {
-        // Special case added originally for BWT's BattleAxe because it's a mining tool and it should be in this tag
-        return (stack.getItem() instanceof MiningToolItem && stack.isIn(BTWRConventionalTags.Items.AXES_MAKE_PLANKS));
-    }
 }

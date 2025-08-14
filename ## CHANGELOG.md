@@ -1,5 +1,12 @@
 # 0.12(dev)
-+ (STILL DEVELOPING) Fixing loot tables for precious gems to have fortune applied again
++ Added compatibility for BWT's aggregate slab blocks like(dirt, grass, etc.) to also loosen up compatible neighbouring dirt.
++ Improved the dirt loosening mechanic to work exactly like it does in BTW.
++ Fixed stone block flickering when breaking to other break levels to not happen anymore.
++ Fixed loot tables for diamond and emerald ore blocks to have fortune applied again.
++ Fixed loot tables for stone and stone alternative type blocks to properly drop their loot for modern and advanced pickaxes.
++ Changed block breaking modifications to use Fabric events instead of directly mixing into the Block class.
++ Changed depleted(broken) stone blocks to not have break level anymore. This change will remain until I figure out how to properly implement the blockstate changing logic for converting blocks into their classes instead of it being called through the Fabric Block Break events.
++ Updated the mod to BTWR: Shared Library 0.57
 
 # 0.11.1
 + Added a new LootConditionType "DESTROYED_BY_EXPLOSION" that explicitly checks whether a block was destroyed by an explosion.

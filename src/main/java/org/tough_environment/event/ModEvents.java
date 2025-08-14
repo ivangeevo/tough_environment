@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.BlockBreakHandler;
+import org.tough_environment.block.blocks.StoneConvertingBlock;
 
 public class ModEvents {
 
@@ -30,8 +31,12 @@ public class ModEvents {
             );
         }
 
-        BlockBreakHandler.getInstance().setStateForDirt(world, pos, state, tool);
-        BlockBreakHandler.getInstance().setConvertibleState(world, pos, state, tool);
+        BlockBreakHandler.getInstance().setStateForDirt(world, pos, state, player);
+        BlockBreakHandler.getInstance().setStateForStone(world, pos, state, player);
+
+        if (state.getBlock() instanceof StoneConvertingBlock) {
+            BlockBreakHandler.getInstance().setStateForConvertedStone(world, pos, state, player);
+        }
     }
 
 }

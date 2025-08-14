@@ -1,17 +1,5 @@
 package org.tough_environment.block.blocks;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import net.minecraft.world.event.GameEvent;
-import org.tough_environment.block.ModBlocks;
-import org.tough_environment.tag.ModTags;
-
 public class StoneConvertingBlock extends ConvertingBlock {
 
     public StoneConvertingBlock(Settings settings)
@@ -19,71 +7,5 @@ public class StoneConvertingBlock extends ConvertingBlock {
         super(settings);
     }
 
-    @Override
-    public void convert(World world, BlockPos pos, BlockState state, ItemStack stack) {
-
-        int breakLevel = state.get(BREAK_LEVEL);
-        boolean isModernChisel = stack.isIn(BTWRConventionalTags.Items.MODERN_CHISELS);
-        boolean isAdvancedChisel = stack.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS);
-        boolean isPrimitivePickaxe = stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES);
-        boolean isModernPickaxe = stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES);
-        boolean isAdvancedPickaxe = stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
-
-        if (!world.isClient) {
-
-            if ( (isAdvancedPickaxe || isModernPickaxe) || ( isPrimitivePickaxe && breakLevel >= 5 )) {
-                world.setBlockState(pos, Blocks.AIR.getDefaultState());
-                return;
-            }
-
-            if (isPrimitivePickaxe) {
-                world.setBlockState(pos, state.with(BREAK_LEVEL, 5),0);
-                return;
-            }
-
-            if (isModernChisel || isAdvancedChisel) {
-                this.handleModernOrAdvancedChiselBreak(world, pos, state);
-                return;
-            }
-
-            if (breakLevel >= 8 && !(state.getBlock() instanceof DepletedStoneBlock)) {
-
-                if (state.isIn(ModTags.Blocks.CONVERTED_STONE_BLOCKS)) {
-                    world.setBlockState(pos, ModBlocks.STONE_BROKEN.getDefaultState(),0);
-                    world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
-                }
-
-                return;
-            }
-
-
-        }
-
-        super.convert(world, pos, state, stack);
-    }
-
-
-    private void handleModernOrAdvancedChiselBreak(World world, BlockPos pos, BlockState state) {
-        int breakLevel = state.get(BREAK_LEVEL);
-
-        // Calculate the new break level
-        int newBreakLevel = Math.min(breakLevel + 2, 8);
-
-        // If break level is greater or equal to 7, set to broken state;
-        // otherwise, update the block state
-        if (breakLevel >= 7) {
-            world.setBlockState(pos, ModBlocks.STONE_BROKEN.getDefaultState(),0);
-        } else {
-            setState(world, pos, state.with(BREAK_LEVEL, newBreakLevel));
-        }
-    }
-
-    private void setState(World world, BlockPos pos, BlockState newState) {
-        BlockState oldState = world.getBlockState(pos);
-        BlockState updatedState = pushEntitiesUpBeforeBlockChange(oldState, newState, world, pos);
-        world.setBlockState(pos, updatedState,2);
-        world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(updatedState));
-        world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(oldState));
-    }
 
 }
