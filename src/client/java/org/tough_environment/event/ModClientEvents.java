@@ -2,6 +2,7 @@ package org.tough_environment.event;
 
 import net.fabricmc.fabric.api.event.client.player.ClientPlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.item.ItemStack;
@@ -21,17 +22,21 @@ public class ModClientEvents {
         ItemStack tool = player.getMainHandStack();
 
         BlockState newVanillaStoneState = BlockBreakHandler.getInstance().getNextStateForVanillaStone(state, tool);
-        updateStoneState(world, pos, newVanillaStoneState);
+        updateStoneState(world, pos, player, newVanillaStoneState);
 
         if (state.getBlock() instanceof StoneConvertingBlock) {
             BlockState newModdedStoneState = BlockBreakHandler.getInstance().getNextStateForModdedStone(state, tool);
-            updateStoneState(world, pos, newModdedStoneState);
+            updateStoneState(world, pos, player, newModdedStoneState);
         }
     }
 
-    private static void updateStoneState(ClientWorld world, BlockPos pos, BlockState state) {
+    private static void updateStoneState(ClientWorld world, BlockPos pos, ClientPlayerEntity player, BlockState state) {
         if (state != null) {
-            world.setBlockState(pos, state);
+            if (!player.isCreative()) {
+                world.setBlockState(pos, state);
+            } else {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            }
         }
     }
 

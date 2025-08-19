@@ -37,13 +37,21 @@ public class BlockBreakHandler {
     public void setStateForStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         BlockState converted = getNextStateForVanillaStone(state, player.getMainHandStack());
         if (converted == null) return;
-        world.setBlockState(pos, converted);
+        if (!player.isCreative()) {
+            world.setBlockState(pos, converted);
+        } else {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        }
     }
 
     public void setStateForConvertedStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         BlockState converted = getNextStateForModdedStone(state, player.getMainHandStack());
         if (converted == null) return;
-        world.setBlockState(pos, converted);
+        if (!player.isCreative()) {
+            world.setBlockState(pos, converted);
+        } else {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        }
     }
 
     public void setStateForDirt(World world, BlockPos pos, BlockState state, PlayerEntity player) {
