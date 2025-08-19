@@ -3,6 +3,7 @@ package org.tough_environment;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import org.tough_environment.datagen.*;
+import org.tough_environment.datagen.loot_table.TELootTableProvider;
 
 public class TEDataGenerator implements DataGeneratorEntrypoint
 {
