@@ -49,7 +49,7 @@ public class ToughEnvironmentMod implements ModInitializer {
         ModLootConditionTypes.register();
 
         // Initialize or load the block replacement map for mortaring
-        BlockMortarMapper.init();
+        BlockMortarMapper.register();
 
         BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
 

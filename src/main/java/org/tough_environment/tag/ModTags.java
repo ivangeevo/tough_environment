@@ -16,7 +16,7 @@ public class ModTags
         public static final TagKey<Block> CONVERTED_STONE_BLOCKS = register("converted_stone_blocks");
         public static final TagKey<Block> BROKEN_STONE_BLOCKS = register("broken_stone_blocks");
 
-        // Blocks that are mortared, mostly used to identify which blocks loose blocks can hold on to if placed against.
+        // Blocks that are mortared; mostly used to identify what loose blocks can hold on to if placed against.
         public static final TagKey<Block> MORTARED_BLOCKS = register("mortared_blocks");
 
         /** Workaround tag to group miscallaneous blocks like the snow layer blocks and others. **/

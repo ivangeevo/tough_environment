@@ -294,8 +294,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
     public record AdditionalDrop(Item item, int count, float chance) {}
 
     // Helper methods
-    private static LootCondition.Builder isDoubleSlab(Block block)
-    {
+    private static LootCondition.Builder isDoubleSlab(Block block) {
         return BlockStatePropertyLootCondition.builder(block)
                 .properties(StatePredicate.Builder.create().exactMatch(Properties.SLAB_TYPE, SlabType.DOUBLE));
     }

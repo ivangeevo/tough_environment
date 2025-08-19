@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "bwt:dirt_slab",
+      "required": false
+    },
+    {
+      "id": "bwt:grass_slab",
+      "required": false
+    },
+    {
+      "id": "bwt:mycelium_slab",
+      "required": false
+    },
+    {
+      "id": "bwt:podzol_slab",
+      "required": false
+    }
+  ]
+}
