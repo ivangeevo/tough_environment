@@ -10,6 +10,17 @@ base {
     archivesName = project.archives_base_name
 }
 
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "tough_environment" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
 fabricApi {
     configureDataGeneration() {modId = "tough_environment"}
 }

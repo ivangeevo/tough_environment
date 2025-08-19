@@ -13,7 +13,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "org.tough_environment.client.ToughEnvironmentClient"
+      "org.tough_environment.ToughEnvironmentClient"
     ],
     "main": [
       "org.tough_environment.ToughEnvironmentMod"

@@ -1,8 +1,8 @@
-package org.tough_environment.client;
+package org.tough_environment;
 
 import net.fabricmc.api.ClientModInitializer;
-import org.tough_environment.client.event.ModClientEvents;
-import org.tough_environment.client.render.BlockRenderLayerMappings;
+import org.tough_environment.event.ModClientEvents;
+import org.tough_environment.render.BlockRenderLayerMappings;
 
 public class ToughEnvironmentClient implements ClientModInitializer
 {

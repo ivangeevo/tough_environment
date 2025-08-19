@@ -1,4 +1,4 @@
-package org.tough_environment.client.event;
+package org.tough_environment.event;
 
 import net.fabricmc.fabric.api.event.client.player.ClientPlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;

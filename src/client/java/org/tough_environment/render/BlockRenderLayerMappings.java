@@ -1,4 +1,4 @@
-package org.tough_environment.client.render;
+package org.tough_environment.render;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
