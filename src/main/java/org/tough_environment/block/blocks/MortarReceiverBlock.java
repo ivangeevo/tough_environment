@@ -1,6 +1,5 @@
 package org.tough_environment.block.blocks;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -20,7 +19,7 @@ import net.minecraft.world.tick.TickPriority;
 import org.tough_environment.tag.ModTags;
 import org.tough_environment.util.BlockMortarMapper;
 
-import java.util.Map;
+import java.util.Objects;
 
 public class MortarReceiverBlock extends FallingBlock
 {
@@ -37,8 +36,7 @@ public class MortarReceiverBlock extends FallingBlock
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify)
-    {
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         boolean hasMortaredNeighbor = Direction.stream()
                 .map(pos::offset)
                 .map(world::getBlockState)
@@ -47,7 +45,8 @@ public class MortarReceiverBlock extends FallingBlock
         if (hasMortaredNeighbor) {
             // Create an OrderedTick for the block
             OrderedTick<Block> orderedTick = new OrderedTick<>(state.getBlock(), pos,
-                    world.getTime() + TACKY_FALLING_BLOCK_TICK_RATE, TickPriority.NORMAL, 0);
+                    world.getTime() + TACKY_FALLING_BLOCK_TICK_RATE, TickPriority.NORMAL, 0
+            );
             world.getBlockTickScheduler().scheduleTick(orderedTick);
         } else {
             // Schedule the normal fall tick (default for falling blocks)
@@ -63,10 +62,9 @@ public class MortarReceiverBlock extends FallingBlock
             ItemStack offHandStack = player.getStackInHand(Hand.OFF_HAND);
 
             if (mainHandStack.isIn(ModTags.Items.MORTARING_ITEMS)) {
-                return applyMortarWithHand(state, world, pos, player, Hand.MAIN_HAND);
-            }
-            else if (offHandStack.isIn(ModTags.Items.MORTARING_ITEMS)) {
-                return applyMortarWithHand(state, world, pos, player, Hand.OFF_HAND);
+                return applyMortar(state, world, pos, player, Hand.MAIN_HAND);
+            } else if (offHandStack.isIn(ModTags.Items.MORTARING_ITEMS)) {
+                return applyMortar(state, world, pos, player, Hand.OFF_HAND);
             }
         }
 
@@ -74,46 +72,41 @@ public class MortarReceiverBlock extends FallingBlock
     }
 
     // Helper method to apply the mortar logic for a specific hand
-    private ActionResult applyMortarWithHand(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
-        this.applyMortar(state, world, pos, player);
+    private ActionResult applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        this.tryApplyMortar(state, world, pos, player);
+        return ActionResult.CONSUME;
+    }
+
+    protected void tryApplyMortar(BlockState oldState, World world, BlockPos pos, PlayerEntity player) {
+        Hand hand = player.getActiveHand();
+        BlockState mortaredState = getMortaredState(oldState);
+
+        if (mortaredState != null) {
+            world.setBlockState(pos, mortaredState, Block.NOTIFY_ALL);
+            world.playSound(null, pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
+        }
 
         // Reduce item stack size if not in creative mode
         if (!player.isCreative()) {
             player.getStackInHand(hand).decrement(1);
         }
 
-        return ActionResult.SUCCESS;
+        player.swingHand(hand);
     }
 
-    public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player) {
-        Block newBlock = this.getReplacementBlock(state.getBlock());
-        if (newBlock != null) {
-            world.setBlockState(pos, newBlock.getStateWithProperties(state), Block.NOTIFY_ALL);
+
+    /**
+     * Returns the mortared version of this block state.
+     * Default implementation uses the mapper, but other blocks can override
+     * to set custom properties on the resulting state.
+     */
+    protected BlockState getMortaredState(BlockState state) {
+        Block replacement = Objects.requireNonNull(BlockMortarMapper.getReplacement(state)).getBlock();
+        if (replacement != null) {
+            return replacement.getStateWithProperties(state);
         }
-
-        world.playSound(null,pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
+        return state; // fallback if no replacement exists
     }
-
-    //TODO: Fix the replacement logic to work better. Right now it doesn't make sense and I have no clue where blocks map is actually saved
-    private Block getReplacementBlock(Block looseBlock) {
-        // Load the block replacement map
-        Map<Block, Block> blockReplacementMap = BlockMortarMapper.loadMap();
-
-        // Check if the map contains the loose block
-        if (blockReplacementMap.containsKey(looseBlock)) {
-            return blockReplacementMap.get(looseBlock);
-        }
-
-        // Return null or a default block if no replacement is found
-        return null; // Or Blocks.AIR for an explicit default
-    }
-
-
-
-
-
-
-
 
 
 }

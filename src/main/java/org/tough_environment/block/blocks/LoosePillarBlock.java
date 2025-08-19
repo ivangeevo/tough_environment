@@ -3,52 +3,22 @@ package org.tough_environment.block.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LandingBlock;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import org.tough_environment.tag.ModTags;
+import org.tough_environment.util.BlockMortarMapper;
 
 public class LoosePillarBlock extends MortarReceiverBlock implements LandingBlock
 {
     public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
 
-
-    // Block parameters and constants & Super settings //
-    public LoosePillarBlock(Settings settings)
-    {
+    public LoosePillarBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(AXIS, Direction.Axis.Y));
-
     }
-
-    @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS))
-        {
-            BlockState newState = world.getBlockState(pos).with(AXIS, state.get(AXIS));
-
-            // Mortar the block
-            this.applyMortar(newState, world, pos, player);
-
-            // Reduce item stack size
-            ItemStack handStack = player.getStackInHand(player.getActiveHand());
-            handStack.decrement(1);
-
-            return ActionResult.SUCCESS;
-        }
-
-        return ActionResult.PASS;
-    }
-
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
@@ -76,5 +46,12 @@ public class LoosePillarBlock extends MortarReceiverBlock implements LandingBloc
         return this.getDefaultState().with(AXIS, ctx.getSide().getAxis());
     }
 
-    // ---------------------------------- //
+    @Override
+    protected BlockState getMortaredState(BlockState state) {
+        BlockState newState = BlockMortarMapper.getReplacement(state);
+
+        assert newState != null;
+        return newState.with(AXIS, state.get(AXIS));
+    }
+
 }

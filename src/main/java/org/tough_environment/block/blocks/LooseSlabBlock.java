@@ -12,14 +12,10 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -28,10 +24,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
-import org.tough_environment.block.ModBlocks;
-import org.tough_environment.tag.ModTags;
-
-import java.util.Map;
+import org.tough_environment.util.BlockMortarMapper;
 
 public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 {
@@ -75,105 +68,12 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit)
-    {
-        if (!world.isClient && player.getStackInHand(player.getActiveHand()).isIn(ModTags.Items.MORTARING_ITEMS))
-        {
-            // Mortar the block
-            this.applyMortar(state.with(WATERLOGGED, state.get(WATERLOGGED)), world, pos, player);
+    protected BlockState getMortaredState(BlockState state) {
+        BlockState newState = BlockMortarMapper.getReplacement(state);
 
-            // Optionally, reduce item stack size or perform other actions
-            ItemStack handStack = player.getStackInHand(player.getActiveHand());
-            handStack.decrement(1);
-
-            return ActionResult.SUCCESS;
-        }
-
-        return ActionResult.PASS;
+        assert newState != null;
+        return newState.with(TYPE, state.get(TYPE));
     }
-
-
-    // Overriding the original method, because slabs need some extra logic, depending on the slab type placed.
-    @Override
-    public void applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player)
-    {
-        SlabType slabType = state.get(TYPE);
-        BlockState newBlock = getReplacementBlockState(state.getBlock(), slabType, this.getDefaultState());
-
-        if (newBlock != null)
-        {
-            BlockState newState = newBlock;
-
-            // Check if TYPE property exists
-            if (newState.getProperties().contains(TYPE))
-            {
-                newState = newState.with(TYPE, slabType);
-            }
-
-            world.setBlockState(pos, newState);
-        }
-
-        world.playSound(null,pos, SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.BLOCKS);
-
-    }
-
-
-    private BlockState getReplacementBlockState(Block originalBlock, SlabType slabType, BlockState originalState) {
-        // Mapping of slab blocks to their corresponding mortared Minecraft variant (top or bottom)
-        Map<Block, Block> slabToSlabMortaredBlock = Map.of(
-                ModBlocks.SLAB_COBBLESTONE_LOOSE, Blocks.COBBLESTONE_SLAB,
-                ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, Blocks.COBBLED_DEEPSLATE_SLAB,
-                ModBlocks.SLAB_ANDESITE_LOOSE, Blocks.ANDESITE_SLAB,
-                ModBlocks.SLAB_GRANITE_LOOSE, Blocks.GRANITE_SLAB,
-                ModBlocks.SLAB_DIORITE_LOOSE, Blocks.DIORITE_SLAB,
-                ModBlocks.SLAB_BRICKS_LOOSE, Blocks.BRICK_SLAB
-        );
-
-        // Mapping of slab blocks to their corresponding full counterpart blocks for DOUBLE slabs
-        Map<Block, Block> slabToFullMortaredBlock = Map.of(
-                ModBlocks.SLAB_COBBLESTONE_LOOSE, Blocks.COBBLESTONE,
-                ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, Blocks.COBBLED_DEEPSLATE,
-                ModBlocks.SLAB_ANDESITE_LOOSE, Blocks.ANDESITE,
-                ModBlocks.SLAB_GRANITE_LOOSE, Blocks.GRANITE,
-                ModBlocks.SLAB_DIORITE_LOOSE, Blocks.DIORITE,
-                ModBlocks.SLAB_BRICKS_LOOSE, Blocks.BRICKS
-        );
-
-        // Handle TOP slabs: Get the mortared variant and set SlabType.TOP if needed
-        if (slabType == SlabType.TOP && slabToSlabMortaredBlock.containsKey(originalBlock)) {
-            Block mortaredBlock = slabToSlabMortaredBlock.get(originalBlock);
-            BlockState mortaredState = mortaredBlock.getDefaultState();
-
-            // Ensure the replacement state has the SlabType.TOP property set
-            if (mortaredState.contains(SlabBlock.TYPE)) {
-                mortaredState = mortaredState.with(SlabBlock.TYPE, SlabType.TOP);
-            }
-
-            return mortaredState;
-        }
-
-        // Handle BOTTOM slabs: Get the mortared variant (for SlabType.BOTTOM)
-        if (slabType == SlabType.BOTTOM && slabToSlabMortaredBlock.containsKey(originalBlock)) {
-            Block mortaredBlock = slabToSlabMortaredBlock.get(originalBlock);
-            BlockState mortaredState = mortaredBlock.getDefaultState();
-
-            // Ensure the replacement state has the SlabType.BOTTOM property set
-            if (mortaredState.contains(SlabBlock.TYPE)) {
-                mortaredState = mortaredState.with(SlabBlock.TYPE, SlabType.BOTTOM);
-            }
-
-            return mortaredState;
-        }
-
-        // Handle DOUBLE slabs by mapping to the full block
-        if (slabType == SlabType.DOUBLE && slabToFullMortaredBlock.containsKey(originalBlock)) {
-            return slabToFullMortaredBlock.get(originalBlock).getDefaultState(); // Return the full block
-        }
-
-        // Return null if no match is found
-        return null;
-    }
-
 
     public boolean hasSidedTransparency(BlockState state) {
         return state.get(TYPE) != SlabType.DOUBLE;

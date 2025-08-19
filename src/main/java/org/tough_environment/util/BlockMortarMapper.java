@@ -1,126 +1,91 @@
 package org.tough_environment.util;
 
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.enums.SlabType;
 import net.minecraft.registry.Registries;
+import net.minecraft.resource.Resource;
+import net.minecraft.resource.ResourceManager;
+import net.minecraft.resource.ResourceType;
+import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
 import org.tough_environment.ToughEnvironmentMod;
-import org.tough_environment.block.ModBlocks;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BlockMortarMapper {
 
-    private static final String JSON_FILE = "block_mortar_replacement_map.json";
+    private static final Gson GSON = new Gson();
+    private static final Type MAP_TYPE = new TypeToken<Map<String, String>>() {}.getType();
     private static final Map<Block, Block> blockReplacementMap = new HashMap<>();
+    public static final Identifier ID = Identifier.of(ToughEnvironmentMod.MOD_ID, "mortar/block_mortar_map.json");
 
-    public static void init() {
-        // Load the map only once and avoid recursion
-        if (blockReplacementMap.isEmpty()) {
-            blockReplacementMap.putAll(loadMap());
-            if (blockReplacementMap.isEmpty()) {
-                populateDefaultMap();
-                saveToJson();
-            }
-        }
+    public static void register() {
+        // Register reload listener
+        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new Listener());
     }
 
     /**
-     * Populate the blockReplacementMap with direct references.
+     * Returns the mortared variant of a block state.
+     * Preserves relevant properties when possible.
      */
-    private static void populateDefaultMap() {
-        blockReplacementMap.put(ModBlocks.COBBLESTONE_LOOSE, Blocks.COBBLESTONE);
-        blockReplacementMap.put(ModBlocks.COBBLED_DEEPSLATE_LOOSE, Blocks.COBBLED_DEEPSLATE);
-        blockReplacementMap.put(ModBlocks.ANDESITE_LOOSE, Blocks.ANDESITE);
-        blockReplacementMap.put(ModBlocks.GRANITE_LOOSE, Blocks.GRANITE);
-        blockReplacementMap.put(ModBlocks.DIORITE_LOOSE, Blocks.DIORITE);
-        blockReplacementMap.put(ModBlocks.CALCITE_LOOSE, Blocks.CALCITE);
-        blockReplacementMap.put(ModBlocks.TUFF_LOOSE, Blocks.TUFF);
-        blockReplacementMap.put(ModBlocks.END_STONE_LOOSE, Blocks.END_STONE);
-        blockReplacementMap.put(ModBlocks.BLACKSTONE_LOOSE, Blocks.BLACKSTONE);
-        blockReplacementMap.put(ModBlocks.BASALT_LOOSE, Blocks.BASALT);
-        blockReplacementMap.put(ModBlocks.BRICKS_LOOSE, Blocks.BRICKS);
-        blockReplacementMap.put(ModBlocks.NETHER_BRICKS_LOOSE, Blocks.NETHER_BRICKS);
+    public static BlockState getReplacement(BlockState originalState) {
+        Block replacementBlock = blockReplacementMap.get(originalState.getBlock());
+        if (replacementBlock == null) return null;
 
-        blockReplacementMap.put(ModBlocks.COBBLESTONE_LOOSE_STAIRS, Blocks.COBBLESTONE_STAIRS);
-        blockReplacementMap.put(ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS, Blocks.COBBLED_DEEPSLATE_STAIRS);
-        blockReplacementMap.put(ModBlocks.ANDESITE_LOOSE_STAIRS, Blocks.ANDESITE_STAIRS);
-        blockReplacementMap.put(ModBlocks.GRANITE_LOOSE_STAIRS, Blocks.GRANITE_STAIRS);
-        blockReplacementMap.put(ModBlocks.DIORITE_LOOSE_STAIRS, Blocks.DIORITE_STAIRS);
-        blockReplacementMap.put(ModBlocks.BRICKS_LOOSE_STAIRS, Blocks.BRICK_STAIRS);
-        blockReplacementMap.put(ModBlocks.STONE_BRICKS_LOOSE_STAIRS, Blocks.STONE_BRICK_STAIRS);
-        blockReplacementMap.put(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, Blocks.DEEPSLATE_BRICK_STAIRS);
-        blockReplacementMap.put(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, Blocks.NETHER_BRICK_STAIRS);
+        BlockState replacementState = replacementBlock.getDefaultState();
 
-        blockReplacementMap.put(ModBlocks.SLAB_COBBLESTONE_LOOSE, Blocks.COBBLESTONE_SLAB);
-        blockReplacementMap.put(ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE, Blocks.COBBLED_DEEPSLATE_SLAB);
-        blockReplacementMap.put(ModBlocks.SLAB_ANDESITE_LOOSE, Blocks.ANDESITE_SLAB);
-        blockReplacementMap.put(ModBlocks.SLAB_GRANITE_LOOSE, Blocks.GRANITE_SLAB);
-        blockReplacementMap.put(ModBlocks.SLAB_DIORITE_LOOSE, Blocks.DIORITE_SLAB);
-        // the below don't have pair, or don't have modded added alternative -> to be considered what to do with these
-        //blockReplacementMap.put(ModBlocks.CALCITE_LOOSE, Blocks.CALCITE_SLAB);
-        //blockReplacementMap.put(ModBlocks.SLAB_TUFF_LOOSE, Blocks.TUFF_SLAB);
-        //blockReplacementMap.put(ModBlocks.END_STONE_LOOSE, Blocks.END_STONE_SLAB);
-        //blockReplacementMap.put(ModBlocks.SLAB_BLACKSTONE_LOOSE, Blocks.BLACKSTONE_SLAB);
-        //blockReplacementMap.put(ModBlocks.BASALT_LOOSE, Blocks.BASALT_SLAB);
-        blockReplacementMap.put(ModBlocks.SLAB_STONE_BRICKS_LOOSE, Blocks.STONE_BRICK_SLAB);
-        blockReplacementMap.put(ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, Blocks.DEEPSLATE_BRICK_SLAB);
-        blockReplacementMap.put(ModBlocks.SLAB_BRICKS_LOOSE, Blocks.BRICK_SLAB);
-        blockReplacementMap.put(ModBlocks.SLAB_NETHER_BRICKS_LOOSE, Blocks.NETHER_BRICK_SLAB);
+        for (Property<?> property : originalState.getProperties()) {
+            if (replacementState.contains(property)) {
+                // Use a helper method to safely cast property and value
+                replacementState = copyProperty(replacementState, property, originalState);
+            }
+        }
 
-
-
+        return replacementState;
     }
 
-    private static void saveToJson() {
-        Gson gson = new Gson();
-        // Convert Map<Block, Block> to Map<String, String>
-        Map<String, String> serializedMap = new HashMap<>();
-        for (Map.Entry<Block, Block> entry : blockReplacementMap.entrySet()) {
-            String key = Registries.BLOCK.getId(entry.getKey()).toString();
-            String value = Registries.BLOCK.getId(entry.getValue()).toString();
-            serializedMap.put(key, value);
-        }
-        String json = gson.toJson(serializedMap);
-        try (FileWriter writer = new FileWriter(JSON_FILE)) {
-            writer.write(json);
-        } catch (IOException e) {
-            ToughEnvironmentMod.LOGGER.error("Failed to save block mortar replacement map to JSON file.", e);
-        }
+    private static <T extends Comparable<T>> BlockState copyProperty(BlockState target, Property<T> property, BlockState source) {
+        T value = source.get(property); // safe cast because the property is the same
+        return target.with(property, value);
     }
 
+    private static class Listener implements SimpleSynchronousResourceReloadListener {
 
-    public static Map<Block, Block> loadMap() {
-        Map<Block, Block> loadedMap = new HashMap<>();
-        try (FileReader reader = new FileReader(JSON_FILE)) {
-            Gson gson = new Gson();
-            // Deserialize to Map<String, String>
-            Map<String, String> jsonMap = gson.fromJson(reader, HashMap.class);
+        @Override
+        public Identifier getFabricId() {
+            return ID;
+        }
 
-            // Convert the string-based map to block-based map
-            for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
-                Block key = Registries.BLOCK.get(Identifier.of(entry.getKey()));
-                Block value = Registries.BLOCK.get(Identifier.of(entry.getValue()));
-                if (key != Blocks.AIR && value != Blocks.AIR) {
-                    loadedMap.put(key, value);
+        @Override
+        public void reload(ResourceManager manager) {
+            blockReplacementMap.clear();
+            try {
+                Resource resource = manager.getResourceOrThrow(ID);
+                try (InputStreamReader reader = new InputStreamReader(resource.getInputStream())) {
+                    Map<String, String> jsonMap = GSON.fromJson(reader, MAP_TYPE);
+                    for (Map.Entry<String, String> entry : jsonMap.entrySet()) {
+                        Block key = Registries.BLOCK.get(Identifier.of(entry.getKey()));
+                        Block value = Registries.BLOCK.get(Identifier.of(entry.getValue()));
+                        if (key != Blocks.AIR && value != Blocks.AIR) {
+                            blockReplacementMap.put(key, value);
+                        }
+                    }
                 }
+            } catch (Exception e) {
+                ToughEnvironmentMod.LOGGER.error("Failed to load block_mortar_map.json", e);
             }
-        } catch (IOException e) {
-            ToughEnvironmentMod.LOGGER.error("Failed to load block mortar replacement map from JSON file.", e);
+
         }
-
-        return loadedMap;
     }
 
-    /**
-     * Get the replacement for a given block.
-     */
-    public static Block getReplacement(Block block) {
-        return blockReplacementMap.getOrDefault(block, block);
-    }
 }

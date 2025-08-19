@@ -1,9 +1,5 @@
-/*
- * Decompiled with CFR 0.2.1 (FabricMC 53fa44c9).
- */
 package org.tough_environment.block.blocks;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.BlockHalf;
 import net.minecraft.block.enums.StairShape;
@@ -14,18 +10,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -35,7 +27,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
-import org.tough_environment.tag.ModTags;
+import org.tough_environment.util.BlockMortarMapper;
 
 import java.util.stream.IntStream;
 
@@ -95,35 +87,16 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
         this.baseBlockState = baseBlockState;
     }
 
-
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-
-        Hand hand = player.getActiveHand();
-
-        if (!world.isClient && player.getStackInHand(hand).isIn(ModTags.Items.MORTARING_ITEMS))
-        {
-            BlockState newState = world.getBlockState(pos)
-                    .with(FACING, state.get(FACING))
-                    .with(HALF, state.get(HALF))
-                    .with(SHAPE, state.get(SHAPE))
-                    .with(WATERLOGGED, state.get(WATERLOGGED));
-
-            // Mortar the block
-            this.applyMortar(newState, world, pos, player);
-
-            // Reduce item stack size
-            ItemStack handStack = player.getStackInHand(hand);
-            handStack.decrement(1);
-
-            return ActionResult.SUCCESS;
-        }
-
-        return this.baseBlockState.onUse(world, player, hit);
+    protected BlockState getMortaredState(BlockState state) {
+        BlockState newState = BlockMortarMapper.getReplacement(state);
+        assert newState != null;
+        return newState
+                .with(FACING, state.get(FACING))
+                .with(HALF, state.get(HALF))
+                .with(SHAPE, state.get(SHAPE))
+                .with(WATERLOGGED, state.get(WATERLOGGED));
     }
-
-
-
 
     @Override
     public boolean hasSidedTransparency(BlockState state) {
@@ -166,12 +139,10 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     }
 
     @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify)
-    {
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         super.onBlockAdded(state,world,pos,oldState,notify);
 
-        if (state.isOf(state.getBlock()))
-        {
+        if (state.isOf(state.getBlock())) {
             return;
         }
         world.updateNeighbor(this.baseBlockState, pos, Blocks.AIR, pos, false);
@@ -189,8 +160,7 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     }
 
     @Override
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity)
-    {
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         this.baseBlock.onSteppedOn(world, pos, state, entity);
     }
 
@@ -200,8 +170,7 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
-    {
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         this.baseBlock.getDefaultState().randomTick(world, pos, random);
     }
 
@@ -214,8 +183,7 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     }
 
     @Override
-    public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion)
-    {
+    public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
         this.baseBlock.onDestroyedByExplosion(world, pos, explosion);
     }
 
