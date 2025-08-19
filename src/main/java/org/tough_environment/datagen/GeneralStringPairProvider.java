@@ -96,8 +96,8 @@ public abstract class GeneralStringPairProvider implements DataProvider {
          * @param blockValue The {@link Block} to get the value from.
          */
         default void add(Block blockKey, Block blockValue) {
-            String key = Registries.BLOCK.getId(blockKey).toString();   // "minecraft:stone"
-            String value = Registries.BLOCK.getId(blockValue).toString(); // "minecraft:dirt"            add(key, value);
+            String key = Registries.BLOCK.getId(blockKey).toString();
+            String value = Registries.BLOCK.getId(blockValue).toString();
             add(key, value);
         }
 

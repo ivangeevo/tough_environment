@@ -14,13 +14,13 @@ public class TEBlockMortarProvider extends GeneralStringPairProvider {
     }
 
     @Override
-    protected String getMapPath() {
-        return "block_mortar_map";
+    protected String getMapFolder() {
+        return "mortar";
     }
 
     @Override
-    protected String getMapFolder() {
-        return "mortar";
+    protected String getMapPath() {
+        return "block_mortar_map";
     }
 
     @Override
