@@ -1,5 +1,6 @@
 package org.tough_environment.event;
 
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -31,7 +32,10 @@ public class ModEvents {
             );
         }
 
-        BlockBreakHandler.getInstance().setStateForDirt(world, pos, state, player);
+        if (state.isIn(BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK) || state.isIn(BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK_SLABS)) {
+            BlockBreakHandler.getInstance().setStateForDirt(world, pos, state, player);
+        }
+
         BlockBreakHandler.getInstance().setStateForStone(world, pos, state, player);
 
         if (state.getBlock() instanceof StoneConvertingBlock) {

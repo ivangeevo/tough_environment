@@ -34,7 +34,7 @@ public class BlockBreakHandler {
         return instance;
     }
 
-    public void setStateForStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void  setStateForStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         BlockState converted = getNextStateForVanillaStone(state, player.getMainHandStack());
         if (converted == null) return;
         if (!player.isCreative()) {
