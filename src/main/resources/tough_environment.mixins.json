@@ -13,8 +13,6 @@
     "block.FarmlandBlockMixin",
     "block.SpreadableBlockMixin"
   ],
-  "client": [
-  ],
   "injectors": {
     "defaultRequire": 1
   }
