@@ -1,3 +1,5 @@
+# 0.13(dev)
+
 # 0.12
 + Added compatibility for BWT's aggregate slab blocks like(dirt, grass, etc.) to also loosen up compatible neighbouring dirt.
 + Improved the dirt loosening mechanic to work exactly like it does in BTW.
