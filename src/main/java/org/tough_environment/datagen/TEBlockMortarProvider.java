@@ -51,6 +51,8 @@ public class TEBlockMortarProvider extends GeneralStringPairProvider {
         builder.add(ModBlocks.GRANITE_LOOSE_STAIRS, Blocks.GRANITE_STAIRS);
 
         builder.add(ModBlocks.BRICKS_LOOSE, Blocks.BRICKS);
+        builder.add(ModBlocks.STONE_BRICKS_LOOSE, Blocks.STONE_BRICKS);
+        builder.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE, Blocks.DEEPSLATE_BRICKS);
         builder.add(ModBlocks.NETHER_BRICKS_LOOSE, Blocks.NETHER_BRICKS);
         builder.add(ModBlocks.NETHER_BRICKS_LOOSE_STAIRS, Blocks.NETHER_BRICK_STAIRS);
 

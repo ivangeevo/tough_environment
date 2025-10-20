@@ -10,6 +10,7 @@
   "tough_environment:cobbled_deepslate_loose_stairs": "minecraft:cobbled_deepslate_stairs",
   "tough_environment:cobblestone_loose": "minecraft:cobblestone",
   "tough_environment:cobblestone_loose_stairs": "minecraft:cobblestone_stairs",
+  "tough_environment:deepslate_bricks_loose": "minecraft:deepslate_bricks",
   "tough_environment:deepslate_bricks_loose_stairs": "minecraft:deepslate_brick_stairs",
   "tough_environment:diorite_loose": "minecraft:diorite",
   "tough_environment:diorite_loose_stairs": "minecraft:diorite_stairs",
@@ -27,6 +28,7 @@
   "tough_environment:slab_granite_loose": "minecraft:granite_slab",
   "tough_environment:slab_nether_bricks_loose": "minecraft:nether_brick_slab",
   "tough_environment:slab_stone_bricks_loose": "minecraft:stone_brick_slab",
+  "tough_environment:stone_bricks_loose": "minecraft:stone_bricks",
   "tough_environment:stone_bricks_loose_stairs": "minecraft:stone_brick_stairs",
   "tough_environment:tuff_loose": "minecraft:tuff"
 }

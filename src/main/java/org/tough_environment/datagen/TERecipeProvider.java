@@ -1,6 +1,8 @@
 package org.tough_environment.datagen;
 
+import btwr.btwr_sl.lib.recipe.ExtendedShapelessRecipe;
 import btwr.btwr_sl.lib.util.utils.RecipeProviderUtils;
+import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
@@ -213,6 +215,41 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeProv
                 .criterion("has_nether_sludge", conditionsFromItem(ModItems.NETHER_SLUDGE))
                 .offerTo(exporter, ID.ofTE("nether_brick_unfired"));
 
+        // Stone Bricks from Stone with chisel
+        this.addStoneBrickFromToolRecipes(exporter);
+
+    }
+
+    private void addStoneBrickFromToolRecipes(RecipeExporter exporter) {
+        // Stone Brick
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, ModItems.STONE_BRICK)
+                .withToolDamage()
+                .input(Items.STONE)
+                .input(BTWRConventionalTags.Items.MODERN_CHISELS)
+                .criterion("has_stone", conditionsFromItem(Items.STONE))
+                .offerTo(exporter, ID.ofTE("stone_brick_from_stone"));
+
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, ModItems.STONE_BRICK)
+                .withToolDamage()
+                .input(Items.STONE)
+                .input(BTWRConventionalTags.Items.ADVANCED_CHISELS)
+                .criterion("has_stone", conditionsFromItem(Items.STONE))
+                .offerTo(exporter, ID.ofTE("stone_brick_from_stone_advanced"));
+
+        // Deepslate Stone Brick
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, ModItems.STONE_BRICK_2)
+                .withToolDamage()
+                .input(Items.DEEPSLATE)
+                .input(BTWRConventionalTags.Items.MODERN_CHISELS)
+                .criterion("has_deepslate", conditionsFromItem(Items.DEEPSLATE))
+                .offerTo(exporter, ID.ofTE("stone_brick_2_from_stone"));
+
+        ExtendedShapelessRecipe.JsonBuilder.create(RecipeCategory.MISC, ModItems.STONE_BRICK_2)
+                .withToolDamage()
+                .input(Items.DEEPSLATE)
+                .input(BTWRConventionalTags.Items.ADVANCED_CHISELS)
+                .criterion("has_deepslate", conditionsFromItem(Items.DEEPSLATE))
+                .offerTo(exporter, ID.ofTE("stone_brick_2_from_stone_advanced"));
     }
 
     private void addLesserDropRecipes(RecipeExporter exporter) {

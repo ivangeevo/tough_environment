@@ -1,5 +1,6 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "btwr_sl:crafting_shapeless_extended",
+  "additional_drops": [],
   "category": "misc",
   "ingredients": [
     {
@@ -10,13 +11,8 @@
     }
   ],
   "result": {
-    "count": 4,
+    "count": 1,
     "id": "tough_environment:stone_brick_2"
   },
-  "additionalDrops": [
-    {
-      "id": "tough_environment:pile_gravel",
-      "count": 1
-    }
-  ]
+  "tool_damage": 1
 }

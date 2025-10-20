@@ -1,4 +1,7 @@
-# 0.13(dev)
+# 0.12.1(dev)
++ Updated mod recipes to use the new ExtendedShapelessRecipe from BTWR: Shared Library 0.60-61
++ Fixed a bug with loose stone and deepslate bricks not being mortarable
++ Updated the mod to Fabric API 0.116.7 & BTWR: Shared Library 0.61
 
 # 0.12
 + Added compatibility for BWT's aggregate slab blocks like(dirt, grass, etc.) to also loosen up compatible neighbouring dirt.
