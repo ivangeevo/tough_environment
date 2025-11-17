@@ -7,6 +7,7 @@
     "ItemEntityMixin",
     "ItemMixin",
     "PlayerEntityMixin",
+    "ServerPlayerEntityMixin",
     "ToolMaterialsMixin",
     "block.AbstractBlockMixin",
     "block.BlockMixin",

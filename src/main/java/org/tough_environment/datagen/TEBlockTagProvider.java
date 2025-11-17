@@ -138,16 +138,24 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     private void addToModTags()
     {
-
-        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_DIAMOND_CHISEL);
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_MODERN_IRON)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL);
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_MODERN_GOLD)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_PRIMITIVE_STONE)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_PRIMITIVE_WOOD)
+                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
+                .forceAddTag(BlockTags.NEEDS_IRON_TOOL)
+                .forceAddTag(BlockTags.NEEDS_STONE_TOOL);
 
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL)
                 .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL);
-
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL)
                 .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
-
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL)
                 .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .forceAddTag(BlockTags.NEEDS_IRON_TOOL)

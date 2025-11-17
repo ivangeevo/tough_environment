@@ -12,7 +12,7 @@ import org.tough_environment.item.ItemMixinManager;
 @Mixin(Item.class)
 public abstract class ItemMixin
 {
-    @Inject(method = "getMiningSpeed(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)F", at = @At("HEAD"), cancellable = true)
+    //@Inject(method = "getMiningSpeed(Lnet/minecraft/item/ItemStack;Lnet/minecraft/block/BlockState;)F", at = @At("HEAD"), cancellable = true)
     public void modifyMiningSpeed(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
         ItemMixinManager.getInstance().handleGetMiningSpeed(stack, state, cir);
     }

@@ -31,6 +31,14 @@ public class ModTags
         public static final TagKey<Block> INCORRECT_FOR_STONE_CHISEL = register("incorrect_for_stone_chisel");
         public static final TagKey<Block> INCORRECT_FOR_WOODEN_CHISEL = register("incorrect_for_wooden_chisel");
 
+        // Used for inverse tag checks in TieredToolMaterials.class
+        public static final TagKey<Block> INCORRECT_FOR_PRIMITIVE_WOOD = register("incorrect_for_primitive_wood");
+        public static final TagKey<Block> INCORRECT_FOR_PRIMITIVE_STONE = register("incorrect_for_primitive_stone");
+        public static final TagKey<Block> INCORRECT_FOR_MODERN_GOLD = register("incorrect_for_modern_gold");
+        public static final TagKey<Block> INCORRECT_FOR_MODERN_IRON = register("incorrect_for_modern_iron");
+        public static final TagKey<Block> INCORRECT_FOR_MODERN_DIAMOND = register("incorrect_for_modern_diamond");
+        public static final TagKey<Block> INCORRECT_FOR_ADVANCED_NETHERITE = register("incorrect_for_advanced_netherite");
+
 
 
         public static final TagKey<Block> LOOSE_STONE_BLOCKS = register("loose_full_blocks");
@@ -86,6 +94,15 @@ public class ModTags
     {
 
         public static final TagKey<Block> CHISEL = register("mineable/chisel");
+
+        // Special mineable tags per tier(wooden, stone, etc.) so we can specify additional restrictions
+        public static final TagKey<Block> WOODEN_PRIMITIVE = register("mineable/wooden_primitive");
+        public static final TagKey<Block> STONE_PRIMITIVE = register("mineable/wooden_primitive");
+        public static final TagKey<Block> GOLD_MODERN = register("mineable/gold_modern");
+        public static final TagKey<Block> IRON_MODERN = register("mineable/iron_modern");
+        public static final TagKey<Block> DIAMOND_MODERN = register("mineable/diamond_modern");
+        public static final TagKey<Block> NETHERITE_ADVANCED = register("mineable/netherite_advanced");
+
 
         private static TagKey<Block> register(String id)
         {

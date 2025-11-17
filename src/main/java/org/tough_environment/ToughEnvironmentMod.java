@@ -19,6 +19,7 @@ import org.tough_environment.block.ModBlocks;
 import org.tough_environment.config.TESettings;
 import org.tough_environment.item.ModItemGroup;
 import org.tough_environment.item.ModItems;
+import org.tough_environment.item.component.ModComponentTypes;
 import org.tough_environment.loot.ModLootConditionTypes;
 import org.tough_environment.registry.ModFuelItems;
 import org.tough_environment.util.BlockMortarMapper;
@@ -52,6 +53,7 @@ public class ToughEnvironmentMod implements ModInitializer {
         ModItemGroup.registerItemGroups();
         ModFuelItems.register();
         ModLootConditionTypes.register();
+        ModComponentTypes.register();
 
         // Initialize or load the block replacement map for mortaring
         BlockMortarMapper.register();

@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class ToolMaterialsMixin {
 
     // Modify the return value of getDurability() method for specific tool materials
-    @ModifyReturnValue(method = "getDurability", at = @At("RETURN"))
+    //@ModifyReturnValue(method = "getDurability", at = @At("RETURN"))
     private int modifyToolDurability(int original) {
         // Directly use the enum ToolMaterials for comparison
         ToolMaterials self = (ToolMaterials) (Object) this;

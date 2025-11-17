@@ -1,4 +1,4 @@
-# 0.xx(dev)
+# 0.12.2
 + Fixed a bug where stone bricks from stone crafting with chisel would consume the chisels
 + Fixed the Loose Diorite's item name displaying wrong as being "Granite"
 + Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.62
