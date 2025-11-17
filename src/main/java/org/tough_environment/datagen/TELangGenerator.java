@@ -69,7 +69,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE, "Loose Cobbled Deepslate");
         tb.add(ModBlocks.GRANITE_LOOSE, "Loose Granite");
         tb.add(ModBlocks.ANDESITE_LOOSE, "Loose Andesite");
-        tb.add(ModBlocks.DIORITE_LOOSE, "Loose Granite");
+        tb.add(ModBlocks.DIORITE_LOOSE, "Loose Diorite");
         tb.add(ModBlocks.CALCITE_LOOSE, "Loose Calcite");
         tb.add(ModBlocks.TUFF_LOOSE, "Loose Tuff");
         tb.add(ModBlocks.BLACKSTONE_LOOSE, "Loose Blackstone");

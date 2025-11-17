@@ -1,4 +1,9 @@
-# 0.12.1(dev)
+# 0.xx(dev)
++ Fixed a bug where stone bricks from stone crafting with chisel would consume the chisels
++ Fixed the Loose Diorite's item name displaying wrong as being "Granite"
++ Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.62
+
+# 0.12.1
 + Updated mod recipes to use the new ExtendedShapelessRecipe from BTWR: Shared Library 0.60-61
 + Fixed a bug with loose stone and deepslate bricks not being mortarable
 + Updated the mod to Fabric API 0.116.7 & BTWR: Shared Library 0.61

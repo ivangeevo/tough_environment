@@ -31,6 +31,15 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
     private void addToConventionalTags()
     {
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.CRAFTING_WITH_TOOLS_ITEMS)
+                .addTag(BTWRConventionalTags.Items.MODERN_CHISELS)
+                .addTag(BTWRConventionalTags.Items.ADVANCED_CHISELS);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.DAMAGE_ON_CRAFTING_TOOLS)
+                .addTag(BTWRConventionalTags.Items.MODERN_CHISELS)
+                .addTag(BTWRConventionalTags.Items.ADVANCED_CHISELS);
+
+
         getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
                 .add(ModItems.CHISEL_WOOD)
                 .add(ModItems.CHISEL_STONE);

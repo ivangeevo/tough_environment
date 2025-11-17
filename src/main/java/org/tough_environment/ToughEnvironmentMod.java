@@ -3,9 +3,14 @@ package org.tough_environment;
 import btwr.btwr_sl.lib.util.BlockReplacementRegistry;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.DefaultAttributeRegistry;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.HoeItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +31,7 @@ import java.io.IOException;
 public class ToughEnvironmentMod implements ModInitializer {
 
     public static final String MOD_ID = "tough_environment";
-    public static final Logger LOGGER = LoggerFactory.getLogger("tough_environment");
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     public TESettings settings;
     private static ToughEnvironmentMod instance;
@@ -55,15 +60,10 @@ public class ToughEnvironmentMod implements ModInitializer {
 
         ModEvents.register();
 
-
-        TillableBlockRegistry.register(
-                ModBlocks.DIRT_LOOSE,
-                HoeItem::canTillFarmland,
-                context -> {
+        TillableBlockRegistry.register(ModBlocks.DIRT_LOOSE, HoeItem::canTillFarmland, context -> {
                     BlockState result = Blocks.FARMLAND.getDefaultState();
                     HoeItem.createTillAction(result).accept(context);
-                });
-
+        });
 
         /** save for later attempts // trying to make a custom vanilla resourcepack with datagen.
         // Built in resource-pack
