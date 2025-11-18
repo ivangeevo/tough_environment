@@ -1,18 +1,15 @@
 package org.tough_environment.util;
 
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MaceItem;
-import net.minecraft.item.MiningToolItem;
-import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import org.tough_environment.ToughEnvironmentMod;
 
-public class BreakSpeedStatusEffectUtils {
+public class BlockBreakSpeedUtil {
 
     public enum GenericState {
-        UNFEASIBLE(0.000125f),
         HARDCORE(0.16f),
         NORMAL(1.0f);
 
@@ -31,35 +28,19 @@ public class BreakSpeedStatusEffectUtils {
         }
 
         public static GenericState getState(int severity) {
-            return switch (severity) {
-                case 1 -> HARDCORE;
-                case 2 -> UNFEASIBLE;
-	            default -> NORMAL;
-            };
+            return severity == 1 ? HARDCORE : NORMAL;
         }
 
         public static GenericState getStateFromPlayer(PlayerEntity player) {
             ItemStack stack = player.getMainHandStack();
-            boolean isMiningTool = stack.getItem() instanceof MiningToolItem;
-            boolean isWeapon = stack.isIn(ItemTags.WEAPON_ENCHANTABLE) || stack.getItem() instanceof MaceItem;
 
             int severity = 0;
-            /**
-            // conditions for restricting breaking blocks without the correct item
+
             if (ToughEnvironmentMod.getInstance().settings.isHardcorePlayerMiningSpeedEnabled()) {
                 severity = 1;
             }
 
-            // Not tool or weapon - generic usage of item in hand or hand
-            if (!isMiningTool && !isWeapon) {
-                // conditions for restricting breaking blocks without the correct item
-                if (ToughEnvironmentMod.getInstance().settings.isBlockBreakingRestrictionsEnabled()) {
-                    severity = 2;
-                }
-            }
-             **/
             return getState(severity);
         }
     }
-
 }

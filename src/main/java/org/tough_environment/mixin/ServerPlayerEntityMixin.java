@@ -17,9 +17,8 @@ public abstract class ServerPlayerEntityMixin
     @Unique private PlayerEffectsManager effectsManager = PlayerEffectsManager.getInstance();
 
     @Inject(method = "tick", at = @At("TAIL"))
-    public void applyMovementEffectsOnTick(CallbackInfo info)
-    {
-       //effectsManager.onServerTick(playerEntity);
+    public void applyMovementEffectsOnTick(CallbackInfo info) {
+       effectsManager.onServerTick(playerEntity);
     }
 
 }

@@ -163,11 +163,11 @@ public class BlockBreakHandler {
             }
         }
 
-        return this.getNextStateForConvertedBlocks(state, tool);
+        return this.getNextStateForConvertedBlocks(state);
     }
 
     // Returns the next converted state from general converted blocks or null if no conversion
-    private BlockState getNextStateForConvertedBlocks(BlockState state, ItemStack tool) {
+    private BlockState getNextStateForConvertedBlocks(BlockState state) {
         // Simply increment to the next break level
         return state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1);
     }

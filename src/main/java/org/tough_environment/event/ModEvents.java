@@ -3,13 +3,11 @@ package org.tough_environment.event;
 import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ToolComponent;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -27,7 +25,6 @@ import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.BlockBreakHandler;
 import org.tough_environment.block.blocks.StoneConvertingBlock;
 import org.tough_environment.item.component.ModToolComponents;
-import org.tough_environment.util.BreakSpeedStatusEffectUtils;
 
 public class ModEvents {
 
@@ -59,6 +56,7 @@ public class ModEvents {
         PlayerBlockBreakEvents.AFTER.register(ModEvents::onAfterBlockBreak);
         // Item Component Events
         //DefaultItemComponentEvents.MODIFY.register(ModEvents::modifyToolComponents);
+
     }
     
     private static void modifyToolComponents(DefaultItemComponentEvents.ModifyContext context) {
@@ -126,7 +124,7 @@ public class ModEvents {
     }
 
     private static void modifyToolEntry(ComponentMap.Builder builder, ToolComponent toolComponent) {
-        builder.add(DataComponentTypes.TOOL, toolComponent);
+        builder.getOrCreate(DataComponentTypes.TOOL, () -> toolComponent);
     }
 
 }

@@ -14,7 +14,7 @@ public class PlayerEffectsManager {
         return INSTANCE;
     }
 
-    private BreakSpeedStatusEffectUtils.GenericState currentGenericState = BreakSpeedStatusEffectUtils.GenericState.NORMAL;
+    private BlockBreakSpeedUtil.GenericState currentGenericState = BlockBreakSpeedUtil.GenericState.NORMAL;
 
     // gets called in PlayerEntity only
     public void onTick(PlayerEntity player) {
@@ -32,9 +32,8 @@ public class PlayerEffectsManager {
 
     private void updateAttributes(PlayerEntity player) {
         EntityAttributeInstance blockBreakSpeedAttribute = player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
-
         // Get the player's current block break speed state
-        BreakSpeedStatusEffectUtils.GenericState newGenericState = BreakSpeedStatusEffectUtils.GenericState.getStateFromPlayer(player);
+        BlockBreakSpeedUtil.GenericState newGenericState = BlockBreakSpeedUtil.GenericState.getStateFromPlayer(player);
 
         if (blockBreakSpeedAttribute != null) {
             // Update GenericState modifier

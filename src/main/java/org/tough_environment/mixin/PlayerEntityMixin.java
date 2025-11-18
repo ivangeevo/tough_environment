@@ -18,7 +18,7 @@ public abstract class PlayerEntityMixin extends LivingEntity
         super(entityType, world);
     }
 
-    //@ModifyReturnValue(method = "getBlockBreakingSpeed", at = @At(value = "RETURN"))
+    @ModifyReturnValue(method = "getBlockBreakingSpeed", at = @At(value = "RETURN"))
     private float modifyBlockBreakSpeedMultiplier(float f, @Local BlockState state) {
         return f * BlockBreakSpeedManager.getInstance().getModifiedSpeed((PlayerEntity)(Object) this, state, f);
     }
