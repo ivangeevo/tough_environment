@@ -8,4 +8,5 @@ public class DepletedStoneBlock extends ConvertingBlock
         super(settings);
     }
      // TODO: Add break level decrementing logic
+
 }

@@ -1,93 +1,112 @@
 package org.tough_environment.util;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.tough_environment.tag.ModTags;
 
 public interface StrataBreakHelper {
 
+    default boolean isPickaxeEfficient(ItemStack stack, BlockState state) {
+        return isPickaxeTool(stack) && isPickaxeMineable(state);
+    }
+    default boolean isAxeEfficient(ItemStack stack, BlockState state) {
+        return isAxeTool(stack) && isAxeMineable(state);
+    }
+    default boolean isShovelEfficient(ItemStack stack, BlockState state) {
+        return isShovelTool(stack) && isShovelMineable(state);
+    }
+    default boolean isHoeEfficient(ItemStack stack, BlockState state) {
+        return isHoeTool(stack) && isHoeMineable(state);
+    }
+    default boolean isChiselEfficient(ItemStack stack, BlockState state) {
+        return isChiselTool(stack) && isChiselMineable(state);
+    }
+
+    default boolean isProblemToBreak(BlockState state, ItemStack stack) {
+        if (isStrataStone3(state) && !isAdvancedPickaxe(stack)) {
+            return true;
+        }
+
+        return isStrataStone2(state) && !isAdvancedPickaxe(stack) && !isModernPickaxe(stack);
+    }
+    default boolean isUnfeasibleToBreak(BlockState state, ItemStack stack) {
+        return !isOreBlock(state) && (cantBreakStrata3(state, stack) || cantBreakStrata2(state, stack));
+    }
+
     default boolean cantBreakStrata2(BlockState state, ItemStack stack) {
-        return isStrata2(state) && !isHigherThanPrimitive(stack);
+        return isStrataStone2(state) & (isPrimitivePickaxe(stack) || stack.isOf(Items.GOLDEN_PICKAXE));
     }
-
     default boolean cantBreakStrata3(BlockState state, ItemStack stack) {
-        return isStrata3(state) && !stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
+        return isStrataStone3(state) && !isAdvancedPickaxe(stack);
     }
 
-    private boolean isHigherThanPrimitive(ItemStack stack) {
-        return stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) || stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
-    }
-
-    private boolean isPrimitivePickaxe(ItemStack stack) {
+    // ItemStack checks
+    default boolean isPrimitivePickaxe(ItemStack stack) {
         return stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES);
     }
-    private boolean isModernPickaxe(ItemStack stack) {
+    default boolean isModernPickaxe(ItemStack stack) {
         return stack.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES);
     }
-    private boolean isAdvancedPickaxe(ItemStack stack) {
+    default boolean isAdvancedPickaxe(ItemStack stack) {
         return stack.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
     }
-
-    private boolean isStrata1(BlockState state) {
-        return state.isIn(BTWRConventionalTags.Blocks.STRATA1);
+    default boolean isPickaxeTool(ItemStack stack) {
+        return stack.isIn(ItemTags.PICKAXES);
     }
-    private boolean isStrata2(BlockState state) {
-        return state.isIn(BTWRConventionalTags.Blocks.STRATA2);
+    default boolean isAxeTool(ItemStack stack) {
+        return stack.isIn(ItemTags.AXES);
     }
-    private boolean isStrata3(BlockState state) {
-        return state.isIn(BTWRConventionalTags.Blocks.STRATA3);
+    default boolean isShovelTool(ItemStack stack) {
+        return stack.isIn(ItemTags.SHOVELS);
     }
-
-    enum StrataTier {
-        STRATA3,
-        STRATA2,
-        STRATA1;
-
-        StrataTier() {}
-
-        public static StrataTier getTierFrom(BlockState state) {
-            if (state.isIn(BTWRConventionalTags.Blocks.STRATA3)) return STRATA3;
-            if (state.isIn(BTWRConventionalTags.Blocks.STRATA2)) return STRATA2;
-            return STRATA1;
-        }
-
-        public static StrataTier getFor(int ordinal) {
-            return switch (ordinal) {
-                case 0 -> STRATA3;
-                case 1 -> STRATA2;
-                default -> STRATA1;
-            };
-
-        }
+    default boolean isHoeTool(ItemStack stack) {
+        return stack.isIn(ItemTags.HOES);
+    }
+    default boolean isChiselTool(ItemStack stack) {
+        return stack.isIn(ModTags.Items.CHISELS);
     }
 
-    enum ToolTier {
-        ADVANCED,
-        MODERN,
-        PRIMITIVE,
-        MELEE_WEAPON,
-        RANGED_WEAPON,
-        HAND;
-
-        ToolTier() {}
-
-        public static ToolTier getFor(ItemStack stack) {
-            if (stack.isEmpty()) return HAND;
-            if (stack.isIn(BTWRConventionalTags.Items.ADVANCED_TOOLS)) return ADVANCED;
-            if (stack.isIn(BTWRConventionalTags.Items.MODERN_TOOLS)) return MODERN;
-            if (stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_TOOLS)) return PRIMITIVE;
-            if (stack.isIn(ConventionalItemTags.MELEE_WEAPON_TOOLS)) return MELEE_WEAPON;
-            if (stack.isIn(ConventionalItemTags.RANGED_WEAPON_TOOLS)) return RANGED_WEAPON;
-
-            // fallback category
-            return HAND;
-        }
-
+    // BlockState checks
+    default boolean isPickaxeMineable(BlockState state) {
+        return state.isIn(BlockTags.PICKAXE_MINEABLE);
+    }
+    default boolean isAxeMineable(BlockState state) {
+        return state.isIn(BlockTags.AXE_MINEABLE);
+    }
+    default boolean isShovelMineable(BlockState state) {
+        return state.isIn(BlockTags.SHOVEL_MINEABLE);
+    }
+    default boolean isHoeMineable(BlockState state) {
+        return state.isIn(BlockTags.HOE_MINEABLE);
+    }
+    default boolean isChiselMineable(BlockState state) {
+        return state.isIn(ModTags.Mineable.CHISEL);
+    }
+    default boolean isStrataStone1(BlockState state) {
+        return state.isIn(BTWRConventionalTags.Blocks.STONE_STRATA1);
+    }
+    default boolean isStrataStone2(BlockState state) {
+        return state.isIn(BTWRConventionalTags.Blocks.STONE_STRATA2);
+    }
+    default boolean isStrataStone3(BlockState state) {
+        return state.isIn(BTWRConventionalTags.Blocks.STONE_STRATA3);
+    }
+    default boolean isOreStrata1(BlockState state) {
+        return state.isIn(BTWRConventionalTags.Blocks.ORE_STRATA1);
+    }
+    default boolean isOreStrata2(BlockState state) {
+        return state.isIn(BTWRConventionalTags.Blocks.ORE_STRATA2);
+    }
+    default boolean isOreStrata3(BlockState state) {
+        return state.isIn(BTWRConventionalTags.Blocks.ORE_STRATA3);
+    }
+    private boolean isOreBlock(BlockState state) {
+        return state.isIn(ConventionalBlockTags.ORES);
     }
 
-    private boolean isValidToolRequiringBlock(BlockState state) {
-        boolean isTough = state.isIn(BTWRConventionalTags.Blocks.WEB_BLOCKS) || (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS));
-        return state.isToolRequired() && isTough;
-    }
 }

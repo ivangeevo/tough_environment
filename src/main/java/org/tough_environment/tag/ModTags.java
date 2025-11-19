@@ -10,8 +10,7 @@ import org.tough_environment.ToughEnvironmentMod;
 public class ModTags
 {
 
-    public static class Blocks
-    {
+    public static class Blocks {
 
         public static final TagKey<Block> CONVERTED_STONE_BLOCKS = register("converted_stone_blocks");
         public static final TagKey<Block> BROKEN_STONE_BLOCKS = register("broken_stone_blocks");
@@ -38,8 +37,6 @@ public class ModTags
         public static final TagKey<Block> INCORRECT_FOR_MODERN_IRON = register("incorrect_for_modern_iron");
         public static final TagKey<Block> INCORRECT_FOR_MODERN_DIAMOND = register("incorrect_for_modern_diamond");
         public static final TagKey<Block> INCORRECT_FOR_ADVANCED_NETHERITE = register("incorrect_for_advanced_netherite");
-
-
 
         public static final TagKey<Block> LOOSE_STONE_BLOCKS = register("loose_full_blocks");
         public static final TagKey<Block> LOOSE_STONE_SLABS = register("loose_slabs");
@@ -74,10 +71,11 @@ public class ModTags
         private static TagKey<Block> register(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
+
     }
 
-    public static class Items
-    {
+    public static class Items {
+
         public static final TagKey<Item> SHOULD_NOT_MERGE = register("should_not_merge");
         public static final TagKey<Item> SMALL_STONES = register("small_stones");
         public static final TagKey<Item> MORTARING_ITEMS = register("mortaring_items");
@@ -90,12 +88,11 @@ public class ModTags
     }
 
 
-    public static class Mineable
-    {
+    public static class Mineable {
 
         public static final TagKey<Block> CHISEL = register("mineable/chisel");
 
-        // Special mineable tags per tier(wooden, stone, etc.) so we can specify additional restrictions
+        // Special mineable tags per tier (wooden, stone, etc.), so we can specify additional restrictions
         public static final TagKey<Block> WOODEN_PRIMITIVE = register("mineable/wooden_primitive");
         public static final TagKey<Block> STONE_PRIMITIVE = register("mineable/wooden_primitive");
         public static final TagKey<Block> GOLD_MODERN = register("mineable/gold_modern");
@@ -104,15 +101,10 @@ public class ModTags
         public static final TagKey<Block> NETHERITE_ADVANCED = register("mineable/netherite_advanced");
 
 
-        private static TagKey<Block> register(String id)
-        {
+        private static TagKey<Block> register(String id) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, id));
         }
 
     }
-
-
-
-
 
 }

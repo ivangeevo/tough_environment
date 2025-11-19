@@ -1,17 +1,12 @@
 package org.tough_environment;
 
-import btwr.btwr_sl.lib.util.BlockReplacementRegistry;
 import com.google.gson.Gson;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.DefaultAttributeRegistry;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.HoeItem;
+import org.btwr.shared_library.registry.BlockReplacementRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tough_environment.event.ModEvents;
@@ -34,18 +29,23 @@ public class ToughEnvironmentMod implements ModInitializer {
     public static final String MOD_ID = "tough_environment";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+    private static ToughEnvironmentMod INSTANCE;
     public TESettings settings;
-    private static ToughEnvironmentMod instance;
+    private static final String CONFIG_FILE_NAME = "./config/btwr/toughEnvironmentCommon.json";
 
     public static ToughEnvironmentMod getInstance() {
-        return instance;
+        return INSTANCE;
+    }
+
+    public static TESettings getSettings() {
+        return getInstance().settings;
     }
 
     @Override
     public void onInitialize() {
         LOGGER.info("Initializing Tough Environment.");
         loadSettings();
-        instance = this;
+        INSTANCE = this;
 
         ModBlocks.registerModBlocks();
         ModBlocks.registerItemsPlaceableAsBlocks();
@@ -60,7 +60,7 @@ public class ToughEnvironmentMod implements ModInitializer {
 
         BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
 
-        ModEvents.register();
+        ModEvents.registerAttribute();
 
         TillableBlockRegistry.register(ModBlocks.DIRT_LOOSE, HoeItem::canTillFarmland, context -> {
                     BlockState result = Blocks.FARMLAND.getDefaultState();
@@ -77,7 +77,7 @@ public class ToughEnvironmentMod implements ModInitializer {
 
     // Do not remove this comment or the project will NOT compile!
     public void loadSettings() {
-        File file = new File("./config/btwr/toughEnvironmentCommon.json");
+        File file = new File(CONFIG_FILE_NAME);
         Gson gson = new Gson();
         if (file.exists()) {
             try {
@@ -94,7 +94,7 @@ public class ToughEnvironmentMod implements ModInitializer {
 
     public void saveSettings() {
         Gson gson = new Gson();
-        File file = new File("./config/btwr/toughEnvironmentCommon.json");
+        File file = new File(CONFIG_FILE_NAME);
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdir();
         }
@@ -106,6 +106,5 @@ public class ToughEnvironmentMod implements ModInitializer {
             LOGGER.warn("Could not save Tough Environment settings: " + e.getLocalizedMessage());
         }
     }
-
 
 }

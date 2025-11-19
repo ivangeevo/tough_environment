@@ -1,6 +1,5 @@
 package org.tough_environment.event;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.block.BlockState;
@@ -8,61 +7,30 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ToolComponent;
-import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.BlockBreakHandler;
-import org.tough_environment.block.blocks.StoneConvertingBlock;
 import org.tough_environment.item.component.ModToolComponents;
 
 public class ModEvents {
 
-
-    //public static RegistryEntry<EntityAttribute> HARDCORE_BLOCK_BREAKING_SPEED = registerVanilla("player.block_break_speed", 0.16F, 0.0F, 1024.0F);;
-
-    public static RegistryEntry<EntityAttribute> register(String id, double fallback, double min, double max) {
-        return register(id, createClampedAttribute(id, fallback, min, max));
-    }
-
-    public static RegistryEntry<EntityAttribute> registerVanilla(String id, double fallback, double min, double max) {
-        return register(id, createOfVanilla(id, fallback, min, max));
-    }
-
-    public static RegistryEntry<EntityAttribute> register(String id, EntityAttribute attribute) {
-        return Registry.registerReference(Registries.ATTRIBUTE, Identifier.of(ToughEnvironmentMod.MOD_ID, id), attribute);
-    }
-
-    public static ClampedEntityAttribute createClampedAttribute(String attributeName, double fallback, double min, double max) {
-        return new ClampedEntityAttribute("attribute." + ToughEnvironmentMod.MOD_ID + "." + attributeName, fallback, min, max);
-    }
-
-    private static ClampedEntityAttribute createOfVanilla(String attributeName, double fallback, double min, double max) {
-        return new ClampedEntityAttribute("attribute." + "minecraft" + "." + attributeName, fallback, min, max);
-    }
-
-    public static void register() {
+    public static void registerAttribute() {
         // Player Block Events
         PlayerBlockBreakEvents.AFTER.register(ModEvents::onAfterBlockBreak);
         // Item Component Events
         //DefaultItemComponentEvents.MODIFY.register(ModEvents::modifyToolComponents);
-
     }
     
     private static void modifyToolComponents(DefaultItemComponentEvents.ModifyContext context) {
-        modifyPrimitiveTools(context);
-        modifyModernTools(context);
-        modifyAdvancedTools(context);
+        //modifyPrimitiveTools(context);
+        //modifyModernTools(context);
+        //modifyAdvancedTools(context);
     }
 
     private static void modifyPrimitiveTools(DefaultItemComponentEvents.ModifyContext context) {
@@ -102,24 +70,17 @@ public class ModEvents {
     }
 
     private static void onAfterBlockBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
-        if (world.isClient) return;
-
-        ItemStack tool = player.getMainHandStack();
-
-        if (BlockBreakHandler.getInstance().shouldPlayCrackingSound(state, tool) && !player.isCreative()) {
-            world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.BLOCKS,
-                    0.5F, 1.75F + world.random.nextFloat() * 0.25F
-            );
-        }
-
-        if (state.isIn(BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK) || state.isIn(BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK_SLABS)) {
+        if (!world.isClient()) {
+            ItemStack tool = player.getMainHandStack();
             BlockBreakHandler.getInstance().setStateForDirt(world, pos, state, player);
-        }
-
-        BlockBreakHandler.getInstance().setStateForStone(world, pos, state, player);
-
-        if (state.getBlock() instanceof StoneConvertingBlock) {
+            BlockBreakHandler.getInstance().setStateForStone(world, pos, state, player);
             BlockBreakHandler.getInstance().setStateForConvertedStone(world, pos, state, player);
+
+            if (BlockBreakHandler.getInstance().shouldPlayCrackingSound(state, tool) && !player.isCreative()) {
+                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.BLOCKS,
+                        0.5F, 1.75F + world.random.nextFloat() * 0.25F
+                );
+            }
         }
     }
 

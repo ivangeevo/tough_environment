@@ -23,6 +23,7 @@ import java.util.Objects;
 
 public class MortarReceiverBlock extends FallingBlock
 {
+
     private static final int TACKY_FALLING_BLOCK_TICK_RATE = 40;
     public static final MapCodec<MortarReceiverBlock> CODEC = MortarReceiverBlock.createCodec(MortarReceiverBlock::new);
 
@@ -48,7 +49,8 @@ public class MortarReceiverBlock extends FallingBlock
                     world.getTime() + TACKY_FALLING_BLOCK_TICK_RATE, TickPriority.NORMAL, 0
             );
             world.getBlockTickScheduler().scheduleTick(orderedTick);
-        } else {
+        }
+        else {
             // Schedule the normal fall tick (default for falling blocks)
             super.onBlockAdded(state, world, pos, oldState, notify);
         }
@@ -63,7 +65,8 @@ public class MortarReceiverBlock extends FallingBlock
 
             if (mainHandStack.isIn(ModTags.Items.MORTARING_ITEMS)) {
                 return applyMortar(state, world, pos, player, Hand.MAIN_HAND);
-            } else if (offHandStack.isIn(ModTags.Items.MORTARING_ITEMS)) {
+            }
+            else if (offHandStack.isIn(ModTags.Items.MORTARING_ITEMS)) {
                 return applyMortar(state, world, pos, player, Hand.OFF_HAND);
             }
         }
@@ -94,7 +97,6 @@ public class MortarReceiverBlock extends FallingBlock
         player.swingHand(hand);
     }
 
-
     /**
      * Returns the mortared version of this block state.
      * Default implementation uses the mapper, but other blocks can override
@@ -107,6 +109,5 @@ public class MortarReceiverBlock extends FallingBlock
         }
         return state; // fallback if no replacement exists
     }
-
 
 }

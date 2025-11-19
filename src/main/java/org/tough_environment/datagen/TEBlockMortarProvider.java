@@ -64,5 +64,4 @@ public class TEBlockMortarProvider extends GeneralStringPairProvider {
         builder.add(ModBlocks.BRICKS_LOOSE_STAIRS, Blocks.BRICK_STAIRS);
     }
 
-
 }

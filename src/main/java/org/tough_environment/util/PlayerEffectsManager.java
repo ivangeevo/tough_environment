@@ -1,8 +1,11 @@
 package org.tough_environment.util;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
+import org.tough_environment.ToughEnvironmentMod;
 
 public class PlayerEffectsManager {
 
@@ -32,6 +35,10 @@ public class PlayerEffectsManager {
 
     private void updateAttributes(PlayerEntity player) {
         EntityAttributeInstance blockBreakSpeedAttribute = player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+
+        boolean isHCSpeedEnabled = ToughEnvironmentMod.getSettings().isHardcorePlayerMiningSpeedEnabled();
+        boolean isStrataToughnessEnabled = ToughEnvironmentMod.getSettings().isStratificationToughnessEnabled();
+
         // Get the player's current block break speed state
         BlockBreakSpeedUtil.GenericState newGenericState = BlockBreakSpeedUtil.GenericState.getStateFromPlayer(player);
 
@@ -40,6 +47,14 @@ public class PlayerEffectsManager {
             if (newGenericState != currentGenericState) {
                 blockBreakSpeedAttribute.removeModifier(currentGenericState.getModifier());
                 blockBreakSpeedAttribute.addPersistentModifier(newGenericState.getModifier());
+            }
+
+            // Revert if player shouldn't be affected at this time
+            if (!isHCSpeedEnabled || !isStrataToughnessEnabled) {
+                blockBreakSpeedAttribute.removeModifier(currentGenericState.getModifier());
+            } else {
+                if (!blockBreakSpeedAttribute.hasModifier(currentGenericState.getModifier().id()))
+                    blockBreakSpeedAttribute.addPersistentModifier(newGenericState.getModifier());
             }
         }
 

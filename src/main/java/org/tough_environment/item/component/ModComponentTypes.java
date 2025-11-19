@@ -31,5 +31,4 @@ public class ModComponentTypes {
         Registry.register(registryType, ToughEnvironmentMod.MOD_ID + ":" + stringName, componentType);
     }
 
-
 }

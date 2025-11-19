@@ -4,11 +4,11 @@
     "#minecraft:base_stone_overworld",
     "#minecraft:base_stone_nether",
     {
-      "id": "#c:stump_blocks",
+      "id": "#c:ores",
       "required": false
     },
     {
-      "id": "#c:ores",
+      "id": "#c:stump_blocks",
       "required": false
     },
     {

@@ -1,9 +1,7 @@
 package org.tough_environment.item;
 
-import btwr.btwr_sl.lib.util.PlaceableAsBlock;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -11,14 +9,12 @@ import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.items.ChiselItem;
 
-
 public class ModItems
 {
 
     // GROUPS
     // Main TE Group (Tough environment) for testing. Might split items later on...
     public static final Item GROUP_TE = register("group_te", new Item(new Item.Settings()));
-
 
     public static final Item PILE_DIRT = register("pile_dirt", new Item(new Item.Settings()));
     public static final Item PILE_GRAVEL = register("pile_gravel", new Item(new Item.Settings()));
@@ -51,7 +47,6 @@ public class ModItems
     public static final Item NETHER_BRICK_UNFIRED = register("nether_brick_unfired",
             new AliasedBlockItem(ModBlocks.NETHER_BRICK_UNFIRED, new Item.Settings()));
 
-
     // Tool Items
     public static final Item CHISEL_WOOD = register( "chisel_wood",
             new ChiselItem(ChiselToolMaterials.WOOD, new Item.Settings()
@@ -72,7 +67,6 @@ public class ModItems
                     .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.DIAMOND, -3f, -2.8F))
             ));
 
-
     private static Item register(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(ToughEnvironmentMod.MOD_ID, name), item);
     }
@@ -81,4 +75,5 @@ public class ModItems
         ToughEnvironmentMod.LOGGER.info("Registering Mod Items for " + ToughEnvironmentMod.MOD_ID);
         //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(BTWR_Items::addItemsToIngredientItemGroup);
     }
+
 }

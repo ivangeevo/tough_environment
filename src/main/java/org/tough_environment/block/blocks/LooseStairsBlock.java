@@ -57,7 +57,6 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
         return IntStream.range(0, 16).mapToObj(i -> composeShape(i, base, northWest, northEast, southWest, southEast)).toArray(VoxelShape[]::new);
     }
 
-
     private static VoxelShape composeShape(int i, VoxelShape base, VoxelShape northWest, VoxelShape northEast, VoxelShape southWest, VoxelShape southEast) {
         VoxelShape voxelShape = base;
         if ((i & 1) != 0) {
@@ -75,8 +74,7 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
         return voxelShape;
     }
 
-    public LooseStairsBlock(BlockState baseBlockState, Settings settings)
-    {
+    public LooseStairsBlock(BlockState baseBlockState, Settings settings) {
         super(settings);
         this.setDefaultState((((((this.stateManager.getDefaultState())
                 .with(FACING, Direction.NORTH))
@@ -104,32 +102,26 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return (state.get(HALF) == BlockHalf.TOP ? TOP_SHAPES : BOTTOM_SHAPES)[SHAPE_INDICES[this.getShapeIndexIndex(state)]];
     }
 
-    private int getShapeIndexIndex(BlockState state)
-    {
+    private int getShapeIndexIndex(BlockState state) {
         return state.get(SHAPE).ordinal() * 4 + state.get(FACING).getHorizontal();
     }
 
-
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random)
-    {
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         this.baseBlock.randomDisplayTick(state, world, pos, random);
     }
 
     @Override
-    public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player)
-    {
+    public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         this.baseBlockState.onBlockBreakStart(world, pos, player);
     }
 
     @Override
-    public void onBroken(WorldAccess world, BlockPos pos, BlockState state)
-    {
+    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
         this.baseBlock.onBroken(world, pos, state);
     }
 
@@ -149,11 +141,9 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
         this.baseBlock.getDefaultState().onBlockAdded(world, pos, oldState, true);
     }
 
-
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if (state.isOf(newState.getBlock()))
-        {
+        if (state.isOf(newState.getBlock())) {
             return;
         }
         this.baseBlockState.onStateReplaced(world, pos, newState, moved);
@@ -200,28 +190,24 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
         return blockState.with(SHAPE, getStairShape(blockState, ctx.getWorld(), blockPos));
     }
 
-
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
                                                 WorldAccess world, BlockPos pos, BlockPos neighborPos)
     {
         super.getStateForNeighborUpdate(state,direction,neighborState,world,pos,neighborPos);
 
-        if (state.get(WATERLOGGED).booleanValue())
-        {
+        if (state.get(WATERLOGGED)) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
-        if (direction.getAxis().isHorizontal())
-        {
+        if (direction.getAxis().isHorizontal()) {
             return state.with(SHAPE, getStairShape(state, world, pos));
         }
 
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
-    private static StairShape getStairShape(BlockState state, BlockView world, BlockPos pos)
-    {
+    private static StairShape getStairShape(BlockState state, BlockView world, BlockPos pos) {
         Direction direction3;
         Direction direction2;
         Direction direction = state.get(FACING);
@@ -232,32 +218,29 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
                 && isDifferentOrientation(state, world, pos, direction2.getOpposite()))
         {
 
-            if (direction2 == direction.rotateYCounterclockwise())
-            {
+            if (direction2 == direction.rotateYCounterclockwise()) {
                 return StairShape.OUTER_LEFT;
             }
 
             return StairShape.OUTER_RIGHT;
-
         }
+
         BlockState blockState2 = world.getBlockState(pos.offset(direction.getOpposite()));
         if (isStairs(blockState2) && state.get(HALF) == blockState2.get(HALF)
                 && (direction3 = blockState2.get(FACING)).getAxis() != state.get(FACING).getAxis()
                 && isDifferentOrientation(state, world, pos, direction3))
         {
-            if (direction3 == direction.rotateYCounterclockwise())
-            {
+            if (direction3 == direction.rotateYCounterclockwise()) {
                 return StairShape.INNER_LEFT;
             }
 
             return StairShape.INNER_RIGHT;
-
         }
+
         return StairShape.STRAIGHT;
     }
 
-    private static boolean isDifferentOrientation(BlockState state, BlockView world, BlockPos pos, Direction dir)
-    {
+    private static boolean isDifferentOrientation(BlockState state, BlockView world, BlockPos pos, Direction dir) {
         BlockState blockState = world.getBlockState(pos.offset(dir));
         return !isStairs(blockState) || blockState.get(FACING) != state.get(FACING) || blockState.get(HALF) != state.get(HALF);
     }
@@ -267,23 +250,18 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     }
 
     @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation)
-    {
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror)
-    {
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
         Direction direction = state.get(FACING);
         StairShape stairShape = state.get(SHAPE);
-        switch (mirror)
-        {
-            case LEFT_RIGHT:
-            {
+        switch (mirror) {
+            case LEFT_RIGHT: {
                 if (direction.getAxis() != Direction.Axis.Z) break;
-                return switch (stairShape)
-                {
+                return switch (stairShape) {
                     case INNER_LEFT -> state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_RIGHT);
                     case INNER_RIGHT -> state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_LEFT);
                     case OUTER_LEFT -> state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_RIGHT);
@@ -292,11 +270,9 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
                 };
 
             }
-            case FRONT_BACK:
-            {
+            case FRONT_BACK: {
                 if (direction.getAxis() != Direction.Axis.X) break;
-                return switch (stairShape)
-                {
+                return switch (stairShape) {
                     case INNER_LEFT -> state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_LEFT);
                     case INNER_RIGHT -> state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_RIGHT);
                     case OUTER_LEFT -> state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_RIGHT);
@@ -307,20 +283,18 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
             }
 
         }
+
         return super.mirror(state, mirror);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
-    {
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, HALF, SHAPE, WATERLOGGED);
     }
 
     @Override
-    public FluidState getFluidState(BlockState state)
-    {
-        if (state.get(WATERLOGGED))
-        {
+    public FluidState getFluidState(BlockState state) {
+        if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
 
@@ -332,6 +306,4 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
         return super.canPathfindThrough(state, type);
     }
 
-
 }
-

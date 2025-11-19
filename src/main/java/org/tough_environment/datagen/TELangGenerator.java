@@ -35,7 +35,6 @@ public class TELangGenerator extends FabricLanguageProvider {
         this.addConfigTooltip("hcPlayerMiningSpeed", "Makes most blocks take longer to break overall (with or without tool)", tb);
         this.addConfigTooltip("stratificationToughness", "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb);
         this.addConfigTooltip("blockBreakingRestrictions", "This restricts breaking blocks without the correct tool", tb);
-
     }
 
     private void addBlocks(TranslationBuilder tb) {
@@ -106,7 +105,6 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.ANDESITE_BROKEN, "Depleted Andesite");
         tb.add(ModBlocks.GRANITE_BROKEN, "Depleted Granite");
         tb.add(ModBlocks.DIORITE_BROKEN, "Depleted Diorite");
-
     }
 
     private void addItems(TranslationBuilder tb) {

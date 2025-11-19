@@ -8,6 +8,7 @@ import org.tough_environment.state.property.ModProperties;
 
 public class ConvertingBlock extends Block
 {
+
     public static final IntProperty BREAK_LEVEL = ModProperties.BREAK_LEVEL;
 
     public ConvertingBlock(Settings settings) {

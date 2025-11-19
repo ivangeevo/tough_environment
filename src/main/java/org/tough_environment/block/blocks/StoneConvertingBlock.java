@@ -7,5 +7,4 @@ public class StoneConvertingBlock extends ConvertingBlock {
         super(settings);
     }
 
-
 }

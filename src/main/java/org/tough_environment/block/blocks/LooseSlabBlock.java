@@ -30,16 +30,13 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 {
 
     // Block parameters and constants & Super settings //
-    public static final EnumProperty<SlabType> TYPE;
-    public static final BooleanProperty WATERLOGGED;
+    public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
+    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
-    protected static final VoxelShape BOTTOM_SHAPE;
-    protected static final VoxelShape TOP_SHAPE;
+    protected static final VoxelShape BOTTOM_SHAPE  = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
+    protected static final VoxelShape TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
 
-
-
-    public LooseSlabBlock(Settings settings)
-    {
+    public LooseSlabBlock(Settings settings) {
         super(settings);
         this.setDefaultState((this.stateManager.getDefaultState()).with(TYPE, SlabType.BOTTOM)
                 .with(WATERLOGGED, false));
@@ -79,23 +76,17 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         return state.get(TYPE) != SlabType.DOUBLE;
     }
 
-
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         SlabType slabType = state.get(TYPE);
 
-        if (slabType == SlabType.DOUBLE)
-        {
+        if (slabType == SlabType.DOUBLE) {
             return VoxelShapes.fullCube();
         }
-        else if (slabType == SlabType.TOP)
-        {
+        else if (slabType == SlabType.TOP) {
             return TOP_SHAPE;
-
         }
 
         return BOTTOM_SHAPE;
-
     }
 
     @Nullable
@@ -109,8 +100,7 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
             // If the block is the same as the LooseSlabBlock, set it to double slab
             return this.getDefaultState().with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
         }
-        else
-        {
+        else {
             // Otherwise, handle placement based on the direction and hit position
             boolean isTopHalf = ctx.getHitPos().y - blockPos.getY() > 0.5;
 
@@ -118,93 +108,64 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
                 // If placing on the bottom part or top half, place as a bottom slab
                 return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             }
-            else
-            {
+            else {
                 // If placing on the top part, place as a bottom slab instead
                 return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             }
         }
     }
 
-    public boolean canReplace(BlockState state, ItemPlacementContext context)
-    {
+    public boolean canReplace(BlockState state, ItemPlacementContext context) {
         ItemStack itemStack = context.getStack();
         SlabType slabType = state.get(TYPE);
 
-        if (slabType != SlabType.DOUBLE && itemStack.isOf(this.asItem()))
-        {
-            if (context.canReplaceExisting())
-            {
+        if (slabType != SlabType.DOUBLE && itemStack.isOf(this.asItem())) {
+            if (context.canReplaceExisting()) {
                 boolean bl = context.getHitPos().y - (double)context.getBlockPos().getY() > 0.5;
                 Direction direction = context.getSide();
-                if (slabType == SlabType.BOTTOM)
-                {
+                if (slabType == SlabType.BOTTOM) {
                     return direction == Direction.UP || bl && direction.getAxis().isHorizontal();
                 }
-                else
-                {
+                else {
                     return direction == Direction.DOWN || !bl && direction.getAxis().isHorizontal();
                 }
             }
-            else
-            {
+            else {
                 return true;
             }
         }
-        else
-        {
+        else {
             return false;
         }
     }
 
-    public FluidState getFluidState(BlockState state)
-    {
+    public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
-    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState)
-    {
+    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
         return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.tryFillWithFluid(world, pos, state, fluidState);
     }
 
-    public boolean canFillWithFluid(PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid)
-    {
+    public boolean canFillWithFluid(PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
         return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.canFillWithFluid(player, world, pos, state, fluid);
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
                                                 WorldAccess world, BlockPos pos, BlockPos neighborPos)
     {
-        if (state.get(WATERLOGGED))
-        {
+        if (state.get(WATERLOGGED)) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type)
-    {
-        return switch (type)
-        {
-            case LAND -> false;
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return switch (type) {
+            case LAND, AIR -> false;
             case WATER -> world.getFluidState(pos).isIn(FluidTags.WATER);
-            case AIR -> false;
-            default -> false;
         };
     }
 
-
-
-    static
-    {
-        TYPE = Properties.SLAB_TYPE;
-        WATERLOGGED = Properties.WATERLOGGED;
-        BOTTOM_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
-        TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
-    }
-
-
-
-    // ---------------------------------- //
 }

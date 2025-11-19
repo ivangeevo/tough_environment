@@ -15,6 +15,7 @@ import org.tough_environment.block.ModBlocks;
 
 @Mixin(FarmlandBlock.class)
 public abstract class FarmlandBlockMixin extends Block  {
+
     public FarmlandBlockMixin(Settings settings) {
         super(settings);
     }

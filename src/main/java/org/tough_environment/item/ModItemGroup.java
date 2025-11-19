@@ -13,8 +13,8 @@ import org.tough_environment.block.ModBlocks;
 
 public class ModItemGroup
 {
-    public static void registerItemGroups()
-    {
+
+    public static void registerItemGroups() {
         Registry.register(Registries.ITEM_GROUP, Identifier.of(ToughEnvironmentMod.MOD_ID, "group_te"),
                 FabricItemGroup.builder()
                         .displayName(Text.translatable("itemgroup.group_te"))
@@ -64,8 +64,6 @@ public class ModItemGroup
                             entries.add(ModItems.NETHER_SLUDGE);
 
 
-
-
                             /** Blocks **/
 
                             // Slab blocks
@@ -87,7 +85,6 @@ public class ModItemGroup
                             entries.add(ModBlocks.SLAB_WHITE_COBBLESTONE);
 
                             entries.add(ModBlocks.SLAB_DIRT_PACKED);
-
 
                             // Full blocks
                             entries.add(ModBlocks.DIRT_LOOSE);
@@ -125,11 +122,9 @@ public class ModItemGroup
                             entries.add(ModBlocks.WHITE_STONE_STAIRS);
                             entries.add(ModBlocks.WHITE_COBBLESTONE_STAIRS);
 
-
                         }).build());
 
         addToGroups();
-
 
         // log message into console
         ToughEnvironmentMod.LOGGER.info("Registering Item Groups for " + ToughEnvironmentMod.MOD_ID);
@@ -138,11 +133,9 @@ public class ModItemGroup
 
     public static void addToGroups() {
         // add items to item groups
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries ->
-        {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.add(ModItems.COPPER_NUGGET);
             entries.add(ModItems.NETHERITE_NUGGET);
-
         });
     }
 

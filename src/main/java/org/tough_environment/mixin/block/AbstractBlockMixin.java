@@ -25,8 +25,7 @@ public abstract class AbstractBlockMixin implements LandingBlock {
     }
 
     @Inject(method = "scheduledTick", at = @At("HEAD"))
-    private void onScheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci)
-    {
+    private void onScheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         MakeAsFallingBlock.getInstance().onScheduledTick(state, world, pos, random);
     }
 

@@ -13,7 +13,7 @@ public abstract class ItemEntityMixin {
 
     // TODO: This has been added as a temporary "solution".
     //  It makes some items which usually merge (to reduce lag) to not merge.
-    //  figure out a less intrusive solution to pile items looking more spread out when dropping
+    //  Figure out a less intrusive solution to pile items looking more spread out when dropping
     @Inject(method = "canMerge(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)Z", at = @At("HEAD"), cancellable = true)
     private static void injectedCustomMergeLogic(ItemStack stack1, ItemStack stack2, CallbackInfoReturnable<Boolean> cir)
     {
@@ -22,4 +22,5 @@ public abstract class ItemEntityMixin {
         }
 
     }
+
 }

@@ -1,27 +1,22 @@
 package org.tough_environment.item.items;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.tough_environment.item.ChiselToolMaterials;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.tough_environment.tag.ModTags;
 
 public class ChiselItem extends MiningToolItem
 {
+
     public ChiselItem(ToolMaterial toolMaterial, Settings settings) {
         super(toolMaterial, ModTags.Mineable.CHISEL, settings);
     }
-
 
     @Override
     public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
@@ -72,4 +67,5 @@ public class ChiselItem extends MiningToolItem
         }
         return ItemStack. EMPTY;
     }
+
 }

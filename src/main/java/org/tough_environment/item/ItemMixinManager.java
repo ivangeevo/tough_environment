@@ -1,12 +1,12 @@
 package org.tough_environment.item;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ToolComponent;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.ItemTags;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.tough_environment.ToughEnvironmentMod;

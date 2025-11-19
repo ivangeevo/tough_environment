@@ -9,4 +9,5 @@ public class ModFuelItems {
         FuelRegistry.INSTANCE.add(ModItems.DUST_COAL, 800);
         FuelRegistry.INSTANCE.add(ModItems.CHISEL_WOOD, 100);
     }
+
 }

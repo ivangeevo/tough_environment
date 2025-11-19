@@ -1,6 +1,5 @@
 package org.tough_environment.block.blocks;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -26,6 +25,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.jetbrains.annotations.Nullable;
 import org.tough_environment.block.ModBlocks;
 
@@ -97,40 +97,30 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
         if (tool.isIn(BTWRConventionalTags.Items.MODERN_HOES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES))
         {
 
-            if (state.isOf(ModBlocks.SLAB_DIRT) && state.get(TYPE) == SlabType.DOUBLE)
-            {
+            if (state.isOf(ModBlocks.SLAB_DIRT) && state.get(TYPE) == SlabType.DOUBLE) {
                 world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
             }
 
         }
 
         super.afterBreak(world, player, pos, state, blockEntity, tool);
-
     }
-
-
 
     public boolean hasSidedTransparency(BlockState state) {
         return state.get(TYPE) != SlabType.DOUBLE;
     }
 
-
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         SlabType slabType = state.get(TYPE);
 
-        if (slabType == SlabType.DOUBLE)
-        {
+        if (slabType == SlabType.DOUBLE) {
             return VoxelShapes.fullCube();
         }
-        else if (slabType == SlabType.TOP)
-        {
+        else if (slabType == SlabType.TOP) {
             return TOP_SHAPE;
-
         }
 
         return BOTTOM_SHAPE;
-
     }
 
     @Nullable
@@ -145,14 +135,16 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
             //return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, false);
 
             return getReplacementBlockState(blockState.getBlock());
-        } else {
+        }
+        else {
             // Otherwise, handle placement based on the direction and hit position
             boolean isTopHalf = ctx.getHitPos().y - blockPos.getY() > 0.5;
 
             if (direction == Direction.DOWN || isTopHalf) {
                 // If placing on the bottom part or top half, place as a bottom slab
                 return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-            } else {
+            }
+            else {
                 // If placing on the top part, place as a bottom slab instead
                 return this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
             }
@@ -160,73 +152,59 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
     }
 
     @Override
-    public boolean canReplace(BlockState state, ItemPlacementContext context)
-    {
+    public boolean canReplace(BlockState state, ItemPlacementContext context) {
         ItemStack itemStack = context.getStack();
         SlabType slabType = state.get(TYPE);
-        if (slabType != SlabType.DOUBLE && itemStack.isOf(this.asItem()))
-        {
-            if (context.canReplaceExisting())
-            {
+        if (slabType != SlabType.DOUBLE && itemStack.isOf(this.asItem())) {
+            if (context.canReplaceExisting()) {
                 boolean bl = context.getHitPos().y - (double)context.getBlockPos().getY() > 0.5;
                 Direction direction = context.getSide();
-                if (slabType == SlabType.BOTTOM)
-                {
+                if (slabType == SlabType.BOTTOM) {
                     return direction == Direction.UP || bl && direction.getAxis().isHorizontal();
                 }
-                else
-                {
+                else {
                     return direction == Direction.DOWN || !bl && direction.getAxis().isHorizontal();
                 }
             }
-            else
-            {
+            else {
                 return true;
             }
         }
-        else
-        {
+        else {
             return false;
         }
     }
 
     @Override
-    public FluidState getFluidState(BlockState state)
-    {
+    public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
 
     @Override
-    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState)
-    {
+    public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
         return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.tryFillWithFluid(world, pos, state, fluidState);
     }
 
     @Override
-    public boolean canFillWithFluid(PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid)
-    {
+    public boolean canFillWithFluid(PlayerEntity player, BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
         return state.get(TYPE) != SlabType.DOUBLE && Waterloggable.super.canFillWithFluid(player, world, pos, state, fluid);
     }
+
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
                                                 WorldAccess world, BlockPos pos, BlockPos neighborPos)
     {
-        if (state.get(WATERLOGGED))
-        {
+        if (state.get(WATERLOGGED)) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type)
-    {
-        return switch (type)
-        {
-            case LAND -> false;
+    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+        return switch (type) {
+            case LAND, AIR -> false;
             case WATER -> world.getFluidState(pos).isIn(FluidTags.WATER);
-            case AIR -> false;
-            default -> false;
         };
     }
 
@@ -238,7 +216,6 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
                 ModBlocks.SLAB_SAND, Blocks.SAND,
                 ModBlocks.SLAB_RED_SAND, Blocks.RED_SAND
         );
-
 
         // Handle DOUBLE slabs by mapping to the full block
         if (replacementMap.containsKey(originalBlock)) {

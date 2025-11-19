@@ -7,14 +7,8 @@ import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.*;
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.ADVANCED_CHISELS;
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.ADVANCED_SHOVELS;
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.MODERN_CHISELS;
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.MODERN_SHOVELS;
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.PRIMITIVE_CHISELS;
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.PRIMITIVE_PICKAXES;
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.*;
+
 
 public class LootConditions {
 
@@ -37,4 +31,5 @@ public class LootConditions {
     private static LootCondition.Builder withMatchingToolTag(TagKey<Item> itemTag) {
         return MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(itemTag));
     }
+
 }

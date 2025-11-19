@@ -13,6 +13,7 @@ import org.tough_environment.util.BlockMortarMapper;
 
 public class LoosePillarBlock extends MortarReceiverBlock implements LandingBlock
 {
+
     public static final EnumProperty<Direction.Axis> AXIS = Properties.AXIS;
 
     public LoosePillarBlock(Settings settings) {

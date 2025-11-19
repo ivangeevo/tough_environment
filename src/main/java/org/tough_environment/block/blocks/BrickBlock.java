@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class BrickBlock extends Block
 {
+
     public static final float BRICK_HEIGHT = (4F / 16F );
     public static final float BRICK_WIDTH = (6F / 16F );
     public static final float BRICK_HALF_WIDTH = (BRICK_WIDTH / 2F );
@@ -26,9 +27,7 @@ public class BrickBlock extends Block
     public static final float BRICK_HALF_LENGTH = (BRICK_LENGTH / 2F );
     private static final VoxelShape BRICK_SHAPE_VERTICAL = VoxelShapes.cuboid((0.5F - BRICK_HALF_WIDTH), 0D, (0.5F - BRICK_HALF_LENGTH), (0.5F + BRICK_HALF_WIDTH), BRICK_HEIGHT, (0.5F + BRICK_HALF_LENGTH));
     private static final VoxelShape BRICK_SHAPE_HORIZONTAL = VoxelShapes.cuboid((0.5F - BRICK_HALF_LENGTH), 0D, (0.5F - BRICK_HALF_WIDTH), (0.5F + BRICK_HALF_LENGTH), BRICK_HEIGHT, (0.5F + BRICK_HALF_WIDTH));
-
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-
 
     public BrickBlock(Settings settings) {
         super(settings);

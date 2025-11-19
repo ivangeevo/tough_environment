@@ -26,7 +26,6 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-
 // TODO: Fix (very likely) a serialization problem with this block (or its block entity) where the game crashes
 //  when the block is placed in the world along with the ModernFix mod installed. (happens only outside of dev environments)
 public class UnfiredNetherBrickBlock extends Block  {
@@ -86,7 +85,6 @@ public class UnfiredNetherBrickBlock extends Block  {
         super.onEntityCollision(state, world, pos, entity);
     }
 
-
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.isOf(newState.getBlock())) {
@@ -105,6 +103,7 @@ public class UnfiredNetherBrickBlock extends Block  {
             Block.dropStacks(state, world, pos);
             world.removeBlock(pos, false);
         }
+
         super.neighborUpdate(state, world, pos, block, fromPos, notify);
     }
 

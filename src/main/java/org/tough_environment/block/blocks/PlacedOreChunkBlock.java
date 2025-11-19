@@ -41,7 +41,6 @@ public class PlacedOreChunkBlock extends Block
         super(settings);
     }
 
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
     {
@@ -71,6 +70,7 @@ public class PlacedOreChunkBlock extends Block
             dropBlockAsItem(world, pos);
             world.removeBlock(pos, false);
         }
+
         super.neighborUpdate(state, world, pos, block, fromPos, notify);
     }
 

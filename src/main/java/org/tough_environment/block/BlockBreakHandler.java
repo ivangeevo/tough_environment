@@ -1,6 +1,5 @@
 package org.tough_environment.block;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -12,6 +11,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.tough_environment.block.blocks.DepletedStoneBlock;
 import org.tough_environment.block.blocks.StoneConvertingBlock;
 import org.tough_environment.tag.ModTags;
@@ -19,8 +19,10 @@ import org.tough_environment.tag.ModTags;
 import java.util.HashMap;
 import java.util.Map;
 
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Blocks.*;
-import static btwr.btwr_sl.tag.BTWRConventionalTags.Items.*;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK_SLABS;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.PICKAXES_HARVEST_FULL_BLOCK;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK;
 import static org.tough_environment.block.blocks.ConvertingBlock.BREAK_LEVEL;
 
 /** Manages logic for vanilla blocks affected by BTWR breaking mechanics. */
@@ -45,24 +47,29 @@ public class BlockBreakHandler {
     }
 
     public void setStateForConvertedStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        BlockState converted = getNextStateForModdedStone(state, player.getMainHandStack());
-        if (converted == null) return;
-        if (!player.isCreative()) {
-            world.setBlockState(pos, converted);
-        } else {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+        if (state.getBlock() instanceof StoneConvertingBlock) {
+            BlockState converted = getNextStateForModdedStone(state, player.getMainHandStack());
+            if (converted == null) return;
+            if (!player.isCreative()) {
+                world.setBlockState(pos, converted);
+            } else {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            }
         }
+
     }
 
     public void setStateForDirt(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        ItemStack tool = player.getMainHandStack();
-        if (tool.isIn(SHOVELS_HARVEST_FULL_BLOCK) || player.isCreative()) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
-        } else {
-            boolean isUpsideDown = state.isIn(LOOSEN_ON_IMPROPER_BREAK_SLABS) && state.get(Properties.SLAB_TYPE) == SlabType.TOP;
-            if (state.getBlock() == ModBlocks.DIRT_LOOSE) return;
-            onDirtDugWithImproperTool(world, pos);
-            onDirtSlabDugWithImproperTool(world, pos, isUpsideDown);
+        if (state.isIn(LOOSEN_ON_IMPROPER_BREAK) || state.isIn(LOOSEN_ON_IMPROPER_BREAK_SLABS)) {
+            ItemStack tool = player.getMainHandStack();
+            if (tool.isIn(SHOVELS_HARVEST_FULL_BLOCK) || player.isCreative()) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            } else {
+                boolean isUpsideDown = state.isIn(LOOSEN_ON_IMPROPER_BREAK_SLABS) && state.get(Properties.SLAB_TYPE) == SlabType.TOP;
+                if (state.getBlock() == ModBlocks.DIRT_LOOSE) return;
+                onDirtDugWithImproperTool(world, pos);
+                onDirtSlabDugWithImproperTool(world, pos, isUpsideDown);
+            }
         }
     }
 
@@ -171,7 +178,6 @@ public class BlockBreakHandler {
         // Simply increment to the next break level
         return state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1);
     }
-
 
     public boolean shouldPlayCrackingSound(BlockState state, ItemStack tool) {
         boolean isFullyBreakingPickaxe = tool.isIn(PICKAXES_HARVEST_FULL_BLOCK);

@@ -28,6 +28,7 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
             world.setBlockState(pos, Blocks.DIRT.getDefaultState());
             return;
         }
+
         if (world.getLightLevel(pos.up()) >= 9) {
             BlockState blockState = this.getDefaultState();
             for (int i = 0; i < 4; ++i) {
@@ -61,4 +62,5 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
         BlockPos blockPos = pos.up();
         return canSurvive(state, world, pos) && !world.getFluidState(blockPos).isIn(FluidTags.WATER);
     }
+
 }

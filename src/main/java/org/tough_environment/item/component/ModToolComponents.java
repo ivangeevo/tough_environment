@@ -41,16 +41,16 @@ public class ModToolComponents {
     public static final ToolComponent ADVANCED_NETHERITE_SHOVEL = createToolComponent(TieredToolMaterials.ADVANCED_NETHERITE, ModTags.Mineable.NETHERITE_ADVANCED, 2.1F);
     public static final ToolComponent ADVANCED_NETHERITE_HOE = createToolComponent(TieredToolMaterials.ADVANCED_NETHERITE, ModTags.Mineable.NETHERITE_ADVANCED, 1.8F);
 
-    /** Helper method to build a ToolComponent for a given tier and mining tag */
+    /** Helper method to build a ToolComponent for a given material and mining tag */
     private static ToolComponent createToolComponent(TieredToolMaterials tier, TagKey<Block> alwaysDropTag, float speed) {
-        return new ToolComponent(withRules(tier, alwaysDropTag), speed, 1);
+        return new ToolComponent(withDefaultRules(tier, alwaysDropTag), speed, 1);
     }
 
-    private static List<ToolComponent.Rule> withRules(TieredToolMaterials tier, TagKey<Block> alwaysDropTag) {
+    private static List<ToolComponent.Rule> withDefaultRules(TieredToolMaterials material, TagKey<Block> alwaysDropTag) {
         return List.of(
-                ToolComponent.Rule.ofNeverDropping(tier.getInverseTag()),
-                ToolComponent.Rule.ofAlwaysDropping(alwaysDropTag, tier.getMiningSpeedMultiplier())
+                ToolComponent.Rule.ofNeverDropping(material.getInverseTag()),
+                ToolComponent.Rule.ofAlwaysDropping(alwaysDropTag, material.getMiningSpeedMultiplier())
         );
     }
-}
 
+}

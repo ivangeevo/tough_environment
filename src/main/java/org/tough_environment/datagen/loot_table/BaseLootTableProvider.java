@@ -28,7 +28,6 @@ import java.util.concurrent.CompletableFuture;
 
 public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider {
 
-
     protected BaseLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }
@@ -194,7 +193,6 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
         return LootTable.builder()
                 .pool(alternativeEntries);
     }
-
 
     public LootTable.Builder dropsForAggregateSlab(Block drop, Item pileDrop, int pileCount, LootCondition.Builder toolCondition) {
         LootPool.Builder alternativesPool = LootPool.builder()

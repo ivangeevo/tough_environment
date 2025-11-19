@@ -12,6 +12,7 @@ import org.tough_environment.util.MakeAsFallingBlock;
 
 @Mixin(Block.class)
 public abstract class BlockMixin extends AbstractBlock {
+
     public BlockMixin(Settings settings) {
         super(settings);
     }

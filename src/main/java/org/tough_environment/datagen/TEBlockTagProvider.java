@@ -1,13 +1,13 @@
 package org.tough_environment.datagen;
 
-import btwr.btwr_sl.tag.BTWRConventionalTags;
-import com.bwt.blocks.BwtBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.tag.ModTags;
 
@@ -22,15 +22,13 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup arg)
-    {
+    protected void configure(RegistryWrapper.WrapperLookup arg) {
         this.addToVanillaTags();
         this.addToModTags();
         this.addToConventionalTags();
     }
 
-    private void addToConventionalTags()
-    {
+    private void addToConventionalTags() {
         getOrCreateTagBuilder(BTWRConventionalTags.Blocks.MODDED_CONVERTING_BLOCKS)
                 .add(ModBlocks.STONE_CONVERTING)
                 .add(ModBlocks.GRANITE_CONVERTING)
@@ -59,8 +57,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     }
 
-    private void addToVanillaTags()
-    {
+    private void addToVanillaTags() {
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .forceAddTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS);
 
@@ -97,10 +94,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.LOOSE_STONE_SLABS)
                 .addTag(ModTags.Blocks.LOOSE_STONE_STAIRS)
-
                 .addTag(ModTags.Blocks.BROKEN_STONE_BLOCKS)
 
-                // exclusive (non-tag) blocks
+                // blocks
                 .add(ModBlocks.WHITE_STONE)
                 .add(ModBlocks.WHITE_COBBLESTONE)
                 .add(ModBlocks.SLAB_WHITE_STONE)
@@ -108,6 +104,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.WHITE_STONE_STAIRS)
                 .add(ModBlocks.WHITE_COBBLESTONE_STAIRS);
 
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .forceAddTag(BlockTags.LEAVES);
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
                 .add(ModBlocks.SLAB_DIRT)
@@ -136,8 +134,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
     }
 
-    private void addToModTags()
-    {
+    private void addToModTags() {
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_MODERN_IRON)
                 .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL);
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_MODERN_GOLD)
@@ -166,8 +163,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
                 .forceAddTag(BlockTags.BASE_STONE_NETHER)
 
+                .addOptionalTag(ConventionalBlockTags.ORES)
+
                 .addOptionalTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
-                .addOptionalTag(BTWRConventionalTags.Blocks.ORES)
                 .addOptionalTag(BTWRConventionalTags.Blocks.WEB_BLOCKS)
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
@@ -177,7 +175,6 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(Blocks.CALCITE)
                 .add(Blocks.END_STONE)
                 .add(Blocks.COBBLESTONE);
-
 
         this.getOrCreateTagBuilder(ModTags.Blocks.STONE_ORES)
                 .add(Blocks.COAL_ORE)
@@ -351,6 +348,7 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
         this.getOrCreateTagBuilder(ModTags.Blocks.CAN_FALL_IN_OVERWORLD)
                 //.add(Blocks.NETHERRACK)
         ;
+
     }
 
 }

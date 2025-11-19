@@ -1,6 +1,9 @@
-# 0.12.2
+# 0.xxx(dev)
 + Fixed a bug where stone bricks from stone crafting with chisel would consume the chisels
 + Fixed the Loose Diorite's item name displaying wrong as being "Granite"
++ Changed the mod required version for BTWR:SL to be range-based internally, so that versions higher than the specified should work too. This allows newer versions of BTWR: SL than the specified one to work with the mod instead of having to always update it.
++ Reworked breaking speed modifications on how they are calculated and how configuration options interact between each other. Generally, the feeling of the game should stay the same, but it should be closer to how it feels in BTW CE
++ Removed the "Block Breaking Restriction" configuration option as it didn't make sense.
 + Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.62
 
 # 0.12.1

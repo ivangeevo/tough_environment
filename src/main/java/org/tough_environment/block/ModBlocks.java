@@ -1,6 +1,5 @@
 package org.tough_environment.block;
 
-import btwr.btwr_sl.lib.util.PlaceableAsBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
@@ -10,9 +9,9 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.util.PlaceableAsBlock;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.blocks.*;
-import org.tough_environment.util.MakeAsFallingBlock;
 
 public class ModBlocks {
 
@@ -34,7 +33,6 @@ public class ModBlocks {
     public static final Block SLAB_WHITE_STONE = registerBlock("slab_white_stone", new SlabBlock(AbstractBlock.Settings.create().strength(1f).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_WHITE_COBBLESTONE = registerBlock("slab_white_cobblestone", new SlabBlock(AbstractBlock.Settings.create().strength(1f).sounds(BlockSoundGroup.STONE)));
     public static final Block SLAB_DIRT_PACKED = registerBlock("slab_dirt_packed", new SlabBlock(AbstractBlock.Settings.create().mapColor(MapColor.DIRT_BROWN).strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
-
 
     // Full Blocks
     public static final Block DIRT_LOOSE = registerBlock("dirt_loose", new LooseAggregateBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.GRAVEL)));
@@ -127,8 +125,6 @@ public class ModBlocks {
         placeable.registerPlaceable(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED);
         placeable.registerPlaceable(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED);
         placeable.registerPlaceable(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED);
-
     }
-
 
 }
