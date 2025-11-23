@@ -6,11 +6,11 @@
   "mixins": [
     "ItemEntityMixin",
     "ServerPlayerEntityMixin",
-    "ServerPlayerInteractionManagerMixin",
     "ToolMaterialsMixin",
     "block.AbstractBlockMixin",
     "block.BlockMixin",
     "block.FarmlandBlockMixin",
+    "block.PlayerEntityMixin",
     "block.SpreadableBlockMixin"
   ],
   "injectors": {

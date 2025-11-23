@@ -11,8 +11,7 @@ import org.tough_environment.util.BlockBreakSpeedManager;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin {
-
-    //@Inject(method = "getBlockBreakingSpeed", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getBlockBreakingSpeed", at = @At("RETURN"), cancellable = true)
     private void setSpeedModifier(BlockState block, CallbackInfoReturnable<Float> cir, @Local float f) {
         float modifiedSpeed = BlockBreakSpeedManager.getInstance().getModifiedSpeed((PlayerEntity) (Object)this, block, f);
         cir.setReturnValue(modifiedSpeed);

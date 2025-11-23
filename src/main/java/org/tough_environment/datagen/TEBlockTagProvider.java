@@ -55,6 +55,15 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .addOptional(Identifier.of("bwt", "mycelium_slab"))
                 .addOptional(Identifier.of("bwt", "podzol_slab"));
 
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STONE_STRATA1)
+                .forceAddTag(ModTags.Blocks.STONE_CONVERTING_STRATA1);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STONE_STRATA2)
+                .forceAddTag(ModTags.Blocks.STONE_CONVERTING_STRATA2);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Blocks.STONE_STRATA3)
+                .forceAddTag(ModTags.Blocks.STONE_CONVERTING_STRATA3);
+
     }
 
     private void addToVanillaTags() {
@@ -87,9 +96,9 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 // tags
-                .addTag(ModTags.Blocks.STONE_STRATA1)
-                //.addTag(ModTags.Blocks.STONE_STRATA2)
-                .addTag(ModTags.Blocks.STONE_STRATA3)
+                .forceAddTag(BTWRConventionalTags.Blocks.STONE_STRATA1)
+                //.forceAddTag(BTWRConventionalTags.Blocks.STONE_STRATA2)
+                .forceAddTag(BTWRConventionalTags.Blocks.STONE_STRATA3)
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.LOOSE_STONE_BLOCKS)
                 .addTag(ModTags.Blocks.LOOSE_STONE_SLABS)
@@ -131,7 +140,6 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .forceAddTag(ModTags.Blocks.LOOSE_STONE_STAIRS)
                 .add(ModBlocks.WHITE_STONE_STAIRS)
                 .add(ModBlocks.WHITE_COBBLESTONE_STAIRS);
-
     }
 
     private void addToModTags() {
@@ -169,8 +177,8 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .addOptionalTag(BTWRConventionalTags.Blocks.WEB_BLOCKS)
 
                 .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
-                .addTag(ModTags.Blocks.STONE_STRATA3)
-                .addTag(ModTags.Blocks.STONE_STRATA2)
+                .addTag(BTWRConventionalTags.Blocks.STONE_STRATA3)
+                .addTag(BTWRConventionalTags.Blocks.STONE_STRATA2)
 
                 .add(Blocks.CALCITE)
                 .add(Blocks.END_STONE)
@@ -290,26 +298,6 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 .add(ModBlocks.BASALT_BROKEN)
                 .add(ModBlocks.ENDSTONE_BROKEN);
 
-        this.getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA1)
-                .add(Blocks.STONE)
-                .add(Blocks.GRANITE)
-                .add(Blocks.ANDESITE)
-                .add(Blocks.DIORITE)
-                .add(Blocks.CALCITE);
-
-        this.getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA2)
-                .add(Blocks.BASALT)
-                .add(Blocks.SMOOTH_BASALT)
-                .add(Blocks.MAGMA_BLOCK)
-                .add(Blocks.PRISMARINE)
-                .add(Blocks.DRIPSTONE_BLOCK);
-
-        this.getOrCreateTagBuilder(ModTags.Blocks.STONE_STRATA3)
-                .add(Blocks.OBSIDIAN)
-                .add(Blocks.BLACKSTONE)
-                .add(Blocks.END_STONE)
-                .add(Blocks.DEEPSLATE);
-
         this.getOrCreateTagBuilder(ModTags.Blocks.STONE_CONVERTING_STRATA1)
                 .add(ModBlocks.STONE_CONVERTING)
                 .add(ModBlocks.GRANITE_CONVERTING)
@@ -348,7 +336,5 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
         this.getOrCreateTagBuilder(ModTags.Blocks.CAN_FALL_IN_OVERWORLD)
                 //.add(Blocks.NETHERRACK)
         ;
-
     }
-
 }

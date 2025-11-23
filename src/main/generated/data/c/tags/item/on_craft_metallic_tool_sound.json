@@ -1,5 +1,7 @@
 {
   "values": [
+    "#c:iron_tools",
+    "#c:diamond_tools",
     "tough_environment:chisel_iron",
     "tough_environment:chisel_diamond"
   ]

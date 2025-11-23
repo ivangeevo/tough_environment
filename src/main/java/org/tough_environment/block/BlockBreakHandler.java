@@ -120,7 +120,7 @@ public class BlockBreakHandler {
         world.setBlockState(neighborPos, ModBlocks.DIRT_LOOSE.getDefaultState(), Block.NOTIFY_LISTENERS);
     }
 
-    // Returns the next converted state from vanilla blocks or null if no conversion
+    // Returns the next converted state from vanilla blocks
     public BlockState getNextStateForVanillaStone(BlockState state, ItemStack tool) {
         if (state.isIn(ModTags.Blocks.STONE_ORES)) {
             return getConvertedOreState(state, tool, ModBlocks.STONE_CONVERTING);
@@ -134,7 +134,6 @@ public class BlockBreakHandler {
     }
     
     public BlockState getNextStateForModdedStone(BlockState state, ItemStack tool) {
-
         int breakLevel = state.get(BREAK_LEVEL);
         boolean isModernChisel = tool.isIn(BTWRConventionalTags.Items.MODERN_CHISELS);
         boolean isAdvancedChisel = tool.isIn(BTWRConventionalTags.Items.ADVANCED_CHISELS);
@@ -173,9 +172,9 @@ public class BlockBreakHandler {
         return this.getNextStateForConvertedBlocks(state);
     }
 
-    // Returns the next converted state from general converted blocks or null if no conversion
+    // Returns the next converted state from general converted blocks
     private BlockState getNextStateForConvertedBlocks(BlockState state) {
-        // Simply increment to the next break level
+        // Increment to the next break level
         return state.with(BREAK_LEVEL, state.get(BREAK_LEVEL) + 1);
     }
 
@@ -191,10 +190,8 @@ public class BlockBreakHandler {
             return !isFullyBreakingPickaxe;
         }
 
-        return state.isIn(ModTags.Blocks.STONE_STRATA1) && (isModernOrAdvancedChisel(tool) || tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES));
+        return state.isIn(BTWRConventionalTags.Blocks.STONE_STRATA1) && (isModernOrAdvancedChisel(tool) || tool.isIn(BTWRConventionalTags.Items.PRIMITIVE_PICKAXES));
     }
-
-    // --- Conversion helper methods returning BlockState or null ---
 
     private BlockState getConvertedOreState(BlockState state, ItemStack tool, Block convertingBlock) {
         if (!shouldConvertOre(state, tool)) {
@@ -233,7 +230,7 @@ public class BlockBreakHandler {
         BlockState state = convertedBlock.getDefaultState();
 
         if (tool.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
-                || (tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) && !state.isIn(ModTags.Blocks.STONE_STRATA3))) {
+                || (tool.isIn(BTWRConventionalTags.Items.MODERN_PICKAXES) && !state.isIn(BTWRConventionalTags.Blocks.STONE_STRATA3))) {
             return Blocks.AIR.getDefaultState();
         }
 
@@ -247,8 +244,6 @@ public class BlockBreakHandler {
 
         return state.with(BREAK_LEVEL, 0);
     }
-
-    // --- Other helpers ---
 
     private boolean shouldConvertOre(BlockState state, ItemStack tool) {
         return !(tool.isIn(BTWRConventionalTags.Items.ADVANCED_PICKAXES)

@@ -15,22 +15,20 @@ import java.util.concurrent.CompletableFuture;
 
 public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 {
+
     public TEItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
         super(output, completableFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup arg)
-    {
+    protected void configure(RegistryWrapper.WrapperLookup arg) {
         this.addToConventionalTags();
         this.addToModTags();
         this.addToVanillaTags();
     }
 
 
-    private void addToConventionalTags()
-    {
-
+    private void addToConventionalTags() {
         getOrCreateTagBuilder(BTWRConventionalTags.Items.CRAFTING_WITH_TOOLS_ITEMS)
                 .addTag(BTWRConventionalTags.Items.MODERN_CHISELS)
                 .addTag(BTWRConventionalTags.Items.ADVANCED_CHISELS);
@@ -68,12 +66,10 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.IRON_PICKAXE)
                 .add(Items.GOLDEN_PICKAXE);
 
-
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ADVANCED_PICKAXES)
                 .add(Items.DIAMOND_PICKAXE)
                 .add(Items.NETHERITE_PICKAXE)
                 .addOptional(Identifier.of("bwt", "netherite_mattock"));
-
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK)
                 .addTag(BTWRConventionalTags.Items.MODERN_SHOVELS)
@@ -91,7 +87,6 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(Items.GOLDEN_PICKAXE)
                 .addTag(BTWRConventionalTags.Items.FULLY_MINES_STRATA_3);
 
-
         getOrCreateTagBuilder(BTWRConventionalTags.Items.FULLY_MINES_STRATA_3)
                 .addTag(BTWRConventionalTags.Items.ADVANCED_PICKAXES);
 
@@ -103,14 +98,13 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
         //TODO: Should we move these entries to the IRON_TOOLS & DIAMOND_TOOLS item tags by BTWRConventionalTags instead?
         getOrCreateTagBuilder(BTWRConventionalTags.Items.ON_CRAFT_METALLIC_TOOL_SOUND)
+                .forceAddTag(BTWRConventionalTags.Items.IRON_TOOLS)
+                .forceAddTag(BTWRConventionalTags.Items.DIAMOND_TOOLS)
                 .add(ModItems.CHISEL_IRON)
                 .add(ModItems.CHISEL_DIAMOND);
-
     }
 
-
-    private void addToModTags()
-    {
+    private void addToModTags() {
         getOrCreateTagBuilder(ModTags.Items.CHISELS)
                 .addTag(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
                 .addTag(BTWRConventionalTags.Items.MODERN_CHISELS)
@@ -120,7 +114,6 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
                 .add(ModItems.SMALL_STONE)
                 .add(ModItems.SMALL_STONE_1)
                 .add(ModItems.SMALL_STONE_2);
-
 
         getOrCreateTagBuilder(ModTags.Items.MORTARING_ITEMS)
                 .add(Items.CLAY_BALL)
@@ -154,9 +147,7 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
     }
 
-    private void addToVanillaTags()
-    {
-
+    private void addToVanillaTags() {
         getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS)
                 .add(ModItems.SMALL_STONE)
                 .add(ModItems.SMALL_STONE_1)
@@ -164,6 +155,5 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
 
         getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS)
                 .add(ModBlocks.COBBLESTONE_LOOSE.asItem());
-
     }
 }
