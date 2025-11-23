@@ -25,15 +25,16 @@ import java.util.Objects;
 
 public class PlacedOreChunkBlock extends Block
 {
-
-    // Define constants for ore dimensions
     private static final double ORE_WIDTH_MIN = 6.0 / 16.0;
     private static final double ORE_WIDTH_MAX = 10.0 / 16.0;
     private static final double ORE_HEIGHT_MIN = 0.5 / 16.0;
     private static final double ORE_HEIGHT_MAX = 3.5 / 16.0;
     private static final double ORE_LENGTH_MIN = 6.0 / 16.0;
     private static final double ORE_LENGTH_MAX = 10.0 / 16.0;
-    private static final VoxelShape SHAPE = VoxelShapes.cuboid(ORE_WIDTH_MIN, ORE_HEIGHT_MIN, ORE_LENGTH_MIN, ORE_WIDTH_MAX, ORE_HEIGHT_MAX, ORE_LENGTH_MAX);
+
+    private static final VoxelShape SHAPE = VoxelShapes.cuboid(
+            ORE_WIDTH_MIN, ORE_HEIGHT_MIN, ORE_LENGTH_MIN, ORE_WIDTH_MAX, ORE_HEIGHT_MAX, ORE_LENGTH_MAX
+    );
 
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
@@ -111,5 +112,4 @@ public class PlacedOreChunkBlock extends Block
 
         return null;
     }
-
 }

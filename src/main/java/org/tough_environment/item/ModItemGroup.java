@@ -35,7 +35,6 @@ public class ModItemGroup
                             entries.add(ModItems.DUST_GOLD);
                             entries.add(ModItems.DUST_COPPER);
 
-
                             // Stones, Shards, Crystals & Ore Chunks
                             entries.add(ModItems.SMALL_STONE);
                             entries.add(ModItems.SMALL_STONE_1);
@@ -62,7 +61,6 @@ public class ModItemGroup
                             entries.add(ModItems.NETHER_BRICK_UNFIRED);
 
                             entries.add(ModItems.NETHER_SLUDGE);
-
 
                             /** Blocks **/
 
@@ -130,7 +128,6 @@ public class ModItemGroup
         ToughEnvironmentMod.LOGGER.info("Registering Item Groups for " + ToughEnvironmentMod.MOD_ID);
     }
 
-
     public static void addToGroups() {
         // add items to item groups
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
@@ -138,5 +135,4 @@ public class ModItemGroup
             entries.add(ModItems.NETHERITE_NUGGET);
         });
     }
-
 }

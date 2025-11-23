@@ -96,5 +96,4 @@ public enum ChiselToolMaterials implements ToolMaterial
                         ToolComponent.Rule.of(BTWRConventionalTags.Blocks.WEB_BLOCKS, 25F)
                 ), 1.0F, 1);
     }
-
 }

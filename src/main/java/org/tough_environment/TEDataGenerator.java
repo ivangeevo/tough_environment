@@ -9,8 +9,7 @@ public class TEDataGenerator implements DataGeneratorEntrypoint
 {
 
     @Override
-    public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator)
-    {
+    public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
         pack.addProvider(TELootTableProvider::new);
@@ -31,6 +30,4 @@ public class TEDataGenerator implements DataGeneratorEntrypoint
 
          **/
     }
-
-
 }

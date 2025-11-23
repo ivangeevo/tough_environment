@@ -33,23 +33,20 @@ import java.util.Map;
 
 public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggable
 {
-
-    // Block parameters and constants & Super settings //
     public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+
     protected static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
     protected static final VoxelShape TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
 
-
-
     public static final MapCodec<LooseAggregateSlabBlock> CODEC = LooseAggregateSlabBlock.createCodec(LooseAggregateSlabBlock::new);
+
     @Override
     protected MapCodec<? extends FallingBlock> getCodec() {
         return CODEC;
     }
 
-    public LooseAggregateSlabBlock(Settings settings)
-    {
+    public LooseAggregateSlabBlock(Settings settings) {
         super(settings);
         this.setDefaultState((this.stateManager.getDefaultState()).with(TYPE, SlabType.BOTTOM)
                 .with(WATERLOGGED, false));
@@ -74,12 +71,10 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        if (!world.isClient && entity instanceof PlayerEntity)
-        {
+        if (!world.isClient && entity instanceof PlayerEntity) {
             BlockPos downPos = pos.down();
             BlockState downState = world.getBlockState(downPos);
-            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM)
-            {
+            if (downState.isOf(this) && downState.get(TYPE) == SlabType.BOTTOM) {
                 world.setBlockState(downPos, downState.with(TYPE, SlabType.DOUBLE));
             }
         }
@@ -88,11 +83,8 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
 
     // Block specific logic //
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state,
-                           @Nullable BlockEntity blockEntity, ItemStack tool)
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool)
     {
-
-
         // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
         if (tool.isIn(BTWRConventionalTags.Items.MODERN_HOES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES))
         {
@@ -100,7 +92,6 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
             if (state.isOf(ModBlocks.SLAB_DIRT) && state.get(TYPE) == SlabType.DOUBLE) {
                 world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
             }
-
         }
 
         super.afterBreak(world, player, pos, state, blockEntity, tool);
@@ -225,5 +216,4 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
         // Return null if no match is found
         return null;
     }
-
 }

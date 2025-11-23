@@ -5,7 +5,6 @@ import net.minecraft.block.FallingBlock;
 
 public class LooseAggregateBlock extends FallingBlock
 {
-
     public static final MapCodec<LooseAggregateBlock> CODEC = LooseAggregateBlock.createCodec(LooseAggregateBlock::new);
 
     public LooseAggregateBlock(Settings settings)
@@ -17,5 +16,4 @@ public class LooseAggregateBlock extends FallingBlock
     protected MapCodec<? extends FallingBlock> getCodec() {
         return CODEC;
     }
-
 }

@@ -63,7 +63,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
         disableVanilla(exporter, "bricks");
         disableVanilla(exporter, "nether_brick");
         disableVanilla(exporter, "nether_bricks");
-
     }
 
     // We add recipes for some existing vanilla blocks.
@@ -87,11 +86,9 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 .pattern("##")
                 .criterion(hasItem(Items.CLAY_BALL), conditionsFromItem(Items.CLAY_BALL))
                 .offerTo(exporter, IdUtils.ofMC("clay"));
-
     }
 
     private void addVanillaItemRecipes(RecipeExporter exporter) {
-
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.ANVIL)
                 .input('I', Items.IRON_INGOT)
                 .pattern("III")
@@ -140,12 +137,9 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 .input(Items.IRON_NUGGET)
                 .criterion("has_flint", conditionsFromItem(Items.FLINT))
                 .offerTo(exporter, IdUtils.ofMC("flint_and_steel"));
-
-
     }
 
     private void addMiscRecipes(RecipeExporter exporter) {
-
         // Tools
         ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.CHISEL_WOOD)
                 .input(Items.STICK)
@@ -217,7 +211,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
 
         // Stone Bricks from Stone with chisel
         this.addStoneBrickFromToolRecipes(exporter);
-
     }
 
     private void addStoneBrickFromToolRecipes(RecipeExporter exporter) {
@@ -270,7 +263,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
         offerLesserDropsFromBlock(exporter, ModItems.STONE_BRICK, 4, ModBlocks.STONE_BRICKS_LOOSE, IdUtils.ofTE("stone_brick_from_block_stone_bricks_loose"));
         offerLesserDropsFromBlock(exporter, ModItems.STONE_BRICK_2, 4, ModBlocks.DEEPSLATE_BRICKS_LOOSE, IdUtils.ofTE("stone_brick_2_from_block_deepslate_bricks_loose"));
 
-
         // Piles, Stones & Shards from Stair Blocks
         offerLesserDropsFromStairs(exporter, ModItems.SMALL_STONE, 6, ModBlocks.COBBLESTONE_LOOSE_STAIRS, IdUtils.ofTE("small_stone_from_stairs_cobblestone_loose"));
         // TODO: insert level 1 (mantle) here when added!
@@ -283,7 +275,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
 
         offerLesserDropsFromStairs(exporter, ModItems.STONE_BRICK, 3, ModBlocks.STONE_BRICKS_LOOSE_STAIRS, IdUtils.ofTE("stone_brick_from_stairs_stone_bricks_loose"));
         offerLesserDropsFromStairs(exporter, ModItems.STONE_BRICK_2, 3, ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, IdUtils.ofTE("stone_brick_2_from_stairs_deepslate_bricks_loose"));
-
 
         // Piles, Stones & Shards from Slabs
         offerLesserDropsFromSlab(exporter, ModItems.PILE_DIRT, 4, ModBlocks.SLAB_DIRT, IdUtils.ofTE("pile_dirt_from_slab_dirt"));
@@ -301,9 +292,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
 
         offerLesserDropsFromSlab(exporter, ModItems.STONE_BRICK, 2, ModBlocks.SLAB_STONE_BRICKS_LOOSE, IdUtils.ofTE("brick_from_slab_stone_bricks_loose"));
         offerLesserDropsFromSlab(exporter, ModItems.STONE_BRICK_2, 2, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, IdUtils.ofTE("brick_from_slab_deepslate_bricks_loose"));
-
     }
-
 
     private void addFullBlockRecipes(RecipeExporter exporter) {
         // Exclusive recipes
@@ -321,7 +310,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 .input(ModBlocks.DIRT_PACKED)
                 .criterion("has_dirt_packed", conditionsFromItem(ModBlocks.DIRT_PACKED))
                 .offerTo(exporter, IdUtils.ofTE("dirt_loose_from_dirt_packed"));
-
 
         // From slabs
         offerBlockFromSlabs(exporter, ModBlocks.DIRT_LOOSE, ModBlocks.SLAB_DIRT, IdUtils.ofTE("block_from_slab_dirt"));
@@ -357,7 +345,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
 
         offerStoneBricksBlockFromLesserDrops(exporter, ModBlocks.STONE_BRICKS_LOOSE, ModItems.STONE_BRICK, IdUtils.ofTE("block_from_stone_brick"));
         offerStoneBricksBlockFromLesserDrops(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE, ModItems.STONE_BRICK_2, IdUtils.ofTE("deepslate_from_stone_brick"));
-
     }
 
     private void addStairBlockRecipes(RecipeExporter exporter) {
@@ -417,7 +404,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
 
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_STONE_BRICKS_LOOSE, ModBlocks.STONE_BRICKS_LOOSE, IdUtils.ofTE("slab_stone_bricks_loose_from_block"));
         offerSlabsFromBlock(exporter, ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE, ModBlocks.DEEPSLATE_BRICKS_LOOSE, IdUtils.ofTE("slab_deepslate_bricks_loose_from_block"));
-
     }
 
     private void addItemRecipes(RecipeExporter exporter) {
@@ -446,7 +432,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 .input(Items.NETHERITE_INGOT)
                 .criterion("has_netherite_ingot", conditionsFromItem(Items.NETHERITE_INGOT))
                 .offerTo(exporter, IdUtils.ofTE("netherite_nugget_from_netherite_ingot"));
-
     }
 
     private void addCookingRecipes(RecipeExporter exporter) {
@@ -464,8 +449,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
 
         CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(ModItems.NETHER_BRICK_UNFIRED), RecipeCategory.MISC,
                 Items.NETHER_BRICK, 0.15f, 100).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, IdUtils.ofTE("nether_brick_from_blasting"));
-
-
     }
 
     // LESSER DROP METHODS
@@ -563,7 +546,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 .offerTo(exporter, id);
     }
 
-
     // a 9 input block
     private static void offerFullBlockFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
@@ -640,5 +622,4 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 .criterion(hasItem(output), conditionsFromItem(output))
                 .offerTo(exporter, id);
     }
-
 }

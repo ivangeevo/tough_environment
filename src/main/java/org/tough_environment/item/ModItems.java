@@ -2,9 +2,11 @@ package org.tough_environment.item;
 
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.util.PlaceableAsBlock;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.ModBlocks;
 import org.tough_environment.item.items.ChiselItem;
@@ -73,7 +75,15 @@ public class ModItems
 
     public static void registerModItems() {
         ToughEnvironmentMod.LOGGER.info("Registering Mod Items for " + ToughEnvironmentMod.MOD_ID);
+        registerItemsPlaceableAsBlocks();
         //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(BTWR_Items::addItemsToIngredientItemGroup);
     }
 
+    public static void registerItemsPlaceableAsBlocks() {
+        PlaceableAsBlock placeable = PlaceableAsBlock.getInstance();
+
+        placeable.registerPlaceable(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED);
+        placeable.registerPlaceable(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED);
+        placeable.registerPlaceable(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED);
+    }
 }

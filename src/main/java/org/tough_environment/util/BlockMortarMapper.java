@@ -7,8 +7,6 @@ import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.enums.SlabType;
 import net.minecraft.registry.Registries;
 import net.minecraft.resource.Resource;
 import net.minecraft.resource.ResourceManager;
@@ -19,12 +17,10 @@ import org.tough_environment.ToughEnvironmentMod;
 
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BlockMortarMapper {
-
     private static final Gson GSON = new Gson();
     private static final Type MAP_TYPE = new TypeToken<Map<String, String>>() {}.getType();
     private static final Map<Block, Block> blockReplacementMap = new HashMap<>();
@@ -88,5 +84,4 @@ public class BlockMortarMapper {
 
         }
     }
-
 }

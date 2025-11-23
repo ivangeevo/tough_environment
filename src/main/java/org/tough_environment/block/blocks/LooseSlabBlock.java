@@ -28,8 +28,6 @@ import org.tough_environment.util.BlockMortarMapper;
 
 public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 {
-
-    // Block parameters and constants & Super settings //
     public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
@@ -167,5 +165,4 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
             case WATER -> world.getFluidState(pos).isIn(FluidTags.WATER);
         };
     }
-
 }

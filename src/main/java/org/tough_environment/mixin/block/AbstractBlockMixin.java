@@ -38,5 +38,4 @@ public abstract class AbstractBlockMixin implements LandingBlock {
             cir.setReturnValue(state);
         }
     }
-
 }

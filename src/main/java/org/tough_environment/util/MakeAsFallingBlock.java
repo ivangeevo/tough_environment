@@ -17,14 +17,13 @@ import net.minecraft.world.dimension.DimensionTypes;
 import org.tough_environment.tag.ModTags;
 
 public class MakeAsFallingBlock {
-
     private static final MakeAsFallingBlock instance = new MakeAsFallingBlock();
-
-    private MakeAsFallingBlock() {}
 
     public static MakeAsFallingBlock getInstance() {
         return instance;
     }
+
+    private MakeAsFallingBlock() {}
 
     public void onOnBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         Block block = world.getBlockState(pos).getBlock();
@@ -82,5 +81,4 @@ public class MakeAsFallingBlock {
         }
         return false;
     }
-
 }

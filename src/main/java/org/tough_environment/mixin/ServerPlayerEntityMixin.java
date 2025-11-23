@@ -12,14 +12,11 @@ import org.tough_environment.util.PlayerEffectsManager;
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin
 {
-
     @Unique private PlayerEntity playerEntity = (PlayerEntity)(Object)this;
-
     @Unique private PlayerEffectsManager effectsManager = PlayerEffectsManager.getInstance();
 
     @Inject(method = "tick", at = @At("TAIL"))
     public void applyMovementEffectsOnTick(CallbackInfo info) {
        effectsManager.onServerTick(playerEntity);
     }
-
 }

@@ -19,7 +19,6 @@ import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class GeneralStringPairProvider implements DataProvider {
-
     protected final FabricDataOutput dataOutput;
     private final CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup;
 
@@ -69,7 +68,6 @@ public abstract class GeneralStringPairProvider implements DataProvider {
                 .resolveJson(Identifier.of(dataOutput.getModId(), this.getMapPath()));
     }
 
-
     @Override
     public String getName() {
         return "String pair for (%s)".formatted(getMapPath());
@@ -112,7 +110,5 @@ public abstract class GeneralStringPairProvider implements DataProvider {
             String value = Registries.ITEM.getId(itemValue).toString();
             add(key, value);
         }
-
     }
-
 }

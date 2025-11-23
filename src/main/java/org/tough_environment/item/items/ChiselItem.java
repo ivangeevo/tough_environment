@@ -35,7 +35,7 @@ public class ChiselItem extends MiningToolItem
     public void onCraftByPlayer(ItemStack stack, World world, PlayerEntity player) {
         BlockPos thisPos = player.getBlockPos();
         SoundEvent craftingSound;
-        float volume;
+        float volume = 0.1f;
         float pitch;
 
         if (player.timesCraftedThisTick() == 0 && world.isClient) {
@@ -67,5 +67,4 @@ public class ChiselItem extends MiningToolItem
         }
         return ItemStack. EMPTY;
     }
-
 }

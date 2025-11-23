@@ -23,8 +23,8 @@ import java.util.Objects;
 
 public class MortarReceiverBlock extends FallingBlock
 {
-
     private static final int TACKY_FALLING_BLOCK_TICK_RATE = 40;
+
     public static final MapCodec<MortarReceiverBlock> CODEC = MortarReceiverBlock.createCodec(MortarReceiverBlock::new);
 
     @Override
@@ -109,5 +109,4 @@ public class MortarReceiverBlock extends FallingBlock
         }
         return state; // fallback if no replacement exists
     }
-
 }

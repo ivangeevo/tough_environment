@@ -11,7 +11,6 @@ public class ModTags
 {
 
     public static class Blocks {
-
         public static final TagKey<Block> CONVERTED_STONE_BLOCKS = register("converted_stone_blocks");
         public static final TagKey<Block> BROKEN_STONE_BLOCKS = register("broken_stone_blocks");
 
@@ -42,10 +41,6 @@ public class ModTags
         public static final TagKey<Block> LOOSE_STONE_SLABS = register("loose_slabs");
         public static final TagKey<Block> LOOSE_STONE_STAIRS = register("loose_stairs");
 
-        public static final TagKey<Block> STONE_STRATA1 = register("stone_strata1");
-        public static final TagKey<Block> STONE_STRATA2 = register("stone_strata2");
-        public static final TagKey<Block> STONE_STRATA3 = register("stone_strata3");
-
         public static final TagKey<Block> STONE_CONVERTING_STRATA1 = register("stone_converting_strata1");
         public static final TagKey<Block> STONE_CONVERTING_STRATA2 = register("stone_converting_strata2");
         public static final TagKey<Block> STONE_CONVERTING_STRATA3 = register("stone_converting_strata3");
@@ -75,7 +70,6 @@ public class ModTags
     }
 
     public static class Items {
-
         public static final TagKey<Item> SHOULD_NOT_MERGE = register("should_not_merge");
         public static final TagKey<Item> SMALL_STONES = register("small_stones");
         public static final TagKey<Item> MORTARING_ITEMS = register("mortaring_items");
@@ -87,9 +81,7 @@ public class ModTags
 
     }
 
-
     public static class Mineable {
-
         public static final TagKey<Block> CHISEL = register("mineable/chisel");
 
         // Special mineable tags per tier (wooden, stone, etc.), so we can specify additional restrictions
@@ -100,11 +92,8 @@ public class ModTags
         public static final TagKey<Block> DIAMOND_MODERN = register("mineable/diamond_modern");
         public static final TagKey<Block> NETHERITE_ADVANCED = register("mineable/netherite_advanced");
 
-
         private static TagKey<Block> register(String id) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, id));
         }
-
     }
-
 }

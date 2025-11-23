@@ -37,6 +37,7 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     public static final EnumProperty<BlockHalf> HALF = Properties.BLOCK_HALF;
     public static final EnumProperty<StairShape> SHAPE = Properties.STAIR_SHAPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+
     protected static final VoxelShape BOTTOM_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
     protected static final VoxelShape TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
     protected static final VoxelShape BOTTOM_NORTH_WEST_CORNER_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 8.0, 8.0, 8.0);
@@ -49,7 +50,9 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     protected static final VoxelShape TOP_SOUTH_EAST_CORNER_SHAPE = Block.createCuboidShape(8.0, 8.0, 8.0, 16.0, 16.0, 16.0);
     protected static final VoxelShape[] TOP_SHAPES = composeShapes(TOP_SHAPE, BOTTOM_NORTH_WEST_CORNER_SHAPE, BOTTOM_NORTH_EAST_CORNER_SHAPE, BOTTOM_SOUTH_WEST_CORNER_SHAPE, BOTTOM_SOUTH_EAST_CORNER_SHAPE);
     protected static final VoxelShape[] BOTTOM_SHAPES = composeShapes(BOTTOM_SHAPE, TOP_NORTH_WEST_CORNER_SHAPE, TOP_NORTH_EAST_CORNER_SHAPE, TOP_SOUTH_WEST_CORNER_SHAPE, TOP_SOUTH_EAST_CORNER_SHAPE);
+
     private static final int[] SHAPE_INDICES = new int[]{12, 5, 3, 10, 14, 13, 7, 11, 13, 7, 11, 14, 8, 4, 1, 2, 4, 1, 2, 8};
+
     private final Block baseBlock;
     private final BlockState baseBlockState;
 
@@ -137,6 +140,7 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
         if (state.isOf(state.getBlock())) {
             return;
         }
+
         world.updateNeighbor(this.baseBlockState, pos, Blocks.AIR, pos, false);
         this.baseBlock.getDefaultState().onBlockAdded(world, pos, oldState, true);
     }
@@ -191,8 +195,7 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos)
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos)
     {
         super.getStateForNeighborUpdate(state,direction,neighborState,world,pos,neighborPos);
 
@@ -305,5 +308,4 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return super.canPathfindThrough(state, type);
     }
-
 }

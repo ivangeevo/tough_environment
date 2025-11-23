@@ -10,7 +10,6 @@ import org.tough_environment.tag.ModTags;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
-
     // TODO: This has been added as a temporary "solution".
     //  It makes some items which usually merge (to reduce lag) to not merge.
     //  Figure out a less intrusive solution to pile items looking more spread out when dropping
@@ -20,7 +19,5 @@ public abstract class ItemEntityMixin {
         if (stack1.isIn(ModTags.Items.SHOULD_NOT_MERGE) || stack2.isIn(ModTags.Items.SHOULD_NOT_MERGE)) {
             cir.setReturnValue(false);
         }
-
     }
-
 }

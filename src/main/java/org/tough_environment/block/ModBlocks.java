@@ -4,12 +4,10 @@ import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import org.btwr.shared_library.util.PlaceableAsBlock;
 import org.tough_environment.ToughEnvironmentMod;
 import org.tough_environment.block.blocks.*;
 
@@ -118,13 +116,4 @@ public class ModBlocks {
     public static void registerModBlocks() {
         ToughEnvironmentMod.LOGGER.debug("Registering ModBlocks for " + ToughEnvironmentMod.MOD_ID);
     }
-
-    public static void registerItemsPlaceableAsBlocks() {
-        PlaceableAsBlock placeable = PlaceableAsBlock.getInstance();
-
-        placeable.registerPlaceable(Items.RAW_COPPER, ModBlocks.RAW_COPPER_PLACED);
-        placeable.registerPlaceable(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED);
-        placeable.registerPlaceable(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED);
-    }
-
 }
