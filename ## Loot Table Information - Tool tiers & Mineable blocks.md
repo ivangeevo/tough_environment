@@ -9,8 +9,9 @@
 + >#### Primitive - *Wooden & Stone*
 + >#### Modern - *Iron & Diamond*
 + >#### Advanced - *Netherite*
-  
-### All tool tiers(item) tags are located in the BTWRConventionalTags.Item class from BTWR: Shared Library.
+
+<center>All tool tiers(item) tags are located in the BTWRConventionalTags.Item class from BTWR: Shared Library.</center>
+
 
 ---
   

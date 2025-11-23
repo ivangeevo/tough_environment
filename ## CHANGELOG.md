@@ -1,10 +1,11 @@
-# 0.xxx(dev)
+# 0.13(dev)
 + Fixed a bug where stone bricks from stone crafting with chisel would consume the chisels
 + Fixed the Loose Diorite's item name displaying wrong as being "Granite"
-+ Changed the mod required version for BTWR:SL to be range-based internally, so that versions higher than the specified should work too. This allows newer versions of BTWR: SL than the specified one to work with the mod instead of having to always update it.
-+ Reworked breaking speed modifications on how they are calculated and how configuration options interact between each other. Generally, the feeling of the game should stay the same, but it should be closer to how it feels in BTW CE
-+ Removed the "Block Breaking Restriction" configuration option as it didn't make sense.
-+ Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.62
++ Changed configuration options for server settings to be handled with Supermartijn642's Config Lib instead of Cloth Config API which is used only for client side config options. This makes all setings from the mod to require world reload when changing them and also having to change them from the .toml file in the "config" folder of your world.
++ Changed the "Block Breaking Restriction" configuration option to be called "Strata Based Block Breaking Restrictions"
++ Reworked breaking speed modifications on how they are calculated and how configuration options interact between each other. They are now handled with Fabric Entity Atrributes API instead of mixins. Generally, the feeling of the game should stay the same, but it should be closer to how it feels in BTW CE
++ Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
++ Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.63
 
 # 0.12.1
 + Updated mod recipes to use the new ExtendedShapelessRecipe from BTWR: Shared Library 0.60-61

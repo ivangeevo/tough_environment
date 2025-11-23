@@ -14,7 +14,7 @@ Tough Environment is a mod that overhauls how most blocks in the world break and
 * Mortaring mechanic for loose stone type blocks
 * Sound cues when breaking certain blocks for more immersion
 
-Configuration Settings in Mod Menu for:
+#### Configuration Settings in Mod Menu for:
 * Hardcore Mining Speed (slower overall speed)
 * Block Breaking Restrictions - Makes blocks unbreakable if the player is not using the correct tool
 * Stratification Toughness - Makes some blocks that are considered higher strata than stone level blocks require higher level pickaxes to mine effectively
