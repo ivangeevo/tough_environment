@@ -17,24 +17,19 @@ public class TELangGenerator extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder tb) {
-
         // ItemGroup
         this.addItemGroup("group_te","Tough Environment!", tb);
         this.addBlocks(tb);
         this.addItems(tb);
 
-        this.addConfigMenuTitle("Tough Environment Configuration Menu", tb);
+        // The config and config tooltip entries can only easily be used with Cloth Config's api only.
+        this.addConfigMenuTitle("Tough Environment Client Configuration Menu", tb);
         this.addConfigCategory("general", "General", tb);
+        //this.addConfig("hcPlayerMiningSpeed", "Hardcore mining speed", tb);
+        //this.addConfig("stratificationToughness", "Stratification Toughness", tb);
 
-        this.addConfig("hcMaterialDurability", "Hardcore tool material durability", tb);
-        this.addConfig("hcPlayerMiningSpeed", "Hardcore mining speed", tb);
-        this.addConfig("stratificationToughness", "Stratification Toughness", tb);
-        this.addConfig("blockBreakingRestrictions", "Block Breaking Restrictions", tb);
-
-        this.addConfigTooltip("hcMaterialDurability", "null", tb);
-        this.addConfigTooltip("hcPlayerMiningSpeed", "Makes most blocks take longer to break overall (with or without tool)", tb);
-        this.addConfigTooltip("stratificationToughness", "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb);
-        this.addConfigTooltip("blockBreakingRestrictions", "This restricts breaking blocks without the correct tool", tb);
+        //this.addConfigTooltip("hcPlayerMiningSpeed", "Makes most blocks take longer to break overall (with or without tool)", tb);
+        //this.addConfigTooltip("stratificationToughness", "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb);
     }
 
     private void addBlocks(TranslationBuilder tb) {
@@ -162,5 +157,4 @@ public class TELangGenerator extends FabricLanguageProvider {
     private void addConfigTooltip(String configPath, String translation, TranslationBuilder tb) {
         tb.add("config." + ToughEnvironmentMod.MOD_ID + ".tooltip." + configPath, translation);
     }
-
 }
