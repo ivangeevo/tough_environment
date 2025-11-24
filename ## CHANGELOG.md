@@ -1,11 +1,13 @@
 # 0.13(dev)
++ Added default recipes for items that would be crafted with nuggets instead of replacing the vanilla recipes.
 + Fixed a bug where stone bricks from stone crafting with chisel would consume the chisels
 + Fixed the Loose Diorite's item name displaying wrong as being "Granite"
 + Changed/Generally improved Mod Menu configuration option screens to better show how configuration options work
-+ Changed all configuration options setting to be handled with Supermartijn642's Config Lib internally instead of Cloth Config API, which is used only for client side config options. Cloth Config is still used for creating all screens for access through Mod Menu.
++ Changed all configuration options setting to be handled with Supermartijn642's Config Lib internally instead of Cloth Config API, which is used only for client side config options.
 + Changed the "Block Breaking Restriction" configuration option to be called "Strata Based Block Breaking Restrictions" to better reflect what it does
 + Reworked breaking speed modifications on how they are calculated and how configuration options interact between each other. They are now handled with Fabric Entity Atrributes API instead of mixins. Generally, the feeling of the game should stay the same, but it should be closer to how it feels in BTW CE
 + Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
++ Added authors(ivangeevo) to the mod files, so they should display properly in places where they should be displayed
 + Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.63
 
 # 0.12.1
