@@ -12,10 +12,10 @@
   "icon": "assets/tough_environment/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": ["org.tough_environment.ToughEnvironmentClient"],
-    "main": ["org.tough_environment.ToughEnvironmentMod"],
-    "fabric-datagen": ["org.tough_environment.TEDataGenerator"],
-    "modmenu": ["org.tough_environment.config.TEModMenu"]
+    "client": ["org.btwr.tough_environment.ToughEnvironmentClient"],
+    "main": ["org.btwr.tough_environment.ToughEnvironmentMod"],
+    "fabric-datagen": ["org.btwr.tough_environment.TEDataGenerator"],
+    "modmenu": ["org.btwr.tough_environment.config.TEModMenu"]
   },
   "mixins": [
     "tough_environment.mixins.json"
@@ -27,6 +27,5 @@
     "btwr_sl": ">=${btwr_sl_version}"
 
   },
-
   "accessWidener" : "tough_environment.accesswidener"
 }

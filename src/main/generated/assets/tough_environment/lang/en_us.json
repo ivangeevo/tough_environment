@@ -61,7 +61,7 @@
   "config.tough_environment.stratificationToughness": "Stratification Toughness",
   "config.tough_environment.text.clientSettingsText": "Client Settings:",
   "config.tough_environment.text.emptyClientConfigText": "§eNote:§r There are currently no client config settings.",
-  "config.tough_environment.text.serverSettingsNoAccessText": "§eNote:§r Server settings are not accessible on dedicated/lan servers or in menus.\nThey can only be changed by editing the config file manually and require a world reload.",
+  "config.tough_environment.text.serverSettingsNoAccessText": "§eNote:§r Server settings are not accessible on dedicated/lan servers and/or in menus.\nThey can only be changed by editing the config file manually and require a world reload.",
   "config.tough_environment.text.serverSettingsText": "Server Settings:",
   "config.tough_environment.tooltip.hcPlayerMiningSpeed": "Makes most blocks take longer to break overall (with or without tool)",
   "config.tough_environment.tooltip.strataBasedBlockBreakingRestrictions": "Highly discourages breaking of stone type 'strata' blocks which you don't have the correct tool for.\nThis also includes other stone-like blocks like Obsidian, etc..",

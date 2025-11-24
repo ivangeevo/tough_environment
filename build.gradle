@@ -97,7 +97,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 tasks.register('checkCommentInClass') {
-    def classFilePath = "src/main/java/org/tough_environment/ToughEnvironmentMod.java"
+    def classFilePath = "src/main/java/org/btwr/tough_environment/ToughEnvironmentMod.java"
     def requiredComment = "// Do not remove this comment or the project will NOT compile!"
 
     doLast {
