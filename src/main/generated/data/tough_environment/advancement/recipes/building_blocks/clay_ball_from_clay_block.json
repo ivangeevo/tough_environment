@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_clay_ball": {
+    "has_clay": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:clay_ball"
+            "items": "minecraft:clay"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:clay"
+        "recipe": "tough_environment:clay_ball_from_clay_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_clay_ball"
+      "has_clay"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:clay"
+      "tough_environment:clay_ball_from_clay_block"
     ]
   }
 }

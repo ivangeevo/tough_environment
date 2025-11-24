@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_clay": {
+    "has_iron_nugget": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:clay"
+            "items": "minecraft:iron_nugget"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:clay_ball_from_clay_block"
+        "recipe": "tough_environment:anvil"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_clay"
+      "has_iron_nugget"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:clay_ball_from_clay_block"
+      "tough_environment:anvil"
     ]
   }
 }

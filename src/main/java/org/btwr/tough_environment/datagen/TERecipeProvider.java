@@ -1,51 +1,37 @@
 package org.btwr.tough_environment.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.*;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.util.Identifier;
 import org.btwr.shared_library.recipe.ExtendedShapelessRecipe;
 import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import org.btwr.tough_environment.block.ModBlocks;
 import org.btwr.tough_environment.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
 
-public class TERecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
+public class TERecipeProvider extends TEBaseRecipeProvider
 {
-
     public TERecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected Identifier getRecipeIdentifier(Identifier identifier) {
-        return identifier;
-    }
-
-    @Override
     public void generate(RecipeExporter exporter) {
-        // for vanilla
-        this.addDisabledRecipes(exporter);
-        this.addVanillaBlockRecipes(exporter);
-        this.addVanillaItemRecipes(exporter);
-
-        // for mod
         this.addFullBlockRecipes(exporter);
+        this.addSlabBlockRecipes(exporter);
         this.addStairBlockRecipes(exporter);
+        this.addExistingCopyForVanillaBlockRecipes(exporter);
         this.addItemRecipes(exporter);
+        this.addExistingCopyForVanillaItemRecipes(exporter);
         this.addLesserDropRecipes(exporter);
-        this.addSlabRecipes(exporter);
         this.addMiscRecipes(exporter);
         this.addCookingRecipes(exporter);
 
@@ -56,87 +42,6 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 .criterion("has_flint", conditionsFromItem(Items.FLINT))
                 .offerTo(exporter);
          **/
-    }
-
-    private void addDisabledRecipes(RecipeExporter exporter) {
-        //disableVanilla(exporter, "clay");
-        disableVanilla(exporter, "bricks");
-        disableVanilla(exporter, "nether_brick");
-        disableVanilla(exporter, "nether_bricks");
-    }
-
-    // We add recipes for some existing vanilla blocks.
-    // In this case, we need a new recipe for Furnace because the one with making it out of
-    // 8 loose cobblestone is too hard to acquire with just stone chisel.
-    private void addVanillaBlockRecipes(RecipeExporter exporter) {
-        // change furnace recipe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Items.FURNACE)
-                .input('#', ModBlocks.SLAB_COBBLESTONE_LOOSE)
-                .pattern("##")
-                .pattern("##")
-                .criterion("has_slab_cobblestone_loose", conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE))
-                .offerTo(exporter, IdUtils.ofMC("furnace"));
-
-        // change clay block recipes
-        offerLesserDropsFromBlock(exporter, Items.CLAY_BALL,4, Blocks.CLAY, IdUtils.ofMC("clay_ball_from_clay_block"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.CLAY)
-                .input('#', Items.CLAY_BALL)
-                .pattern("##")
-                .pattern("##")
-                .criterion(hasItem(Items.CLAY_BALL), conditionsFromItem(Items.CLAY_BALL))
-                .offerTo(exporter, IdUtils.ofMC("clay"));
-    }
-
-    private void addVanillaItemRecipes(RecipeExporter exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.ANVIL)
-                .input('I', Items.IRON_INGOT)
-                .pattern("III")
-                .pattern(" I ")
-                .pattern("III")
-                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
-                .offerTo(exporter, IdUtils.ofMC("anvil"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD)
-                .input('P', ItemTags.PLANKS)
-                .input('N', Items.IRON_NUGGET)
-                .pattern(" N ")
-                .pattern("NPN")
-                .pattern(" N ")
-                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
-                .offerTo(exporter, IdUtils.ofMC("shield"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.COMPASS)
-                .input('R', Items.REDSTONE)
-                .input('N', Items.IRON_NUGGET)
-                .pattern(" N ")
-                .pattern("NRN")
-                .pattern(" N ")
-                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
-                .offerTo(exporter, IdUtils.ofMC("compass"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.CLOCK)
-                .input('R', Items.QUARTZ)
-                .input('N', Items.GOLD_NUGGET)
-                .pattern(" N ")
-                .pattern("NRN")
-                .pattern(" N ")
-                .criterion("has_gold_nugget", conditionsFromItem(Items.GOLD_NUGGET))
-                .offerTo(exporter, IdUtils.ofMC("clock"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BUCKET)
-                .input('N', Items.IRON_NUGGET)
-                .pattern("N N")
-                .pattern("N N")
-                .pattern("NNN")
-                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
-                .offerTo(exporter, IdUtils.ofMC("bucket"));
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.FLINT_AND_STEEL)
-                .input(Items.FLINT)
-                .input(Items.IRON_NUGGET)
-                .criterion("has_flint", conditionsFromItem(Items.FLINT))
-                .offerTo(exporter, IdUtils.ofMC("flint_and_steel"));
     }
 
     private void addMiscRecipes(RecipeExporter exporter) {
@@ -367,7 +272,7 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
         offerVeryCompactStairs(exporter, ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, ModItems.STONE_BRICK_2, IdUtils.ofTE("stairs_deepslate_bricks_loose"));
     }
 
-    private void addSlabRecipes(RecipeExporter exporter) {
+    private void addSlabBlockRecipes(RecipeExporter exporter) {
         offerSimpleSlabs(exporter, ModBlocks.SLAB_WHITE_STONE, ModBlocks.WHITE_STONE, IdUtils.ofTE("slab_white_stone"));
         offerSimpleSlabs(exporter, ModBlocks.SLAB_WHITE_COBBLESTONE, ModBlocks.WHITE_COBBLESTONE, IdUtils.ofTE("slab_white_cobblestone"));
         offerSimpleSlabs(exporter, ModBlocks.SLAB_DIRT_PACKED, ModBlocks.SLAB_DIRT_PACKED, IdUtils.ofTE("slab_dirt_packed"));
@@ -434,6 +339,81 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 .offerTo(exporter, IdUtils.ofTE("netherite_nugget_from_netherite_ingot"));
     }
 
+    private void addExistingCopyForVanillaItemRecipes(RecipeExporter exporter) {
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.ANVIL)
+                .input('I', Items.IRON_INGOT)
+                .pattern("III")
+                .pattern(" I ")
+                .pattern("III")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter, IdUtils.ofTE("anvil"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, Items.SHIELD)
+                .input('P', ItemTags.PLANKS)
+                .input('N', Items.IRON_NUGGET)
+                .pattern(" N ")
+                .pattern("NPN")
+                .pattern(" N ")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter,  IdUtils.ofTE("shield"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.COMPASS)
+                .input('R', Items.REDSTONE)
+                .input('N', Items.IRON_NUGGET)
+                .pattern(" N ")
+                .pattern("NRN")
+                .pattern(" N ")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter,  IdUtils.ofTE("compass"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.CLOCK)
+                .input('R', Items.QUARTZ)
+                .input('N', Items.GOLD_NUGGET)
+                .pattern(" N ")
+                .pattern("NRN")
+                .pattern(" N ")
+                .criterion("has_gold_nugget", conditionsFromItem(Items.GOLD_NUGGET))
+                .offerTo(exporter,  IdUtils.ofTE("clock"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BUCKET)
+                .input('N', Items.IRON_NUGGET)
+                .pattern("N N")
+                .pattern("N N")
+                .pattern("NNN")
+                .criterion("has_iron_nugget", conditionsFromItem(Items.IRON_NUGGET))
+                .offerTo(exporter,  IdUtils.ofTE("bucket"));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.FLINT_AND_STEEL)
+                .input(Items.FLINT)
+                .input(Items.IRON_NUGGET)
+                .criterion("has_flint", conditionsFromItem(Items.FLINT))
+                .offerTo(exporter,  IdUtils.ofTE("flint_and_steel"));
+    }
+
+    // We add recipes for some existing vanilla blocks.
+    // In this case, we need a new recipe for Furnace because the one with making it out of
+    // 8 loose cobblestone is too hard to acquire with just stone chisel.
+    private void addExistingCopyForVanillaBlockRecipes(RecipeExporter exporter) {
+        // change furnace recipe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, Items.FURNACE)
+                .input('#', ModBlocks.SLAB_COBBLESTONE_LOOSE)
+                .pattern("##")
+                .pattern("##")
+                .criterion("has_slab_cobblestone_loose", conditionsFromItem(ModBlocks.SLAB_COBBLESTONE_LOOSE))
+                .offerTo(exporter, IdUtils.ofTE("furnace"));
+
+        // change clay block recipes
+        offerLesserDropsFromBlock(exporter, Items.CLAY_BALL,4, Blocks.CLAY, IdUtils.ofTE("clay_ball_from_clay_block"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Blocks.CLAY)
+                .input('#', Items.CLAY_BALL)
+                .pattern("##")
+                .pattern("##")
+                .criterion(hasItem(Items.CLAY_BALL), conditionsFromItem(Items.CLAY_BALL))
+                .offerTo(exporter, IdUtils.ofTE("clay"));
+    }
+
+
     private void addCookingRecipes(RecipeExporter exporter) {
         CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Blocks.END_STONE), RecipeCategory.BUILDING_BLOCKS,
                 ModBlocks.WHITE_COBBLESTONE, 0.10f, 200).criterion("has_end_stone", conditionsFromItem(Blocks.END_STONE)).offerTo(exporter);
@@ -451,175 +431,4 @@ public class TERecipeProvider extends FabricRecipeProvider implements RecipeExpo
                 Items.NETHER_BRICK, 0.15f, 100).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, IdUtils.ofTE("nether_brick_from_blasting"));
     }
 
-    // LESSER DROP METHODS
-    private static void offerLesserDropsFromSlab(RecipeExporter exporter, ItemConvertible output, int count, ItemConvertible input, Identifier id)
-    {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, count)
-                .input(input)
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    // simple recipe for converting one item to another
-    private static void offerSimpleConverting(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
-                .input(input)
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    private static void offerLesserDropsFromBlock(RecipeExporter exporter, ItemConvertible output, int count, ItemConvertible input, Identifier id) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, count)
-                .input(input)
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    public static void offerLesserDropsFromStairs(RecipeExporter exporter, ItemConvertible output, int count, ItemConvertible input, Identifier id) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, count)
-                .input(input)
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    // SLAB METHODS
-    private static void offerSlabsFromBlock(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
-                .input('#', input)
-                .pattern("##")
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    private static void offerSlabFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
-                .input('#', input)
-                .pattern("##")
-                .pattern("##")
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    private static void offerStoneBrickSlabFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
-                .input('#', input)
-                .pattern("##")
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    // BLOCK METHODS
-    private static void offerBlockFromSlabs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
-                .input('#', input)
-                .pattern("#")
-                .pattern("#")
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-
-    }
-
-    private static void offerStoneBricksBlockFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
-                .input('S', input)
-                .pattern("SS")
-                .pattern("SS")
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    // an 8 input block
-    private static void offerBlockFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
-                .input(input).input(input).input(input).input(input).input(input).input(input).input(input).input(input)
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    // a 9 input block
-    private static void offerFullBlockFromLesserDrops(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 1)
-                .input(input).input(input).input(input).input(input).input(input).input(input).input(input).input(input).input(input)
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    /** Combined stairs method used for loose blocks only **/
-    private static void offerCombinedStairs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, ItemConvertible pileInput, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 4)
-                .input('#', input)
-                .pattern("# ")
-                .pattern("##")
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id + "_compact");
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, 8)
-                .input('#', input)
-                .pattern("#  ")
-                .pattern("## ")
-                .pattern("###")
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-
-    }
-
-    private static void offerVeryCompactStairs(RecipeExporter exporter, ItemConvertible output, ItemConvertible pileInput, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output)
-                .input('#', pileInput)
-                .pattern("# ")
-                .pattern("##")
-                .group("group_te")
-                .criterion(hasItem(pileInput), conditionsFromItem(pileInput))
-                .offerTo(exporter, id + "_very_compact");
-    }
-
-    /** Simple stairs method usually used for non-loose blocks that create their stairs the regular way only **/
-    private static void offerSimpleStairs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output,6)
-                .input('S', input)
-                .pattern("S  ")
-                .pattern("SS ")
-                .pattern("SSS")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    /** Simple slab method usually used for non-loose blocks that create their slabs the regular way only **/
-    private static void offerSimpleSlabs(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, Identifier id) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output,6)
-                .input('S', input)
-                .pattern("SSS")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-    }
-
-    // use later
-    private static void offerBiDirectionalConversionRecipe(RecipeExporter exporter, ItemConvertible output, ItemConvertible input, int inputQuantity, int outputQuantity, Identifier id) {
-        // From block to lesser drops
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, output, outputQuantity)
-                .input(input, inputQuantity)
-                .group("group_te")
-                .criterion(hasItem(input), conditionsFromItem(input))
-                .offerTo(exporter, id);
-
-        // From lesser drops to block
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, input, inputQuantity)
-                .input(output, outputQuantity)
-                .group("group_te")
-                .criterion(hasItem(output), conditionsFromItem(output))
-                .offerTo(exporter, id);
-    }
 }

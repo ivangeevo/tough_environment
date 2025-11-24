@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_flint": {
+    "has_iron_nugget": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:flint"
+            "items": "minecraft:iron_nugget"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:flint_and_steel"
+        "recipe": "tough_environment:bucket"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_flint"
+      "has_iron_nugget"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:flint_and_steel"
+      "tough_environment:bucket"
     ]
   }
 }
