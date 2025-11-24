@@ -1,5 +1,6 @@
 package org.btwr.tough_environment.item;
 
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -75,8 +76,14 @@ public class ModItems
 
     public static void register() {
         ToughEnvironmentMod.LOGGER.info("Registering Mod Items for " + ToughEnvironmentMod.MOD_ID);
+        registerFuelItems();
         registerItemsPlaceableAsBlocks();
         //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(BTWR_Items::addItemsToIngredientItemGroup);
+    }
+
+    public static void registerFuelItems() {
+        FuelRegistry.INSTANCE.add(DUST_COAL, 800);
+        FuelRegistry.INSTANCE.add(CHISEL_WOOD, 100);
     }
 
     public static void registerItemsPlaceableAsBlocks() {

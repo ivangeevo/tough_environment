@@ -14,14 +14,14 @@ public class TEModConfig {
     }
 
     public static class Settings {
-        public static Supplier<Boolean> hcPlayerMiningSpeed;
+        public static final Supplier<Boolean> hcPlayerMiningSpeed;
         public static Supplier<Boolean> stratificationToughness;
-        public static Supplier<Boolean> strataBasedBlockBreakingRestrictions;
+        public static final Supplier<Boolean> strataBasedBlockBreakingRestrictions;
+        //public static final Supplier<Boolean> exampleClientCategoryValue;
 
         static {
             // construct a new config builder
-            String modId = ToughEnvironmentMod.MOD_ID;
-            IConfigBuilder builder = ConfigBuilders.newTomlConfig(modId, modId + "_common", true);
+            IConfigBuilder builder = ConfigBuilders.newTomlConfig(ToughEnvironmentMod.MOD_ID, ToughEnvironmentMod.MOD_ID, true);
 
             // Boolean checks
             hcPlayerMiningSpeed = builder
@@ -33,6 +33,13 @@ public class TEModConfig {
             strataBasedBlockBreakingRestrictions = builder
                     .comment("Highly discourages breaking of stone type 'strata' blocks which you don't have the correct tool for.\nThis also includes other stone-like blocks like Obsidian, etc..")
                     .define("strataBasedBlockBreakingRestrictions", false);
+
+            // values can be put into categories
+            //builder.push("client").categoryComment("this is a comment for the 'client' category");
+            // a value in the 'client' category
+            //exampleClientCategoryValue = builder/**.onlyOnClient() ??? idk bro **/.comment("this value is in the 'client' category").define("clientValue", true);
+            // end the 'client' category
+            //builder.pop();
 
             // build the config
             builder.build();

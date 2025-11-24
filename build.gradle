@@ -32,7 +32,6 @@ repositories {
     maven { url "https://maven.ladysnake.org/releases" }
 }
 
-
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -63,11 +62,9 @@ dependencies {
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
-
 }
 
 processResources {
-
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version

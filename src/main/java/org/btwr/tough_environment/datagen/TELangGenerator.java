@@ -25,10 +25,10 @@ public class TELangGenerator extends FabricLanguageProvider {
     }
 
     private void generateConfigTranslations(TranslationBuilder tb) {
-        this.addConfigMenuTitle("Tough Environment Configuration Menu", tb);
         this.addConfigMenuDefaults(tb);
+        this.addConfigMenuTitle("Tough Environment Configuration Menu", tb);
         this.addConfigCategory("general", "General", tb);
-        this.addConfig("hcPlayerMiningSpeed", "Hardcore mining speed", tb);
+        this.addConfig("hcPlayerMiningSpeed", "Hardcore Mining Speed", tb);
         this.addConfig("stratificationToughness", "Stratification Toughness", tb);
         this.addConfig("strataBasedBlockBreakingRestrictions", "Strata Breaking Restrictions", tb);
         this.addConfigTooltip(
@@ -49,8 +49,8 @@ public class TELangGenerator extends FabricLanguageProvider {
         this.addSimpleText("clientSettingsText", "Client Settings:", tb);
         this.addSimpleText("emptyClientConfigText", "§eNote:§r There are currently no client config settings.", tb);
         this.addSimpleText("serverSettingsText", "Server Settings:", tb);
-        this.addSimpleText("serverSettingsNoAccessText", "§eNote:§r Server settings are not accessible on dedicated/lan servers and/or in menus." +
-                "\nThey can only be changed by editing the config file manually and require a world reload.", tb
+        this.addSimpleText("serverSettingsNoAccessText", "§eNote:§r Server settings are not accessible in menus." +
+                "\nThey can only be changed by editing the config file manually and require a world reload to take effect.", tb
         );
     }
 
@@ -165,23 +165,26 @@ public class TELangGenerator extends FabricLanguageProvider {
     }
 
     private void addConfigMenuTitle(String translation, TranslationBuilder tb) {
-        tb.add("title." + ToughEnvironmentMod.MOD_ID + ".config", translation);
+        tb.add(configBasePath() + ".config", translation);
     }
 
-    private void addConfigCategory(String categoryPath, String translation, TranslationBuilder tb) {
-        tb.add("config." + ToughEnvironmentMod.MOD_ID + ".category." + categoryPath, translation);
+    private void addConfigCategory(String path, String translation, TranslationBuilder tb) {
+        tb.add(configBasePath() + "category." + path, translation);
     }
 
-    private void addSimpleText(String configPath, String translation, TranslationBuilder tb) {
-        tb.add("config." + ToughEnvironmentMod.MOD_ID + ".text." + configPath, translation);
+    private void addSimpleText(String path, String translation, TranslationBuilder tb) {
+        tb.add(configBasePath() + "text." + path, translation);
     }
 
-    private void addConfig(String configPath, String translation, TranslationBuilder tb) {
-        tb.add("config." + ToughEnvironmentMod.MOD_ID + "." + configPath, translation);
+    private void addConfig(String path, String translation, TranslationBuilder tb) {
+        tb.add(configBasePath() + path, translation);
     }
 
-    private void addConfigTooltip(String configPath, String translation, TranslationBuilder tb) {
-        tb.add("config." + ToughEnvironmentMod.MOD_ID + ".tooltip." + configPath, translation);
+    private void addConfigTooltip(String path, String translation, TranslationBuilder tb) {
+        tb.add(configBasePath() + "tooltip." + path, translation);
     }
 
+    private String configBasePath() {
+        return "config." + ToughEnvironmentMod.MOD_ID + ".";
+    }
 }

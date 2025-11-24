@@ -6,7 +6,7 @@ import net.minecraft.registry.Registry;
 import org.btwr.tough_environment.ToughEnvironmentMod;
 import org.btwr.tough_environment.item.component.components.TieredToolComponent;
 
-public class ModComponentTypes {
+public class TEModComponentTypes {
 
     public static final ComponentType<TieredToolComponent> TIERED_TOOL = ComponentType.<TieredToolComponent>builder()
             .codec(TieredToolComponent.CODEC)

@@ -3,7 +3,8 @@ package org.btwr.tough_environment.util;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import org.btwr.tough_environment.config.TEModConfig;
+
+import static org.btwr.tough_environment.config.TEModConfig.Settings.*;
 
 public class PlayerEffectsManager {
 
@@ -15,7 +16,7 @@ public class PlayerEffectsManager {
         return INSTANCE;
     }
 
-    private HCBlockBreakSpeedUtil.SpeedState currentSpeedState = HCBlockBreakSpeedUtil.SpeedState.NORMAL;
+    private BlockBreakSpeedManager.SpeedState currentSpeedState = BlockBreakSpeedManager.SpeedState.NORMAL;
 
     // gets called in PlayerEntity only
     public void onTick(PlayerEntity player) {
@@ -35,7 +36,7 @@ public class PlayerEffectsManager {
         EntityAttributeInstance blockBreakSpeedAttribute = player.getAttributeInstance(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
 
         // Get the player's current block break speed state
-        HCBlockBreakSpeedUtil.SpeedState newSpeedState = HCBlockBreakSpeedUtil.SpeedState.getStateFrom(player);
+        BlockBreakSpeedManager.SpeedState newSpeedState = BlockBreakSpeedManager.SpeedState.getStateFrom(player);
 
         if (blockBreakSpeedAttribute != null) {
             // Update GenericState modifier
@@ -45,20 +46,24 @@ public class PlayerEffectsManager {
             }
 
             // Revert if player shouldn't be affected at this time
-            if (!TEModConfig.Settings.hcPlayerMiningSpeed.get()) {
+            if (!hcPlayerMiningSpeed.get()) {
                 blockBreakSpeedAttribute.removeModifier(currentSpeedState.getModifier());
             } else {
                 if (!blockBreakSpeedAttribute.hasModifier(currentSpeedState.getModifier().id()))
                     blockBreakSpeedAttribute.addPersistentModifier(newSpeedState.getModifier());
             }
 
+            /**
             // Revert if player shouldn't be affected at this time
-            if (!TEModConfig.Settings.stratificationToughness.get()) {
+            if (!stratificationToughness.get()) {
                 blockBreakSpeedAttribute.removeModifier(currentSpeedState.getModifier());
             } else {
                 if (!blockBreakSpeedAttribute.hasModifier(currentSpeedState.getModifier().id()))
                     blockBreakSpeedAttribute.addPersistentModifier(newSpeedState.getModifier());
             }
+             **/
+
+
         }
 
         currentSpeedState = newSpeedState;
