@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "Tough Environment",
   "description": "\"One does not simply walk into the mountains and mine iron ore with a stone pickaxe.\" -Avernite",
-  "authors": [],
+  "authors": ["ivangeevo"],
   "contact": {
     "repo": "https://github.com/ivangeevo/tough_environment"
   },
