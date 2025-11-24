@@ -73,7 +73,7 @@ public class ModItems
         return Registry.register(Registries.ITEM, Identifier.of(ToughEnvironmentMod.MOD_ID, name), item);
     }
 
-    public static void registerModItems() {
+    public static void register() {
         ToughEnvironmentMod.LOGGER.info("Registering Mod Items for " + ToughEnvironmentMod.MOD_ID);
         registerItemsPlaceableAsBlocks();
         //ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(BTWR_Items::addItemsToIngredientItemGroup);

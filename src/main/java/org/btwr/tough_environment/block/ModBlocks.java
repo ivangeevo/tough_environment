@@ -113,7 +113,7 @@ public class ModBlocks {
                 new BlockItem(block, new Item.Settings()));
     }
 
-    public static void registerModBlocks() {
+    public static void register() {
         ToughEnvironmentMod.LOGGER.debug("Registering ModBlocks for " + ToughEnvironmentMod.MOD_ID);
     }
 }

@@ -14,7 +14,7 @@ import org.btwr.tough_environment.block.ModBlocks;
 public class ModItemGroup
 {
 
-    public static void registerItemGroups() {
+    public static void register() {
         Registry.register(Registries.ITEM_GROUP, Identifier.of(ToughEnvironmentMod.MOD_ID, "group_te"),
                 FabricItemGroup.builder()
                         .displayName(Text.translatable("itemgroup.group_te"))

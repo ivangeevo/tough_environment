@@ -35,9 +35,9 @@ public class ToughEnvironmentMod implements ModInitializer {
         INSTANCE = this;
 
         TEModConfig.register();
-        ModBlocks.registerModBlocks();
-        ModItems.registerModItems();
-        ModItemGroup.registerItemGroups();
+        ModBlocks.register();
+        ModItems.register();
+        ModItemGroup.register();
         ModFuelItems.register();
         ModLootConditionTypes.register();
         ModComponentTypes.register();
@@ -47,7 +47,7 @@ public class ToughEnvironmentMod implements ModInitializer {
 
         BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
 
-        ModEvents.registerAttribute();
+        ModEvents.register();
 
         TillableBlockRegistry.register(ModBlocks.DIRT_LOOSE, HoeItem::canTillFarmland, context -> {
                     BlockState result = Blocks.FARMLAND.getDefaultState();
