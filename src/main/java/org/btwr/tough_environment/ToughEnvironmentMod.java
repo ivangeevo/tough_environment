@@ -9,45 +9,44 @@ import org.btwr.shared_library.registry.BlockReplacementRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.btwr.tough_environment.config.TEModConfig;
-import org.btwr.tough_environment.event.ModEvents;
+import org.btwr.tough_environment.event.TEModEvents;
 import org.btwr.tough_environment.block.ModBlocks;
 import org.btwr.tough_environment.item.ModItemGroup;
 import org.btwr.tough_environment.item.ModItems;
-import org.btwr.tough_environment.item.component.ModComponentTypes;
-import org.btwr.tough_environment.loot.ModLootConditionTypes;
-import org.btwr.tough_environment.registry.ModFuelItems;
+import org.btwr.tough_environment.item.component.TEModComponentTypes;
+import org.btwr.tough_environment.loot.TEModLootConditionTypes;
 import org.btwr.tough_environment.util.BlockMortarMapper;
 
 public class ToughEnvironmentMod implements ModInitializer {
-
     public static final String MOD_ID = "tough_environment";
+
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    private static ToughEnvironmentMod INSTANCE;
+    private static ToughEnvironmentMod instance;
+
 
     public static ToughEnvironmentMod getInstance() {
-        return INSTANCE;
+        return instance;
     }
 
     @Override
     public void onInitialize() {
         LOGGER.info("Initializing Tough Environment.");
-        INSTANCE = this;
+        instance = this;
 
         TEModConfig.register();
         ModBlocks.register();
         ModItems.register();
         ModItemGroup.register();
-        ModFuelItems.register();
-        ModLootConditionTypes.register();
-        ModComponentTypes.register();
+        TEModLootConditionTypes.register();
+        TEModComponentTypes.register();
 
         // Initialize or load the block replacement map for mortaring
         BlockMortarMapper.register();
 
         BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
 
-        ModEvents.register();
+        TEModEvents.register();
 
         TillableBlockRegistry.register(ModBlocks.DIRT_LOOSE, HoeItem::canTillFarmland, context -> {
                     BlockState result = Blocks.FARMLAND.getDefaultState();

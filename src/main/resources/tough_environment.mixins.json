@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ItemEntityMixin",
+    "PlayerEntityMixin",
     "ServerPlayerEntityMixin",
     "ToolMaterialsMixin",
     "block.AbstractBlockMixin",
