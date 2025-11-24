@@ -19,20 +19,42 @@ public class TELangGenerator extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder tb) {
         // ItemGroup
         this.addItemGroup("group_te","Tough Environment!", tb);
-        this.addBlocks(tb);
-        this.addItems(tb);
-
-        // The config and config tooltip entries can only easily be used with Cloth Config's api only.
-        this.addConfigMenuTitle("Tough Environment Client Configuration Menu", tb);
-        this.addConfigCategory("general", "General", tb);
-        //this.addConfig("hcPlayerMiningSpeed", "Hardcore mining speed", tb);
-        //this.addConfig("stratificationToughness", "Stratification Toughness", tb);
-
-        //this.addConfigTooltip("hcPlayerMiningSpeed", "Makes most blocks take longer to break overall (with or without tool)", tb);
-        //this.addConfigTooltip("stratificationToughness", "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb);
+        this.generateConfigTranslations(tb);
+        this.generateBlockTranslations(tb);
+        this.generateItemTranslations(tb);
     }
 
-    private void addBlocks(TranslationBuilder tb) {
+    private void generateConfigTranslations(TranslationBuilder tb) {
+        this.addConfigMenuTitle("Tough Environment Configuration Menu", tb);
+        this.addConfigMenuDefaults(tb);
+        this.addConfigCategory("general", "General", tb);
+        this.addConfig("hcPlayerMiningSpeed", "Hardcore mining speed", tb);
+        this.addConfig("stratificationToughness", "Stratification Toughness", tb);
+        this.addConfig("strataBasedBlockBreakingRestrictions", "Strata Breaking Restrictions", tb);
+        this.addConfigTooltip(
+                "hcPlayerMiningSpeed",
+                "Makes most blocks take longer to break overall (with or without tool)", tb
+        );
+        this.addConfigTooltip(
+                "stratificationToughness",
+                "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb
+        );
+        this.addConfigTooltip(
+                "strataBasedBlockBreakingRestrictions",
+                "Highly discourages breaking of stone type 'strata' blocks which you don't have the correct tool for.\nThis also includes other stone-like blocks like Obsidian, etc..", tb
+        );
+    }
+
+    private void addConfigMenuDefaults(TranslationBuilder tb) {
+        this.addSimpleText("clientSettingsText", "Client Settings:", tb);
+        this.addSimpleText("emptyClientConfigText", "§eNote:§r There are currently no client config settings.", tb);
+        this.addSimpleText("serverSettingsText", "Server Settings:", tb);
+        this.addSimpleText("serverSettingsNoAccessText", "§eNote:§r Server settings are not accessible on dedicated/lan servers and/or in menus." +
+                "\nThey can only be changed by editing the config file manually and require a world reload.", tb
+        );
+    }
+
+    private void generateBlockTranslations(TranslationBuilder tb) {
         // Non-loose blocks
         tb.add(ModBlocks.SLAB_SAND, "Sand Slab");
         tb.add(ModBlocks.SLAB_RED_SAND, "Red Sand Slab");
@@ -102,7 +124,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.DIORITE_BROKEN, "Depleted Diorite");
     }
 
-    private void addItems(TranslationBuilder tb) {
+    private void generateItemTranslations(TranslationBuilder tb) {
         tb.add(ModItems.PILE_DIRT, "Pile of Dirt");
         tb.add(ModItems.PILE_GRAVEL, "Pile of Gravel");
         tb.add(ModItems.PILE_SAND, "Pile of Sand");
@@ -150,6 +172,10 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add("config." + ToughEnvironmentMod.MOD_ID + ".category." + categoryPath, translation);
     }
 
+    private void addSimpleText(String configPath, String translation, TranslationBuilder tb) {
+        tb.add("config." + ToughEnvironmentMod.MOD_ID + ".text." + configPath, translation);
+    }
+
     private void addConfig(String configPath, String translation, TranslationBuilder tb) {
         tb.add("config." + ToughEnvironmentMod.MOD_ID + "." + configPath, translation);
     }
@@ -157,4 +183,5 @@ public class TELangGenerator extends FabricLanguageProvider {
     private void addConfigTooltip(String configPath, String translation, TranslationBuilder tb) {
         tb.add("config." + ToughEnvironmentMod.MOD_ID + ".tooltip." + configPath, translation);
     }
+
 }

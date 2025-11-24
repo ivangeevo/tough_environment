@@ -56,8 +56,16 @@
   "block.tough_environment.white_stone": "White Stone",
   "block.tough_environment.white_stone_stairs": "White Stone Stairs",
   "config.tough_environment.category.general": "General",
-  "config.tough_environment.hcPlayerMiningSpeed": "Makes most blocks take longer to break overall",
-  "config.tough_environment.stratificationToughness": "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes",
+  "config.tough_environment.hcPlayerMiningSpeed": "Hardcore mining speed",
+  "config.tough_environment.strataBasedBlockBreakingRestrictions": "Strata Breaking Restrictions",
+  "config.tough_environment.stratificationToughness": "Stratification Toughness",
+  "config.tough_environment.text.clientSettingsText": "Client Settings:",
+  "config.tough_environment.text.emptyClientConfigText": "§eNote:§r There are currently no client config settings.",
+  "config.tough_environment.text.serverSettingsNoAccessText": "§eNote:§r Server settings are not accessible on dedicated/lan servers or in menus.\nThey can only be changed by editing the config file manually and require a world reload.",
+  "config.tough_environment.text.serverSettingsText": "Server Settings:",
+  "config.tough_environment.tooltip.hcPlayerMiningSpeed": "Makes most blocks take longer to break overall (with or without tool)",
+  "config.tough_environment.tooltip.strataBasedBlockBreakingRestrictions": "Highly discourages breaking of stone type 'strata' blocks which you don't have the correct tool for.\nThis also includes other stone-like blocks like Obsidian, etc..",
+  "config.tough_environment.tooltip.stratificationToughness": "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes",
   "item.tough_environment.chisel_diamond": "Diamond Chisel",
   "item.tough_environment.chisel_iron": "Iron Chisel",
   "item.tough_environment.chisel_stone": "Stone Chisel",
@@ -85,5 +93,5 @@
   "item.tough_environment.stone_brick_1": "Mantlestone Brick",
   "item.tough_environment.stone_brick_2": "Deepslate Brick",
   "itemgroup.group_te": "Tough Environment!",
-  "title.tough_environment.config": "Tough Environment Client Configuration Menu"
+  "title.tough_environment.config": "Tough Environment Configuration Menu"
 }

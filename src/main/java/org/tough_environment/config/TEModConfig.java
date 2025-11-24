@@ -38,4 +38,5 @@ public class TEModConfig {
             builder.build();
         }
     }
+
 }
