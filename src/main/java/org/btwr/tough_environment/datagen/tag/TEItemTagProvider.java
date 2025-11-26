@@ -1,4 +1,4 @@
-package org.btwr.tough_environment.datagen;
+package org.btwr.tough_environment.datagen.tag;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -13,8 +13,7 @@ import org.btwr.tough_environment.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
-{
+public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     public TEItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
         super(output, completableFuture);
@@ -156,4 +155,5 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider
         getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS)
                 .add(ModBlocks.COBBLESTONE_LOOSE.asItem());
     }
+
 }

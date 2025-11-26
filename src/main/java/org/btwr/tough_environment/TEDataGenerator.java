@@ -4,9 +4,12 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import org.btwr.tough_environment.datagen.*;
 import org.btwr.tough_environment.datagen.loot_table.TELootTableProvider;
+import org.btwr.tough_environment.datagen.recipe.TERecipeProvider;
+import org.btwr.tough_environment.datagen.recipe.VanillaRecipeOverrideProvider;
+import org.btwr.tough_environment.datagen.tag.TEBlockTagProvider;
+import org.btwr.tough_environment.datagen.tag.TEItemTagProvider;
 
-public class TEDataGenerator implements DataGeneratorEntrypoint
-{
+public class TEDataGenerator implements DataGeneratorEntrypoint {
 
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
@@ -31,4 +34,5 @@ public class TEDataGenerator implements DataGeneratorEntrypoint
 
          **/
     }
+
 }

@@ -1,4 +1,4 @@
-package org.btwr.tough_environment.datagen;
+package org.btwr.tough_environment.datagen.tag;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -13,8 +13,7 @@ import org.btwr.tough_environment.tag.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
-public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
-{
+public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     public TEBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture)
     {
@@ -337,4 +336,5 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider
                 //.add(Blocks.NETHERRACK)
         ;
     }
+
 }

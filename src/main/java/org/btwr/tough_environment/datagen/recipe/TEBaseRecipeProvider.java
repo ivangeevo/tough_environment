@@ -1,4 +1,4 @@
-package org.btwr.tough_environment.datagen;
+package org.btwr.tough_environment.datagen.recipe;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -12,8 +12,8 @@ import org.btwr.shared_library.util.utils.RecipeExporterUtils;
 import java.util.concurrent.CompletableFuture;
 
 
-public class TEBaseRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils
-{
+public class TEBaseRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils {
+
     public TEBaseRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
@@ -197,4 +197,5 @@ public class TEBaseRecipeProvider extends FabricRecipeProvider implements Recipe
                 .criterion(hasItem(output), conditionsFromItem(output))
                 .offerTo(exporter, id);
     }
+
 }

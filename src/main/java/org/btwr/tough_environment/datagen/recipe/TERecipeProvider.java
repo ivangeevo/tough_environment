@@ -1,4 +1,4 @@
-package org.btwr.tough_environment.datagen;
+package org.btwr.tough_environment.datagen.recipe;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Blocks;
@@ -17,8 +17,8 @@ import org.btwr.tough_environment.item.ModItems;
 import java.util.concurrent.CompletableFuture;
 
 
-public class TERecipeProvider extends TEBaseRecipeProvider
-{
+public class TERecipeProvider extends TEBaseRecipeProvider {
+
     public TERecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }

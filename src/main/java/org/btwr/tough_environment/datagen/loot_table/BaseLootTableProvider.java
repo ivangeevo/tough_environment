@@ -17,17 +17,48 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.entity.LocationPredicate;
+import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.state.property.Properties;
-import org.btwr.tough_environment.datagen.loot_table.util.LootConditions;
 import org.btwr.tough_environment.item.ModItems;
 import org.btwr.tough_environment.loot.conditions.DestroyedByExplosionCondition;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.*;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.ADVANCED_CHISELS;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.ADVANCED_SHOVELS;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.MODERN_CHISELS;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.MODERN_SHOVELS;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.PRIMITIVE_CHISELS;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.PRIMITIVE_PICKAXES;
+import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK;
+
 public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider {
 
+    public static final LootCondition.Builder WITH_PICKAXE_FULLY_HARVESTS = withMatchingToolTag(PICKAXES_HARVEST_FULL_BLOCK);
+
+    public static final LootCondition.Builder WITH_ADVANCED_PICKAXES = withMatchingToolTag(ADVANCED_PICKAXES);
+    public static final LootCondition.Builder WITH_MODERN_PICKAXES = withMatchingToolTag(MODERN_PICKAXES);
+    public static final LootCondition.Builder WITH_PRIMITIVE_PICKAXES = withMatchingToolTag(PRIMITIVE_PICKAXES);
+
+    public static final LootCondition.Builder WITH_SHOVEL_FULLY_HARVESTS =  withMatchingToolTag(SHOVELS_HARVEST_FULL_BLOCK);
+    public static final LootCondition.Builder WITH_ADVANCED_SHOVELS =  withMatchingToolTag(ADVANCED_SHOVELS);
+    public static final LootCondition.Builder WITH_MODERN_SHOVELS =  withMatchingToolTag(MODERN_SHOVELS);
+
+    public static final LootCondition.Builder WITH_ADVANCED_CHISELS =  withMatchingToolTag(ADVANCED_CHISELS);
+    public static final LootCondition.Builder WITH_MODERN_CHISELS =  withMatchingToolTag(MODERN_CHISELS);
+    public static final LootCondition.Builder WITH_PRIMITIVE_CHISELS =  withMatchingToolTag(PRIMITIVE_CHISELS);
+
+    public static final LootCondition.Builder WITHOUT_HOE = withMatchingToolTag(ItemTags.HOES).invert();
+
+    private static LootCondition.Builder withMatchingToolTag(TagKey<Item> itemTag) {
+        return MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(itemTag));
+    }
+    
     protected BaseLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }
@@ -60,15 +91,15 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
         LootPool.Builder alternativeEntries =  new LootPool.Builder().with(
                 AlternativeEntry.builder(
                         // Silk touch drops
-                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(LootConditions.WITH_ADVANCED_PICKAXES),
-                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(LootConditions.WITH_MODERN_PICKAXES),
+                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_ADVANCED_PICKAXES),
+                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_MODERN_PICKAXES),
                         // Piles, bricks and small stone drops
-                        this.simpleDropEntry(pileDrop,1).conditionally(LootConditions.WITH_PRIMITIVE_CHISELS),
-                        this.simpleDropEntry(brickDrop, 1).conditionally(LootConditions.WITH_ADVANCED_CHISELS),
-                        this.simpleDropEntry(brickDrop, 1).conditionally(LootConditions.WITH_MODERN_CHISELS),
-                        this.simpleDropEntry(partialDrop, 3).conditionally(LootConditions.WITH_PRIMITIVE_PICKAXES),
+                        this.simpleDropEntry(pileDrop,1).conditionally(WITH_PRIMITIVE_CHISELS),
+                        this.simpleDropEntry(brickDrop, 1).conditionally(WITH_ADVANCED_CHISELS),
+                        this.simpleDropEntry(brickDrop, 1).conditionally(WITH_MODERN_CHISELS),
+                        this.simpleDropEntry(partialDrop, 3).conditionally(WITH_PRIMITIVE_PICKAXES),
                         // Loose block looseBlock
-                        this.simpleDropEntry(looseDrop.asItem(), 1).conditionally(LootConditions.WITH_PICKAXE_FULLY_HARVESTS)
+                        this.simpleDropEntry(looseDrop.asItem(), 1).conditionally(WITH_PICKAXE_FULLY_HARVESTS)
                 )
         );
 
@@ -77,7 +108,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
         LootPool.Builder pileEntries = new LootPool.Builder().with(
                 AlternativeEntry.builder(
                         this.simpleDropEntry(ModItems.PILE_GRAVEL,1)
-                                .conditionally(LootConditions.WITH_PICKAXE_FULLY_HARVESTS)
+                                .conditionally(WITH_PICKAXE_FULLY_HARVESTS)
                                 .conditionally(InvertedLootCondition.builder(this.createSilkTouchCondition()))
                 )
         );
@@ -86,7 +117,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
         LootPool.Builder partialEntries = new LootPool.Builder().with(
                 AlternativeEntry.builder(
                         this.simpleDropEntry(partialDrop,1)
-                                .conditionally(LootConditions.WITH_PICKAXE_FULLY_HARVESTS)
+                                .conditionally(WITH_PICKAXE_FULLY_HARVESTS)
                                 .conditionally(InvertedLootCondition.builder(this.createSilkTouchCondition()))
                 )
         );
@@ -111,13 +142,13 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
         LootPool.Builder alternativeEntries =  new LootPool.Builder().with(
                 AlternativeEntry.builder(
                         // Silk touch drops
-                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(LootConditions.WITH_ADVANCED_PICKAXES),
-                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(LootConditions.WITH_MODERN_PICKAXES),
+                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_ADVANCED_PICKAXES),
+                        this.stoneSilkTouchDropEntry(silkTouchDrop).conditionally(WITH_MODERN_PICKAXES),
                         // Piles and shard drops
-                        this.simpleDropEntry(pileDrop,1).conditionally(LootConditions.WITH_PRIMITIVE_CHISELS),
-                        this.simpleDropEntry(partialDrop, 3).conditionally(LootConditions.WITH_PRIMITIVE_PICKAXES),
+                        this.simpleDropEntry(pileDrop,1).conditionally(WITH_PRIMITIVE_CHISELS),
+                        this.simpleDropEntry(partialDrop, 3).conditionally(WITH_PRIMITIVE_PICKAXES),
                         // Loose block looseBlock
-                        this.simpleDropEntry(looseDrop.asItem(), 1).conditionally(LootConditions.WITH_PICKAXE_FULLY_HARVESTS)
+                        this.simpleDropEntry(looseDrop.asItem(), 1).conditionally(WITH_PICKAXE_FULLY_HARVESTS)
                 )
         );
 
@@ -126,7 +157,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
         LootPool.Builder pileEntries = new LootPool.Builder().with(
                 AlternativeEntry.builder(
                         this.simpleDropEntry(ModItems.PILE_GRAVEL,1)
-                                .conditionally(LootConditions.WITH_PICKAXE_FULLY_HARVESTS)
+                                .conditionally(WITH_PICKAXE_FULLY_HARVESTS)
                                 .conditionally(InvertedLootCondition.builder(this.createSilkTouchCondition()))
                 )
         );
@@ -135,7 +166,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
         LootPool.Builder partialEntries = new LootPool.Builder().with(
                 AlternativeEntry.builder(
                         this.simpleDropEntry(partialDrop,1)
-                                .conditionally(LootConditions.WITH_PICKAXE_FULLY_HARVESTS)
+                                .conditionally(WITH_PICKAXE_FULLY_HARVESTS)
                                 .conditionally(InvertedLootCondition.builder(this.createSilkTouchCondition()))
                 )
         );
