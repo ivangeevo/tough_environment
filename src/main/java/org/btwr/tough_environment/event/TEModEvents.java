@@ -17,7 +17,8 @@ import org.btwr.tough_environment.block.BlockBreakHandler;
 public class TEModEvents {
 
     public static void register() {
-
+        // Server Events
+        ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.CLAY, ModBlocks.CLAY_ORE);
         // Player Block Events
         PlayerBlockBreakEvents.AFTER.register(TEModEvents::afterBlockBreak);
         // Item Component Events

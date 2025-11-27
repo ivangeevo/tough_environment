@@ -325,16 +325,10 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.DIRT)
                 .add(ModBlocks.DIRT_LOOSE);
 
-        this.getOrCreateTagBuilder(ModTags.Blocks.TURNED_TO_FALLING_BLOCKS)
-                .add(Blocks.RAW_COPPER_BLOCK)
-                .add(Blocks.RAW_IRON_BLOCK)
-                .add(Blocks.RAW_GOLD_BLOCK)
-                //.add(Blocks.NETHERRACK)
+        //this.getOrCreateTagBuilder(BTWRConventionalTags.Blocks.CAN_FALL_IN_OVERWORLD)
+        //.add(Blocks.NETHERRACK)
         ;
 
-        this.getOrCreateTagBuilder(ModTags.Blocks.CAN_FALL_IN_OVERWORLD)
-                //.add(Blocks.NETHERRACK)
-        ;
     }
 
 }

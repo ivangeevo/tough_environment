@@ -49,7 +49,6 @@ public class ToughEnvironmentMod implements ModInitializer {
         TEModEvents.register();
 
         // Server Events
-        ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.GRASS_BLOCK, Blocks.GLASS);
 
         TillableBlockRegistry.register(ModBlocks.DIRT_LOOSE, HoeItem::canTillFarmland, context -> {
                     BlockState result = Blocks.FARMLAND.getDefaultState();
