@@ -15,7 +15,7 @@ public class TEModConfig {
 
     public static class Settings {
         public static final Supplier<Boolean> hcPlayerMiningSpeed;
-        public static Supplier<Boolean> stratificationToughness;
+        public static final Supplier<Boolean> stratificationToughness;
         public static final Supplier<Boolean> strataBasedBlockBreakingRestrictions;
         //public static final Supplier<Boolean> exampleClientCategoryValue;
 
