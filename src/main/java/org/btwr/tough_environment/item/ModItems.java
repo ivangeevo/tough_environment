@@ -12,8 +12,7 @@ import org.btwr.tough_environment.ToughEnvironmentMod;
 import org.btwr.tough_environment.block.ModBlocks;
 import org.btwr.tough_environment.item.items.ChiselItem;
 
-public class ModItems
-{
+public class ModItems {
 
     // GROUPS
     // Main TE Group (Tough environment) for testing. Might split items later on...
@@ -93,4 +92,5 @@ public class ModItems
         placeable.registerPlaceable(Items.RAW_IRON, ModBlocks.RAW_IRON_PLACED);
         placeable.registerPlaceable(Items.RAW_GOLD, ModBlocks.RAW_GOLD_PLACED);
     }
+
 }

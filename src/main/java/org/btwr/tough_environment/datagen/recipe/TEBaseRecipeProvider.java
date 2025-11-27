@@ -7,12 +7,12 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
-import org.btwr.shared_library.util.utils.RecipeExporterUtils;
+import org.btwr.shared_library.util.utils.RecipeUtils;
 
 import java.util.concurrent.CompletableFuture;
 
 
-public class TEBaseRecipeProvider extends FabricRecipeProvider implements RecipeExporterUtils {
+public class TEBaseRecipeProvider extends FabricRecipeProvider implements RecipeUtils {
 
     public TEBaseRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

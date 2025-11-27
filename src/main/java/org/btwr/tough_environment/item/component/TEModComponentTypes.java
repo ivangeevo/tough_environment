@@ -28,4 +28,5 @@ public class TEModComponentTypes {
     {
         Registry.register(registryType, ToughEnvironmentMod.MOD_ID + ":" + stringName, componentType);
     }
+
 }

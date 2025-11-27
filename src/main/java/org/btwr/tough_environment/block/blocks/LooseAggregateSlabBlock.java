@@ -31,8 +31,8 @@ import org.btwr.tough_environment.block.ModBlocks;
 
 import java.util.Map;
 
-public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggable
-{
+public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggable {
+
     public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
@@ -216,4 +216,5 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
         // Return null if no match is found
         return null;
     }
+
 }

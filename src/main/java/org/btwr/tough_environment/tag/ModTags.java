@@ -7,8 +7,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import org.btwr.tough_environment.ToughEnvironmentMod;
 
-public class ModTags
-{
+public class ModTags {
 
     public static class Blocks {
         public static final TagKey<Block> CONVERTED_STONE_BLOCKS = register("converted_stone_blocks");
@@ -66,7 +65,6 @@ public class ModTags
         private static TagKey<Block> register(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
-
     }
 
     public static class Items {
@@ -78,7 +76,6 @@ public class ModTags
         private static TagKey<Item> register(String name) {
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }
-
     }
 
     public static class Mineable {
@@ -96,4 +93,5 @@ public class ModTags
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, id));
         }
     }
+
 }

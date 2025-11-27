@@ -1,4 +1,4 @@
-# 0.13(dev)
+# 0.13
 + Added default recipes for items that would be crafted with nuggets instead of replacing the vanilla recipes.
 + Fixed a bug where stone bricks from stone crafting with chisel would consume the chisels
 + Fixed the Loose Diorite's item name displaying wrong as being "Granite"
@@ -8,7 +8,7 @@
 + Reworked breaking speed modifications on how they are calculated and how configuration options interact between each other. They are now handled with Fabric Entity Atrributes API instead of mixins. Generally, the feeling of the game should stay the same, but it should be closer to how it feels in BTW CE
 + Refactored pretty much the whole code; mainly for readability and cleaning up, but also so it's more in order with other mods from the BTWR project
 + Added authors(ivangeevo) to the mod files, so they should display properly in places where they should be displayed
-+ Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.63
++ Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.6.4
 
 # 0.12.1
 + Updated mod recipes to use the new ExtendedShapelessRecipe from BTWR: Shared Library 0.60-61

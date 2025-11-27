@@ -21,7 +21,7 @@ public class TEModConfig {
 
         static {
             // construct a new config builder
-            IConfigBuilder builder = ConfigBuilders.newTomlConfig(ToughEnvironmentMod.MOD_ID, ToughEnvironmentMod.MOD_ID, true);
+            IConfigBuilder builder = ConfigBuilders.newTomlConfig(ToughEnvironmentMod.MOD_ID, ToughEnvironmentMod.MOD_ID + "_common", true);
 
             // Boolean checks
             hcPlayerMiningSpeed = builder
@@ -29,10 +29,10 @@ public class TEModConfig {
                     .define("hcPlayerMiningSpeed", true);
             stratificationToughness = builder
                     .comment("Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes")
-                    .define("stratificationToughness", false);
+                    .define("stratificationToughness", true);
             strataBasedBlockBreakingRestrictions = builder
                     .comment("Highly discourages breaking of stone type 'strata' blocks which you don't have the correct tool for.\nThis also includes other stone-like blocks like Obsidian, etc..")
-                    .define("strataBasedBlockBreakingRestrictions", false);
+                    .define("strataBasedBlockBreakingRestrictions", true);
 
             // values can be put into categories
             //builder.push("client").categoryComment("this is a comment for the 'client' category");

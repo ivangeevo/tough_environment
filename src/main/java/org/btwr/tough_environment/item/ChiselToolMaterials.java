@@ -14,8 +14,7 @@ import org.btwr.tough_environment.tag.ModTags;
 
 import java.util.List;
 
-public enum ChiselToolMaterials implements ToolMaterial
-{
+public enum ChiselToolMaterials implements ToolMaterial {
     WOOD(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL, 2, 1.2F, 0.0F, 1,
             () -> Ingredient.ofItems(Items.STICK)
     ),
@@ -96,4 +95,5 @@ public enum ChiselToolMaterials implements ToolMaterial
                         ToolComponent.Rule.of(BTWRConventionalTags.Blocks.WEB_BLOCKS, 25F)
                 ), 1.0F, 1);
     }
+
 }

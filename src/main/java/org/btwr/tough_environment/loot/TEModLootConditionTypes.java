@@ -8,6 +8,7 @@ import org.btwr.tough_environment.ToughEnvironmentMod;
 import org.btwr.tough_environment.loot.conditions.DestroyedByExplosionCondition;
 
 public class TEModLootConditionTypes {
+
     public static LootConditionType DESTROYED_BY_EXPLOSION;
 
     public static void register() {
@@ -17,4 +18,5 @@ public class TEModLootConditionTypes {
                 new LootConditionType(DestroyedByExplosionCondition.CODEC)
         );
     }
+
 }

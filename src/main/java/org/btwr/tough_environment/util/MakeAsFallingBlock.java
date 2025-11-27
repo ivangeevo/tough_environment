@@ -17,6 +17,7 @@ import net.minecraft.world.dimension.DimensionTypes;
 import org.btwr.tough_environment.tag.ModTags;
 
 public class MakeAsFallingBlock {
+
     private static final MakeAsFallingBlock instance = new MakeAsFallingBlock();
 
     public static MakeAsFallingBlock getInstance() {
@@ -81,4 +82,5 @@ public class MakeAsFallingBlock {
         }
         return false;
     }
+
 }

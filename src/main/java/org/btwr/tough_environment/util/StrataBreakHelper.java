@@ -9,6 +9,7 @@ import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.tough_environment.tag.ModTags;
 
 public interface StrataBreakHelper {
+
     default boolean isProblemToBreak(BlockState state, ItemStack stack) {
         if (isStrataStone3(state) && !isAdvancedPickaxe(stack)) {
             return true;
@@ -74,4 +75,5 @@ public interface StrataBreakHelper {
     default boolean isOreBlock(BlockState state) {
         return state.isIn(ConventionalBlockTags.ORES);
     }
+
 }

@@ -30,7 +30,7 @@ public class BlockBreakHandler {
 
     private static final BlockBreakHandler instance = new BlockBreakHandler();
 
-    private BlockBreakHandler() {}
+    public BlockBreakHandler() {}
 
     public static BlockBreakHandler getInstance() {
         return instance;

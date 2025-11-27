@@ -22,8 +22,8 @@ import org.btwr.tough_environment.block.ModBlocks;
 
 import java.util.Objects;
 
-public class PlacedOreChunkBlock extends Block
-{
+public class PlacedOreChunkBlock extends Block {
+
     private static final double ORE_WIDTH_MIN = 6.0 / 16.0;
     private static final double ORE_WIDTH_MAX = 10.0 / 16.0;
     private static final double ORE_HEIGHT_MIN = 0.5 / 16.0;
@@ -111,4 +111,5 @@ public class PlacedOreChunkBlock extends Block
 
         return null;
     }
+
 }

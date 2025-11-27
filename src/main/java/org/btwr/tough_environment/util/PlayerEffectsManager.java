@@ -62,10 +62,9 @@ public class PlayerEffectsManager {
                     blockBreakSpeedAttribute.addPersistentModifier(newSpeedState.getModifier());
             }
              **/
-
-
         }
 
         currentSpeedState = newSpeedState;
     }
+
 }

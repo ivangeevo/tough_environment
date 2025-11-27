@@ -111,4 +111,5 @@ public class UnfiredNetherBrickBlock extends Block  {
     public boolean isShapeFullCube(BlockState state, BlockView world, BlockPos pos) {
         return false;
     }
+
 }

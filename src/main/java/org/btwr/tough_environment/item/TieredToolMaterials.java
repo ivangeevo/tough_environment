@@ -85,4 +85,5 @@ public enum TieredToolMaterials implements ToolMaterial {
 	public Ingredient getRepairIngredient() {
 		return this.repairIngredient.get();
 	}
+
 }

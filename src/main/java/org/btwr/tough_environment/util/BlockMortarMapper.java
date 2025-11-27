@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BlockMortarMapper {
+
     private static final Gson GSON = new Gson();
     private static final Type MAP_TYPE = new TypeToken<Map<String, String>>() {}.getType();
     private static final Map<Block, Block> blockReplacementMap = new HashMap<>();
@@ -84,4 +85,5 @@ public class BlockMortarMapper {
 
         }
     }
+
 }

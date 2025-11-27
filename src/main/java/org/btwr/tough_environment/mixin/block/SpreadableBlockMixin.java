@@ -62,4 +62,5 @@ public abstract class SpreadableBlockMixin extends SnowyBlock {
         BlockPos blockPos = pos.up();
         return canSurvive(state, world, pos) && !world.getFluidState(blockPos).isIn(FluidTags.WATER);
     }
+
 }

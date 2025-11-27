@@ -12,6 +12,7 @@ import org.btwr.tough_environment.loot.TEModLootConditionTypes;
 import java.util.Set;
 
 public class DestroyedByExplosionCondition implements LootCondition {
+
     public static final DestroyedByExplosionCondition INSTANCE = new DestroyedByExplosionCondition();
     public static final MapCodec<DestroyedByExplosionCondition> CODEC = MapCodec.unit(INSTANCE);
 
@@ -35,4 +36,5 @@ public class DestroyedByExplosionCondition implements LootCondition {
     public static LootCondition.Builder builder() {
         return () -> INSTANCE;
     }
+
 }

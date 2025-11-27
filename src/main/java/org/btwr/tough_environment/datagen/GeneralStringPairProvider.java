@@ -19,6 +19,7 @@ import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 
 public abstract class GeneralStringPairProvider implements DataProvider {
+
     protected final FabricDataOutput dataOutput;
     private final CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup;
 
@@ -111,4 +112,5 @@ public abstract class GeneralStringPairProvider implements DataProvider {
             add(key, value);
         }
     }
+
 }

@@ -9,6 +9,7 @@ import org.btwr.tough_environment.ToughEnvironmentMod;
 import org.btwr.tough_environment.config.TEModConfig;
 
 public class BlockBreakSpeedManager implements StrataBreakHelper {
+
     private static final BlockBreakSpeedManager INSTANCE = new BlockBreakSpeedManager();
 
     public static BlockBreakSpeedManager getInstance() {
@@ -71,4 +72,5 @@ public class BlockBreakSpeedManager implements StrataBreakHelper {
             return getState(severity);
         }
     }
+
 }

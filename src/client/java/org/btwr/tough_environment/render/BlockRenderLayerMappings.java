@@ -30,6 +30,6 @@ public class BlockRenderLayerMappings {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.STONE_BRICKS_LOOSE_STAIRS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.NETHER_BRICK_UNFIRED, RenderLayer.getCutout());
-
     }
+
 }

@@ -11,8 +11,7 @@ import net.minecraft.world.World;
 import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.tough_environment.tag.ModTags;
 
-public class ChiselItem extends MiningToolItem
-{
+public class ChiselItem extends MiningToolItem {
 
     public ChiselItem(ToolMaterial toolMaterial, Settings settings) {
         super(toolMaterial, ModTags.Mineable.CHISEL, settings);
@@ -67,4 +66,5 @@ public class ChiselItem extends MiningToolItem
         }
         return ItemStack. EMPTY;
     }
+
 }

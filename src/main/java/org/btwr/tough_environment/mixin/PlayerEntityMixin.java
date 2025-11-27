@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin
-{
+public abstract class PlayerEntityMixin {
+
     @Unique private PlayerEntity playerEntity = (PlayerEntity)(Object)this;
     @Unique private PlayerEffectsManager effectsManager = PlayerEffectsManager.getInstance();
 
@@ -23,4 +23,5 @@ public abstract class PlayerEntityMixin
     public void applyMovementEffectsOnTick(BlockState block, CallbackInfoReturnable<Float> cir, @Local float f) {
        cir.setReturnValue(BlockBreakSpeedManager.getInstance().getModifiedSpeed(playerEntity, block, f));
     }
+
 }

@@ -11,8 +11,7 @@ import net.minecraft.util.Identifier;
 import org.btwr.tough_environment.ToughEnvironmentMod;
 import org.btwr.tough_environment.block.ModBlocks;
 
-public class ModItemGroup
-{
+public class ModItemGroup {
 
     public static void register() {
         Registry.register(Registries.ITEM_GROUP, Identifier.of(ToughEnvironmentMod.MOD_ID, "group_te"),
@@ -135,4 +134,5 @@ public class ModItemGroup
             entries.add(ModItems.NETHERITE_NUGGET);
         });
     }
+
 }

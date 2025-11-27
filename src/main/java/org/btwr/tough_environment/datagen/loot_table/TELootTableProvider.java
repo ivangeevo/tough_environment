@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 
-public class TELootTableProvider extends BaseLootTableProvider
-{
+public class TELootTableProvider extends BaseLootTableProvider {
     
     public TELootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);

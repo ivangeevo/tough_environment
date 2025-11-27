@@ -31,8 +31,8 @@ import org.btwr.tough_environment.util.BlockMortarMapper;
 
 import java.util.stream.IntStream;
 
-public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggable, LandingBlock
-{
+public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggable, LandingBlock {
+
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final EnumProperty<BlockHalf> HALF = Properties.BLOCK_HALF;
     public static final EnumProperty<StairShape> SHAPE = Properties.STAIR_SHAPE;
@@ -308,4 +308,5 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return super.canPathfindThrough(state, type);
     }
+
 }

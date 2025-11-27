@@ -61,4 +61,5 @@ public class Strata3StoneModel extends ForwardingBakedModel {
             }
         }
     }
+
 }

@@ -28,21 +28,12 @@ public class TELangGenerator extends FabricLanguageProvider {
         this.addConfigMenuDefaults(tb);
         this.addConfigMenuTitle("Tough Environment Configuration Menu", tb);
         this.addConfigCategory("general", "General", tb);
-        this.addConfig("hcPlayerMiningSpeed", "Hardcore Mining Speed", tb);
-        this.addConfig("stratificationToughness", "Stratification Toughness", tb);
-        this.addConfig("strataBasedBlockBreakingRestrictions", "Strata Breaking Restrictions", tb);
-        this.addConfigTooltip(
-                "hcPlayerMiningSpeed",
-                "Makes most blocks take longer to break overall (with or without tool)", tb
-        );
-        this.addConfigTooltip(
-                "stratificationToughness",
-                "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb
-        );
-        this.addConfigTooltip(
-                "strataBasedBlockBreakingRestrictions",
-                "Highly discourages breaking of stone type 'strata' blocks which you don't have the correct tool for.\nThis also includes other stone-like blocks like Obsidian, etc..", tb
-        );
+        //this.addConfig("hcPlayerMiningSpeed", "Hardcore Mining Speed", tb);
+        //this.addConfig("stratificationToughness", "Stratification Toughness", tb);
+        //this.addConfig("strataBasedBlockBreakingRestrictions", "Strata Breaking Restrictions", tb);
+        //this.addConfigTooltip("hcPlayerMiningSpeed", "Makes most blocks take longer to break overall (with or without tool)", tb);
+        //this.addConfigTooltip("stratificationToughness", "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb);
+        //this.addConfigTooltip("strataBasedBlockBreakingRestrictions", "Highly discourages breaking of stone type 'strata' blocks which you don't have the correct tool for.\nThis also includes other stone-like blocks like Obsidian, etc..", tb);
     }
 
     private void addConfigMenuDefaults(TranslationBuilder tb) {
@@ -165,7 +156,7 @@ public class TELangGenerator extends FabricLanguageProvider {
     }
 
     private void addConfigMenuTitle(String translation, TranslationBuilder tb) {
-        tb.add(configBasePath() + ".config", translation);
+        tb.add("title." + ToughEnvironmentMod.MOD_ID + ".config", translation);
     }
 
     private void addConfigCategory(String path, String translation, TranslationBuilder tb) {
@@ -187,4 +178,5 @@ public class TELangGenerator extends FabricLanguageProvider {
     private String configBasePath() {
         return "config." + ToughEnvironmentMod.MOD_ID + ".";
     }
+
 }

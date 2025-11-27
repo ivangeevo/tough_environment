@@ -72,4 +72,5 @@ public class TEModClientConfig extends TEModConfig {
         // Only SP has isRemote == false
         return !client.getServer().isRemote();
     }
+
 }

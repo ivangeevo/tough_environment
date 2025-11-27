@@ -20,6 +20,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.dynamic.Codecs;
 
 public record TieredToolComponent(float tierMultiplier, List<TieredToolComponent.Rule> rules, float defaultMiningSpeed, int damagePerBlock) {
+
 	public static final Codec<TieredToolComponent> CODEC = RecordCodecBuilder.create(
 			instance -> instance.group(
 					Codec.FLOAT.fieldOf("tier_multiplier").forGetter(TieredToolComponent::tierMultiplier),
@@ -162,4 +163,5 @@ public record TieredToolComponent(float tierMultiplier, List<TieredToolComponent
 			return new StatusEffectInstance(this.effect);
 		}
 	}
+
 }

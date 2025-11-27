@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.btwr.tough_environment.util.PlayerEffectsManager;
 
 @Mixin(ServerPlayerEntity.class)
-public abstract class ServerPlayerEntityMixin
-{
+public abstract class ServerPlayerEntityMixin {
+
     @Unique private PlayerEntity playerEntity = (PlayerEntity)(Object)this;
     @Unique private PlayerEffectsManager effectsManager = PlayerEffectsManager.getInstance();
 
@@ -19,4 +19,5 @@ public abstract class ServerPlayerEntityMixin
     public void applyMovementEffectsOnTick(CallbackInfo info) {
        effectsManager.onServerTick(playerEntity);
     }
+
 }

@@ -116,4 +116,5 @@ public class ModBlocks {
     public static void register() {
         ToughEnvironmentMod.LOGGER.debug("Registering ModBlocks for " + ToughEnvironmentMod.MOD_ID);
     }
+
 }

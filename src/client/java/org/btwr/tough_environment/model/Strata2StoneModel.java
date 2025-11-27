@@ -55,4 +55,5 @@ public class Strata2StoneModel extends ForwardingBakedModel {
             super.emitBlockQuads(world, state, pos, randomSupplier, context);
         }
     }
+
 }

@@ -21,8 +21,8 @@ import org.btwr.tough_environment.util.BlockMortarMapper;
 
 import java.util.Objects;
 
-public class MortarReceiverBlock extends FallingBlock
-{
+public class MortarReceiverBlock extends FallingBlock {
+
     private static final int TACKY_FALLING_BLOCK_TICK_RATE = 40;
 
     public static final MapCodec<MortarReceiverBlock> CODEC = MortarReceiverBlock.createCodec(MortarReceiverBlock::new);
@@ -109,4 +109,5 @@ public class MortarReceiverBlock extends FallingBlock
         }
         return state; // fallback if no replacement exists
     }
+
 }
