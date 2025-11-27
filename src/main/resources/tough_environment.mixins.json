@@ -1,16 +1,15 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.tough_environment.mixin",
+  "package": "org.btwr.tough_environment.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ItemEntityMixin",
-    "ItemMixin",
     "PlayerEntityMixin",
+    "ServerPlayerEntityMixin",
     "ToolMaterialsMixin",
-    "block.AbstractBlockMixin",
-    "block.BlockMixin",
     "block.FarmlandBlockMixin",
+    "block.PlayerEntityMixin",
     "block.SpreadableBlockMixin"
   ],
   "injectors": {

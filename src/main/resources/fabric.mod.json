@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "Tough Environment",
   "description": "\"One does not simply walk into the mountains and mine iron ore with a stone pickaxe.\" -Avernite",
-  "authors": [],
+  "authors": ["ivangeevo"],
   "contact": {
     "repo": "https://github.com/ivangeevo/tough_environment"
   },
@@ -12,18 +12,10 @@
   "icon": "assets/tough_environment/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "org.tough_environment.ToughEnvironmentClient"
-    ],
-    "main": [
-      "org.tough_environment.ToughEnvironmentMod"
-    ],
-    "fabric-datagen": [
-      "org.tough_environment.TEDataGenerator"
-    ],
-    "modmenu": [
-      "org.tough_environment.config.TEModMenu"
-    ]
+    "client": ["org.btwr.tough_environment.ToughEnvironmentClient"],
+    "main": ["org.btwr.tough_environment.ToughEnvironmentMod"],
+    "fabric-datagen": ["org.btwr.tough_environment.TEDataGenerator"],
+    "modmenu": ["org.btwr.tough_environment.config.TEModMenu"]
   },
   "mixins": [
     "tough_environment.mixins.json"
@@ -35,7 +27,5 @@
     "btwr_sl": ">=${btwr_sl_version}"
 
   },
-
   "accessWidener" : "tough_environment.accesswidener"
-
 }
