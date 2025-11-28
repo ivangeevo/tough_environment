@@ -23,12 +23,12 @@ public class BlockBreakSpeedManager implements StrataBreakHelper {
         float newSpeed;
         newSpeed = currentSpeed;
 
-        if (isProblemToBreak(state, stack) && TEModConfig.Settings.stratificationToughness.get()) {
+        if (isProblemToBreak(state, stack) && TEModConfig.stratificationToughness.get()) {
             newSpeed /= 80F;
         }
 
         // make it practically impossible(very long)
-        if (isUnfeasibleToBreak(state, stack) && TEModConfig.Settings.strataBasedBlockBreakingRestrictions.get()) {
+        if (isUnfeasibleToBreak(state, stack) && TEModConfig.strataBasedBlockBreakingRestrictions.get()) {
             newSpeed /= 8000F;
         }
 
@@ -62,7 +62,7 @@ public class BlockBreakSpeedManager implements StrataBreakHelper {
 
             ItemStack stack = player.getMainHandStack();
 
-            if (TEModConfig.Settings.hcPlayerMiningSpeed.get()) {
+            if (TEModConfig.hcPlayerMiningSpeed.get()) {
                 severity = 1;
                 if (stack.getItem() instanceof MiningToolItem) {
                     severity = 0;

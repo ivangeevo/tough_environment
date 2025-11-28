@@ -3,8 +3,8 @@ package org.btwr.tough_environment.util;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
+import org.btwr.tough_environment.config.TEModConfig;
 
-import static org.btwr.tough_environment.config.TEModConfig.Settings.*;
 
 public class PlayerEffectsManager {
 
@@ -46,7 +46,7 @@ public class PlayerEffectsManager {
             }
 
             // Revert if player shouldn't be affected at this time
-            if (!hcPlayerMiningSpeed.get()) {
+            if (!TEModConfig.hcPlayerMiningSpeed.get()) {
                 blockBreakSpeedAttribute.removeModifier(currentSpeedState.getModifier());
             } else {
                 if (!blockBreakSpeedAttribute.hasModifier(currentSpeedState.getModifier().id()))

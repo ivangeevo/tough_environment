@@ -32,6 +32,10 @@ repositories {
     maven { url "https://maven.ladysnake.org/releases" }
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/tough_environment.accesswidener")
+}
+
 dependencies {
     // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -54,7 +58,8 @@ dependencies {
     }
 
     // Supermartijn642's Config Lib
-    modApi "maven.modrinth:supermartijn642s-config-lib:${project.supermartijn642s_config_lib_version}"
+    //modApi "maven.modrinth:supermartijn642s-config-lib:${project.configlib_version}"
+    modImplementation "maven.modrinth:supermartijn642s-config-lib:${project.configlib_version}"
 
     // Better With Time
     modCompileOnly "maven.modrinth:better-with-time:${project.bwt_version}"
@@ -69,6 +74,7 @@ processResources {
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
     inputs.property "btwr_sl_version", project.btwr_sl_version
+    inputs.property "configlib_version", project.configlib_version
 
     filteringCharset "UTF-8"
 
@@ -76,8 +82,8 @@ processResources {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version,
-                "btwr_sl_version": project.btwr_sl_version
-
+                "btwr_sl_version": project.btwr_sl_version,
+                "configlib_version": project.configlib_version
     }
 }
 
@@ -145,9 +151,5 @@ publishing {
         // Notice: This block does NOT have the same function as the block in the top level.
         // The repositories here will be used for publishing your artifact, not for
         // retrieving dependencies.
-    }
-
-    loom {
-        accessWidenerPath = file("src/main/resources/tough_environment.accesswidener")
     }
 }
