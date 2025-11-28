@@ -19,10 +19,13 @@ public class TEModEvents {
     public static void register() {
         // Server Events
         ServerChunkGenerateEvents.createChunkReplaceEventGlobally(Blocks.CLAY, ModBlocks.CLAY_ORE);
+
         // Player Block Events
         PlayerBlockBreakEvents.AFTER.register(TEModEvents::afterBlockBreak);
+
         // Item Component Events
         //DefaultItemComponentEvents.MODIFY.register(ModEvents::modifyToolComponents);
+
         // Loot Table Events
         //LootTableEvents.REPLACE...
     }

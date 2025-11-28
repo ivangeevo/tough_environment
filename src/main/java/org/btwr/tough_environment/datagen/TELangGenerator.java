@@ -31,7 +31,7 @@ public class TELangGenerator extends FabricLanguageProvider {
         //this.addConfig("hcPlayerMiningSpeed", "Hardcore Mining Speed", tb);
         //this.addConfig("stratificationToughness", "Stratification Toughness", tb);
         //this.addConfig("strataBasedBlockBreakingRestrictions", "Strata Breaking Restrictions", tb);
-        //this.addConfigTooltip("hcPlayerMiningSpeed", "Makes most blocks take longer to break overall (with or without tool)", tb);
+        //this.addConfigTooltip("hcPlayerMiningSpeed", "Makes most blocks take longer to break overall", tb);
         //this.addConfigTooltip("stratificationToughness", "Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes", tb);
         //this.addConfigTooltip("strataBasedBlockBreakingRestrictions", "Highly discourages breaking of stone type 'strata' blocks which you don't have the correct tool for.\nThis also includes other stone-like blocks like Obsidian, etc..", tb);
     }

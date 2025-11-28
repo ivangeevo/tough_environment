@@ -3,6 +3,7 @@ package org.btwr.tough_environment.util;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
+import org.btwr.tough_environment.ToughEnvironmentMod;
 import org.btwr.tough_environment.config.TEModConfig;
 
 

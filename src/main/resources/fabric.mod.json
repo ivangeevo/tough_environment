@@ -24,9 +24,7 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "btwr_sl": ">=${btwr_sl_version}",
-    "supermartijn642sconfiglib": ">=${configlib_version}"
+    "btwr_sl": ">=${btwr_sl_version}"
   },
-
   "accessWidener" : "tough_environment.accesswidener"
 }

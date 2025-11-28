@@ -46,8 +46,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // BTWR: Shared Library
-    modImplementation("maven.modrinth:btwr-shared-library:${project.btwr_sl_version}")
-    //modImplementation files("libs/btwr-shared-library-${project.btwr_sl_version}.jar")
+    //modImplementation("maven.modrinth:btwr-shared-library:${project.btwr_sl_version}")
+    modImplementation files("libs/btwr-shared-library-${project.btwr_sl_version}.jar")
 
     // Mod Menu
     modApi "com.terraformersmc:modmenu:${project.mod_menu_version}"
@@ -56,10 +56,6 @@ dependencies {
     modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-
-    // Supermartijn642's Config Lib
-    //modApi "maven.modrinth:supermartijn642s-config-lib:${project.configlib_version}"
-    modImplementation "maven.modrinth:supermartijn642s-config-lib:${project.configlib_version}"
 
     // Better With Time
     modCompileOnly "maven.modrinth:better-with-time:${project.bwt_version}"
@@ -74,7 +70,6 @@ processResources {
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
     inputs.property "btwr_sl_version", project.btwr_sl_version
-    inputs.property "configlib_version", project.configlib_version
 
     filteringCharset "UTF-8"
 
@@ -82,8 +77,7 @@ processResources {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version,
-                "btwr_sl_version": project.btwr_sl_version,
-                "configlib_version": project.configlib_version
+                "btwr_sl_version": project.btwr_sl_version
     }
 }
 
