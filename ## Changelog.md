@@ -1,8 +1,7 @@
-## v???(dev)
-
 ## 0.13.1
 + Changed all configuration options in the mod to use the custom config library added by BTWR: Shared Library. This fixes the bug from last version that crashed the game without any warnings of the missing library that created the configurations
 + Removed Supermartijn642's config lib as the one creating configuration setting as it requires itself as a dependency to work properly
++ Updated the mod to BTWR: Shared Library 0.6.5
 
 # 0.13
 + Added default recipes for items that would be crafted with nuggets instead of replacing the vanilla recipes.
