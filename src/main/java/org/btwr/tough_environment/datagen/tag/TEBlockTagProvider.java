@@ -156,12 +156,10 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL);
 
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL)
-                .forceAddTag(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL);
+                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
 
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL)
-                .forceAddTag(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL);
-
-
+                .forceAddTag(BlockTags.NEEDS_STONE_TOOL);
 
         this.getOrCreateTagBuilder(ModTags.Blocks.STONE_ORES)
                 .add(Blocks.COAL_ORE)

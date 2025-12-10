@@ -12,10 +12,12 @@ import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.MatchToolLootCondition;
 import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.ExplosionDecayLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.loot.provider.number.LootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.RegistryKeys;
@@ -25,6 +27,7 @@ import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.tough_environment.block.ModBlocks;
 import org.btwr.tough_environment.datagen.loot_table.util.LootConditions;
 import org.btwr.tough_environment.item.ModItems;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -233,160 +236,38 @@ public class VanillaOverrideLootTableProvider extends BaseLootTableProvider {
                 )
         );
 
-        addDrop(Blocks.COAL_ORE, dropsForOre(Items.COAL_ORE, Items.COAL, ModItems.SMALL_STONE, ModItems.DUST_COAL, WITH_PICKAXE_FULLY_HARVESTS));
-        addDrop(Blocks.DEEPSLATE_COAL_ORE, dropsForOre(Items.DEEPSLATE_COAL_ORE, Items.COAL, ModItems.SMALL_STONE_2, ModItems.DUST_COAL, WITH_ADVANCED_PICKAXES));
-        addDrop(Blocks.COPPER_ORE, dropsForOre(Items.COPPER_ORE, Items.RAW_COPPER, ModItems.SMALL_STONE, ModItems.DUST_COPPER, WITH_PICKAXE_FULLY_HARVESTS));
-        addDrop(Blocks.DEEPSLATE_COPPER_ORE, dropsForOre(Items.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER, ModItems.SMALL_STONE_2, ModItems.DUST_COPPER, WITH_ADVANCED_PICKAXES));
-        addDrop(Blocks.IRON_ORE, dropsForOre(Items.IRON_ORE, Items.RAW_IRON, ModItems.SMALL_STONE, ModItems.DUST_IRON, WITH_PICKAXE_FULLY_HARVESTS));
-        addDrop(Blocks.DEEPSLATE_IRON_ORE, dropsForOre(Items.DEEPSLATE_IRON_ORE, Items.RAW_IRON, ModItems.SMALL_STONE_2, ModItems.DUST_IRON, WITH_ADVANCED_PICKAXES));
-        addDrop(Blocks.GOLD_ORE, dropsForOre(Items.GOLD_ORE, Items.RAW_GOLD, ModItems.SMALL_STONE, ModItems.DUST_GOLD, WITH_PICKAXE_FULLY_HARVESTS));
-        addDrop(Blocks.DEEPSLATE_GOLD_ORE, dropsForOre(Items.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD, ModItems.SMALL_STONE_2, ModItems.DUST_GOLD, WITH_ADVANCED_PICKAXES));
-        addDrop(Blocks.LAPIS_ORE, lapisOreDrops(Items.LAPIS_ORE, Items.LAPIS_LAZULI, ModItems.SMALL_STONE, WITH_PICKAXE_FULLY_HARVESTS));
-        addDrop(Blocks.DEEPSLATE_LAPIS_ORE, lapisOreDrops(Items.DEEPSLATE_LAPIS_ORE, Items.LAPIS_LAZULI, ModItems.SMALL_STONE_2, WITH_ADVANCED_PICKAXES));
-        addDrop(Blocks.REDSTONE_ORE, redstoneOreDrops(Items.REDSTONE_ORE, Items.REDSTONE, ModItems.SMALL_STONE, WITH_PICKAXE_FULLY_HARVESTS));
-        addDrop(Blocks.DEEPSLATE_REDSTONE_ORE, redstoneOreDrops(Items.DEEPSLATE_REDSTONE_ORE, Items.REDSTONE, ModItems.SMALL_STONE_2, WITH_ADVANCED_PICKAXES));
-        addDrop(Blocks.DIAMOND_ORE, dropsForGem(Items.DIAMOND_ORE, Items.DIAMOND, ModItems.SMALL_STONE, WITH_PICKAXE_FULLY_HARVESTS));
-        addDrop(Blocks.DEEPSLATE_DIAMOND_ORE, dropsForGem(Items.DEEPSLATE_DIAMOND_ORE, Items.DIAMOND, ModItems.SMALL_STONE_2, WITH_ADVANCED_PICKAXES));
-        addDrop(Blocks.EMERALD_ORE, dropsForGem(Items.EMERALD_ORE, Items.EMERALD, ModItems.SMALL_STONE, WITH_PICKAXE_FULLY_HARVESTS));
-        addDrop(Blocks.DEEPSLATE_EMERALD_ORE, dropsForGem(Items.DEEPSLATE_EMERALD_ORE, Items.EMERALD, ModItems.SMALL_STONE_2, WITH_ADVANCED_PICKAXES));
-    }
-
-    public LootTable.Builder lapisOreDrops(Item withSilkTouch, Item oreChunkDrop, Item smallStoneDrop, LootCondition.Builder pileDropToolCondition) {
-        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-
-        // Define the ore loot pool entries with conditions
-        AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
-                this.silkTouchDropEntry(withSilkTouch),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 9.0F)))
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.PICKAXES))),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 9.0F)))
-                        .conditionally(WITH_ADVANCED_CHISELS),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 9.0F)))
-                        .conditionally(WITH_MODERN_CHISELS)
-        );
-
-        LootPool.Builder oreDropsPool = LootPool.builder().with(alternativeEntry);
-
-        /** Drop a 6 small "stone" items when a non-silk touch mining tool that matches the tool condition breaks the ore **/
-        LootPool.Builder pilePool = LootPool.builder()
-                .with(ItemEntry.builder(smallStoneDrop)
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(6.0f)))
-                        .conditionally(pileDropToolCondition)
-                ).conditionally(WITH_SILK_TOUCH.invert());
-
-        return LootTable.builder().pool(oreDropsPool).pool(pilePool);
-    }
-
-    public LootTable.Builder redstoneOreDrops(Item withSilkTouch, Item oreChunkDrop, Item smallStoneDrop, LootCondition.Builder pileDropToolCondition) {
-        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-
-        // Define the ore loot pool entries with conditions
-        AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
-                this.silkTouchDropEntry(withSilkTouch),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 5.0F)))
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.PICKAXES))),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 5.0F)))
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.ADVANCED_CHISELS))),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 5.0F)))
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.MODERN_CHISELS)))
-        );
-
-        LootPool.Builder oreDropsPool = LootPool.builder().with(alternativeEntry);
-
-        /** Drop a 6 small "stone" items when a non-silk touch mining tool that matches the tool condition breaks the ore **/
-        LootPool.Builder pilePool = LootPool.builder()
-                .with(ItemEntry.builder(smallStoneDrop)
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(6.0f)))
-                        .conditionally(pileDropToolCondition)
-                ).conditionally(WITH_SILK_TOUCH.invert());
-
-        return LootTable.builder().pool(oreDropsPool).pool(pilePool);
-    }
-
-    // Handles only basic drops for gem like ores (Diamond/emerald)
-    public LootTable.Builder dropsForGem(Item withSilkTouch, Item oreChunkDrop, Item smallStoneDrop, LootCondition.Builder pileDropToolCondition) {
-        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-
-        // Define the ore loot pool entries with conditions
-        AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
-                this.silkTouchDropEntry(withSilkTouch),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.PICKAXES))),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.ADVANCED_CHISELS))),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.MODERN_CHISELS)))
-        );
-
-        LootPool.Builder oreDropsPool = LootPool.builder().with(alternativeEntry);
-
-        /** Drop a 6 small "stone" items when a non-silk touch mining tool that matches the tool condition breaks the ore **/
-        LootPool.Builder pilePool = LootPool.builder()
-                .with(ItemEntry.builder(smallStoneDrop)
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(6.0f)))
-                        .conditionally(pileDropToolCondition)
-                ).conditionally(WITH_SILK_TOUCH.invert());
-
-        return LootTable.builder().pool(oreDropsPool).pool(pilePool);
-
-    }
-
-    // Handles only basic drops for ore.
-    public LootTable.Builder dropsForOre(Item withSilkTouch, Item oreChunkDrop, Item smallStoneDrop, Item pileDrop, LootCondition.Builder pileDropToolCondition) {
-        RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-
-        // Define the ore loot pool entries with conditions
-        AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
-                this.silkTouchDropEntry(withSilkTouch),
-                this.simpleDropEntry(oreChunkDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(ItemTags.PICKAXES))),
-                this.simpleDropEntry(pileDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.ADVANCED_CHISELS))),
-                this.simpleDropEntry(pileDrop)
-                        .apply(ApplyBonusLootFunction.oreDrops(impl.getOrThrow(Enchantments.FORTUNE)))
-                        .apply(ExplosionDecayLootFunction.builder())
-                        .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(BTWRConventionalTags.Items.MODERN_CHISELS)))
-        );
-
-        LootPool.Builder oreDropsPool = LootPool.builder().with(alternativeEntry);
-
-        /** Drop a 6 small "stone" items when a non-silk touch mining tool that matches the tool condition breaks the ore **/
-        LootPool.Builder pilePool = LootPool.builder()
-                .with(ItemEntry.builder(smallStoneDrop)
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(6.0f)))
-                        .conditionally(pileDropToolCondition)
-                ).conditionally(WITH_SILK_TOUCH.invert());
-
-        return LootTable.builder().pool(oreDropsPool).pool(pilePool);
-
+        addDrop(Blocks.COAL_ORE,
+                dropsForOre(Items.COAL_ORE, Items.COAL, ModItems.SMALL_STONE, ModItems.DUST_COAL, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(Blocks.DEEPSLATE_COAL_ORE,
+                dropsForOre(Items.DEEPSLATE_COAL_ORE, Items.COAL, ModItems.SMALL_STONE_2, ModItems.DUST_COAL, WITH_ADVANCED_PICKAXES));
+        addDrop(Blocks.COPPER_ORE,
+                dropsForOre(Items.COPPER_ORE, Items.RAW_COPPER, ModItems.SMALL_STONE, ModItems.DUST_COPPER, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(Blocks.DEEPSLATE_COPPER_ORE,
+                dropsForOre(Items.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER, ModItems.SMALL_STONE_2, ModItems.DUST_COPPER, WITH_ADVANCED_PICKAXES));
+        addDrop(Blocks.IRON_ORE,
+                dropsForOre(Items.IRON_ORE, Items.RAW_IRON, ModItems.SMALL_STONE, ModItems.DUST_IRON, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(Blocks.DEEPSLATE_IRON_ORE,
+                dropsForOre(Items.DEEPSLATE_IRON_ORE, Items.RAW_IRON, ModItems.SMALL_STONE_2, ModItems.DUST_IRON, WITH_ADVANCED_PICKAXES));
+        addDrop(Blocks.GOLD_ORE,
+                dropsForOre(Items.GOLD_ORE, Items.RAW_GOLD, ModItems.SMALL_STONE, ModItems.DUST_GOLD, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(Blocks.DEEPSLATE_GOLD_ORE,
+                dropsForOre(Items.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD, ModItems.SMALL_STONE_2, ModItems.DUST_GOLD, WITH_ADVANCED_PICKAXES));
+        addDrop(Blocks.LAPIS_ORE,
+                lapisOreDrops(Items.LAPIS_ORE, Items.LAPIS_LAZULI, ModItems.SMALL_STONE, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(Blocks.DEEPSLATE_LAPIS_ORE,
+                lapisOreDrops(Items.DEEPSLATE_LAPIS_ORE, Items.LAPIS_LAZULI, ModItems.SMALL_STONE_2, WITH_ADVANCED_PICKAXES));
+        addDrop(Blocks.REDSTONE_ORE,
+                redstoneOreDrops(Items.REDSTONE_ORE, Items.REDSTONE, ModItems.SMALL_STONE, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(Blocks.DEEPSLATE_REDSTONE_ORE,
+                redstoneOreDrops(Items.DEEPSLATE_REDSTONE_ORE, Items.REDSTONE, ModItems.SMALL_STONE_2, WITH_ADVANCED_PICKAXES));
+        addDrop(Blocks.DIAMOND_ORE,
+                dropsForGem(Items.DIAMOND_ORE, Items.DIAMOND, ModItems.SMALL_STONE, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(Blocks.DEEPSLATE_DIAMOND_ORE,
+                dropsForGem(Items.DEEPSLATE_DIAMOND_ORE, Items.DIAMOND, ModItems.SMALL_STONE_2, WITH_ADVANCED_PICKAXES));
+        addDrop(Blocks.EMERALD_ORE,
+                dropsForGem(Items.EMERALD_ORE, Items.EMERALD, ModItems.SMALL_STONE, WITH_PICKAXE_FULLY_HARVESTS));
+        addDrop(Blocks.DEEPSLATE_EMERALD_ORE,
+                dropsForGem(Items.DEEPSLATE_EMERALD_ORE, Items.EMERALD, ModItems.SMALL_STONE_2, WITH_ADVANCED_PICKAXES));
     }
 
 }
