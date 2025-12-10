@@ -1,5 +1,5 @@
 ## v0.13.2
-+ Added missing recipes for cooking and blasting all loose variant blocks(stone, deepslate, diorite, etc.)
++ Added missing recipes for cooking and blasting all loose variant blocks (stone, deepslate, diorite, bricks, etc.)
 + Added a check for tools which are not suitable for a certain block to apply slowed breaking speed. This is configurable with the Stratification Toughness setting
 + Reworked all loot tables for ores to better match retail BTW CE
 + Fixed a bug with chisels not having applied hardcore breaking speed
