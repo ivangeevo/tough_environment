@@ -4,9 +4,9 @@
   "cookingtime": 200,
   "experience": 0.1,
   "ingredient": {
-    "item": "tough_environment:white_stone"
+    "item": "tough_environment:deepslate_bricks_loose"
   },
   "result": {
-    "id": "tough_environment:white_cobblestone"
+    "id": "minecraft:deepslate_bricks"
   }
 }
