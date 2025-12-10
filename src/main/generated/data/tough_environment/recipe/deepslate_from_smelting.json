@@ -1,12 +1,12 @@
 {
   "type": "minecraft:blasting",
-  "category": "misc",
+  "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
   "ingredient": {
-    "item": "tough_environment:nether_brick_unfired"
+    "item": "tough_environment:cobbled_deepslate_loose"
   },
   "result": {
-    "id": "minecraft:nether_brick"
+    "id": "minecraft:deepslate"
   }
 }

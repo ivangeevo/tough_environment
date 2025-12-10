@@ -20,376 +20,45 @@ public class TELootTableProvider extends BaseLootTableProvider {
     }
 
     @Override
+    public String getName() {
+        return "Tough Environment Loot Tables";
+    }
+
+    @Override
     public void generate() {
-        this.forVanilla();
         this.forMod();
     }
-
-    private void forVanilla() {
-        // Blocks that require a tool to looseBlock fully
-        addDrop(Blocks.DIRT, dropsForLooseAggregate(
-                ModBlocks.DIRT_LOOSE, ModBlocks.DIRT_LOOSE, LootConditions.WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6)
-        );
-
-        addDrop(Blocks.SAND, dropsForLooseAggregate(
-                Blocks.SAND, Blocks.SAND, LootConditions.WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_SAND, 6)
-        );
-
-        addDrop(Blocks.RED_SAND,
-                dropsForLooseAggregate(
-                        Blocks.RED_SAND,
-                        Blocks.RED_SAND,
-                        LootConditions.WITH_SHOVEL_FULLY_HARVESTS,
-                        ModItems.PILE_RED_SAND, 6
-                )
-        );
-
-        addDrop(Blocks.GRAVEL,
-                dropsForLooseAggregate(
-                        Blocks.GRAVEL,
-                        Blocks.GRAVEL,
-                        LootConditions.WITH_SHOVEL_FULLY_HARVESTS,
-                        ModItems.PILE_GRAVEL,
-                        6,
-                        List.of(new AdditionalDrop(Items.FLINT, 1, 0.1f))
-                )
-        );
-
-        addDrop(Blocks.GRASS_BLOCK,
-                dropsForLooseAggregate(
-                        Blocks.GRASS_BLOCK,
-                        ModBlocks.DIRT_LOOSE,
-                        LootConditions.WITH_SHOVEL_FULLY_HARVESTS,
-                        ModItems.PILE_DIRT,
-                        6,
-                        null
-                )
-        );
-
-        addDrop(Blocks.CLAY,
-                dropsForBreakingToLooseBlock(
-                        Blocks.CLAY,
-                        Blocks.CLAY,
-                        LootConditions.WITH_SHOVEL_FULLY_HARVESTS,
-                        Items.CLAY_BALL,
-                        4
-                )
-        );
-
-        addDrop(Blocks.STONE,
-                dropsForStoneLike(
-                        Blocks.STONE,
-                        ModBlocks.COBBLESTONE_LOOSE,
-                        ModItems.PILE_GRAVEL,
-                        ModItems.SMALL_STONE,
-                        ModItems.STONE_BRICK
-                )
-        );
-
-        addDrop(Blocks.DEEPSLATE,
-                dropsForStoneLike(
-                        Blocks.DEEPSLATE,
-                        ModBlocks.COBBLED_DEEPSLATE_LOOSE,
-                        ModItems.PILE_GRAVEL,
-                        ModItems.SMALL_STONE_2,
-                        ModItems.STONE_BRICK_2
-                )
-        );
-
-        addDrop(Blocks.ANDESITE,
-                dropsForAlternativeStoneLike(
-                        Blocks.ANDESITE,
-                        ModBlocks.ANDESITE_LOOSE,
-                        ModItems.PILE_GRAVEL,
-                        ModItems.SHARD_ANDESITE)
-        );
-
-        addDrop(Blocks.GRANITE,
-                dropsForAlternativeStoneLike(
-                        Blocks.GRANITE,
-                        ModBlocks.GRANITE_LOOSE,
-                        ModItems.PILE_GRAVEL,
-                        ModItems.SHARD_GRANITE)
-        );
-
-        addDrop(Blocks.DIORITE,
-                dropsForAlternativeStoneLike(
-                        Blocks.DIORITE,
-                        ModBlocks.DIORITE_LOOSE,
-                        ModItems.PILE_GRAVEL,
-                        ModItems.SHARD_DIORITE)
-        );
-
-        addDrop(Blocks.COBBLESTONE_SLAB,
-                dropsForSlab(
-                        Blocks.COBBLESTONE_SLAB,
-                        ModBlocks.SLAB_COBBLESTONE_LOOSE,
-                        ModItems.SMALL_STONE, 4
-                )
-        );
-
-        addDrop(Blocks.COBBLED_DEEPSLATE_SLAB,
-                dropsForSlab(
-                        Blocks.COBBLED_DEEPSLATE_SLAB,
-                        ModBlocks.SLAB_COBBLED_DEEPSLATE_LOOSE,
-                        ModItems.SMALL_STONE_2,
-                        4
-                )
-        );
-
-        addDrop(Blocks.ANDESITE_SLAB,
-                dropsForSlab(
-                        Blocks.ANDESITE_SLAB,
-                        ModBlocks.SLAB_ANDESITE_LOOSE,
-                        ModItems.SHARD_ANDESITE,
-                        4
-                )
-        );
-
-        addDrop(Blocks.GRANITE_SLAB,
-                dropsForSlab(
-                        Blocks.GRANITE_SLAB,
-                        ModBlocks.SLAB_GRANITE_LOOSE,
-                        ModItems.SHARD_GRANITE,
-                        4
-                )
-        );
-
-        addDrop(Blocks.DIORITE_SLAB,
-                dropsForSlab(
-                        Blocks.DIORITE_SLAB,
-                        ModBlocks.SLAB_DIORITE_LOOSE,
-                        ModItems.SHARD_DIORITE,
-                        4
-                )
-        );
-
-
-        /** Non-loose blocks that break into loose **/
-
-        // full blocks
-        addDrop(Blocks.BRICKS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.BRICKS,
-                        ModBlocks.BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        Items.BRICK,
-                        8
-                )
-        );
-
-        addDrop(Blocks.STONE_BRICKS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.STONE_BRICKS,
-                        ModBlocks.STONE_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.STONE_BRICK,
-                        8
-                )
-        );
-
-        addDrop(Blocks.DEEPSLATE_BRICKS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.DEEPSLATE_BRICKS,
-                        ModBlocks.DEEPSLATE_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.STONE_BRICK_2,
-                        8
-                )
-        );
-
-        addDrop(Blocks.NETHER_BRICKS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.NETHER_BRICKS,
-                        ModBlocks.NETHER_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        Items.NETHER_BRICK,
-                        8
-                )
-        );
-
-        // slabs
-        addDrop(Blocks.BRICK_SLAB,
-                dropsForBreakingToLooseBlock(
-                        Blocks.BRICK_SLAB,
-                        ModBlocks.SLAB_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        Items.BRICK,
-                        4
-                )
-        );
-
-        addDrop(Blocks.STONE_BRICK_SLAB,
-                dropsForBreakingToLooseBlock(
-                        Blocks.STONE_BRICK_SLAB,
-                        ModBlocks.SLAB_STONE_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.STONE_BRICK,
-                        4
-                )
-        );
-
-        addDrop(Blocks.DEEPSLATE_BRICK_SLAB,
-                dropsForBreakingToLooseBlock(
-                        Blocks.DEEPSLATE_BRICK_SLAB,
-                        ModBlocks.SLAB_DEEPSLATE_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.STONE_BRICK_2,
-                        4
-                )
-        );
-
-        addDrop(Blocks.NETHER_BRICK_SLAB,
-                dropsForBreakingToLooseBlock(
-                        Blocks.NETHER_BRICK_SLAB,
-                        ModBlocks.SLAB_NETHER_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        Items.NETHER_BRICK,
-                        4
-                )
-        );
-
-        // stairs
-        addDrop(Blocks.COBBLESTONE_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.COBBLESTONE_STAIRS,
-                        ModBlocks.COBBLESTONE_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.SMALL_STONE,
-                        3
-                )
-        );
-
-        addDrop(Blocks.COBBLED_DEEPSLATE_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.COBBLED_DEEPSLATE_STAIRS,
-                        ModBlocks.COBBLED_DEEPSLATE_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.SMALL_STONE_2,
-                        3
-                )
-        );
-
-        addDrop(Blocks.GRANITE_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.GRANITE_STAIRS,
-                        ModBlocks.GRANITE_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.SHARD_GRANITE,
-                        3
-                )
-        );
-
-        addDrop(Blocks.ANDESITE_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.ANDESITE_STAIRS,
-                        ModBlocks.ANDESITE_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.SHARD_ANDESITE,
-                        3)
-        );
-
-        addDrop(Blocks.DIORITE_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.DIORITE_STAIRS,
-                        ModBlocks.DIORITE_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.SHARD_DIORITE,
-                        3
-                )
-        );
-
-        addDrop(Blocks.BRICK_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.BRICK_STAIRS,
-                        ModBlocks.BRICKS_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        Items.BRICK,
-                        3
-                )
-        );
-
-        addDrop(Blocks.STONE_BRICK_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.STONE_BRICK_STAIRS,
-                        ModBlocks.STONE_BRICKS_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.STONE_BRICK,
-                        3
-                )
-        );
-
-        addDrop(Blocks.DEEPSLATE_BRICK_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.DEEPSLATE_BRICK_STAIRS,
-                        ModBlocks.DEEPSLATE_BRICKS_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.STONE_BRICK_2,
-                        3
-                )
-        );
-
-        addDrop(Blocks.NETHER_BRICK_STAIRS,
-                dropsForBreakingToLooseBlock(
-                        Blocks.NETHER_BRICK_STAIRS,
-                        ModBlocks.NETHER_BRICKS_LOOSE_STAIRS,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        Items.NETHER_BRICK,
-                        3
-                )
-        );
-
-        // TODO: Add stone blocks & others like granite, diorite, etc.
-
-    }
-
 
     private void forMod() {
 
         // Loose blocks
         addDrop(ModBlocks.DIRT_LOOSE,
-                dropsForLooseAggregate(
-                        ModBlocks.DIRT_LOOSE,
-                        ModBlocks.DIRT_LOOSE,
-                        LootConditions.WITH_SHOVEL_FULLY_HARVESTS,
-                        ModItems.PILE_DIRT,
-                        6
+                dropsForLooseAggregate(ModBlocks.DIRT_LOOSE, ModBlocks.DIRT_LOOSE,
+                        LootConditions.WITH_SHOVEL_FULLY_HARVESTS, ModItems.PILE_DIRT, 6
                 )
         );
 
         addDrop(ModBlocks.STONE_BRICKS_LOOSE,
-                dropsForSimpleLooseBlock(
-                        ModBlocks.STONE_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.STONE_BRICK,
-                        8
+                dropsForSimpleLooseBlock(ModBlocks.STONE_BRICKS_LOOSE,
+                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS, ModItems.STONE_BRICK, 8
                 )
         );
 
         addDrop(ModBlocks.DEEPSLATE_BRICKS_LOOSE,
-                dropsForSimpleLooseBlock(
-                        ModBlocks.DEEPSLATE_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        ModItems.STONE_BRICK_2,
-                        8
+                dropsForSimpleLooseBlock(ModBlocks.DEEPSLATE_BRICKS_LOOSE,
+                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS, ModItems.STONE_BRICK_2, 8
                 )
         );
 
         addDrop(ModBlocks.BRICKS_LOOSE,
-                dropsForSimpleLooseBlock(
-                        ModBlocks.BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        Items.BRICK,
-                        8
+                dropsForSimpleLooseBlock(ModBlocks.BRICKS_LOOSE,
+                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS, Items.BRICK, 8
                 )
         );
 
         addDrop(ModBlocks.NETHER_BRICKS_LOOSE,
-                dropsForSimpleLooseBlock(
-                        ModBlocks.NETHER_BRICKS_LOOSE,
-                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS,
-                        Items.NETHER_BRICK,
-                        8
+                dropsForSimpleLooseBlock(ModBlocks.NETHER_BRICKS_LOOSE,
+                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS, Items.NETHER_BRICK, 8
                 )
         );
 

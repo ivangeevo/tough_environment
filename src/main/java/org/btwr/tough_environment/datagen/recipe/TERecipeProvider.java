@@ -3,9 +3,11 @@ package org.btwr.tough_environment.datagen.recipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import org.btwr.shared_library.recipe.ExtendedShapelessRecipe;
@@ -413,22 +415,45 @@ public class TERecipeProvider extends TEBaseRecipeProvider {
                 .offerTo(exporter, IdUtils.ofTE("clay"));
     }
 
-
     private void addCookingRecipes(RecipeExporter exporter) {
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(Blocks.END_STONE), RecipeCategory.BUILDING_BLOCKS,
-                ModBlocks.WHITE_COBBLESTONE, 0.10f, 200).criterion("has_end_stone", conditionsFromItem(Blocks.END_STONE)).offerTo(exporter);
+        this.newSmeltRecipeFor(ModBlocks.WHITE_COBBLESTONE.asItem(),  ModBlocks.WHITE_STONE.asItem(), RecipeCategory.BUILDING_BLOCKS, exporter);
 
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(Blocks.END_STONE), RecipeCategory.BUILDING_BLOCKS,
-                ModBlocks.WHITE_COBBLESTONE, 0.15f, 100).criterion("has_end_stone", conditionsFromItem(Blocks.END_STONE)).offerTo(exporter, IdUtils.ofTE("white_stone_from_blasting"));
+        this.newBlastRecipeFor(ModBlocks.WHITE_COBBLESTONE.asItem(),  Items.END_STONE, RecipeCategory.BUILDING_BLOCKS, exporter);
 
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(ModBlocks.WHITE_COBBLESTONE), RecipeCategory.BUILDING_BLOCKS,
-                ModBlocks.WHITE_STONE, 0.15f, 100).criterion("has_white_cobblestone", conditionsFromItem(ModBlocks.WHITE_COBBLESTONE)).offerTo(exporter);
+        this.smeltAndBlastRecipeFor(Items.STONE, ModBlocks.COBBLESTONE_LOOSE.asItem(), RecipeCategory.BUILDING_BLOCKS, exporter);
+        this.smeltAndBlastRecipeFor(Items.DEEPSLATE, ModBlocks.COBBLED_DEEPSLATE_LOOSE.asItem(), RecipeCategory.BUILDING_BLOCKS, exporter);
+        this.smeltAndBlastRecipeFor(Items.ANDESITE, ModBlocks.ANDESITE_LOOSE.asItem(), RecipeCategory.BUILDING_BLOCKS, exporter);
+        this.smeltAndBlastRecipeFor(Items.GRANITE, ModBlocks.GRANITE_LOOSE.asItem(), RecipeCategory.BUILDING_BLOCKS, exporter);
+        this.smeltAndBlastRecipeFor(Items.DIORITE, ModBlocks.DIORITE_LOOSE.asItem(), RecipeCategory.BUILDING_BLOCKS, exporter);
+        this.smeltAndBlastRecipeFor(Items.NETHER_BRICK, ModItems.NETHER_BRICK_UNFIRED, RecipeCategory.BUILDING_BLOCKS, exporter);
+    }
 
-        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModItems.NETHER_BRICK_UNFIRED), RecipeCategory.MISC,
-                Items.NETHER_BRICK, 0.10f, 200).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, IdUtils.ofTE("nether_brick_from_smelting"));
+    private void smeltingAndSmokingRecipe(Item output, Item input, RecipeCategory category, RecipeExporter exporter) {
+        this.newSmeltRecipeFor(output, input, category, exporter);
+        this.createSmokingRecipe(output, input, category, exporter);
+    }
 
-        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(ModItems.NETHER_BRICK_UNFIRED), RecipeCategory.MISC,
-                Items.NETHER_BRICK, 0.15f, 100).criterion("has_nether_brick_unfired", conditionsFromItem(ModItems.NETHER_BRICK_UNFIRED)).offerTo(exporter, IdUtils.ofTE("nether_brick_from_blasting"));
+    private void smeltAndBlastRecipeFor(Item output, Item input, RecipeCategory category, RecipeExporter exporter) {
+        this.newSmeltRecipeFor(output, input, category, exporter);
+        this.newBlastRecipeFor(output, input, category, exporter);
+    }
+
+    private void newSmeltRecipeFor(Item output, Item input, RecipeCategory category, RecipeExporter exporter) {
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(input), category, output, 0.10f, 200)
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, IdUtils.ofTE(Registries.ITEM.getId(output).getPath() + "_from_smelting"));
+    }
+
+    private void createSmokingRecipe(Item output, Item input, RecipeCategory category, RecipeExporter exporter) {
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(input), category, output, 0.10f, 100)
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, IdUtils.ofTE(Registries.ITEM.getId(output).getPath() + "_from_smoking"));
+    }
+
+    private void newBlastRecipeFor(Item output, Item input, RecipeCategory category, RecipeExporter exporter) {
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(input), category, output, 0.15f, 100)
+                .criterion(hasItem(input), conditionsFromItem(input))
+                .offerTo(exporter, IdUtils.ofTE(Registries.ITEM.getId(output).getPath() + "_from_blasting"));
     }
 
 }

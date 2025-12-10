@@ -7,9 +7,9 @@ import net.minecraft.registry.RegistryWrapper;
 import java.util.concurrent.CompletableFuture;
 
 
-public class VanillaRecipeOverrideProvider extends TEBaseRecipeProvider {
+public class VanillaOverrideRecipeProvider extends TEBaseRecipeProvider {
 
-    public VanillaRecipeOverrideProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public VanillaOverrideRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -24,6 +24,8 @@ public class VanillaRecipeOverrideProvider extends TEBaseRecipeProvider {
         disableVanilla(exporter, "bricks");
         disableVanilla(exporter, "nether_brick");
         disableVanilla(exporter, "nether_bricks");
+
+
     }
 
 }

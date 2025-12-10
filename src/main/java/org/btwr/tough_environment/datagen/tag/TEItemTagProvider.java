@@ -2,6 +2,7 @@ package org.btwr.tough_environment.datagen.tag;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.ItemTags;
@@ -26,7 +27,6 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider {
         this.addToVanillaTags();
     }
 
-
     private void addToConventionalTags() {
         getOrCreateTagBuilder(BTWRConventionalTags.Items.CRAFTING_WITH_TOOLS_ITEMS)
                 .addTag(BTWRConventionalTags.Items.MODERN_CHISELS)
@@ -40,6 +40,11 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
                 .add(ModItems.CHISEL_WOOD)
                 .add(ModItems.CHISEL_STONE);
+
+        getOrCreateTagBuilder(BTWRConventionalTags.Items.PRIMITIVE_TOOLS)
+                .addTag(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)
+                .add(ModItems.CHISEL_IRON);
+        ;
 
         getOrCreateTagBuilder(BTWRConventionalTags.Items.MODERN_CHISELS)
                 .add(ModItems.CHISEL_IRON);
@@ -101,6 +106,9 @@ public class TEItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .forceAddTag(BTWRConventionalTags.Items.DIAMOND_TOOLS)
                 .add(ModItems.CHISEL_IRON)
                 .add(ModItems.CHISEL_DIAMOND);
+
+        getOrCreateTagBuilder(ConventionalItemTags.MINING_TOOL_TOOLS)
+                .addTag(ModTags.Items.CHISELS);
     }
 
     private void addToModTags() {

@@ -25,7 +25,7 @@ public class TEModConfig {
     public static final ConfigSetting<Boolean> stratificationToughness =
             ConfigBuilder.booleanSetting("stratificationToughness")
                     .defaultValue(true)
-                    .comment("Stratification toughness disallows breaking of tougher stones with lower-tier pickaxes")
+                    .comment("Stratification toughness disallows breaking of tougher stones/ores with lower-tier pickaxes")
                     .build();
 
     public static final ConfigSetting<Boolean> strataBasedBlockBreakingRestrictions =

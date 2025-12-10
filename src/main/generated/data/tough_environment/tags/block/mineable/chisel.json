@@ -1,12 +1,7 @@
 {
   "values": [
+    "#minecraft:mineable/pickaxe",
     "#minecraft:logs",
-    "#minecraft:base_stone_overworld",
-    "#minecraft:base_stone_nether",
-    {
-      "id": "#c:ores",
-      "required": false
-    },
     {
       "id": "#c:stump_blocks",
       "required": false
@@ -14,12 +9,6 @@
     {
       "id": "#c:web_blocks",
       "required": false
-    },
-    "#tough_environment:converted_stone_blocks",
-    "#c:stone_strata3",
-    "#c:stone_strata2",
-    "minecraft:calcite",
-    "minecraft:end_stone",
-    "minecraft:cobblestone"
+    }
   ]
 }

@@ -1,3 +1,10 @@
+## v0.13.2(dev)
++ Added missing recipes for cooking and blasting all loose variant blocks(stone, deepslate, diorite, etc.)
++ Added a check for tools which are not suitable for a certain block to apply slowed breaking speed. This is configurable with the Stratification Toughness setting
++ Reworked all loot tables for ores to better match retail BTW CE
++ Fixed a bug with chisels not having applied hardcore breaking speed
++ Changed the default breaking speed of primitive chisels to match those of vanilla wood and stone materials in the mod (1.01f)
+
 ## 0.13.1
 + Changed all configuration options in the mod to use the custom config library added by BTWR: Shared Library. This fixes the bug from last version that crashed the game without any warnings of the missing library that created the configurations
 + Removed Supermartijn642's config lib as the one creating configuration setting as it requires itself as a dependency to work properly

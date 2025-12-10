@@ -142,46 +142,26 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     }
 
     private void addToModTags() {
-        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_MODERN_IRON)
-                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL);
-        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_MODERN_GOLD)
-                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
-        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_PRIMITIVE_STONE)
-                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
-        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_PRIMITIVE_WOOD)
-                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .forceAddTag(BlockTags.NEEDS_IRON_TOOL)
-                .forceAddTag(BlockTags.NEEDS_STONE_TOOL);
+
+        this.getOrCreateTagBuilder(ModTags.Mineable.CHISEL)
+                .forceAddTag(BlockTags.PICKAXE_MINEABLE)
+                .forceAddTag(BlockTags.LOGS)
+                .addOptionalTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
+                .addOptionalTag(BTWRConventionalTags.Blocks.WEB_BLOCKS)
+        ;
+
+        this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_DIAMOND_CHISEL);
 
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL)
                 .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL);
+
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL)
-                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .forceAddTag(BlockTags.NEEDS_IRON_TOOL);
+                .forceAddTag(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL);
+
         this.getOrCreateTagBuilder(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL)
-                .forceAddTag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .forceAddTag(BlockTags.NEEDS_IRON_TOOL)
-                .forceAddTag(BlockTags.NEEDS_STONE_TOOL);
+                .forceAddTag(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL);
 
-        this.getOrCreateTagBuilder(ModTags.Mineable.CHISEL)
-                .forceAddTag(BlockTags.LOGS)
-                .forceAddTag(BlockTags.BASE_STONE_OVERWORLD)
-                .forceAddTag(BlockTags.BASE_STONE_NETHER)
 
-                .addOptionalTag(ConventionalBlockTags.ORES)
-
-                .addOptionalTag(BTWRConventionalTags.Blocks.STUMP_BLOCKS)
-                .addOptionalTag(BTWRConventionalTags.Blocks.WEB_BLOCKS)
-
-                .addTag(ModTags.Blocks.CONVERTED_STONE_BLOCKS)
-                .addTag(BTWRConventionalTags.Blocks.STONE_STRATA3)
-                .addTag(BTWRConventionalTags.Blocks.STONE_STRATA2)
-
-                .add(Blocks.CALCITE)
-                .add(Blocks.END_STONE)
-                .add(Blocks.COBBLESTONE);
 
         this.getOrCreateTagBuilder(ModTags.Blocks.STONE_ORES)
                 .add(Blocks.COAL_ORE)

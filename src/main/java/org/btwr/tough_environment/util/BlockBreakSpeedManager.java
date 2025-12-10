@@ -5,6 +5,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
+import org.btwr.shared_library.tag.BTWRConventionalTags;
 import org.btwr.tough_environment.ToughEnvironmentMod;
 import org.btwr.tough_environment.config.TEModConfig;
 
@@ -23,7 +24,7 @@ public class BlockBreakSpeedManager implements StrataBreakHelper {
         float newSpeed;
         newSpeed = currentSpeed;
 
-        if (isProblemToBreak(state, stack) && TEModConfig.stratificationToughness.get()) {
+        if ((isProblemToBreak(state, stack) || !stack.isSuitableFor(state)) && TEModConfig.stratificationToughness.get()) {
             newSpeed /= 80F;
         }
 
@@ -65,7 +66,8 @@ public class BlockBreakSpeedManager implements StrataBreakHelper {
             if (TEModConfig.hcPlayerMiningSpeed.get()) {
                 severity = 1;
                 if (stack.getItem() instanceof MiningToolItem) {
-                    severity = 0;
+                    //if (!stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_TOOLS))
+                        severity = 0;
                 }
             }
 

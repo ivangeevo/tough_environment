@@ -15,16 +15,16 @@ import org.btwr.tough_environment.tag.ModTags;
 import java.util.List;
 
 public enum ChiselToolMaterials implements ToolMaterial {
-    WOOD(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL, 2, 1.2F, 0.0F, 1,
+    WOOD(ModTags.Blocks.INCORRECT_FOR_WOODEN_CHISEL, 2, 0.2525F, 0.0F, 0,
             () -> Ingredient.ofItems(Items.STICK)
     ),
-    STONE(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL, 8, 2.0F, 1.0F, 5,
+    STONE(ModTags.Blocks.INCORRECT_FOR_STONE_CHISEL, 8, 0.505F, 1.0F, 5,
             () -> Ingredient.fromTag(ItemTags.STONE_TOOL_MATERIALS)
     ),
-    IRON(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL, 238, 3.0F, 2.0F, 21,
+    IRON(ModTags.Blocks.INCORRECT_FOR_IRON_CHISEL, 50, 1.0F, 2.0F, 21,
             () -> Ingredient.ofItems(Items.IRON_NUGGET)
     ),
-    DIAMOND(ModTags.Blocks.INCORRECT_FOR_DIAMOND_CHISEL, 500, 4.0F, 3.0F, 14,
+    DIAMOND(ModTags.Blocks.INCORRECT_FOR_DIAMOND_CHISEL, 500, 8.0F, 3.0F, 14,
             () -> Ingredient.ofItems(Items.DIAMOND)
     );
 
@@ -48,7 +48,7 @@ public enum ChiselToolMaterials implements ToolMaterial {
         this.miningSpeed = miningSpeed;
         this.attackDamage = attackDamage;
         this.enchantability = enchantability;
-        this.repairIngredient = Suppliers.memoize(repairIngredient::get);
+        this.repairIngredient = Suppliers.memoize(repairIngredient);
     }
 
     @Override

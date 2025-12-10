@@ -27,11 +27,11 @@
                   }
                 }
               ],
-              "name": "minecraft:deepslate_coal_ore"
+              "name": "minecraft:deepslate_diamond_ore"
             },
             {
               "type": "minecraft:item",
-              "name": "minecraft:coal",
+              "name": "minecraft:diamond",
               "functions": [
                 {
                   "function": "minecraft:apply_bonus",
@@ -48,6 +48,18 @@
                   "predicate": {
                     "items": "#minecraft:pickaxes"
                   }
+                },
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:modern_chisels"
+                  }
+                },
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "#c:advanced_chisels"
+                  }
                 }
               ]
             }
@@ -55,25 +67,14 @@
         },
         {
           "type": "minecraft:item",
-          "name": "tough_environment:dust_coal",
+          "name": "minecraft:diamond",
           "conditions": [
             {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "#c:advanced_chisels"
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "tough_environment:dust_coal",
-          "conditions": [
+              "condition": "minecraft:survives_explosion"
+            },
             {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "#c:modern_chisels"
-              }
+              "condition": "minecraft:random_chance",
+              "chance": 0.5
             }
           ]
         }

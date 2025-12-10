@@ -3,15 +3,15 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tough_environment:white_stone"
+        "recipe": "tough_environment:white_cobblestone_from_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_white_cobblestone": {
+    "has_white_stone": {
       "conditions": {
         "items": [
           {
-            "items": "tough_environment:white_cobblestone"
+            "items": "tough_environment:white_stone"
           }
         ]
       },
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_white_cobblestone"
+      "has_white_stone"
     ]
   ],
   "rewards": {
     "recipes": [
-      "tough_environment:white_stone"
+      "tough_environment:white_cobblestone_from_smelting"
     ]
   }
 }

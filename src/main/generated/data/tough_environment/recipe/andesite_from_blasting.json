@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 100,
+  "experience": 0.15,
+  "ingredient": {
+    "item": "tough_environment:andesite_loose"
+  },
+  "result": {
+    "id": "minecraft:andesite"
+  }
+}

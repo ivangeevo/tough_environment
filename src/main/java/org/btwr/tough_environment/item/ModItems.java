@@ -1,9 +1,7 @@
 package org.btwr.tough_environment.item;
 
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.item.AliasedBlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -47,27 +45,18 @@ public class ModItems {
     public static final Item STONE_BRICK_2 = register("stone_brick_2", new Item (new Item.Settings()));
 
     public static final Item NETHER_BRICK_UNFIRED = register("nether_brick_unfired",
-            new AliasedBlockItem(ModBlocks.NETHER_BRICK_UNFIRED, new Item.Settings()));
+            new AliasedBlockItem(ModBlocks.NETHER_BRICK_UNFIRED, new Item.Settings())
+    );
 
     // Tool Items
-    public static final Item CHISEL_WOOD = register( "chisel_wood",
-            new ChiselItem(ChiselToolMaterials.WOOD, new Item.Settings()
-                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.WOOD, 0f, -0.4f))
-            ));
-    public static final Item CHISEL_STONE = register( "chisel_stone",
-            new ChiselItem(ChiselToolMaterials.STONE, new Item.Settings()
-                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.STONE, -1f, -2.2f))
-            ));
+    public static final Item CHISEL_WOOD = registerChiselItem("chisel_wood", ChiselToolMaterials.WOOD);
+    public static final Item CHISEL_STONE = registerChiselItem("chisel_stone", ChiselToolMaterials.STONE);
+    public static final Item CHISEL_IRON = registerChiselItem("chisel_iron", ChiselToolMaterials.IRON);
+    public static final Item CHISEL_DIAMOND = registerChiselItem("chisel_diamond", ChiselToolMaterials.DIAMOND);
 
-    public static final Item CHISEL_IRON = register( "chisel_iron",
-            new ChiselItem(ChiselToolMaterials.IRON, new Item.Settings()
-                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.IRON, -2f, -2.5f))
-            ));
-
-    public static final Item CHISEL_DIAMOND = register("chisel_diamond",
-            new ChiselItem(ChiselToolMaterials.DIAMOND, new Item.Settings()
-                    .attributeModifiers(ChiselItem.createAttributeModifiers(ChiselToolMaterials.DIAMOND, -3f, -2.8F))
-            ));
+    private static Item registerChiselItem(String path, ToolMaterial toolMaterial) {
+       return register(path, new ChiselItem(toolMaterial, new Item.Settings()));
+    }
 
     private static Item register(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(ToughEnvironmentMod.MOD_ID, name), item);

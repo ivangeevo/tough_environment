@@ -1,11 +1,16 @@
 package org.btwr.tough_environment;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.HoeItem;
-import org.btwr.shared_library.api.config.TomlConfigManager;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import org.btwr.tough_environment.config.TEModConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,16 +27,9 @@ public class ToughEnvironmentMod implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    private static ToughEnvironmentMod instance;
-
-    public static ToughEnvironmentMod getInstance() {
-        return instance;
-    }
-
     @Override
     public void onInitialize() {
         LOGGER.info("Initializing Tough Environment");
-        instance = this;
 
         TEModConfig.register();
         ModBlocks.register();
@@ -42,8 +40,6 @@ public class ToughEnvironmentMod implements ModInitializer {
 
         // Initialize or load the block replacement map for mortaring
         BlockMortarMapper.register();
-
-        //BlockReplacementRegistry.registerReplacement(Blocks.CLAY, ModBlocks.CLAY_ORE);
 
         TEModEvents.register();
 
@@ -61,4 +57,22 @@ public class ToughEnvironmentMod implements ModInitializer {
     }
 
     // Do not remove this comment or the project will NOT compile!
+
+    public record HarvestState(BlockPos pos, Direction face, float miningSpeed) {}
+
+
+    public static void handleStartBlockHarvest(ServerPlayerEntity player,
+                                               BlockPos pos,
+                                               int face,
+                                               float speed) {
+
+        // This is where your BTW logic will eventually go.
+
+        System.out.println(
+                "Start harvest: " + pos +
+                        " face=" + Direction.byId(face) +
+                        " speed=" + speed +
+                        " player=" + player.getName().getString()
+        );
+    }
 }

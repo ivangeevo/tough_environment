@@ -4,9 +4,9 @@
   "cookingtime": 100,
   "experience": 0.15,
   "ingredient": {
-    "item": "tough_environment:white_cobblestone"
+    "item": "tough_environment:diorite_loose"
   },
   "result": {
-    "id": "tough_environment:white_stone"
+    "id": "minecraft:diorite"
   }
 }

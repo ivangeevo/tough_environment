@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.enums.SlabType;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
@@ -17,7 +19,12 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.predicate.entity.LocationPredicate;
+import net.minecraft.predicate.item.EnchantmentPredicate;
+import net.minecraft.predicate.item.EnchantmentsPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.predicate.item.ItemSubPredicateTypes;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
@@ -40,7 +47,6 @@ import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.SHOVELS_HAR
 public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider {
 
     public static final LootCondition.Builder WITH_PICKAXE_FULLY_HARVESTS = withMatchingToolTag(PICKAXES_HARVEST_FULL_BLOCK);
-
     public static final LootCondition.Builder WITH_ADVANCED_PICKAXES = withMatchingToolTag(ADVANCED_PICKAXES);
     public static final LootCondition.Builder WITH_MODERN_PICKAXES = withMatchingToolTag(MODERN_PICKAXES);
     public static final LootCondition.Builder WITH_PRIMITIVE_PICKAXES = withMatchingToolTag(PRIMITIVE_PICKAXES);
@@ -48,6 +54,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
     public static final LootCondition.Builder WITH_SHOVEL_FULLY_HARVESTS =  withMatchingToolTag(SHOVELS_HARVEST_FULL_BLOCK);
     public static final LootCondition.Builder WITH_ADVANCED_SHOVELS =  withMatchingToolTag(ADVANCED_SHOVELS);
     public static final LootCondition.Builder WITH_MODERN_SHOVELS =  withMatchingToolTag(MODERN_SHOVELS);
+    public static final LootCondition.Builder WITH_PRIMITIVE_SHOVELS =  withMatchingToolTag(PRIMITIVE_SHOVELS);
 
     public static final LootCondition.Builder WITH_ADVANCED_CHISELS =  withMatchingToolTag(ADVANCED_CHISELS);
     public static final LootCondition.Builder WITH_MODERN_CHISELS =  withMatchingToolTag(MODERN_CHISELS);
@@ -55,10 +62,34 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
 
     public static final LootCondition.Builder WITHOUT_HOE = withMatchingToolTag(ItemTags.HOES).invert();
 
+    public final LootCondition.Builder WITH_SILK_TOUCH = withMatchingEnchantment(Enchantments.SILK_TOUCH, NumberRange.IntRange.atLeast(1), registryLookup);
+
     private static LootCondition.Builder withMatchingToolTag(TagKey<Item> itemTag) {
         return MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(itemTag));
     }
-    
+
+    /**
+     *
+     * @param enchantment The enchantment to check for.
+     * @param range The strength of the enchantment.
+     * @param registryLookup The wrapper to use to look for the enchantment in the registry.
+     * @return Loot condition for an item which matches the passed enchantment.
+     */
+    private static LootCondition.Builder withMatchingEnchantment(
+            RegistryKey<Enchantment> enchantment, NumberRange.IntRange range, RegistryWrapper.WrapperLookup registryLookup
+    ) {
+        RegistryWrapper.Impl<Enchantment> impl = registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        return MatchToolLootCondition.builder(ItemPredicate.Builder.create()
+                .subPredicate(
+                        ItemSubPredicateTypes.ENCHANTMENTS,
+                        EnchantmentsPredicate.enchantments(List.of(
+                                new EnchantmentPredicate(impl.getOrThrow(enchantment), range
+                                )
+                        ))
+                )
+        );
+    }
+
     protected BaseLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }
@@ -129,11 +160,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
                 .apply(ExplosionDecayLootFunction.builder())
                 .conditionally(DestroyedByExplosionCondition.builder());
 
-        return LootTable.builder()
-                .pool(alternativeEntries)
-                .pool(pileEntries)
-                .pool(partialEntries)
-                .pool(explosionEntries);
+        return LootTable.builder().pool(alternativeEntries).pool(pileEntries).pool(partialEntries).pool(explosionEntries);
     }
 
     /** For blocks like andesite, diorite and granite **/
@@ -178,11 +205,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
                 .apply(ExplosionDecayLootFunction.builder())
                 .conditionally(DestroyedByExplosionCondition.builder());
 
-        return LootTable.builder()
-                .pool(alternativeEntries)
-                .pool(pileEntries)
-                .pool(partialEntries)
-                .pool(explosionEntries);
+        return LootTable.builder().pool(alternativeEntries).pool(pileEntries).pool(partialEntries).pool(explosionEntries);
     }
 
     private LootCondition.Builder belowY32Condition() {
@@ -196,7 +219,7 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
         // Define the main loot pool with conditions
         AlternativeEntry.Builder alternativeEntry = AlternativeEntry.builder(
                 this.silkTouchDropEntry(dropWithSilkTouch),
-                this.looseDropEntry(looseDrop, toolCondition),
+                this.withToolConditionEntry(looseDrop, toolCondition),
                 ItemEntry.builder(pileDrop)
                         .apply(ExplosionDecayLootFunction.builder())
                         .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(pileDropCount)))
@@ -273,24 +296,31 @@ public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider
             alternativeEntry.alternatively(silkTouchDropEntry(silkTouchDrop));
         }
 
-        alternativeEntry.alternatively(looseDropEntry(looseDrop, toolCondition))
+        alternativeEntry.alternatively(withToolConditionEntry(looseDrop, toolCondition))
                 .alternatively(pileDropEntry(pileDrop, pileDropCount));
 
         return LootTable.builder()
                 .pool(LootPool.builder().with(alternativeEntry));
     }
 
-    /** The 3 LeafEntry builders below are only used with the {@link TELootTableProvider#dropsForSimpleLooseBlock} and
-     * {@link TELootTableProvider#dropsForBreakingToLooseBlock} methods.
-     **/
     // Silk touch looseBlock entry for when a block can be silk-touched
-    private LeafEntry.Builder<?> silkTouchDropEntry(Block silkTouchDrop) {
+    LeafEntry.Builder<?> silkTouchDropEntry(Block silkTouchDrop) {
         return ItemEntry.builder(silkTouchDrop).conditionally(this.createSilkTouchCondition());
     }
 
-    // Used for blocks that are non-loose and break to loose if the tool condition is present
-    private LeafEntry.Builder<?> looseDropEntry(Block looseDrop, LootCondition.Builder toolCondition) {
-        return ItemEntry.builder(looseDrop).conditionally(toolCondition);
+    // Silk touch looseBlock entry for when a block can be silk-touched
+    LeafEntry.Builder<?> silkTouchDropEntry(Item silkTouchDrop) {
+        return ItemEntry.builder(silkTouchDrop).conditionally(this.createSilkTouchCondition());
+    }
+
+    // Normally used for blocks that are non-loose and break to loose if the tool condition is present
+    LeafEntry.Builder<?> withToolConditionEntry(Block withoutSilkTouch, LootCondition.Builder toolCondition) {
+        return ItemEntry.builder(withoutSilkTouch).conditionally(toolCondition);
+    }
+
+    // Normally used for blocks that are non-loose and break to loose if the tool condition is present
+    LeafEntry.Builder<?> simpleDropEntry(Item withoutSilkTouch) {
+        return ItemEntry.builder(withoutSilkTouch);
     }
 
     // Pile looseBlock entry used for blocks that break to piles when no tool is used

@@ -46,7 +46,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     // BTWR: Shared Library
-    modImplementation("maven.modrinth:btwr-shared-library:${project.btwr_sl_version}")
+    modImplementation ("maven.modrinth:btwr-shared-library:${project.btwr_sl_version}")
     //modImplementation files("libs/btwr-shared-library-${project.btwr_sl_version}.jar")
 
     // Mod Menu
@@ -59,6 +59,9 @@ dependencies {
 
     // Better With Time
     modCompileOnly "maven.modrinth:better-with-time:${project.bwt_version}"
+
+    // Sturdy Trees (for testing chisels)
+    modLocalRuntime "maven.modrinth:sturdy-trees:${project.sturdy_trees_version}"
 
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"

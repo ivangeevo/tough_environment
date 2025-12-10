@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tough_environment:white_stone_from_blasting"
+        "recipe": "tough_environment:white_cobblestone_from_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "tough_environment:white_stone_from_blasting"
+      "tough_environment:white_cobblestone_from_blasting"
     ]
   }
 }

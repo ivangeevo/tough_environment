@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_end_stone": {
+    "has_andesite_loose": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:end_stone"
+            "items": "tough_environment:andesite_loose"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "tough_environment:white_cobblestone"
+        "recipe": "tough_environment:andesite_from_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_end_stone"
+      "has_andesite_loose"
     ]
   ],
   "rewards": {
     "recipes": [
-      "tough_environment:white_cobblestone"
+      "tough_environment:andesite_from_blasting"
     ]
   }
 }

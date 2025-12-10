@@ -14,11 +14,24 @@ public class ModClientEvents {
 
     public static void register() {
         // Player Block Events
-        ClientPlayerBlockBreakEvents.AFTER.register(ModClientEvents::onAfterBlockBreak);
+        ClientPlayerBlockBreakEvents.AFTER.register(ModClientEvents::afterBlockBreak);
     }
 
     // Directly update client world block state to prevent flicker
-    private static void onAfterBlockBreak(ClientWorld world, ClientPlayerEntity player, BlockPos pos, BlockState state) {
+    private static void onAttackBlock(ClientWorld world, ClientPlayerEntity player, BlockPos pos, BlockState state) {
+        ItemStack tool = player.getMainHandStack();
+
+        BlockState newVanillaStoneState = BlockBreakHandler.getInstance().getNextStateForVanillaStone(state, tool);
+        updateStoneState(world, pos, player, newVanillaStoneState);
+
+        if (state.getBlock() instanceof StoneConvertingBlock) {
+            BlockState newModdedStoneState = BlockBreakHandler.getInstance().getNextStateForModdedStone(state, tool);
+            updateStoneState(world, pos, player, newModdedStoneState);
+        }
+    }
+
+    // Directly update client world block state to prevent flicker
+    private static void afterBlockBreak(ClientWorld world, ClientPlayerEntity player, BlockPos pos, BlockState state) {
         ItemStack tool = player.getMainHandStack();
 
         BlockState newVanillaStoneState = BlockBreakHandler.getInstance().getNextStateForVanillaStone(state, tool);
