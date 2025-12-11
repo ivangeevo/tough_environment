@@ -24,8 +24,11 @@ public class BlockBreakSpeedManager implements StrataBreakHelper {
         float newSpeed;
         newSpeed = currentSpeed;
 
-        if ((isProblemToBreak(state, stack) || !stack.isSuitableFor(state)) && TEModConfig.stratificationToughness.get()) {
-            newSpeed /= 80F;
+        if (TEModConfig.stratificationToughness.get()) {
+            if ((isProblemToBreak(state, stack) || (!stack.isSuitableFor(state) && !state.isReplaceable()))) {
+                newSpeed /= 80F;
+
+            }
         }
 
         // make it practically impossible(very long)

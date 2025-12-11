@@ -1,4 +1,5 @@
-## v???(dev)
+## v13.3
++ Fixed a bug with replaceable blocks like grass, tall grass, etc having hardcore speed since last update's changes
 
 ## v0.13.2
 + Added missing recipes for cooking and blasting all loose variant blocks (stone, deepslate, diorite, bricks, etc.)
