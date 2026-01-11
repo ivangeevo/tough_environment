@@ -9,7 +9,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.btwr.shared_library.api.ServerChunkGenerateEvents;
+import org.btwr.shared_library.api.event.ServerChunkGenerateEvents;
 import org.btwr.tough_environment.block.ModBlocks;
 import org.jetbrains.annotations.Nullable;
 import org.btwr.tough_environment.block.BlockBreakHandler;

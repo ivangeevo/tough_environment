@@ -11,7 +11,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.tough_environment.block.blocks.DepletedStoneBlock;
 import org.btwr.tough_environment.block.blocks.StoneConvertingBlock;
 import org.btwr.tough_environment.tag.ModTags;
@@ -19,10 +19,10 @@ import org.btwr.tough_environment.tag.ModTags;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK_SLABS;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.PICKAXES_HARVEST_FULL_BLOCK;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Blocks.LOOSEN_ON_IMPROPER_BREAK_SLABS;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.PICKAXES_HARVEST_FULL_BLOCK;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK;
 import static org.btwr.tough_environment.block.blocks.ConvertingBlock.BREAK_LEVEL;
 
 /** Manages logic for vanilla blocks affected by BTWR breaking mechanics. */
@@ -36,7 +36,7 @@ public class BlockBreakHandler {
         return instance;
     }
 
-    public void  setStateForStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void setStateForStone(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         BlockState converted = getNextStateForVanillaStone(state, player.getMainHandStack());
         if (converted == null) return;
         if (!player.isCreative()) {

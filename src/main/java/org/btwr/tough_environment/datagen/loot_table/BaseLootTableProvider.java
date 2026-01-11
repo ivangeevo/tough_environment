@@ -37,14 +37,14 @@ import org.btwr.tough_environment.loot.conditions.DestroyedByExplosionCondition;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.*;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.ADVANCED_CHISELS;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.ADVANCED_SHOVELS;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.MODERN_CHISELS;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.MODERN_SHOVELS;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.PRIMITIVE_CHISELS;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.PRIMITIVE_PICKAXES;
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.*;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.ADVANCED_CHISELS;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.ADVANCED_SHOVELS;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.MODERN_CHISELS;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.MODERN_SHOVELS;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.PRIMITIVE_CHISELS;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.PRIMITIVE_PICKAXES;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.SHOVELS_HARVEST_FULL_BLOCK;
 
 public abstract class BaseLootTableProvider extends FabricBlockLootTableProvider {
 

@@ -7,7 +7,7 @@ import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 
-import static org.btwr.shared_library.tag.BTWRConventionalTags.Items.*;
+import static org.btwr.shared_library.api.tag.BTWRConventionalTags.Items.*;
 
 public class LootConditions {
 

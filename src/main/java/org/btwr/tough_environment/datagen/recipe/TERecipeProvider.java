@@ -11,7 +11,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import org.btwr.shared_library.recipe.ExtendedShapelessRecipe;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.shared_library.util.utils.IdUtils;
 import org.btwr.tough_environment.block.ModBlocks;
 import org.btwr.tough_environment.item.ModItems;
@@ -154,16 +154,16 @@ public class TERecipeProvider extends TEBaseRecipeProvider {
 
     private void addLesserDropRecipes(RecipeExporter exporter) {
         // Piles, Stones & Shards from Full Blocks
-        offerLesserDropsFromBlock(exporter, ModItems.PILE_DIRT,8, ModBlocks.DIRT_LOOSE, IdUtils.ofTE("pile_dirt_from_block_dirt_loose"));
-        offerLesserDropsFromBlock(exporter, ModItems.PILE_SAND,8, Blocks.SAND, IdUtils.ofTE("pile_sand_from_block_sand"));
-        offerLesserDropsFromBlock(exporter, ModItems.PILE_RED_SAND,8, Blocks.RED_SAND, IdUtils.ofTE("pile_red_sand_from_block_red_sand"));
-        offerLesserDropsFromBlock(exporter, ModItems.PILE_GRAVEL,8, Blocks.GRAVEL, IdUtils.ofTE("pile_gravel_from_block_gravel"));
-        offerLesserDropsFromBlock(exporter, ModItems.SMALL_STONE,8, ModBlocks.COBBLESTONE_LOOSE, IdUtils.ofTE("small_stone_from_block_cobblestone_loose"));
+        offerLesserDropsFromBlock(exporter, ModItems.PILE_DIRT, 8, ModBlocks.DIRT_LOOSE, IdUtils.ofTE("pile_dirt_from_block_dirt_loose"));
+        offerLesserDropsFromBlock(exporter, ModItems.PILE_SAND, 8, Blocks.SAND, IdUtils.ofTE("pile_sand_from_block_sand"));
+        offerLesserDropsFromBlock(exporter, ModItems.PILE_RED_SAND, 8, Blocks.RED_SAND, IdUtils.ofTE("pile_red_sand_from_block_red_sand"));
+        offerLesserDropsFromBlock(exporter, ModItems.PILE_GRAVEL, 8, Blocks.GRAVEL, IdUtils.ofTE("pile_gravel_from_block_gravel"));
+        offerLesserDropsFromBlock(exporter, ModItems.SMALL_STONE, 8, ModBlocks.COBBLESTONE_LOOSE, IdUtils.ofTE("small_stone_from_block_cobblestone_loose"));
         // TODO: insert level 1 (mantle) here when added!
-        offerLesserDropsFromBlock(exporter, ModItems.SMALL_STONE_2,8, ModBlocks.COBBLED_DEEPSLATE_LOOSE, IdUtils.ofTE("small_stone_2_from_block_cobbled_deepslate_loose"));
-        offerLesserDropsFromBlock(exporter, ModItems.SHARD_ANDESITE,8, ModBlocks.ANDESITE_LOOSE, IdUtils.ofTE("shard_andesite_from_block_andesite_loose"));
-        offerLesserDropsFromBlock(exporter, ModItems.SHARD_GRANITE,8, ModBlocks.GRANITE_LOOSE, IdUtils.ofTE("shard_granite_from_block_granite_loose"));
-        offerLesserDropsFromBlock(exporter, ModItems.SHARD_DIORITE,8, ModBlocks.DIORITE_LOOSE, IdUtils.ofTE("shard_diorite_from_block_diorite_loose"));
+        offerLesserDropsFromBlock(exporter, ModItems.SMALL_STONE_2, 8, ModBlocks.COBBLED_DEEPSLATE_LOOSE, IdUtils.ofTE("small_stone_2_from_block_cobbled_deepslate_loose"));
+        offerLesserDropsFromBlock(exporter, ModItems.SHARD_ANDESITE, 8, ModBlocks.ANDESITE_LOOSE, IdUtils.ofTE("shard_andesite_from_block_andesite_loose"));
+        offerLesserDropsFromBlock(exporter, ModItems.SHARD_GRANITE, 8, ModBlocks.GRANITE_LOOSE, IdUtils.ofTE("shard_granite_from_block_granite_loose"));
+        offerLesserDropsFromBlock(exporter, ModItems.SHARD_DIORITE, 8, ModBlocks.DIORITE_LOOSE, IdUtils.ofTE("shard_diorite_from_block_diorite_loose"));
         offerLesserDropsFromBlock(exporter, Items.BRICK, 8, ModBlocks.BRICKS_LOOSE, IdUtils.ofTE("brick_from_block_bricks_loose"));
         offerLesserDropsFromBlock(exporter, Items.NETHER_BRICK, 8, ModBlocks.NETHER_BRICKS_LOOSE, IdUtils.ofTE("nether_brick_from_block_nether_bricks_loose"));
 

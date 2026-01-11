@@ -7,7 +7,7 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.*;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
-import org.btwr.shared_library.tag.BTWRConventionalTags;
+import org.btwr.shared_library.api.tag.BTWRConventionalTags;
 import org.btwr.tough_environment.block.ModBlocks;
 import org.btwr.tough_environment.item.ModItems;
 import org.btwr.tough_environment.tag.ModTags;
