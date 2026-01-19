@@ -1,9 +1,11 @@
-## v???(dev)
+## v13.5
++ Changed directional drops to be handled with the DirectionalDropsConditions class from BTWR: SL 0.7
++ Updated the mod to BTWR: Shared Library 0.7
 
-## v13.4
+## v0.13.4
 + Fixed another bug with some blocks having hardcore speed applied in a wrong way. With this change it reverts back some of the intended changes I wanted to make since the 0.13 update, but at least there shouldn't be problems instead
 
-## v13.3
+## v0.13.3
 + Fixed a bug with replaceable blocks like grass, tall grass, etc having hardcore speed since last update's changes
 
 ## v0.13.2
@@ -13,12 +15,12 @@
 + Fixed a bug with chisels not having applied hardcore breaking speed
 + Changed the default breaking speed of primitive chisels to match those of vanilla wood and stone materials in the mod (1.01f)
 
-## 0.13.1
+## v0.13.1
 + Changed all configuration options in the mod to use the custom config library added by BTWR: Shared Library. This fixes the bug from last version that crashed the game without any warnings of the missing library that created the configurations
 + Removed Supermartijn642's config lib as the one creating configuration setting as it requires itself as a dependency to work properly
 + Updated the mod to BTWR: Shared Library 0.6.5
 
-# 0.13
+## v0.13
 + Added default recipes for items that would be crafted with nuggets instead of replacing the vanilla recipes.
 + Added authors(ivangeevo) to the mod files, so they should display properly in places where they should be displayed
 + Fixed a bug where stone bricks from stone crafting with chisel would consume the chisels
@@ -31,12 +33,12 @@
 + Removed the "TURNED_TO_FALLING_BLOCKS" block tag and associated functionality to make any block a falling block, because it was a bad modification and caused other problems. It will be pushed back until a better solution is found
 + Updated the mod to Fabric Loader 0.17.3 BTWR: Shared Library 0.6.4
 
-# 0.12.1
+## v0.12.1
 + Updated mod recipes to use the new ExtendedShapelessRecipe from BTWR: Shared Library 0.60-61
 + Fixed a bug with loose stone and deepslate bricks not being mortarable
 + Updated the mod to Fabric API 0.116.7 & BTWR: Shared Library 0.61
 
-# 0.12
+## v0.12
 + Added compatibility for BWT's aggregate slab blocks like(dirt, grass, etc.) to also loosen up compatible neighbouring dirt.
 + Improved the dirt loosening mechanic to work exactly like it does in BTW.
 + Refactored a bunch of code to make block mortaring logic work much better. It's now stored in the datapack of the mod, and should generally work much better.
@@ -48,12 +50,12 @@
 + Changed depleted(broken) stone blocks to not have break level anymore. This change will remain until I figure out how to properly implement the blockstate changing logic for converting blocks into their classes instead of it being called through the Fabric Block Break events.
 + Updated the mod to Fabric API 0.116.6, Fabric Loader 0.17.2 & BTWR: Shared Library 0.58
 
-# 0.11.1
+## v0.11.1
 + Added a new LootConditionType "DESTROYED_BY_EXPLOSION" that explicitly checks whether a block was destroyed by an explosion.
 + Fixed loot tables for all stone block types to properly drop loot for primitive chisels since the bug from last update's loot table code refactoring.
 + Updated the mod to BTWR: Shared Library 0.56
 
-# 0.11
+## v0.11
 + Changed(and hopefully fixed) some clay blocks in the world generation that weren't getting properly replaced with Tough Environment's "Dirt Clay" block.
 + Changed the shield recipe to require 4 nuggets and only one plank, so it's more easily accessible.
 + Reworked all loot tables for stone type blocks to flow better and be more readable, but also fixed them to work with silk touch tools.
@@ -66,16 +68,16 @@
 + Removed the logic that added extra exhaustion on breaking/placing blocks and axes not taking damage on replaceable blocks and moved it to be a mod pack change only.
 + Updated the mod to Fabric API 0.116.4, Fabric Loader 0.16.14 & BTWR: Shared Library 0.55
 
-# 0.10.1 Alpha
+## v0.10.1 Alpha
 + Fixed a bug where aggregate blocks like dirt, grass, sand, etc weren't dropping when broken with a hoe tool (leftover functionality from previous versions)
 + Fixed all aggregate blocks to drop the proper amount of pile items for each block (applied explosion decay to the loot tables)
 
-# 0.10 Alpha
+## v0.10 Alpha
 + Fixed a bug that made dirt & grass blocks not update neighbouring blocks to make them loose dirt on the client side
 + Removed the code that made hoes not work via right click and moved that functionality to BTWR: Core 
 + Updated the mod to Fabric API 0.116.0, Fabric Loader 0.16.14 & BTWR: Shared Library 0.53
 
-# 0.9 Alpha
+## v0.9 Alpha
 ### ! World breaking update - This update will replace some blocks in your world/ make some items disappear from your inventory. 
 + Added a new block for the "Clay Ore" and made it replace normal Clay blocks in world generation. This allows for regular clay blocks to be crafted as normal and fixes incompatibility with mods that might use the clay block in whatever way.
 + Improved the mortaring logic for blocks to be more responsive and not fixed a bug with it bugging out when having a shield equipped when trying to mortar blocks
@@ -84,7 +86,7 @@
 + Reverted the clay block recipe to be made out of 4 clay ball instead of 9 (as originally planned - this will be a specific change in the BTWR modpack instead)
 + Updated the mod to Fabric API 0.115.3 & BTWR: Shared Library 0.49
 
-# 0.8 Alpha
+## v0.8 Alpha
 + Added compatibility with "Better With Time" Battle Axe item to not consume hunger when breaking grass blocks
 + Fixed a bug where loose dirt was acting like a block that can be mortared.
 + Fixed a bug where all ore blocks broken with any enchanted pickaxe would drop as if they were mined by Silk Touch
@@ -94,17 +96,17 @@
 + Removed Fortune enchantment working on Diamond & Emerald ores. It will only work on metalic and non-gemstone ores like Redstone/Lapis
 + Updated the mod to Fabric API 0.115.0, Fabric Loader 0.16.10 & BTWR Shared Library 0.47
 
-# 0.7.3 Alpha
+## v0.7.3 Alpha
 + Added Packed Earth and Packed Earth Slab blocks!
 
-# 0.7.2 Alpha
+## v0.7.2 Alpha
 + Fixed a bug where netherrack was still a falling block, but lacked proper block updates and that's why I didn't notice it earlier.
 
-# 0.7.1 Alpha
+## v0.7.1 Alpha
 + Fixed a critical bug and removed the ability to make blocks falling per dimension & removed falling netherrack.
 This will be pushed back for a later update.
 
-# 0.7 Alpha
+## v0.7 Alpha
 + !!!Block/Item breaking update -> Rewrote the names of some stone/stone brick blocks items which will cause them to 
 disappear from the world/inventories. Please back up your worlds if you don't want to lose them. With all of that being
 said, keep in mind the project is still in alpha. The mod will likely get a solid rewrite once
@@ -130,7 +132,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Removed (brought back) the ability to break fire blocks by hand
 + Updated the mod to Fabric API 0.114.0 & BTWR-SL 0.40
 
-# 0.6 Alpha
+## v0.6 Alpha
 + Added Nether Sludge item. It's sludge time!
 + Added Loose Stone Bricks and Loose Cobbled Deepslate Bricks blocks & all of their variants.
 + Added some missing stairs and loose slab blocks variants for some blocks.
@@ -140,7 +142,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Changed (rebalanced) the strength and blast resistance values for some loose stone blocks slightly
 + Fixed Loose Bricks block & slab texture to be more "loosy". lol
 
-# 0.5.1 Alpha
+## v0.5.1 Alpha
 + Added a missing recipe for converting loose bricks block to 8 bricks
 + Fixed deepslate ores loot tables to drop ore with any pickaxe
 + Fixed deepslate ores turning to regular converting stone on partial break
@@ -150,7 +152,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Fixed a bug that caused andesite/granite/diorite blocks to drop stone brick on a pickaxe break (should drop only with chisel)
 + Fixed a bug where diamond chisel broke stone type blocks one by one stage instead of incrementing by 2 break levels.
 
-# 0.5 Alpha
+## v0.5 Alpha
 + Added BTWR Shared Library as dependency + moved the item to block placement logic there
 + Added missing blocks to their appropriate tags
 + Added Clay Block (made out of 8 clay balls)
@@ -176,7 +178,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Updated the mod to require Fabric API 0.110.0 & Fabric Loader 0.16.9
 
 
-# 0.4.1 Alpha
+## v0.4.1 Alpha
 + Added BTWR: Core v0.26 as a dependency as it was removed by mistake during one of the last updates.
 + Added another recipe for Furnace made from four loose cobblestone slabs.
   This makes getting furnace in the very early game much 
@@ -185,7 +187,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Updated the mod to Fabric Loader 0.16.7 & Fabric API 0.107.0
 
 
-# 0.4 Alpha
+## v0.4 Alpha
 
 + Added 2 new mod menu configuration options:
  1. Block Breaking Restrictions - Makes blocks unbreakable if the player is not using the correct tool.
@@ -205,7 +207,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Other minor fixes/improvements which should've worked as intended.
 + Updated the mod to Minecraft 1.21.1, Fabric Loader 0.16.5 & Fabric API 0.104.0
 
-# 0.3 Alpha
+## v0.3 Alpha
 + The mod now requires BTWR:Core v0.25. It didn't require it before, which caused some blocks to not drop correctly when mined.
 + Added Pile of Gold Dust and Pile of Copper Dust items.
 + Added Pile of Coal Dust and Wooden Chisel as viable fuel items.
@@ -218,7 +220,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Fixed most loot tables for ore blocks to drop the correct items.
 + Fixed code to work as intended on the server side.
 
-# 0.2 Alpha
+## v0.2 Alpha
 + Added missing "brick to loose brick" slab recipe.
 + Added dirt piles drop when clay blocks get broken.
 + Added wooden chisel to be usable as a spit for campfires from the Self-Sustainable mod.
@@ -237,7 +239,7 @@ with the "CAN_FALL_IN_X" (x for dimension) when adding blocks in the "TURNED_TO_
 + Temporary disabled config for hardcore speed until future update.
 
 
-# 0.1.1 Alpha
+## v0.1.1 Alpha
 
 + Changed version numbering from 1.0 to 0.1
 + Fixed a bug where dirt wasn't dropping dirt piles when broken with hand.

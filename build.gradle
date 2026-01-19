@@ -61,7 +61,7 @@ dependencies {
     modCompileOnly "maven.modrinth:better-with-time:${project.bwt_version}"
 
     // Sturdy Trees (for testing chisels)
-    modLocalRuntime "maven.modrinth:sturdy-trees:${project.sturdy_trees_version}"
+    //modLocalRuntime "maven.modrinth:sturdy-trees:${project.sturdy_trees_version}"
 
     // EMI
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"

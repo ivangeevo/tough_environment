@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 import org.btwr.tough_environment.ToughEnvironmentMod;
 import org.btwr.tough_environment.config.TEModConfig;
 
-public class BlockBreakSpeedManager implements StrataBreakHelper {
+public class BlockBreakSpeedManager {
 
     private static final BlockBreakSpeedManager INSTANCE = new BlockBreakSpeedManager();
 
@@ -16,7 +16,9 @@ public class BlockBreakSpeedManager implements StrataBreakHelper {
         return INSTANCE;
     }
 
-    private BlockBreakSpeedManager() {}
+    private BlockBreakSpeedManager() {
+        super();
+    }
 
     public float getModifiedSpeed(PlayerEntity player, BlockState state, float currentSpeed) {
         ItemStack stack = player.getMainHandStack();
@@ -80,6 +82,23 @@ public class BlockBreakSpeedManager implements StrataBreakHelper {
 
             return getState(severity);
         }
+    }
+
+    public boolean isProblemToBreak(BlockState state, ItemStack stack) {
+        if (StrataChecks.isStoneStrata3(state) && !StrataChecks.isAdvancedPickaxe(stack)) {
+            return true;
+        }
+
+        return StrataChecks.isStoneStrata2(state) && !StrataChecks.isAdvancedPickaxe(stack) && !StrataChecks.isModernPickaxe(stack);
+    }
+    public boolean isUnfeasibleToBreak(BlockState state, ItemStack stack) {
+        return cantBreakStrata3(state, stack) || cantBreakStrata2(state, stack);
+    }
+    public boolean cantBreakStrata2(BlockState state, ItemStack stack) {
+        return StrataChecks.isStoneStrata2(state) & (StrataChecks.isPrimitivePickaxe(stack) || stack.isOf(Items.GOLDEN_PICKAXE));
+    }
+    public boolean cantBreakStrata3(BlockState state, ItemStack stack) {
+        return StrataChecks.isStoneStrata3(state) && !StrataChecks.isAdvancedPickaxe(stack);
     }
 
 }
