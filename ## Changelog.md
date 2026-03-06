@@ -1,8 +1,8 @@
-## v13.6(dev)
+## v0.13.6(dev)
 + Changed primitive chisels to not have damage applied when used in crafting
 + Updated the mod to BTWR: Shared Library 0.8
 
-## v13.5
+## v0.13.5
 + Changed directional drops to be handled with the DirectionalDropsConditions class from BTWR: SL 0.7
 + Updated the mod to BTWR: Shared Library 0.7
 
