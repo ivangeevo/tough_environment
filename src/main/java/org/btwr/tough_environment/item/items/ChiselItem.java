@@ -48,6 +48,11 @@ public class ChiselItem extends MiningToolItem {
 
     @Override
     public ItemStack getRecipeRemainder(ItemStack stack) {
+        // Primitive chisels do not get damaged in crafting
+        if (stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)) {
+            return ItemStack.EMPTY;
+        }
+
         if (stack.getDamage() < stack.getMaxDamage() - 1) {
             ItemStack moreDamaged = stack.copy();
             moreDamaged.setDamage(stack.getDamage() + 1);
