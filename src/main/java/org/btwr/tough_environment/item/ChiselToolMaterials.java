@@ -86,12 +86,12 @@ public enum ChiselToolMaterials implements ToolMaterial {
      */
     @Override
     public ToolComponent createComponent(TagKey<Block> tag) {
-        float stumpSpeed = (this == DIAMOND) ? 55.0F : 2.0F;  // Custom speed for STUMP_BLOCKS based on material
+        float stumpSpeed = this == DIAMOND ? 15.0F : this.getMiningSpeedMultiplier();  // Custom speed for STUMP_BLOCKS based on material
         return new ToolComponent(
                 List.of(
                         ToolComponent.Rule.ofNeverDropping(this.getInverseTag()),
                         ToolComponent.Rule.ofAlwaysDropping(tag, this.getMiningSpeedMultiplier()),
-                        ToolComponent.Rule.of(BTWRConventionalTags.Blocks.STUMP_BLOCKS, 55F),
+                        ToolComponent.Rule.of(BTWRConventionalTags.Blocks.STUMP_BLOCKS, stumpSpeed),
                         ToolComponent.Rule.of(BTWRConventionalTags.Blocks.WEB_BLOCKS, 25F)
                 ), 1.0F, 1);
     }

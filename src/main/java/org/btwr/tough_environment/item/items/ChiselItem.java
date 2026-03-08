@@ -31,12 +31,6 @@ public class ChiselItem extends MiningToolItem {
 
     @Override
     public float getMiningSpeed(ItemStack stack, BlockState state) {
-        if (state.isIn(BTWRConventionalTags.Blocks.STUMP_BLOCKS)) {
-            if (!stack.isIn(BTWRConventionalTags.Items.PRIMITIVE_CHISELS)) {
-                return super.getMiningSpeed(stack, state) * 15f;
-            }
-        }
-
         if (state.isIn(BTWRConventionalTags.Blocks.WEB_BLOCKS)) {
             if (stack.isOf(ModItems.CHISEL_STONE)) {
                 return super.getMiningSpeed(stack, state) * 2f;
