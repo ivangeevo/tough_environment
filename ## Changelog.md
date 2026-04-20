@@ -1,4 +1,5 @@
 ## v???(dev)
++ Added missing text translations for the names of the placed ore block (copper, iron, gold)
 
 ## v0.13.7
 + Fixed some unintended behavior with chisel items mining speeds

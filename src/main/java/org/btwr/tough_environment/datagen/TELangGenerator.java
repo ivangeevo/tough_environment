@@ -101,6 +101,10 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.WHITE_STONE_STAIRS, "White Stone Stairs");
         tb.add(ModBlocks.WHITE_COBBLESTONE_STAIRS, "White Cobblestone Stairs");
 
+        tb.add(ModBlocks.RAW_COPPER_PLACED, "Raw Copper");
+        tb.add(ModBlocks.RAW_IRON_PLACED, "Raw Iron");
+        tb.add(ModBlocks.RAW_GOLD_PLACED, "Raw Gold");
+
         // Non-item blocks (blocks that aren't usually accessible by the player, but still need names)
         tb.add(ModBlocks.STONE_CONVERTING, "Cracked Stone");
         tb.add(ModBlocks.DEEPSLATE_CONVERTING, "Cracked Deepslate");
