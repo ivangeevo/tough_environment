@@ -9,6 +9,7 @@
 + Changed how stone is created from lava. Water must now float on top of the aforementioned lava filled blocks to create the corresponding stone type (stone and deepslate)
 + Changed lava to no longer generate cobblestone when water flows on top of it and to instead create a Lava Pillow block.
 + Added missing text translations for the names of the placed ore block (copper, iron, gold)
++ Updated the mod to Fabric API 0.116.11, Fabric Loader 0.19.2 & BTWR: Shared Library 0.8.4
 
 ## v0.13.7
 + Fixed some unintended behavior with chisel items mining speeds
