@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tough_environment:block/slab_cobbled_deepslate_loose"
+    },
+    "type=double": {
+      "model": "tough_environment:block/cobbled_deepslate_loose"
+    },
+    "type=top": {
+      "model": "tough_environment:block/slab_cobbled_deepslate_loose_top"
+    }
+  }
+}

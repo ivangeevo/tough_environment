@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "tough_environment:block/cobblestone_loose",
+    "side": "tough_environment:block/cobblestone_loose",
+    "top": "tough_environment:block/cobblestone_loose"
+  }
+}

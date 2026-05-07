@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tough_environment:block/slab_diorite_loose"
+    },
+    "type=double": {
+      "model": "tough_environment:block/diorite_loose"
+    },
+    "type=top": {
+      "model": "tough_environment:block/slab_diorite_loose_top"
+    }
+  }
+}

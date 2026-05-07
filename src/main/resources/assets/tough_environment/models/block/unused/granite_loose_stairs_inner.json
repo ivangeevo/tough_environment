@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "tough_environment:block/granite_loose",
+    "side": "tough_environment:block/granite_loose",
+    "top": "tough_environment:block/granite_loose"
+  }
+}

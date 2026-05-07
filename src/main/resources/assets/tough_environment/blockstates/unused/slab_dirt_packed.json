@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tough_environment:block/slab_dirt_packed"
+    },
+    "type=double": {
+      "model": "tough_environment:block/dirt_packed"
+    },
+    "type=top": {
+      "model": "tough_environment:block/slab_dirt_packed_top"
+    }
+  }
+}
