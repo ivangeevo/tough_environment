@@ -96,7 +96,6 @@ public class PlacedOreChunkBlock extends Block {
     }
 
     private Item getDropItemForBlock(BlockState state) {
-
         if (state.isOf(ModBlocks.RAW_COPPER_PLACED)) {
             return Items.RAW_COPPER;
         }

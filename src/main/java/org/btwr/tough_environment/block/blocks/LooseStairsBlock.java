@@ -169,21 +169,12 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
     }
 
     @Override
-    protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= world.getBottomY()) {
-            FallingBlockEntity fallingBlockEntity = FallingBlockEntity.spawnFromBlock(world, pos, state);
-            this.configureFallingBlockEntity(fallingBlockEntity);
-        }
-    }
-
-    @Override
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
         this.baseBlock.onDestroyedByExplosion(world, pos, explosion);
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction direction = ctx.getSide();
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
         BlockState blockState = this.getDefaultState()
@@ -306,7 +297,8 @@ public class LooseStairsBlock extends MortarReceiverBlock implements Waterloggab
 
     @Override
     protected boolean canPathfindThrough(BlockState state, NavigationType type) {
-        return super.canPathfindThrough(state, type);
+        return false;
     }
+
 
 }

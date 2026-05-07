@@ -48,8 +48,10 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
 
     public LooseAggregateSlabBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((this.stateManager.getDefaultState()).with(TYPE, SlabType.BOTTOM)
-                .with(WATERLOGGED, false));
+        this.setDefaultState(this.stateManager.getDefaultState()
+                .with(TYPE, SlabType.BOTTOM)
+                .with(WATERLOGGED, false)
+        );
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder)
@@ -86,9 +88,7 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool)
     {
         // handles the case where the LooseBlock is a DIRT_LOOSE and mined with a hoe
-        if (tool.isIn(BTWRConventionalTags.Items.MODERN_HOES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES))
-        {
-
+        if (tool.isIn(BTWRConventionalTags.Items.MODERN_HOES) || tool.isIn(BTWRConventionalTags.Items.ADVANCED_HOES)) {
             if (state.isOf(ModBlocks.SLAB_DIRT) && state.get(TYPE) == SlabType.DOUBLE) {
                 world.setBlockState(pos, Blocks.FARMLAND.getDefaultState());
             }
@@ -192,10 +192,11 @@ public class LooseAggregateSlabBlock extends FallingBlock implements Waterloggab
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+    @Override
+    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return switch (type) {
             case LAND, AIR -> false;
-            case WATER -> world.getFluidState(pos).isIn(FluidTags.WATER);
+            case WATER -> state.getFluidState().isIn(FluidTags.WATER);
         };
     }
 

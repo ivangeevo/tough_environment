@@ -36,8 +36,10 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
 
     public LooseSlabBlock(Settings settings) {
         super(settings);
-        this.setDefaultState((this.stateManager.getDefaultState()).with(TYPE, SlabType.BOTTOM)
-                .with(WATERLOGGED, false));
+        this.setDefaultState(this.stateManager.getDefaultState()
+                .with(TYPE, SlabType.BOTTOM)
+                .with(WATERLOGGED, false)
+        );
     }
 
     @Override
@@ -159,10 +161,11 @@ public class LooseSlabBlock extends MortarReceiverBlock implements Waterloggable
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+    @Override
+    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
         return switch (type) {
             case LAND, AIR -> false;
-            case WATER -> world.getFluidState(pos).isIn(FluidTags.WATER);
+            case WATER -> state.getFluidState().isIn(FluidTags.WATER);
         };
     }
 

@@ -89,7 +89,6 @@ public class UnfiredNetherBrickBlock extends Block  {
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify)
     {
         if (!world.getBlockState(pos.down()).isSolidBlock(world, pos.down())) {
-            //dropBlockAsItem(world, pos);
             Block.dropStacks(state, world, pos);
             world.removeBlock(pos, false);
         }

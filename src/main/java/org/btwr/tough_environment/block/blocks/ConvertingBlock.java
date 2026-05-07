@@ -4,11 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
-import org.btwr.tough_environment.state.property.ModProperties;
 
 public class ConvertingBlock extends Block {
 
-    public static final IntProperty BREAK_LEVEL = ModProperties.BREAK_LEVEL;
+    public static final IntProperty BREAK_LEVEL = IntProperty.of("break_level", 0, 8);
 
     public ConvertingBlock(Settings settings) {
         super(settings);
