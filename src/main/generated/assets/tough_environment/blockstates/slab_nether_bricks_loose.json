@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "tough_environment:block/slab_nether_bricks_loose"
+    },
+    "type=double": {
+      "model": "tough_environment:block/nether_bricks_loose"
+    },
+    "type=top": {
+      "model": "tough_environment:block/slab_nether_bricks_loose_top"
+    }
+  }
+}
