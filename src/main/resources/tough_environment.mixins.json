@@ -4,6 +4,7 @@
   "package": "org.btwr.tough_environment.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "block.FluidBlockMixin",
     "ItemEntityMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",

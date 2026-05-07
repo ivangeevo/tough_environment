@@ -3,8 +3,11 @@ package org.btwr.tough_environment.block.blocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.FallingBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -14,8 +17,10 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldEvents;
 import net.minecraft.world.tick.OrderedTick;
 import net.minecraft.world.tick.TickPriority;
+import org.btwr.tough_environment.block.ModBlocks;
 import org.btwr.tough_environment.tag.ModTags;
 import org.btwr.tough_environment.util.BlockMortarMapper;
 
@@ -74,6 +79,39 @@ public class MortarReceiverBlock extends FallingBlock {
         return ActionResult.PASS;
     }
 
+    @Override
+    protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+        if (state.isIn(ModTags.Blocks.LAVA_LOGGABLE)) {
+            Block block = state.getBlock();
+
+            if (hasLavaAbove(world, pos)) {
+                // Transition to the lava-filled variant of the block
+                if (block == ModBlocks.COBBLESTONE_LOOSE) {
+                    world.setBlockState(pos, ModBlocks.LAVA_FILLED_COBBLESTONE_LOOSE.getDefaultState());
+                    return;
+                }
+
+                if (block == ModBlocks.COBBLED_DEEPSLATE_LOOSE) {
+                    world.setBlockState(pos, ModBlocks.LAVA_FILLED_COBBLED_DEEPSLATE_LOOSE.getDefaultState());
+                    return;
+
+                }
+
+                if (block == ModBlocks.STONE_BRICKS_LOOSE) {
+                    world.setBlockState(pos, ModBlocks.LAVA_FILLED_STONE_BRICKS_LOOSE.getDefaultState());
+                    return;
+
+                }
+
+                if (block == ModBlocks.DEEPSLATE_BRICKS_LOOSE) {
+                    world.setBlockState(pos, ModBlocks.LAVA_FILLED_DEEPSLATE_BRICKS_LOOSE.getDefaultState());
+                }
+            }
+        }
+
+        super.neighborUpdate(state, world, pos, sourceBlock, sourcePos, notify);
+    }
+
     // Helper method to apply the mortar logic for a specific hand
     private ActionResult applyMortar(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
         this.tryApplyMortar(state, world, pos, player);
@@ -108,6 +146,11 @@ public class MortarReceiverBlock extends FallingBlock {
             return replacement.getStateWithProperties(state);
         }
         return state; // fallback if no replacement exists
+    }
+
+    private boolean hasLavaAbove(World world, BlockPos pos) {
+        FluidState fluidAbove = world.getFluidState(pos.offset(Direction.UP));
+        return fluidAbove.isOf(Fluids.LAVA) || fluidAbove.isOf(Fluids.FLOWING_LAVA);
     }
 
 }

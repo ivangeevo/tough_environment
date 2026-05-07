@@ -1,13 +1,17 @@
 {
   "values": [
     "tough_environment:cobblestone_loose",
+    "tough_environment:lava_filled_cobblestone_loose",
     "tough_environment:cobbled_deepslate_loose",
+    "tough_environment:lava_filled_cobbled_deepslate_loose",
     "tough_environment:andesite_loose",
     "tough_environment:granite_loose",
     "tough_environment:diorite_loose",
     "tough_environment:bricks_loose",
     "tough_environment:stone_bricks_loose",
+    "tough_environment:lava_filled_stone_bricks_loose",
     "tough_environment:deepslate_bricks_loose",
+    "tough_environment:lava_filled_deepslate_bricks_loose",
     "tough_environment:nether_bricks_loose",
     "tough_environment:calcite_loose",
     "tough_environment:tuff_loose",

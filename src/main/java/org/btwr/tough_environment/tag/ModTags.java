@@ -62,6 +62,15 @@ public class ModTags {
         public static final TagKey<Block> CAN_FALL_IN_THE_NETHER = register("can_fall_in_the_nether");
         public static final TagKey<Block> CAN_FALL_IN_THE_END = register("can_fall_in_the_end");
 
+        /** Blocks which can be lava-logged **/
+        public static final TagKey<Block> LAVA_LOGGABLE = register("lava_loggable");
+
+        /** Stone blocks that are lava logged **/
+        public static final TagKey<Block> LAVA_LOGGED_STONE = register("lava_logged_stone");
+
+        /** Deepslate blocks that are lava logged **/
+        public static final TagKey<Block> LAVA_LOGGED_DEEPSLATE = register("lava_logged_deepslate");
+
         private static TagKey<Block> register(String name) {
             return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ToughEnvironmentMod.MOD_ID, name));
         }

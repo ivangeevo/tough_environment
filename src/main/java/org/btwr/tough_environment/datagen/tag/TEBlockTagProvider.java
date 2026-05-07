@@ -211,13 +211,17 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         this.getOrCreateTagBuilder(ModTags.Blocks.LOOSE_STONE_BLOCKS)
                 .add(ModBlocks.COBBLESTONE_LOOSE)
+                .add(ModBlocks.LAVA_FILLED_COBBLESTONE_LOOSE)
                 .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.LAVA_FILLED_COBBLED_DEEPSLATE_LOOSE)
                 .add(ModBlocks.ANDESITE_LOOSE)
                 .add(ModBlocks.GRANITE_LOOSE)
                 .add(ModBlocks.DIORITE_LOOSE)
                 .add(ModBlocks.BRICKS_LOOSE)
                 .add(ModBlocks.STONE_BRICKS_LOOSE)
+                .add(ModBlocks.LAVA_FILLED_STONE_BRICKS_LOOSE)
                 .add(ModBlocks.DEEPSLATE_BRICKS_LOOSE)
+                .add(ModBlocks.LAVA_FILLED_DEEPSLATE_BRICKS_LOOSE)
                 .add(ModBlocks.NETHER_BRICKS_LOOSE)
 
                 .add(ModBlocks.CALCITE_LOOSE)
@@ -301,6 +305,21 @@ public class TEBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         this.getOrCreateTagBuilder(ModTags.Blocks.SIMPLE_DIRT_BLOCKS)
                 .add(Blocks.DIRT)
                 .add(ModBlocks.DIRT_LOOSE);
+
+        this.getOrCreateTagBuilder(ModTags.Blocks.LAVA_LOGGABLE)
+                .add(ModBlocks.COBBLESTONE_LOOSE)
+                .add(ModBlocks.COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.STONE_BRICKS_LOOSE)
+                .add(ModBlocks.DEEPSLATE_BRICKS_LOOSE);
+
+        this.getOrCreateTagBuilder(ModTags.Blocks.LAVA_LOGGED_STONE)
+                .add(ModBlocks.LAVA_FILLED_COBBLESTONE_LOOSE)
+                .add(ModBlocks.LAVA_FILLED_STONE_BRICKS_LOOSE);
+
+        this.getOrCreateTagBuilder(ModTags.Blocks.LAVA_LOGGED_DEEPSLATE)
+                .add(ModBlocks.LAVA_FILLED_COBBLED_DEEPSLATE_LOOSE)
+                .add(ModBlocks.LAVA_FILLED_DEEPSLATE_BRICKS_LOOSE);
+
 
         //this.getOrCreateTagBuilder(BTWRConventionalTags.Blocks.CAN_FALL_IN_OVERWORLD)
         //.add(Blocks.NETHERRACK)

@@ -69,11 +69,14 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.WHITE_STONE, "White Stone");
         tb.add(ModBlocks.WHITE_COBBLESTONE, "White Cobblestone");
         tb.add(ModBlocks.DIRT_PACKED, "Packed Earth");
+        tb.add(ModBlocks.LAVA_PILLOW, "Lava Pillow");
 
         // Loose blocks
         tb.add(ModBlocks.DIRT_LOOSE, "Loose Dirt");
         tb.add(ModBlocks.COBBLESTONE_LOOSE, "Loose Cobblestone");
+        tb.add(ModBlocks.LAVA_FILLED_COBBLESTONE_LOOSE, "Lava Filled Loose Cobblestone");
         tb.add(ModBlocks.COBBLED_DEEPSLATE_LOOSE, "Loose Cobbled Deepslate");
+        tb.add(ModBlocks.LAVA_FILLED_COBBLED_DEEPSLATE_LOOSE, "Lava Filled Loose Cobbled Deepslate");
         tb.add(ModBlocks.GRANITE_LOOSE, "Loose Granite");
         tb.add(ModBlocks.ANDESITE_LOOSE, "Loose Andesite");
         tb.add(ModBlocks.DIORITE_LOOSE, "Loose Diorite");
@@ -84,7 +87,9 @@ public class TELangGenerator extends FabricLanguageProvider {
         tb.add(ModBlocks.END_STONE_LOOSE, "Loose End Stone");
         tb.add(ModBlocks.BRICKS_LOOSE, "Loose Bricks");
         tb.add(ModBlocks.STONE_BRICKS_LOOSE, "Loose Stone Bricks");
+        tb.add(ModBlocks.LAVA_FILLED_STONE_BRICKS_LOOSE, "Lava Filled Loose Stone Bricks");
         tb.add(ModBlocks.DEEPSLATE_BRICKS_LOOSE, "Loose Deepslate Bricks");
+        tb.add(ModBlocks.LAVA_FILLED_DEEPSLATE_BRICKS_LOOSE, "Lava Filled Loose Deepslate Bricks");
         tb.add(ModBlocks.NETHER_BRICKS_LOOSE, "Loose Nether Bricks");
 
         // Stairs blocks

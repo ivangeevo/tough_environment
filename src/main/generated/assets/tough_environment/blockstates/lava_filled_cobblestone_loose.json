@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "tough_environment:block/lava_filled_cobblestone_loose"
+    }
+  }
+}

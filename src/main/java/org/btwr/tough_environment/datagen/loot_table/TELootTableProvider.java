@@ -44,7 +44,19 @@ public class TELootTableProvider extends BaseLootTableProvider {
                 )
         );
 
+        addDrop(ModBlocks.LAVA_FILLED_STONE_BRICKS_LOOSE,
+                dropsForSimpleLooseBlock(ModBlocks.STONE_BRICKS_LOOSE,
+                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS, ModItems.STONE_BRICK, 8
+                )
+        );
+
         addDrop(ModBlocks.DEEPSLATE_BRICKS_LOOSE,
+                dropsForSimpleLooseBlock(ModBlocks.DEEPSLATE_BRICKS_LOOSE,
+                        LootConditions.WITH_PICKAXE_FULLY_HARVESTS, ModItems.STONE_BRICK_2, 8
+                )
+        );
+
+        addDrop(ModBlocks.LAVA_FILLED_DEEPSLATE_BRICKS_LOOSE,
                 dropsForSimpleLooseBlock(ModBlocks.DEEPSLATE_BRICKS_LOOSE,
                         LootConditions.WITH_PICKAXE_FULLY_HARVESTS, ModItems.STONE_BRICK_2, 8
                 )
@@ -63,7 +75,9 @@ public class TELootTableProvider extends BaseLootTableProvider {
         );
 
         addDrop(ModBlocks.COBBLESTONE_LOOSE);
+        addDrop(ModBlocks.LAVA_FILLED_COBBLESTONE_LOOSE);
         addDrop(ModBlocks.COBBLED_DEEPSLATE_LOOSE);
+        addDrop(ModBlocks.LAVA_FILLED_COBBLED_DEEPSLATE_LOOSE);
         addDrop(ModBlocks.GRANITE_LOOSE);
         addDrop(ModBlocks.DIORITE_LOOSE);
         addDrop(ModBlocks.ANDESITE_LOOSE);

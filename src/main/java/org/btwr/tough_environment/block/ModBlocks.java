@@ -44,6 +44,13 @@ public class ModBlocks {
     public static final Block DEEPSLATE_BRICKS_LOOSE = registerBlock("deepslate_bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.DEEPSLATE_BRICKS)));
     public static final Block NETHER_BRICKS_LOOSE = registerBlock("nether_bricks_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.7F).sounds(BlockSoundGroup.NETHER_BRICKS)));
 
+    public static final Block LAVA_FILLED_COBBLESTONE_LOOSE = registerBlock("lava_filled_cobblestone_loose", new LavaLoggedBlock(AbstractBlock.Settings.copy(COBBLESTONE_LOOSE).ticksRandomly()));
+    public static final Block LAVA_FILLED_COBBLED_DEEPSLATE_LOOSE = registerBlock("lava_filled_cobbled_deepslate_loose", new LavaLoggedBlock(AbstractBlock.Settings.copy(COBBLED_DEEPSLATE_LOOSE).ticksRandomly()));
+    public static final Block LAVA_FILLED_STONE_BRICKS_LOOSE = registerBlock("lava_filled_stone_bricks_loose", new LavaLoggedBlock(AbstractBlock.Settings.copy(STONE_BRICKS_LOOSE).ticksRandomly()));
+    public static final Block LAVA_FILLED_DEEPSLATE_BRICKS_LOOSE = registerBlock("lava_filled_deepslate_bricks_loose", new LavaLoggedBlock(AbstractBlock.Settings.copy(DEEPSLATE_BRICKS_LOOSE).ticksRandomly()));
+
+    public static final Block LAVA_PILLOW  = registerBlock("lava_pillow", new LavaPillowBlock(AbstractBlock.Settings.create().strength(0.8f).sounds(BlockSoundGroup.GLASS)));
+
     public static final Block CALCITE_LOOSE = registerBlock("calcite_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.75f).requiresTool().sounds(BlockSoundGroup.CALCITE)));
     public static final Block TUFF_LOOSE = registerBlock("tuff_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(0.8F).requiresTool().sounds(BlockSoundGroup.TUFF)));
     public static final Block BLACKSTONE_LOOSE = registerBlock("blackstone_loose", new MortarReceiverBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.STONE)));

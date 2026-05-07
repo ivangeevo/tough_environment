@@ -1,4 +1,13 @@
 ## v???(dev)
++ Added new blocks:
+- Lava Filled Loose Cobblestone
+- Lava Filled Loose Deepslate
+- Lava Filled Loose Stone Bricks
+- Lava Filled Loose Deepslate Bricks
+- Lava Pillow
+
++ Changed how stone is created from lava. Water must now float on top of the aforementioned lava filled blocks to create the corresponding stone type (stone and deepslate)
++ Changed lava to no longer generate cobblestone when water flows on top of it and to instead create a Lava Pillow block.
 + Added missing text translations for the names of the placed ore block (copper, iron, gold)
 
 ## v0.13.7
