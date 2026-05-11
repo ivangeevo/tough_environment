@@ -1,14 +1,15 @@
-## v???(dev)
+## v0.2
++ The mod is officially in Beta now!
 + Added new blocks:
-- Lava Filled Loose Cobblestone
-- Lava Filled Loose Deepslate
-- Lava Filled Loose Stone Bricks
-- Lava Filled Loose Deepslate Bricks
-- Lava Pillow
-
+  - Lava Filled Loose Cobblestone
+  - Lava Filled Loose Deepslate
+  - Lava Filled Loose Stone Bricks
+  - Lava Filled Loose Deepslate Bricks
+  - Lava Pillow
 + Added missing text translations for the names of the placed ore block (copper, iron, gold)
-+ Changed how stone is created from lava. Water must now float on top of the aforementioned lava filled blocks to create the corresponding stone type (stone and deepslate)
++ Changed how stone is created from lava. Water must now float on top of the aforementioned lava-filled blocks to create the corresponding stone type (stone and deepslate)
 + Changed lava to no longer generate cobblestone when water flows on top of it and to instead create a Lava Pillow block.
++ Changed the mod versioning scheme to [semver](https://semver.org/).
 + Fixed some pathfinding issues for loose slab and stairs blocks
 + Updated the mod to Fabric API 0.116.11, Fabric Loader 0.19.2 & BTWR: Shared Library 0.8.4
 
