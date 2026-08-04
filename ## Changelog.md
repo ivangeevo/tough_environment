@@ -1,4 +1,5 @@
-## v???(dev)
+## v0.21(dev)
++ Changed version scheme. The mod will now use the (x.xx) scheme again until I prepare it for a bigger (v1.0) release soon. The previous version (v0.2) caused some issues with older version names which are matching that pattern
 + Updated the mod to Fabric API 0.116.15, Fabric Loader 0.19.3 & BTWR: Shared Library 0.8.5
 
 ## v0.2
