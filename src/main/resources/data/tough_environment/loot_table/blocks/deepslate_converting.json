@@ -110,6 +110,32 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "tough_environment:stone_brick_2",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tough_environment:deepslate_converting",
+              "properties": {
+                "break_level": "3"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "items": "#c:advanced_chisels"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "tough_environment:small_stone_2",
           "conditions": [
             {
