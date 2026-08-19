@@ -48,12 +48,15 @@ public class MortarReceiverBlock extends FallingBlock {
 
         if (hasMortaredNeighbor) {
             // Create an OrderedTick for the block
-            OrderedTick<Block> orderedTick = new OrderedTick<>(state.getBlock(), pos,
-                    world.getTime() + TACKY_FALLING_BLOCK_TICK_RATE, TickPriority.NORMAL, 0
+            OrderedTick<Block> orderedTick = new OrderedTick<>(
+                    state.getBlock(),
+                    pos,
+                    world.getTime() + TACKY_FALLING_BLOCK_TICK_RATE,
+                    TickPriority.NORMAL,
+                    0
             );
             world.getBlockTickScheduler().scheduleTick(orderedTick);
-        }
-        else {
+        } else {
             // Schedule the normal fall tick (default for falling blocks)
             super.onBlockAdded(state, world, pos, oldState, notify);
         }
@@ -92,13 +95,11 @@ public class MortarReceiverBlock extends FallingBlock {
                 if (block == ModBlocks.COBBLED_DEEPSLATE_LOOSE) {
                     world.setBlockState(pos, ModBlocks.LAVA_FILLED_COBBLED_DEEPSLATE_LOOSE.getDefaultState());
                     return;
-
                 }
 
                 if (block == ModBlocks.STONE_BRICKS_LOOSE) {
                     world.setBlockState(pos, ModBlocks.LAVA_FILLED_STONE_BRICKS_LOOSE.getDefaultState());
                     return;
-
                 }
 
                 if (block == ModBlocks.DEEPSLATE_BRICKS_LOOSE) {
