@@ -1,4 +1,5 @@
 ## v0.21(dev)
++ Added a new config option to toggle whether lava pillows should be created when water touches flowing lava
 + Fixed hardcore block breaking speed de-syncing in SMP (fizzexual)
 + Fixed some block loot tables to drop the correct items and replaced with correct tools/tags where necessary (fizzexual)
 + Changed version scheme. The mod will now use the (x.xx) scheme again until I prepare it for a bigger (v1.0) release soon. The previous version (v0.2) caused some issues with older version names which are matching that pattern
