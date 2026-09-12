@@ -1,4 +1,4 @@
-## v0.21(dev)
+## v0.21
 + Added a new config option to toggle whether lava pillows should be created when water touches flowing lava
 + Added custom sound events for sounds like stone cracking when broken, applying mortar and unfired brick being destroyed
 + Fixed hardcore block breaking speed de-syncing in SMP (fizzexual)
